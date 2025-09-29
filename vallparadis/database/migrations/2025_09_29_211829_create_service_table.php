@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('service', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_center');
-            $table->foreign('id_center')->references('id')->on('center')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('id_general_service');
+            $table->foreign('id_general_service')->references('id')->on('general_service')->onUpdate('cascade')->onDelete('cascade');
 
             $table->string('staff',255);
             $table->string('schedule',255);
