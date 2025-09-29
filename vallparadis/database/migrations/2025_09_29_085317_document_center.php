@@ -11,19 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('center',function(Blueprint $table){
+        Schema::create('document_center',function(Blueprint $table){
             $table->id();
-            $table->string('center_name',255);
-            $table->string('location',255);
+            $table->unsignedBigInteger('id_center');
+            $table->foreign('id_center')->references('id')->on('center')->onUpdate('cascade')->onDelete('cascade');
+            $table->date('date');
             $table->timestamps();
+            
         });
     }
-
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('center');
+        Schema::dropIfExists('document_center');
     }
 };
