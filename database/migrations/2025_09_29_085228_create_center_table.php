@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('center_name',255);
             $table->string('location',255);
+            $table->string('phone_number');
+            $table->string('email_address');
             $table->timestamps();
         });
     }

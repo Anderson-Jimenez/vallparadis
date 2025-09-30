@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('name',255);
             $table->string('surnames',255);
             $table->string('phone_number', 20);
-            $table->string('email_address',255);
+            $table->string('email_address',255);                                              
             $table->string('address',255);
             $table->integer('number_locker');
-            $table->integer('clue_locker');
+            $table->string('clue_locker',255);
             $table->string('link_status',255);
 
             $table->timestamps();
