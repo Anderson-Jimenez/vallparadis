@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('commission', function (Blueprint $table) {
+        Schema::create('projects_comissions_documents', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_center');
-            $table->foreign('id_center')->references('id')->on('center')->onUpdate('cascade')->onDelete('cascade');
-            $table->date('start_date');
+            $table->unsignedBigInteger('project_comission_id');
+            $table->foreign('project_comission_id')->references('id')->on('projects_comissions')->onUpdate('cascade')->onDelete('cascade');
             $table->string('name', 255);
-            $table->string('manager', 255);
-            $table->text('description');
-            $table->string('docs_route', 255);
+            $table->string('path', 255);
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('commission');
+        Schema::dropIfExists('projects_comissions_documents');
     }
 };
