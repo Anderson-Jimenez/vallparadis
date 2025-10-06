@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('professionals_courses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('professional_id');
-            $table->unsignedBigInteger('id_course');
+            $table->unsignedBigInteger('course_id');
             $table->foreign('professional_id')->references('id')->on('professionals')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('courses_id')->references('id')->on('courses')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('course_id')->references('id')->on('courses')->onUpdate('cascade')->onDelete('cascade');
             $table->date('start_date');
             $table->date('end_date');
             $table->string('certificate', 255);

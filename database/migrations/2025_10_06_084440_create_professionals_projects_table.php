@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('professionals_commissions', function (Blueprint $table) {
+        Schema::create('professionals_projects', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('professional_id');
             $table->unsignedBigInteger('project_comission_id');
-            $table->foreign('professional_id')->references('id')->on('professional')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('project_commission_id')->references('id')->on('projects_comissions')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('professional_id')->references('id')->on('professionals')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('project_comission_id')->references('id')->on('projects_comissions')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('professionals_commissions');
+        Schema::dropIfExists('professionals_projects');
     }
 };
