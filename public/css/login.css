@@ -1,0 +1,18 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(45deg,rgba(255, 255, 255, 1) 0%, rgba(255, 116, 0, 1) 100%);
+    justify-content: center;
+    align-items: center;
+    height: 56.5vw;
+}
+.login{
+    height: 35vw;
+    border-radius: 100px;
+    background-color: rgba(240, 240, 240, 0.621);
+    justify-content: center;
+    align-items: center;
+}
+h1,label,p,a{
+    color: #FF7400;
+}
