@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('projects_comissions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('center_id');
+            $table->unsignedBigInteger('professional_manager_id');
             $table->foreign('center_id')->references('id')->on('centers')->onUpdate('cascade')->onDelete('cascade');
             $table->string('name', 255);
             $table->date('start_date');
-            $table->unsignedBigInteger('professional_manager_id');
             $table->foreign('professional_manager_id')->references('id')->on('professionals')->onUpdate('cascade')->onDelete('cascade');
             $table->text('description');
             $table->text('observation');

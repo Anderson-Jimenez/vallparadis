@@ -11,25 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('hr_followup', function (Blueprint $table) {
+        Schema::create('documents_center',function(Blueprint $table){
             $table->id();
-            $table->unsignedBigInteger('id_center');
-            $table->unsignedBigInteger('id_hr_issue');
-
-            $table->foreign('id_hr_issue')->references('id')->on('hr_issue')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('center_id');
+            $table->foreign('center_id')->references('id')->on('centers')->onUpdate('cascade')->onDelete('cascade');
             $table->date('date');
-            $table->string('professional',255);
-            $table->string('docs_route',255);
-
             $table->timestamps();
+            
         });
     }
-
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('hr_followup');
+        Schema::dropIfExists('documents_center');
     }
 };

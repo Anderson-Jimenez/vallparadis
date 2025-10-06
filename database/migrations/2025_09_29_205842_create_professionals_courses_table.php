@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('professional_course', function (Blueprint $table) {
+        Schema::create('professionals_courses', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_professional');
-            $table->foreign('id_professional')->references('id')->on('professional')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('professional_id');
             $table->unsignedBigInteger('id_course');
-            $table->foreign('id_course')->references('id')->on('course')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('professional_id')->references('id')->on('professionals')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('courses_id')->references('id')->on('courses')->onUpdate('cascade')->onDelete('cascade');
             $table->date('start_date');
             $table->date('end_date');
             $table->string('certificate', 255);
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('professional_course');
+        Schema::dropIfExists('professionals_courses');
     }
 };

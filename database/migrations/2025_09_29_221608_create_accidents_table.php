@@ -11,13 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('general_service', function (Blueprint $table) {
+        Schema::create('accidents', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_center');
-            $table->foreign('id_center')->references('id')->on('center')->onUpdate('cascade')->onDelete('cascade');
+
+            $table->unsignedBigInteger('professional_id');
+            $table->foreign('professional_id')->references('id')->on('professionals')->onUpdate('cascade')->onDelete('cascade');
             $table->string('type',255);
-            $table->string('manager',255);
-            $table->string('contact',255);
+            $table->date('date');
+            $table->string('context',255);
+            $table->text('description');
+            $table->string('duration',255);
 
             $table->timestamps();
         });
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('general_service');
+        Schema::dropIfExists('accidents');
     }
 };

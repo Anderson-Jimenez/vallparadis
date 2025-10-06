@@ -13,15 +13,16 @@ return new class extends Migration
     {
         Schema::create('hr_issue', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_center');
-            $table->unsignedBigInteger('id_professional');
-            $table->unsignedBigInteger('id_professional_sign');
+            $table->unsignedBigInteger('center_id');
+            $table->unsignedBigInteger('professional_id');
+            
+            $table->unsignedBigInteger('professional_sign_id');
 
-            $table->foreign('id_center')->references('id')->on('center')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('id_professional')->references('id')->on('professional')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('center_id')->references('id')->on('centers')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('professional_id')->references('id')->on('professionals')->onUpdate('cascade')->onDelete('cascade');
             $table->date('start_date');
             $table->string('description',255);
-            $table->foreign('id_professional_sign')->references('id')->on('professional')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('professional_sign_id')->references('id')->on('professional')->onUpdate('cascade')->onDelete('cascade');
             $table->string('docs_route',255);
 
             $table->timestamps();

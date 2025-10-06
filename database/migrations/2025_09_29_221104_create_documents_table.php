@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('document', function (Blueprint $table) {
+        Schema::create('documents', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('id_center');
-            $table->foreign('id_center')->references('id')->on('center')->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger('id_professional');
-            $table->foreign('id_professional')->references('id')->on('professional')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('center_id');
+            $table->unsignedBigInteger('professional_id');
+
+            $table->foreign('center_id')->references('id')->on('centers')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('professional_id')->references('id')->on('professionals')->onUpdate('cascade')->onDelete('cascade');
             $table->date('date');
             $table->string('docs_route', 255);  
 
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('document');
+        Schema::dropIfExists('documents');
     }
 };

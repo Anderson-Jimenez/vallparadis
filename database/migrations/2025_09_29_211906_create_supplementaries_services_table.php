@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('supplementary_service', function (Blueprint $table) {
+        Schema::create('supplementaries_services', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('id_center');
-            $table->foreign('id_center')->references('id')->on('center')->onUpdate('cascade')->onDelete('cascade'); 
+            $table->unsignedBigInteger('center_id');
+            $table->foreign('center_id')->references('id')->on('centers')->onUpdate('cascade')->onDelete('cascade'); 
             $table->string('type',255);
             $table->date('start_date');
             $table->string('manager',255);
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('supplementary_service');
+        Schema::dropIfExists('supplementaries_services');
     }
 };
