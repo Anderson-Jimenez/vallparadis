@@ -8,11 +8,47 @@ body{
 }
 .login{
     height: 35vw;
-    border-radius: 100px;
+    border-radius: 1.5vw;
     background-color: rgba(240, 240, 240, 0.621);
     justify-content: center;
     align-items: center;
 }
-h1,label,p,a{
+h1,h3,label,p,a{
     color: #FF7400;
+}
+h3{
+    font-weight: 700;
+    font-size: 3vh;
+    text-align: center;
+}
+h1{
+    font-weight: 500;
+}
+a{
+    font-size: 1.8vh;
+}
+form{
+    flex-wrap: wrap;
+}
+label,input{
+    width: 80%;
+    margin: 0.2vw;
+}
+label{
+    font-size: 2vh;
+}
+a{
+    margin:0.6vw 0;
+}
+input{
+    height: 2.5vw;
+    border:none;
+    border-radius: 1vw;
+}
+input[type="submit"]{
+    background-color: #FF7400;
+    color: white;
+    font-size: 2vh;
+    height:3vw;
+    border-radius: 2vw;
 }

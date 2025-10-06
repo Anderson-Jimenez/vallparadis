@@ -65,6 +65,18 @@
     /*display:grid*/
 }
 h1{
-    font-size: 6.5vh;
+    font-size: 5.5vh;
     text-align: center;
+}
+h1,h2,h3,h4,h5,h6{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+p,span,a,li,label{
+    font-family: "Lato", sans-serif;
+    font-style: normal;
+}
+form{
+    justify-content: center;
 }

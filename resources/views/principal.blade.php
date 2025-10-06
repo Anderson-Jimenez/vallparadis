@@ -6,23 +6,27 @@
     <title>Login</title>
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
     <link rel="stylesheet" href="{{ asset('css/template.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body class="row">
     <div class="login w60 row">
         <section class="w50">
             <h1>Benvinguts a la fundació VallParadís!</h1>
         </section>
-        <section class="w50">
-            <form>
+        <section class="w40">
+            <h3>Login</h3>
+            <form action="index.php" method="POST" class="row">
                 <!-- Username -->
-                <label for="name">Usuari:</label>
+                <label for="name">Nom d'usuari</label>
                 <input type="name">
                 <!-- Password -->
-                <label for="username">Contrasenya:</label>
-                <p><a href="#">Has oblidat la contrasenya?</a>
-                <input type="password">
-                <input type="submit" value="Login">
-        </form>
+                <label for="username">Contrasenya</label>
+                <input type="password" name="passwd">
+                <a href="#">Has oblidat la contrasenya?</a>
+                <input type="submit" value="Iniciar sesion">
+            </form>
         </section>
     </div>
 </body>
