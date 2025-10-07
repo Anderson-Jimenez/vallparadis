@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Center extends Model
 {
-    protected $table = "center";
+    protected $table = "centers";
+
+    public function professionals(): HasMany{
+        return $this->hasMany(Professional::class);
+    }
+
 }
