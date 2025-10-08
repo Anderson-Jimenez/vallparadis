@@ -11,18 +11,18 @@
         <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     -->
 </head>
-<body class="flex w-screen bg-orange-gradient min-h-screen justify-center items-center">
-    <div class="w-max flex">
+<body class="flex justify-center items-center bg-forms h-screen">
+    <div class="flex bg-white-transparent w60 h-35vw text-center items-center rounded-2xl">
         <section class="w50">
             <h1>Benvinguts a la fundació VallParadís!</h1>
         </section>
         <section class="w40">
             <h3>Login</h3>
             <form action="index.php" method="POST" class="row">
-                <label for="name">Nom d'usuari</label>
+                <label for="name" class="w80">Nom d'usuari</label>
                 <input type="name">
-                <label for="username">Contrasenya</label>
-                <input type="password" name="passwd">
+                <label for="username" class="w80">Contrasenya</label>
+                <input type="password" name="passwd" class="w80">
                 <a href="#">Has oblidat la contrasenya?</a>
                 <input type="submit" value="Iniciar sesion">
             </form>

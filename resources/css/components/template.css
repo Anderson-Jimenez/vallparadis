@@ -63,15 +63,7 @@ body{
 .w95{
     width: 95%;
 }
-
-.row{
-    display: flex;
-    /*display:grid*/
-}
-h1{
-    font-size: 5.5vh;
-    text-align: center;
-}
+/*
 h1,h2,h3,h4,h5,h6{
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
@@ -81,6 +73,24 @@ p,span,a,li,label{
     font-family: "Lato", sans-serif;
     font-style: normal;
 }
-form{
-    justify-content: center;
-}
+*/
+.h-5vw { height: 5vw; }
+.h-10vw { height: 10vw; }
+.h-15vw { height: 15vw; }
+.h-20vw { height: 20vw; }
+.h-25vw { height: 25vw; }
+.h-30vw { height: 30vw; }
+.h-35vw { height: 35vw; }
+.h-40vw { height: 40vw; }
+.h-45vw { height: 45vw; }
+.h-50vw { height: 50vw; }
+.h-55vw { height: 55vw; }
+.h-60vw { height: 60vw; }
+.h-65vw { height: 65vw; }
+.h-70vw { height: 70vw; }
+.h-75vw { height: 75vw; }
+.h-80vw { height: 80vw; }
+.h-85vw { height: 85vw; }
+.h-90vw { height: 90vw; }
+.h-95vw { height: 95vw; }
+.h-100vw { height: 100vw; }
