@@ -11,9 +11,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     -->
 </head>
-<!--
-<body class="row">
-    <div class="login w60 row">
+<body class="flex w-screen bg-orange-gradient min-h-screen justify-center items-center">
+    <div class="w-max flex">
         <section class="w50">
             <h1>Benvinguts a la fundació VallParadís!</h1>
         </section>
@@ -31,10 +30,6 @@
     </div>
 
 </body>
--->
-<body>
-    <div class="bg-primary-500 text-white p-4 rounded-lg">
-        Tailwind funciona 🎉
-    </div>
-</body>
+
+
 </html> 

@@ -14,6 +14,9 @@ export default {
             fontFamily: {
                 sans: ['Inter', 'sans-serif'],
             },
+            backgroundImage:{
+                'orange-gradient': 'linear-gradient(45deg, rgba(255, 255, 255, 1) 0%, rgba(255, 116, 0, 1) 100%)',
+            }
         },
     },
     plugins: [],
