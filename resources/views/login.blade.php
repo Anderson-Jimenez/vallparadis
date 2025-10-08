@@ -20,7 +20,7 @@
         <section class="w40 text-center">
             <img src="{{ asset('img/login/Login_icon.png') }}" alt="icone_login" class="h-10vw">
             <h3>Login</h3>
-            <form action="index.php" method="POST" class="flex flex-wrap justify-center">
+            <form action={{route("equip_directiu.principal")}} method="POST" class="flex flex-wrap justify-center">
                 <label for="name" class="w80">Nom d'usuari</label>
                 <input type="name">
                 <label for="username">Contrasenya</label>
