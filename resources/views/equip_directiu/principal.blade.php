@@ -6,6 +6,6 @@
     <title>Vallparadis</title>
 </head>
 <body>
-    
+    <h1>pagina principal :D</h1>
 </body>
 </html>
