@@ -29,7 +29,7 @@ class LoginController extends Controller
     {
         request()->validate([
             'name'=>'required',
-            'passwd'=>'required'
+            'passwd'=>'required',
         ]);
 
         //Validació sin base de datos:
@@ -38,9 +38,7 @@ class LoginController extends Controller
         $pass = $request->input('passwd');
 
         if ($user === 'admin' && $pass === '1234') {
-            // Si las credenciales son correctas → redirigir a /principal
-            return redirect()->route('equip_directiu.principal');
-        } 
+            return redirect()->route('principal');        } 
         else {
             // Si son incorrectas → volver al login con mensaje de error
             return redirect()->route('login')->withErrors([
