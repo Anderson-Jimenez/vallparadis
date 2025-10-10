@@ -6,5 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Project_comission_document extends Model
 {
-    //
+    protected $table = "projects_comissions_documents";
+
+    public function projects_comissions(): BelongsTo {
+        return $this->belongsTo(Project_comission::class);
+    }
 }

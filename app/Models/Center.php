@@ -8,8 +8,12 @@ class Center extends Model
 {
     protected $table = "centers";
 
-    public function professionals(): HasMany{
+    public function professionals(): HasMany {
         return $this->hasMany(Professional::class);
+    }
+
+    public function projects_comissions(): HasMany {
+        return $this->hasMany(Project_comission::class);
     }
 
 }
