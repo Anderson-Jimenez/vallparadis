@@ -22,19 +22,16 @@ Route::middleware(['auth'])->group(function () {
         return view('management_team.principal');
     })->name('principal');
 
-    // Afegir rutes com son les rutes de center i tal que pertanyen a vistes de management_team
+    // Vista administrador centers
+    Route::get('/centers_management', [CenterController::class, 'index'])->name('center.index');
 });
 
 
-Route::get('/principal', function () {
-    return view('management_team.principal');
-})->name('principal');
+
 
 //Route::post('/centers_management', [CenterController::class, 'create'])->name('center.create');
 
-Route::get('/centers_management', function () {
-    return view('management_team.centers_management');
-})->name('center');
+
 
 //Route::post('/professionals_management', [ProfessionalController::class, 'create'])->name('professional.create');
 

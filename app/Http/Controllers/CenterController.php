@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Center;
 
 class CenterController extends Controller
 {
@@ -11,7 +12,8 @@ class CenterController extends Controller
      */
     public function index()
     {
-        //
+        $centers = Center::get();
+        return view('management_team.centers_management',['centers'=>$centers]);
     }
 
     /**

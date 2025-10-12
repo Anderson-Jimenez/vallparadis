@@ -12,7 +12,7 @@
         <h1>Hola, {{ Auth::user()->name }}</h1>
     
 
-        <a href="{{route('center')}}">Gestió Centre</a><br>
+        <a href="{{route('center.index')}}">Gestió Centre</a><br>
         <a href="{{route('professional')}}">Gestió Professionals</a><br>
         <a href="{{route('project_comission')}}">Gestió Projectes i comissions</a>
 

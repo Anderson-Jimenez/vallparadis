@@ -9,6 +9,33 @@
 
 </head>
 <body>
-    <h1>Gestió Centre</h1>
+    @auth
+        <h1>Gestió Centre</h1>
+
+        <table >
+        
+            <tr>
+                <th>Nombre</th>
+                <th>Ubicación</th>
+                <th>Teléfono</th>
+                <th>Email</th>
+            </tr>
+
+            @foreach ($centers as $center)
+                <tr>
+                    <td>{{ $center->center_name }}</td>
+                    <td>{{ $center->location }}</td>
+                    <td>{{ $center->phone_number }}</td>
+                    <td>{{ $center->email_address }}</td>
+                </tr>
+            @endforeach
+        
+        </table>
+    @endauth
+
+    @guest
+        <h1>No has iniciado sesión.</h1>
+        <meta http-equiv="refresh" content="2; URL={{ route('login') }}" />
+    @endguest
 </body>
 </html>
