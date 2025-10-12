@@ -2,25 +2,35 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable; 
+use Illuminate\Database\Eloquent\Relations\{BelongsTo, BelongsToMany, HasMany, HasOne};
 
-class Professional extends Model
+class Professional extends Authenticatable 
 {
     protected $table = "professionals";
-    
-    public function centers(): BelongsTo {
+
+    protected $fillable = ['name', 'password']; // asegúrate de incluir estos campos si los usas
+
+    protected $hidden = ['password'];
+
+    // Relacions
+    public function center(): BelongsTo
+    {
         return $this->belongsTo(Center::class);
     }
 
-    public function courses(): BelongsToMany {
+    public function courses(): BelongsToMany
+    {
         return $this->belongsToMany(Course::class);
     }
 
-    public function uniforms(): HasMany {
-        return $this->belongsTo(Uniform::class);
+    public function uniforms(): HasMany
+    {
+        return $this->hasMany(Uniform::class);
     }
 
-    public function projects_comissions(): HasOne {
+    public function project_comission(): HasOne
+    {
         return $this->hasOne(Project_comission::class);
     }
 }

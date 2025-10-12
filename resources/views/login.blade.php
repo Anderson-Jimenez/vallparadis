@@ -24,7 +24,7 @@
         <section class="w2/5 text-center">
             <img src="{{ asset('img/login/Login_icon.png') }}" alt="icone_login" class="h-[25vh]">
             <h3>Login</h3>
-            <form action="{{route('login.store')}}" method="POST" class="flex flex-wrap justify-center">
+            <form action="{{route('login.submit') }}" method="POST" class="flex flex-wrap justify-center">
                 @csrf
                 <label for="name" class="w4/5">Nom d'usuari</label>
                 <input type="name" name="name">

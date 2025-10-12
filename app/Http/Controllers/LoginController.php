@@ -3,87 +3,45 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\Professional;
 
 class LoginController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function showLoginForm()
     {
-        // Comprobamos si el usuario ya está logado
-	    if (Auth::check()) {
-	
-	        // Si está logado le mostramos la vista de logados
-            return redirect()->route('principal'); 
-	    }
-	
-	    // Si no está logado le mostramos la vista con el formulario de login
-	    return view('login');
+        if (Auth::check()) {
+            return redirect()->route('principal');
+        }
+
+        return view('login');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function login(Request $request)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        request()->validate([
-            'name'=>'required',
-            'passwd'=>'required',
+        $credentials = $request->validate([
+            'name' => ['required', 'string'],
+            'passwd' => ['required', 'string'],
         ]);
 
-        //Validació sin base de datos:
+        // Buscar al profesional en la base de datos
+        $professional = Professional::where('name', $credentials['name'])->first();
 
-        $user = $request->input('name');
-        $pass = $request->input('passwd');
-
-        if ($user === 'admin' && $pass === '1234') {
-            return redirect()->route('principal');        } 
-        else {
-            // Si son incorrectas → volver al login con mensaje de error
-            return redirect()->route('login')->withErrors([
-                'login' => 'Usuari o contrasenya incorrectes.'
-            ]);
+        // verificacio de si existeix un profesional amb el nom indicat i la contrasenya del mateix existeix
+        if ($professional && Hash::check($credentials['passwd'], $professional->password)) {
+            Auth::login($professional); // Comanda per
+            return redirect()->route('principal');
         }
+
+        return back()->withErrors([
+            'login' => 'Email o contraseña incorrectos.',
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function logout()
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        Auth::logout();
+        return redirect()->route('login');
     }
 }

@@ -5,12 +5,18 @@ use App\Http\Controllers\LoginController;
 
 
 
-Route::get('/', function () {
-    return view('login');
-})->name('login');
+// Mostrar formulario de login
+Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 
-Route::post('/', [LoginController::class, 'store'])->name('login.store');
+// Procesar login
+Route::post('/', [LoginController::class, 'login'])->name('login.submit');
 
-Route::get('/principal', function () {
-    return view('management_team.principal');
-})->name('principal');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/principal', function () {
+        return view('management_team.principal');
+    })->name('principal');
+
+    // Afegir rutes com son les rutes de center i tal que pertanyen a vistes de management_team
+});
+
+
