@@ -7,11 +7,15 @@ use App\Http\Controllers\ProfessionalController;
 use App\Http\Controllers\Project_comissionController;
 
 
-// Mostrar formulario de login
+// Mostrar formulari de login
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 
-// Procesar login
+// Processar login
 Route::post('/', [LoginController::class, 'login'])->name('login.submit');
+
+// Sortir de la sessio Autenficat
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/principal', function () {
@@ -44,3 +48,4 @@ Route::get('/professionals_management', function () {
 Route::get('/projects_comissions_management', function () {
     return view('management_team.projects_comissions_management');
 })->name('project_comission');
+

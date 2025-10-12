@@ -14,7 +14,6 @@ class LoginController extends Controller
         if (Auth::check()) {
             return redirect()->route('principal');
         }
-
         return view('login');
     }
 
