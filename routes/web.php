@@ -12,5 +12,5 @@ Route::get('/', function () {
 Route::post('/', [LoginController::class, 'store'])->name('login.store');
 
 Route::get('/principal', function () {
-    return view('equip_directiu.principal');
+    return view('management_team.principal');
 })->name('principal');

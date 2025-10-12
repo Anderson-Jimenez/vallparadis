@@ -11,7 +11,15 @@ class LoginController extends Controller
      */
     public function index()
     {
-        //
+        // Comprobamos si el usuario ya está logado
+	    if (Auth::check()) {
+	
+	        // Si está logado le mostramos la vista de logados
+            return redirect()->route('principal'); 
+	    }
+	
+	    // Si no está logado le mostramos la vista con el formulario de login
+	    return view('login');
     }
 
     /**
