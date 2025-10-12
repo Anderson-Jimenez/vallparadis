@@ -17,10 +17,10 @@ return new class extends Migration
             $table->foreign('center_id')->references('id')->on('centers')->onUpdate('cascade')->onDelete('cascade');
             $table->string('name', 255);
             $table->string('surnames', 255);
-            $table->string('username', 255);
-            $table->string('password', 255);
+            $table->string('username', 255)->unique();
+            $table->string('password');
             $table->string('phone_number', 20);
-            $table->string('email_address',255);                                              
+            $table->string('email_address',255)->unique();                                              
             $table->string('address', 255);
             $table->integer('number_locker');
             $table->string('clue_locker', 255);
