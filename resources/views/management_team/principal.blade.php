@@ -7,5 +7,8 @@
 </head>
 <body>
     <h1>pagina principal :D</h1>
+    <a href="{{route('center')}}">Gestió Centre</a><br>
+    <a href="{{route('professional')}}">Gestió Professionals</a><br>
+    <a href="{{route('project_comission')}}">Gestió Projectes i comissions</a>
 </body>
 </html>
