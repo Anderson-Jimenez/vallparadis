@@ -9,6 +9,40 @@
 
 </head>
 <body>
-    <h1>Gestió Projectes i Comissions</h1>
+    @auth
+        <h1>Gestió Projectes i Comissions</h1>
+
+        <table >
+        
+            <tr>
+                <th>Nombre centro</th>
+                <th>Responsable</th>
+                <th>Nombre</th>
+                <th>Fecha de inicio</th>
+                <th>Descripcion</th>
+                <th>Observacion</th>
+                <th>Tipo</th>
+                
+            </tr>
+
+            @foreach ($projects_comissions as $project_comission)
+                <tr>
+                    <td>{{ $project_comission->center_id }}</td>
+                    <td>{{ $project_comission->professional_manager_id }}</td>
+                    <td>{{ $project_comission->name }}</td>
+                    <td>{{ $project_comission->start_date }}</td>
+                    <td>{{ $project_comission->description }}</td>
+                    <td>{{ $project_comission->observation }}</td>
+                    <td>{{ $project_comission->type }}</td>
+                </tr>
+            @endforeach
+        
+        </table>
+    @endauth
+
+    @guest
+        <h1>No has iniciado sesión.</h1>
+        <meta http-equiv="refresh" content="2; URL={{ route('login') }}" />
+    @endguest
 </body>
 </html>

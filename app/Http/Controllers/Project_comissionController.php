@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Project_comission;
 
 class Project_comissionController extends Controller
 {
@@ -11,7 +12,8 @@ class Project_comissionController extends Controller
      */
     public function index()
     {
-        //
+        $projects_comissions = Project_comission::get();
+        return view('management_team.projects_comissions_management',['projects_comissions'=>$projects_comissions]);
     }
 
     /**

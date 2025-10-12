@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Professional;
 
 class ProfessionalController extends Controller
 {
@@ -11,7 +12,8 @@ class ProfessionalController extends Controller
      */
     public function index()
     {
-        //
+        $professionals = Professional::get();
+        return view('management_team.professionals_management',['professionals'=>$professionals]);
     }
 
     /**

@@ -13,8 +13,8 @@
     
 
         <a href="{{route('center.index')}}">Gestió Centre</a><br>
-        <a href="{{route('professional')}}">Gestió Professionals</a><br>
-        <a href="{{route('project_comission')}}">Gestió Projectes i comissions</a>
+        <a href="{{route('professional.index')}}">Gestió Professionals</a><br>
+        <a href="{{route('project_comission.index')}}">Gestió Projectes i comissions</a>
 
         <form method="POST" action="{{route('logout')}}">
             @csrf

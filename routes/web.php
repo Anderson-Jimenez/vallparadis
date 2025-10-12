@@ -24,6 +24,8 @@ Route::middleware(['auth'])->group(function () {
 
     // Vista administrador centers
     Route::get('/centers_management', [CenterController::class, 'index'])->name('center.index');
+    Route::get('/professionals_management', [ProfessionalController::class, 'index'])->name('professional.index');
+    Route::get('/projects_comissions_management', [Project_comissionController::class, 'index'])->name('project_comission.index');
 });
 
 
@@ -35,14 +37,10 @@ Route::middleware(['auth'])->group(function () {
 
 //Route::post('/professionals_management', [ProfessionalController::class, 'create'])->name('professional.create');
 
-Route::get('/professionals_management', function () {
-    return view('management_team.professionals_management');
-})->name('professional');
+
 
 
 //Route::post('/projects_comissions_management', [Project_comissionController::class, 'create'])->name('project_comission.create');
 
-Route::get('/projects_comissions_management', function () {
-    return view('management_team.projects_comissions_management');
-})->name('project_comission');
+
 
