@@ -17,15 +17,21 @@ Route::post('/', [LoginController::class, 'login'])->name('login.submit');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/principal', function () {
         return view('management_team.principal');
     })->name('principal');
 
     // Vista administrador centers
-    Route::get('/centers_management', [CenterController::class, 'index'])->name('center.index');
-    Route::get('/professionals_management', [ProfessionalController::class, 'index'])->name('professional.index');
-    Route::get('/projects_comissions_management', [Project_comissionController::class, 'index'])->name('project_comission.index');
+    Route::resource('center', CenterController::class);
+    //Route::get('/centers_management', [CenterController::class, 'index'])->name('center.index');
+
+    Route::resource('professional', CenterController::class);
+    //Route::get('/professionals_management', [ProfessionalController::class, 'index'])->name('professional.index');
+
+    Route::resource('project_comission', CenterController::class);
+    //Route::get('/projects_comissions_management', [Project_comissionController::class, 'index'])->name('project_comission.index');
 });
 
 
