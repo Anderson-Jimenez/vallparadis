@@ -25,28 +25,11 @@ Route::middleware(['auth'])->group(function () {
 
     // Vista administrador centers
     Route::resource('center', CenterController::class);
-    //Route::get('/centers_management', [CenterController::class, 'index'])->name('center.index');
+    
 
-    Route::resource('professional', CenterController::class);
-    //Route::get('/professionals_management', [ProfessionalController::class, 'index'])->name('professional.index');
+    Route::resource('professional', ProfessionalController::class);
+    
 
-    Route::resource('project_comission', CenterController::class);
-    //Route::get('/projects_comissions_management', [Project_comissionController::class, 'index'])->name('project_comission.index');
+    Route::resource('project_comission', Project_comissionController::class);
+    
 });
-
-
-
-
-//Route::post('/centers_management', [CenterController::class, 'create'])->name('center.create');
-
-
-
-//Route::post('/professionals_management', [ProfessionalController::class, 'create'])->name('professional.create');
-
-
-
-
-//Route::post('/projects_comissions_management', [Project_comissionController::class, 'create'])->name('project_comission.create');
-
-
-

@@ -8,35 +8,35 @@
     @vite("resources/css/app.css")
 
 </head>
+
 <body>
+    
     @auth
         <h1>Gestió Professionals</h1>
-
-        <table >
+        <br>
+        <table>
         
             <tr>
-                <th>Nombre</th>
-                <th>Ubicación</th>
-                <th>Teléfono</th>
-                <th>Email</th>
-                <th>Numero de taquilla</th>
-                <th>Contraseña de taquilla</th>
-                <th>Estado</th>
+                <th>Nom del centre</th>
+                <th>Nom</th>
+                <th>Cognoms</th>
+                
+                
             </tr>
 
             @foreach ($professionals as $professional)
+                
                 <tr>
+                    <td>{{ $professional->center->center_name }}</td>
                     <td>{{ $professional->name }}</td>
-                    <td>{{ $professional->adress }}</td>
-                    <td>{{ $professional->phone_number }}</td>
-                    <td>{{ $professional->email_address }}</td>
-                    <td>{{ $professional->number_locker }}</td>
-                    <td>{{ $professional->clue_locker }}</td>
-                    <td>{{ $professional->link_status }}</td>
+                    <td>{{ $professional->surnames }}</td>
+                    <td><a href="">Modificar</a></td>
                 </tr>
             @endforeach
         
         </table>
+        <br>
+        <a href="">Afegir Professionals</a>
     @endauth
 
     @guest

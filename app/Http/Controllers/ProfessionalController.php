@@ -12,7 +12,8 @@ class ProfessionalController extends Controller
      */
     public function index()
     {
-        $professionals = Professional::get();
+        //parent_table_model::with('relational_table_model')->get()
+        $professionals = Professional::with('center')->get();
         return view('management_team.professionals_management',['professionals'=>$professionals]);
     }
 

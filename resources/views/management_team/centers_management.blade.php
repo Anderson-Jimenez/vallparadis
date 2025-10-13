@@ -27,6 +27,7 @@
                     <td>{{ $center->location }}</td>
                     <td>{{ $center->phone_number }}</td>
                     <td>{{ $center->email_address }}</td>
+                    <td><a href="">Modificar</a></td>
                 </tr>
             @endforeach
         
