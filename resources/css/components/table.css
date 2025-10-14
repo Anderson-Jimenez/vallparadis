@@ -1,6 +1,6 @@
 /* Tabla base */
 .table-base {
-  width: 100%;
+  width:max-content;
   border-collapse: collapse;
   border: 1px solid #d1d5db; /* gris-300 */
 }
@@ -8,7 +8,7 @@
 /* Celdas */
 .table-cell {
   border: 1px solid #d1d5db;
-  padding: 0.5rem 1rem;
+  padding: 0.5vw;
   font-size: 0.875rem;
 }
 

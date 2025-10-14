@@ -12,23 +12,23 @@
     @auth
         <h1>Gestió Centre</h1>
 
-        <table >
+        <table class="table-base table-wrapper">
         
-            <tr>
-                <th>Nombre</th>
-                <th>Ubicación</th>
-                <th>Teléfono</th>
-                <th>Email</th>
+            <tr class="table-row">
+                <th class="table-cell">Nombre</th>
+                <th class="table-cell">Ubicación</th>
+                <th class="table-cell">Teléfono</th>
+                <th class="table-cell">Email</th>
             </tr>
 
             @foreach ($centers as $center)
-                <tr>
-                    <td>{{ $center->center_name }}</td>
-                    <td>{{ $center->location }}</td>
-                    <td>{{ $center->phone_number }}</td>
-                    <td>{{ $center->email_address }}</td>
-                    <td><a href="">Modificar</a></td>
-                    <td><a href="">Eliminar</a></td>
+                <tr class="table-row">
+                    <td class="table-cell">{{ $center->center_name }}</td>
+                    <td class="table-cell">{{ $center->location }}</td>
+                    <td class="table-cell">{{ $center->phone_number }}</td>
+                    <td class="table-cell">{{ $center->email_address }}</td>
+                    <td class="table-cell"><a href="">Modificar</a></td>
+                    <td class="table-cell"><a href="">Eliminar</a></td>
                 </tr>
             @endforeach
         
