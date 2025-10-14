@@ -27,20 +27,12 @@
 
             @foreach ($professionals as $professional)
                 
-                <tr>
-                    <td>{{ $professional->center->center_name }}</td>
-                    <td>{{ $professional->name }}</td>
-                    <td>{{ $professional->surnames }}</td>
-                    <td><a href="">Modificar</a></td>
-                    <td><a href="">Eliminar</a></td>
-
                 <tr class="table-row">
                     <td class="table-cell">{{ $professional->center->center_name }}</td>
                     <td class="table-cell">{{ $professional->name }}</td>
                     <td class="table-cell">{{ $professional->surnames }}</td>
                     <td class="table-cell"><a href="">Modificar</a></td>
                     <td class="table-cell"><a href="">Eliminar</a></td>
-
                 </tr>
             @endforeach
         
