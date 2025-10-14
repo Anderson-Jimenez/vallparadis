@@ -8,6 +8,7 @@
 
 
 @import './components/colors.css';
+@import './components/table.css';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -24,7 +25,8 @@ input, label, a{
   @apply w-4/5;
   @apply m-1;
 }
-input{
+input[type=password],input[type=name]{
     @apply bg-white;
     @apply rounded-2xl;
+    @apply h-[1.5vw];
 }

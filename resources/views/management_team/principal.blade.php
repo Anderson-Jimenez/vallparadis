@@ -14,14 +14,13 @@
 
         <a href="{{route('center.index')}}">Gestió Centre</a><br>
         <a href="{{route('professional.index')}}">Gestió Professionals</a><br>
-        <a href="{{route('project_comission.index')}}">Gestió Projectes i comissions</a>
+        <a href="{{route('project_comission.index')}}">Gestió Projectes i comissions</a><br>
 
-        <form method="POST" action="{{route('logout')}}">
-            @csrf
+        <a href="{{route('logout')}}">
             <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
                 Cerrar sesión
             </button>
-        </form>
+        </a>
     @endauth
 
     @guest

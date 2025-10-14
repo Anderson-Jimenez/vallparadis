@@ -14,23 +14,26 @@
     @auth
         <h1>Gestió Professionals</h1>
         <br>
-        <table>
+        <table class="table-base table-wrapper">
         
-            <tr>
-                <th>Nom del centre</th>
-                <th>Nom</th>
-                <th>Cognoms</th>
-                
+            <tr class="table-row">
+                <th class="table-cell">Nom del centre</th>
+                <th class="table-cell">Nom</th>
+                <th class="table-cell">Cognoms</th>
+                <th class="table-cell">Actualitzar dades</th>
+                <th class="table-cell">Modificar Estat</th>
                 
             </tr>
 
             @foreach ($professionals as $professional)
                 
-                <tr>
-                    <td>{{ $professional->center->center_name }}</td>
-                    <td>{{ $professional->name }}</td>
-                    <td>{{ $professional->surnames }}</td>
-                    <td><a href="">Modificar</a></td>
+                <tr class="table-row">
+                    <td class="table-cell">{{ $professional->center->center_name }}</td>
+                    <td class="table-cell">{{ $professional->name }}</td>
+                    <td class="table-cell">{{ $professional->surnames }}</td>
+                    <td class="table-cell"><a href="">Modificar</a></td>
+                    <td class="table-cell"><a href="">Eliminar</a></td>
+
                 </tr>
             @endforeach
         

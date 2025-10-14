@@ -1,9 +1,9 @@
-h1,h3,label,p,a{
-    color: #FF7400;
-}
 .bg-forms{
     background: linear-gradient(45deg,rgba(255, 255, 255, 1) 0%, rgba(255, 116, 0, 1) 100%);
 }
 .bg-white-transparent{
     background-color: rgba(240, 240, 240, 0.621);
+}
+.text-color-orange{
+    color: #FF7400;
 }
