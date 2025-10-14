@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CentersSeeder::class,
             ProfessionalsSeeder::class,
+            Projects_comissionsSeeder::class
             //Espai per posar altres seeders
         ]);
 

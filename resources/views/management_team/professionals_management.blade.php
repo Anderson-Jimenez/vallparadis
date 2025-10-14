@@ -31,6 +31,8 @@
                     <td>{{ $professional->name }}</td>
                     <td>{{ $professional->surnames }}</td>
                     <td><a href="">Modificar</a></td>
+                    <td><a href="">Eliminar</a></td>
+
                 </tr>
             @endforeach
         

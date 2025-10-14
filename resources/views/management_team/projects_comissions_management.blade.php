@@ -34,10 +34,14 @@
                     <td>{{ $project_comission->description }}</td>
                     <td>{{ $project_comission->observation }}</td>
                     <td>{{ $project_comission->type }}</td>
+                    <td><a href="">Modificar</a></td>
+                    <td><a href="">Eliminar</a></td>
                 </tr>
             @endforeach
         
         </table>
+        <br>
+        <a href="">Afegir Projectes/Comissions</a>
     @endauth
 
     @guest
