@@ -27,6 +27,13 @@
 
             @foreach ($professionals as $professional)
                 
+                <tr>
+                    <td>{{ $professional->center->center_name }}</td>
+                    <td>{{ $professional->name }}</td>
+                    <td>{{ $professional->surnames }}</td>
+                    <td><a href="">Modificar</a></td>
+                    <td><a href="">Eliminar</a></td>
+
                 <tr class="table-row">
                     <td class="table-cell">{{ $professional->center->center_name }}</td>
                     <td class="table-cell">{{ $professional->name }}</td>

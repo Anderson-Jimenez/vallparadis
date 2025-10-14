@@ -28,10 +28,13 @@
                     <td>{{ $center->phone_number }}</td>
                     <td>{{ $center->email_address }}</td>
                     <td><a href="">Modificar</a></td>
+                    <td><a href="">Eliminar</a></td>
                 </tr>
             @endforeach
         
         </table>
+        <br>
+        <a href="">Afegir Centre</a>
     @endauth
 
     @guest
