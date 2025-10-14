@@ -6,6 +6,7 @@
         @vite('resources/css/app.css')
     </head>
     <body class="bg-gray-100 text-gray-900">
+        @include('partials.icons')
         @include('components.navbar')
         <main class="p-6">
             @yield('contingut')

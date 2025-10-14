@@ -9,7 +9,7 @@
 
 </head>
 <body class="flex justify-center items-center bg-forms h-screen">
-
+    @include('partials.icons')
     <div class="flex bg-white-transparent w-[60vw] h-[70vh] text-center items-center rounded-2xl">
         <section class="w-[50vw]">
             <img src="{{ asset('img/logo.png') }}" alt="logo_vallparadis">

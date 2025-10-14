@@ -22,7 +22,6 @@
             </button>
         </a>
     @endauth
-
     @guest
         <h1>No has iniciado sesión.</h1>
         <meta http-equiv="refresh" content="2; URL={{ route('login') }}" />
