@@ -14,23 +14,19 @@
 
         <table class="table-base table-wrapper">
             <tr class="table-row">
-                <th class="table-cell">Nombre centro</th>
+                <th class="table-cell">Nom del centre</th>
                 <th class="table-cell">Responsable</th>
-                <th class="table-cell">Nombre</th>
-                <th class="table-cell">Fecha de inicio</th>
-                <th class="table-cell">Descripcion</th>
-                <th class="table-cell">Observacion</th>
-                <th class="table-cell">Tipo</th>
+                <th class="table-cell">Nom</th>
+                <th class="table-cell">Data d'inici</th>
+                <th class="table-cell">Tipus</th>
             </tr>
 
             @foreach ($projects_comissions as $project_comission)
                 <tr class="table-row">
-                    <td class="table-cell">{{ $project_comission->center_id }}</td>
-                    <td class="table-cell">{{ $project_comission->professional_manager_id }}</td>
+                    <td class="table-cell">{{ $project_comission->center->center_name }}</td>
+                    <td class="table-cell">{{ $project_comission->manager->name }}</td>
                     <td class="table-cell">{{ $project_comission->name }}</td>
                     <td class="table-cell">{{ $project_comission->start_date }}</td>
-                    <td class="table-cell">{{ $project_comission->description }}</td>
-                    <td class="table-cell">{{ $project_comission->observation }}</td>
                     <td class="table-cell">{{ $project_comission->type }}</td>
                     <td class="table-cell"><a href="">Modificar</a></td>
                     <td class="table-cell"><a href="">Eliminar</a></td>

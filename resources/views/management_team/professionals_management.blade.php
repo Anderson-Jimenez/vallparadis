@@ -20,9 +20,6 @@
                 <th class="table-cell">Nom del centre</th>
                 <th class="table-cell">Nom</th>
                 <th class="table-cell">Cognoms</th>
-                <th class="table-cell">Actualitzar dades</th>
-                <th class="table-cell">Modificar Estat</th>
-                
             </tr>
 
             @foreach ($professionals as $professional)

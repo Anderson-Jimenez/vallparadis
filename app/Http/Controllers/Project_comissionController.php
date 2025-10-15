@@ -12,7 +12,7 @@ class Project_comissionController extends Controller
      */
     public function index()
     {
-        $projects_comissions = Project_comission::get();
+        $projects_comissions = Project_comission::with(['center', 'manager'])->get();
         return view('management_team.projects_comissions_management',['projects_comissions'=>$projects_comissions]);
     }
 

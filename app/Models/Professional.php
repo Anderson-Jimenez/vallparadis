@@ -29,8 +29,8 @@ class Professional extends Authenticatable
         return $this->hasMany(Uniform::class);
     }
 
-    public function project_comission(): HasOne
+    public function managed_projects(): HasMany
     {
-        return $this->hasOne(Project_comission::class);
+        return $this->HasMany(Project_comission::class, 'professional_manager_id');
     }
 }

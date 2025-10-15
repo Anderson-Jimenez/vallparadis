@@ -15,9 +15,9 @@
         <table class="table-base table-wrapper">
         
             <tr class="table-row">
-                <th class="table-cell">Nombre</th>
-                <th class="table-cell">Ubicación</th>
-                <th class="table-cell">Teléfono</th>
+                <th class="table-cell">Nom</th>
+                <th class="table-cell">Ubicació</th>
+                <th class="table-cell">Teléfon</th>
                 <th class="table-cell">Email</th>
             </tr>
 
