@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <nav class="w-screen flex items-center justify-between p-4 bg-[#ff730060]">
+    <nav class="w-screen flex items-center justify-between p-4 bg-white border-b-15 border-[#ff7300]">
         <img src="{{ asset('img/logo.png') }}" alt="logo_vallparadis" class="w-[15vw]">
         <div>
             <ul class="flex items-center mr-13">
