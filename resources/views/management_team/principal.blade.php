@@ -9,8 +9,7 @@
 </head>
 <body>
     @auth
-        <h1>Hola, {{ Auth::user()->name }}</h1>
-    
+        @include('components.navbar')
 
         <a href="{{route('center.index')}}">Gestió Centre</a><br>
         <a href="{{route('professional.index')}}">Gestió Professionals</a><br>
