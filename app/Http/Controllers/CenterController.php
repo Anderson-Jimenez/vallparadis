@@ -21,7 +21,7 @@ class CenterController extends Controller
      */
     public function create()
     {
-        //
+        return view('management_team.center_add');
     }
 
     /**
@@ -30,8 +30,14 @@ class CenterController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-
+            'center_name' => 'required',
+            'location' => 'required',
+            'phone_number' => 'required',
+            'email_address' => 'required',
         ]);
+
+        Center::create($request->all());
+        return redirect()->route('center.index');
     }
 
     /**

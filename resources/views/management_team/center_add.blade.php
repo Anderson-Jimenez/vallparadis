@@ -18,31 +18,23 @@
         <form action="{{ route('center.store') }}" method="POST">
             @csrf
 
-            <!-- Nom del Centre -->
-            <div class="form-group">
-                <label for="center_name">Nom del Centre</label>
-                <input type="text" name="center_name" id="center_name" class="form-control" value="{{ old('center_name') }}" required>
-            </div>
+            <label for="center_name">Nom del centre:</label>
+            <input type="text" name="center_name" id="center_name" value="{{ old('center_name') }}" required>
+            <br><br>
 
-            <!-- Ubicació -->
-            <div class="form-group">
-                <label for="location">Ubicació</label>
-                <input type="text" name="location" id="location" class="form-control" value="{{ old('location') }}" required>
-            </div>
+            <label for="location">Ubicació:</label>
+            <input type="text" name="location" id="location" value="{{ old('location') }}" required>
+            <br><br>
 
-            <!-- Telèfon -->
-            <div class="form-group">
-                <label for="phone_number">Telèfon</label>
-                <input type="text" name="phone_number" id="phone_number" class="form-control" value="{{ old('phone_number') }}" required>
-            </div>
+            <label for="phone_number">Telèfon:</label>
+            <input type="text" name="phone_number" id="phone_number" value="{{ old('phone_number') }}" required>
+            <br><br>
 
-            <!-- Correu electrònic -->
-            <div class="form-group">
-                <label for="email_address">Correu electrònic</label>
-                <input type="email" name="email_address" id="email_address" class="form-control" value="{{ old('email_address') }}" required>
-            </div>
+            <label for="email_address">Correu electrònic:</label>
+            <input type="email" name="email_address" id="email_address" value="{{ old('email_address') }}" required>
+            <br><br>
 
-            <button type="submit" class="btn btn-primary mt-3">Crear Centre</button>
+            <button type="submit">Crear centre</button>
         </form>
     @endauth
 

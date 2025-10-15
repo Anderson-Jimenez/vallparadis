@@ -34,7 +34,7 @@
         
         </table>
         <br>
-        <a href="{{route('center.store')}}">Afegir Centre</a>
+        <a href="{{route('center.create')}}">Afegir Centre</a>
     @endauth
 
     @guest
