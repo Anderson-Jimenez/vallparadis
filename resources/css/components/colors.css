@@ -1,9 +1,9 @@
 .bg-forms{
-    background: linear-gradient(45deg,rgba(255, 255, 255, 1) 0%, rgba(255, 116, 0, 1) 100%);
+    background: linear-gradient(45deg,rgba(255, 153, 0, 0.616) 0%, rgba(255, 115, 0, 0.39) 100%);
 }
 .bg-white-transparent{
     background-color: rgba(240, 240, 240, 0.621);
 }
-.text-color-orange{
+.txt-orange{
     color: #FF7400;
 }
