@@ -14,7 +14,7 @@ class ProfessionalController extends Controller
     public function index()
     {
         //parent_table_model::with('relational_table_model')->get()
-        $professionals = Professional::with('center')->get();
+        $professionals = Professional::get();
         return view('management_team.professionals_management',['professionals'=>$professionals]);
     }
 
@@ -23,8 +23,7 @@ class ProfessionalController extends Controller
      */
     public function create()
     {
-        $centers = Center::get();
-        return view('management_team.professional_add',['centers'=>$centers]);
+        return view('management_team.professional_add');
     }
 
     /**
@@ -32,8 +31,7 @@ class ProfessionalController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate([
-            'center_id' => 'required',
+        $validated = request()->validate([
             'name' => 'required',
             'surnames' => 'required',
             'username' => 'required',
@@ -43,10 +41,10 @@ class ProfessionalController extends Controller
             'address' => 'required',
             'number_locker' => 'required',
             'clue_locker' => 'required',
-            'link_status' => 'required',
         ]);
-
-        Professional::create($request->all());
+        $validated['center_id'] = session('center_id');
+        $validated['link_status'] = 'active'; 
+        Professional::create($validated);
         return redirect()->route('professional.index');
     }
 

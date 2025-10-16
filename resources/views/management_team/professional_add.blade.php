@@ -9,6 +9,7 @@
 </head>
 <body>
     @auth
+        
         @if ($errors->any())
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
@@ -17,15 +18,6 @@
 
         <form action="{{ route('professional.store') }}" method="POST">
             @csrf
-
-            <label for="center_id">Centre:</label>
-            <select name="center_id" id="center_id" value="{{ old('center_id') }} {{ old('center_id')}}" required>
-                @foreach ($centers as $center)
-                    <option value="{{ $center->id }}">{{ $center->center_name }}</option>
-                @endforeach
-                
-            </select>
-            <br><br>
 
             <label for="name">Nom:</label>
             <input type="text" name="name" id="name" value="{{ old('name') }}" required>
@@ -62,10 +54,7 @@
             <label for="clue_locker">Clau de la taquilla:</label>
             <input type="text" name="clue_locker" id="clue_locker" value="{{ old('clue_locker') }}">
             <br><br>
-
-            <input type="radio" id="active" name="link_status" value="active" checked hidden/>
             
-
             <button type="submit">Crear Professional</button>
         </form>
     @endauth
