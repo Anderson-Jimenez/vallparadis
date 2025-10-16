@@ -11,10 +11,9 @@
         <img src="{{ asset('img/logo.png') }}" alt="logo_vallparadis" class="w-[15vw]">
         <div>
             <ul class="flex items-center mr-13">
-                <li class="m-3"><a href="" class="txt-orange">Projects</a></li>
-                <li class="m-3"><a href="" class="txt-orange">Compte</a></li>
-                <li class="m-3"><a href="" class="txt-orange">Documents</a></li>
-                <li class="m-3"><a href="" class="txt-orange">Professionals</a></li>
+                <li class="m-3 txt-orange">
+                    si
+                </li>
                 <li class="m-3 txt-orange">Hola <strong>{{ Auth::user()->name }}</strong>👋</li>
             </ul>
         </div>

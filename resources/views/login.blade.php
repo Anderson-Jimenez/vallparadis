@@ -23,10 +23,10 @@
                 <h3 class="txt-orange w-4/5 font-bold text-2xl">Login</h3>
                 <form action="{{route('login.submit') }}" method="POST" class="flex flex-wrap justify-center">
                     @csrf
-                    <label for="name" class="txt-orange">Nom d'usuari</label>
-                    <input type="name" name="name">
-                    <label for="username" class ="txt-orange">Contrasenya</label>
-                    <input type="password" name="passwd">
+                    <label for="username" class="txt-orange">Nom d'usuari</label>
+                    <input type="name" name="username">
+                    <label for="password" class ="txt-orange">Contrasenya</label>
+                    <input type="password" name="password">
                     <a href="#" class="txt-orange underline p-2">Has oblidat la contrasenya?</a>
                     <input type="submit" value="Iniciar sesión" class="bg-[#FF7400] rounded-2xl w-[10vw] h-[5vh] hover:bg-[#f8c49a] cursor-pointer transition duration-500"/>
                 </form>

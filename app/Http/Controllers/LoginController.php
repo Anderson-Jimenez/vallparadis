@@ -20,24 +20,22 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'name' => ['required', 'string'],
-            'passwd' => ['required', 'string'],
+            'username' => ['required', 'string'],
+            'password' => ['required', 'string'],
         ]);
 
         // Buscar al profesional en la base de datos
-        $professional = Professional::where('name', $credentials['name'])->first();
+        $professional = Professional::where('username', $credentials['username'])->first();
 
         // verificacio de si existeix un profesional amb el nom indicat i la contrasenya del mateix existeix
-        if ($professional && Hash::check($credentials['passwd'], $professional->password)) {
+        if ($professional && Hash::check($credentials['password'], $professional->password)) {
             Auth::login($professional); // Comanda per
             return redirect()->route('principal');
         }
-
         return back()->withErrors([
             'login' => 'Email o contraseña incorrectos.',
         ]);
     }
-
     public function logout()
     {
         Auth::logout();

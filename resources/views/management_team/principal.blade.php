@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vallparadis</title>
+    <title>@yield('titol', 'Panell de control')</title>
     @vite("resources/css/app.css")
 
 </head>
@@ -11,15 +11,24 @@
     @auth
         @include('components.navbar')
 
-        <a href="{{route('center.index')}}">Gestió Centre</a><br>
-        <a href="{{route('professional.index')}}">Gestió Professionals</a><br>
-        <a href="{{route('project_comission.index')}}">Gestió Projectes i comissions</a><br>
+        @yield('contingut')
+            <main class="w-screen min-h-screen">
+                <aside class="w-[35vw] ">
+                    <ul>
+                        <li><a href="{{route('center.index')}}" class="txt-orange">Gestió Centre</a></li>
+                        <li><a href="{{route('professional.index')}}" class="txt-orange">Gestió Professionals</a></li>
+                        <li><a href="{{route('project_comission.index')}}" class="txt-orange">Gestió Projectes i comissions</a></li>
+                    </ul>
+                    <a href="{{route('logout')}}">
+                        <button type="submit" class="bg-[#ff7300] text-white px-4 py-2 rounded hover:bg-red-600">
+                            Cerrar sesión
+                        </button>
+                    </a>
+                </aside>
+            </main>
 
-        <a href="{{route('logout')}}">
-            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
-                Cerrar sesión
-            </button>
-        </a>
+        @include('components.footer')
+
     @endauth
     @guest
         <h1>No has iniciado sesión.</h1>
