@@ -35,7 +35,7 @@
         
         </table>
         <br>
-        <a href="">Afegir Professionals</a>
+        <a href="{{route('professional.create')}}">Afegir Professionals</a>
     @endauth
 
     @guest

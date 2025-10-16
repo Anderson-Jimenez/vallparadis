@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Professional;
+use App\Models\Center;
 
 class ProfessionalController extends Controller
 {
@@ -22,7 +23,8 @@ class ProfessionalController extends Controller
      */
     public function create()
     {
-        //
+        $centers = Center::get();
+        return view('management_team.professional_add',['centers'=>$centers]);
     }
 
     /**
@@ -30,7 +32,22 @@ class ProfessionalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'center_id' => 'required',
+            'name' => 'required',
+            'surnames' => 'required',
+            'username' => 'required',
+            'password' => 'required',
+            'phone_number' => 'required',
+            'email_address' => 'required',
+            'address' => 'required',
+            'number_locker' => 'required',
+            'clue_locker' => 'required',
+            'link_status' => 'required',
+        ]);
+
+        Professional::create($request->all());
+        return redirect()->route('professional.index');
     }
 
     /**
