@@ -14,9 +14,8 @@
         
         <div class="flex bg-white-transparent w-[60vw] h-[70vh] items-center rounded-2xl">
             <section class="h-full w-[60vw] flex flex-col justify-center items-center relative ">
-                
                 <img src="{{ asset('img/logo.png') }}" alt="logo_vallparadis" class="absolute top-5 left-5 w-[15vw]">
-                <h1 class="txt-orange text-4xl font-bold text-center">Benvinguts a la fundació VallParadís!</h1>
+                <h1 class="txt-orange text-5xl font-bold text-center">Benvinguts a la fundació VallParadís!</h1>
             </section>
 
             <section class="w-[40vw] text-center flex justify-center flex-wrap">
