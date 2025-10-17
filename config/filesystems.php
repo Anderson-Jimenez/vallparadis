@@ -47,6 +47,16 @@ return [
             'report' => false,
         ],
 
+        
+        'projects_comissions' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/projects_comissions'),
+            'visibility' => 'public',
+            'url' => env('APP_URL').'/storage',
+            'throw' => false,
+        ],
+        
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
