@@ -9,7 +9,7 @@ class Professional extends Authenticatable
 {
     protected $table = "professionals";
 
-    protected $fillable = ['username', 'password'];
+    protected $fillable = ['center_id','name','surnames','username','password','phone_number','email_address','address','number_locker','clue_locker','link_status'];
 
     protected $hidden = ['password'];
 

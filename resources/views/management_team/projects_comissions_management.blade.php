@@ -14,7 +14,6 @@
 
         <table class="table-base table-wrapper">
             <tr class="table-row">
-                <th class="table-cell">Nom del centre</th>
                 <th class="table-cell">Responsable</th>
                 <th class="table-cell">Nom</th>
                 <th class="table-cell">Data d'inici</th>
@@ -23,7 +22,6 @@
 
             @foreach ($projects_comissions as $project_comission)
                 <tr class="table-row">
-                    <td class="table-cell">{{ $project_comission->center->center_name }}</td>
                     <td class="table-cell">{{ $project_comission->manager->name }}</td>
                     <td class="table-cell">{{ $project_comission->name }}</td>
                     <td class="table-cell">{{ $project_comission->start_date }}</td>
@@ -35,7 +33,7 @@
         
         </table>
         <br>
-        <a href="">Afegir Projectes/Comissions</a>
+        <a href="{{route('project_comission.create')}}">Afegir Projectes/Comissions</a>
     @endauth
 
     @guest

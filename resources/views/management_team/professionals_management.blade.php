@@ -17,17 +17,21 @@
         <table class="table-base table-wrapper">
         
             <tr class="table-row">
-                <th class="table-cell">Nom del centre</th>
                 <th class="table-cell">Nom</th>
                 <th class="table-cell">Cognoms</th>
+                <th class="table-cell">Estat</th>
             </tr>
 
             @foreach ($professionals as $professional)
                 
                 <tr class="table-row">
-                    <td class="table-cell">{{ $professional->center->center_name }}</td>
                     <td class="table-cell">{{ $professional->name }}</td>
                     <td class="table-cell">{{ $professional->surnames }}</td>
+                    <td class="table-cell">
+                        <form action="">
+                            <button>{{ $professional->link_status }}</button>
+                        </form>
+                    </td>
                     <td class="table-cell"><a href="">Modificar</a></td>
                     <td class="table-cell"><a href="">Eliminar</a></td>
                 </tr>
@@ -35,7 +39,7 @@
         
         </table>
         <br>
-        <a href="">Afegir Professionals</a>
+        <a href="{{route('professional.create')}}">Afegir Professionals</a>
     @endauth
 
     @guest
