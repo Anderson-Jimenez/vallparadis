@@ -14,7 +14,7 @@
 
         @yield('contingut')
             <main class="w-screen flex">
-                <aside class="w-[20vw] bg-[#2D3E50] p-8 h-[50vw] flex flex-col justify-between">
+                <aside class="w-1/4 bg-[#2D3E50] p-8 h-[50vw] flex flex-col justify-between">
                     <ul>
                         <li class="group my-4 rounded-lg transition-all duration-300">
                             <a href="{{ route('center.index') }}" class="flex items-center gap-3 p-4 rounded-lg bg-[#2D3E50] group-hover:bg-[#ff7300] transition-all duration-300 w-max">
@@ -60,7 +60,7 @@
                 </aside>
                 
                 <!--S'haria de posar un controllador o quelcom similar-->
-                <section class="w-[75vw]">
+                <section class="w-3/4">
                     <div class="flex w-full h-max">
                         <div class="w-2/6 h-[20vh] bg-[#ff7300] m-7 rounded-3xl"></div>
                         <div class="w-2/6 h-[20vh] bg-[#ff7300] m-7 rounded-3xl"></div>

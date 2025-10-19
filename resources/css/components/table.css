@@ -1,6 +1,5 @@
 /* Tabla base */
 .table-base {
-  width:max-content;
   border-collapse: collapse;
   border: 1px solid #d1d5db; /* gris-300 */
 }

@@ -8,33 +8,38 @@
     @vite("resources/css/app.css")
 
 </head>
-<body>
+<body class="bg-[#2D3E50]">
+    @include('partials.icons')     
     @auth
-        <h1>Gestió Centre</h1>
+        @include('components.navbar')
+        @yield('contingut')
+            <main class="w-screen flex justify-center flex-wrap h-auto">
+                <h1 class="text-white text-2xl w-screen text-center p-10">Gestió Centre</h1>
+                <table class="table-base table-wrapper w-[80vw]">
+                    <tr class="table-row">
+                        <th class="table-cell">Nom</th>
+                        <th class="table-cell">Ubicació</th>
+                        <th class="table-cell">Teléfon</th>
+                        <th class="table-cell">Email</th>
+                    </tr>
 
-        <table class="table-base table-wrapper">
-        
-            <tr class="table-row">
-                <th class="table-cell">Nom</th>
-                <th class="table-cell">Ubicació</th>
-                <th class="table-cell">Teléfon</th>
-                <th class="table-cell">Email</th>
-            </tr>
+                    @foreach ($centers as $center)
+                        <tr class="table-row">
+                            <td class="table-cell">{{ $center->center_name }}</td>
+                            <td class="table-cell">{{ $center->location }}</td>
+                            <td class="table-cell">{{ $center->phone_number }}</td>
+                            <td class="table-cell">{{ $center->email_address }}</td>
+                            <td class="table-cell"><a href="">Modificar</a></td>
+                            <td class="table-cell"><a href="">Eliminar</a></td>
+                        </tr>
+                    @endforeach
+                
+                </table>
 
-            @foreach ($centers as $center)
-                <tr class="table-row">
-                    <td class="table-cell">{{ $center->center_name }}</td>
-                    <td class="table-cell">{{ $center->location }}</td>
-                    <td class="table-cell">{{ $center->phone_number }}</td>
-                    <td class="table-cell">{{ $center->email_address }}</td>
-                    <td class="table-cell"><a href="">Modificar</a></td>
-                    <td class="table-cell"><a href="">Eliminar</a></td>
-                </tr>
-            @endforeach
-        
-        </table>
-        <br>
-        <a href="{{route('center.create')}}">Afegir Centre</a>
+                <a href="{{route('center.create')}}" class="text-center text-white p-10">Afegir Centre</a>
+            </main>
+            
+        @include('components.footer')
     @endauth
 
     @guest
