@@ -8,23 +8,61 @@
 
 </head>
 <body>
+    @include('partials.icons')
     @auth
         @include('components.navbar')
 
         @yield('contingut')
-            <main class="w-screen min-h-screen">
-                <aside class="w-[35vw] ">
+            <main class="w-screen">
+                <aside class="w-[25vw] bg-[#2D3E50] p-8 h-[50vw] flex flex-col justify-between">
                     <ul>
-                        <li><a href="{{route('center.index')}}" class="txt-orange">Gestió Centre</a></li>
-                        <li><a href="{{route('professional.index')}}" class="txt-orange">Gestió Professionals</a></li>
-                        <li><a href="{{route('project_comission.index')}}" class="txt-orange">Gestió Projectes i comissions</a></li>
-                    </ul>
-                    <a href="{{route('logout')}}">
-                        <button type="submit" class="bg-[#ff7300] text-white px-4 py-2 rounded hover:bg-red-600">
-                            Cerrar sesión
-                        </button>
+                        <li class="group my-4 rounded-lg transition-all duration-300">
+                            <a href="{{ route('center.index') }}" class="flex items-center gap-3 p-4 rounded-lg bg-[#2D3E50] group-hover:bg-[#ff7300] transition-all duration-300">
+                            
+                                <svg class="w-10 h-10 text-white">
+                                    <use xlink:href="#professional_icon"></use>
+                                </svg>
+
+                                <span class="text-white text-2xl">
+                                    Gestió Centre
+                                </span>
+                            </a>
+                        </li>
+                        <li class="group my-4 rounded-lg transition-all duration-300">
+                            <a href="{{ route('professional.index') }}" class="flex items-center gap-3 p-4 rounded-lg bg-[#2D3E50] group-hover:bg-[#ff7300] transition-all duration-300">
+                            
+                                <svg class="w-10 h-10 text-white">
+                                    <use xlink:href="#professional_icon"></use>
+                                </svg>
+
+                                <span class="text-white text-2xl">
+                                    Gestió Professionals
+                                </span>
+                            </a>
+                        </li>
+                        <li class="group my-4 rounded-lg transition-all duration-300">
+                            <a href="{{ route('project_comission.index') }}" class="flex items-center gap-3 p-4 rounded-lg bg-[#2D3E50] group-hover:bg-[#ff7300] transition-all duration-300">
+                            
+                                <svg class="w-10 h-10 text-white">
+                                    <use xlink:href="#professional_icon"></use>
+                                </svg>
+
+                                <span class="text-white text-2xl">
+                                    Gestió Projectes i comissions
+                                </span>
+                            </a>
+                        </li>
+                    </ul>   
+                    <a href="{{ route('logout') }}" class="group flex justify-center items-center top-20 w-[15vw] h-[4vw] bg-white text-[#ff7300] px-6 py-4 rounded-full text-2xl font-semibold
+                    transition-all duration-300 hover:bg-[#ff7300] hover:text-white">
+                        Cerrar sessió
                     </a>
                 </aside>
+                
+                <!--S'haria de posar un controllador o quelcom similar-->
+
+
+
             </main>
 
         @include('components.footer')

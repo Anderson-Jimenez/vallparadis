@@ -5,13 +5,14 @@
         <title>@yield('titol', 'El meu projecte Laravel')</title>
         @vite('resources/css/app.css')
     </head>
-    <body class="bg-gray-100 text-gray-900">
+    <body>
         @include('partials.icons')
+        <!-- PLANTILLA HEADER -->
         @include('components.navbar')
-        <main class="p-6">
+        <main>
             @yield('contingut')
         </main>
-        {{-- Peu de pàgina comú --}}
+        <!-- PLANTILLA FOOTER -->
         @include('components.footer')
     </body>
 </html>
