@@ -27,8 +27,21 @@
                     <td class="table-cell">{{ $center->location }}</td>
                     <td class="table-cell">{{ $center->phone_number }}</td>
                     <td class="table-cell">{{ $center->email_address }}</td>
-                    <td class="table-cell"><a href="">Modificar</a></td>
-                    <td class="table-cell"><a href="">Eliminar</a></td>
+                    <td class="table-cell">
+                        <form action="{{ route('center.activate', $center) }}">
+                            @csrf
+                            
+                            <button type="submit">{{ $center->status }}</button>
+                        </form>
+                    </td>
+                    <td class="table-cell"><a href="{{route('center.edit', $center)}}">Modificar</a></td>
+                    <td class="table-cell">
+                        <form action="{{ route('center.destroy', $center) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Eliminar</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         

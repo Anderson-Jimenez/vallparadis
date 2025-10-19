@@ -28,7 +28,7 @@ class LoginController extends Controller
         $professional = Professional::where('username', $credentials['username'])->first();
 
         // verificacio de si existeix un profesional amb el nom indicat i la contrasenya del mateix existeix
-        if ($professional && Hash::check($credentials['passwd'], $professional->password)) {
+        if ($professional && Hash::check($credentials['password'], $professional->password)) {
             session(['center_id' => $professional->center_id]);
             Auth::login($professional); // Comanda per
             return redirect()->route('principal');

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('location', 255);
             $table->string('phone_number', 255);
             $table->string('email_address', 255);
+            $table->string('status', 255);
             $table->timestamps();
         });
     }

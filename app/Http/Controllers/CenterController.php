@@ -29,14 +29,14 @@ class CenterController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate([
+        $validated = request()->validate([
             'center_name' => 'required',
             'location' => 'required',
             'phone_number' => 'required',
             'email_address' => 'required',
         ]);
-
-        Center::create($request->all());
+        $validated['status'] = 'active'; 
+        Center::create($validated);
         return redirect()->route('center.index');
     }
 
@@ -51,24 +51,40 @@ class CenterController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Center $center)
     {
-        //
+        return view('management_team.center_change',['center'=>$center]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Center $center)
     {
-        //
+        $validated = request()->validate([
+            'center_name' => 'required',
+            'location' => 'required',
+            'phone_number' => 'required',
+            'email_address' => 'required',
+        ]);
+        $validated['status'] = 'active';
+        $center->update($validated);
+        return redirect()->route('center.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Center $center)
     {
-        //
+        $center->delete(); // elimina el registro
+        return redirect()->route('center.index');
+    }
+
+    public function activate(Center $center)
+    {   
+        $center->status = $center->status == 'active' ? 'inactive' : 'active';
+        $center->save();
+        return redirect()->route('center.index');
     }
 }
