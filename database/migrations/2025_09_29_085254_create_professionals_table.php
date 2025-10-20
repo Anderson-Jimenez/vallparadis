@@ -25,6 +25,7 @@ return new class extends Migration
             $table->integer('number_locker');
             $table->string('clue_locker', 255);
             $table->string('link_status', 255);
+            $table->string('status', 255);
 
             $table->timestamps();
         });

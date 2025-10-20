@@ -9,7 +9,7 @@ class Center extends Model
 {
     protected $table = "centers";
 
-    protected $fillable = ['center_name','location','phone_number','email_address'];
+    protected $fillable = ['center_name','location','phone_number','email_address','status'];
 
     public function professionals(): HasMany {
         return $this->hasMany(Professional::class);

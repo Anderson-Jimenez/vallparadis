@@ -25,11 +25,11 @@ Route::middleware(['auth'])->group(function () {
 
     // Vista administrador centers
     Route::resource('center', CenterController::class);
-    
+    Route::get('center/{center}/activate', [CenterController::class, 'activate'])->name('center.activate');
 
     Route::resource('professional', ProfessionalController::class);
     
 
     Route::resource('project_comission', Project_comissionController::class);
-    
+    Route::get('project_comission/{project_comission}/activate', [Project_comissionController::class, 'activate'])->name('project_comission.activate');
 });

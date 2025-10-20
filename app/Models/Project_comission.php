@@ -9,7 +9,7 @@ class Project_comission extends Model
 {
     protected $table = "projects_comissions";
 
-    protected $fillable = ['center_id','professional_manager_id','name','start_date','description','observation','type'];
+    protected $fillable = ['center_id','professional_manager_id','name','start_date','description','observation','type','status'];
 
     public function center(): BelongsTo {
         return $this->belongsTo(Center::class);

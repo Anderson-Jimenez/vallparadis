@@ -26,8 +26,21 @@
                     <td class="table-cell">{{ $project_comission->name }}</td>
                     <td class="table-cell">{{ $project_comission->start_date }}</td>
                     <td class="table-cell">{{ $project_comission->type }}</td>
-                    <td class="table-cell"><a href="">Modificar</a></td>
-                    <td class="table-cell"><a href="">Eliminar</a></td>
+                    <td class="table-cell">
+                        <form action="{{ route('project_comission.activate', $project_comission) }}">
+                            @csrf
+                            
+                            <button type="submit">{{ $project_comission->status }}</button>
+                        </form>
+                    </td>
+                    <td class="table-cell"><a href="{{route('project_comission.edit', $project_comission)}}">Modificar</a></td>
+                    <td class="table-cell">
+                        <form action="{{ route('project_comission.destroy', $project_comission) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Eliminar</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         

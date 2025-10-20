@@ -43,7 +43,8 @@ class ProfessionalController extends Controller
             'clue_locker' => 'required',
         ]);
         $validated['center_id'] = session('center_id');
-        $validated['link_status'] = 'active'; 
+        $validated['link_status'] = 'Actiu'; 
+        $validated['status'] = 'active'; 
         Professional::create($validated);
         return redirect()->route('professional.index');
     }

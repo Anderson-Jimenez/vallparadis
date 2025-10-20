@@ -20,6 +20,7 @@ class CentersSeeder extends Seeder
                 'location' => 'Terrassa',
                 'phone_number' => '937123456',
                 'email_address' => 'info@vallparadis.cat',
+                'status' => 'active',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

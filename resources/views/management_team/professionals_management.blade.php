@@ -27,11 +27,8 @@
                 <tr class="table-row">
                     <td class="table-cell">{{ $professional->name }}</td>
                     <td class="table-cell">{{ $professional->surnames }}</td>
-                    <td class="table-cell">
-                        <form action="">
-                            <button>{{ $professional->link_status }}</button>
-                        </form>
-                    </td>
+                    <td class="table-cell">{{ $professional->link_status }}</td>
+                    <td class="table-cell">{{ $professional->status }}</td>
                     <td class="table-cell"><a href="">Modificar</a></td>
                     <td class="table-cell"><a href="">Eliminar</a></td>
                 </tr>

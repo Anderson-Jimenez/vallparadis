@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('description');
             $table->text('observation');
             $table->string('type', 255);
+            $table->string('status', 255);
             $table->timestamps();
         });
     }
