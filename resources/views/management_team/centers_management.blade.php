@@ -38,8 +38,8 @@
                                     <button type="submit">{{ $center->status }}</button>
                                 </form>
                             </td>
-                            <td class="table-cell"><a href="{{route('center.edit', $center)}}">Modificar</a></td>
-                            <td class="table-cell">
+                            <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition-all duration-300"><a href="{{route('center.edit', $center)}}">Modificar</a></td>
+                            <td class="text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition-all duration-300">
                                 <form action="{{ route('center.destroy', $center) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
