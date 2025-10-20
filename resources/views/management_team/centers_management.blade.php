@@ -15,7 +15,7 @@
         @yield('contingut')
             <main class="flex-grow flex flex-col items-center w-full py-10">
 
-                <h1 class="text-white text-2xl w-10/12 text-center p-10 border-b-6 border-[#ff7300]">Gestió Centre</h1>
+                <h1 class="text-white text-3xl w-10/12 text-center p-10 border-b-6 border-[#ff7300]">Gestió Centre</h1>
                 
                 <table class=" border-solid w-[80vw] m-15">
                     <tr class="table-row">
