@@ -44,6 +44,41 @@
 
             <label for="clue_locker">Clau de la taquilla:</label>
             <input type="text" name="clue_locker" id="clue_locker" value="{{ $professional->clue_locker }}" required>
+            <h1><strong>Uniformes de professional</strong></h1><br><br>
+            <label for="shirt_size">Talla camisa:</label>
+            <select name="uniform[shirt_size]" id="shirt_size">
+                <option value="">Uniforme para elegir</option>
+                <option value="XS">XS</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+                <option value="2XL">2XL</option>
+                <option value="3XL">3XL</option>
+                <option value="4XL">4XL</option>
+            </select>
+
+            <label for="trausers_size">Talla pantalón:</label>
+            <select name="uniform[trausers_size]" id="trausers_size">
+                <option value="">Uniforme para elegir</option>
+                @for ($i = 36; $i <= 56; $i++)
+                    <option value="{{ $i }}">{{ $i }}</option>
+                @endfor
+            </select>
+
+            <label for="shoes_size">Talla calzado:</label>
+            <select name="uniform[shoes_size]" id="shoes_size">
+                <option value="">Uniforme para elegir</option>
+                @for ($i = 36; $i <= 56; $i++)
+                    <option value="{{ $i }}">{{ $i }}</option>
+                @endfor
+            </select>
+
+            <label for="renovation_date">Fecha de renovación:</label>
+            <input type="date" name="uniform[renovation_date]" id="renovation_date">
+
+            <label for="docs_route">Documento:</label>
+            <input type="file" name="uniform[docs_route]" id="docs_route">
 
             <button type="submit">Modificar dades de {{ $professional->name }}</button>
         </form>

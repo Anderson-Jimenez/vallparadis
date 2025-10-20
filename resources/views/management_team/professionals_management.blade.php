@@ -22,6 +22,7 @@
                         <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">Nom</th>
                         <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">Cognoms</th>
                         <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">Estat</th>
+                        <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">Afegir/Modificar Uniforme</th>
                     </tr>
 
                     @foreach ($professionals as $professional)
