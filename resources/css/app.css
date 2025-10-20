@@ -23,7 +23,7 @@
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
-input[type=password],input[type=name], label, a{
+input[type=password],input[type=name], label{
   @apply w-4/5;
   @apply m-1;
 }
