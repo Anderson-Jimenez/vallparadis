@@ -50,11 +50,11 @@
                     @endforeach
                 </table>
 
-                <a class="text-lg text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300] transition-all duration-300 rounded-full p-8">
-                Afegir Centre
+                <a href="{{route('center.create')}}" class="text-lg text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300] transition-all duration-300 rounded-full p-8" >
+                    afegir centre
                 </a>
             </main>
-            
+
         @include('components.footer')
     @endauth
 
