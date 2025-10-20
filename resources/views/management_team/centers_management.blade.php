@@ -17,29 +17,29 @@
 
                 <h1 class="text-white text-2xl w-10/12 text-center p-10 border-b-6 border-[#ff7300]">Gestió Centre</h1>
                 
-                <table class=" border-solid w-[80vw] m-15">
+                <table class=" border-solid w-[60vw] m-15">
                     <tr class="table-row">
-                        <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition-all duration-300">Nom</th>
-                        <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition-all duration-300">Ubicació</th>
-                        <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition-all duration-300">Teléfon</th>
-                        <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition-all duration-300">Email</th>
+                        <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">Nom</th>
+                        <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">Ubicació</th>
+                        <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">Teléfon</th>
+                        <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">Email</th>
                     </tr>
 
                     @foreach ($centers as $center)
                         <tr class="table-row">
-                            <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition-all duration-300">{{ $center->center_name }}</td>
-                            <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition-all duration-300">{{ $center->location }}</td>
-                            <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition-all duration-300">{{ $center->phone_number }}</td>
-                            <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition-all duration-300">{{ $center->email_address }}</td>
-                            <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition-all duration-300">
+                            <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300">{{ $center->center_name }}</td>
+                            <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300">{{ $center->location }}</td>
+                            <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300">{{ $center->phone_number }}</td>
+                            <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300">{{ $center->email_address }}</td>
+                            <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300">
                                 <form action="{{ route('center.activate', $center) }}">
                                     @csrf
                                 
                                     <button type="submit">{{ $center->status }}</button>
                                 </form>
                             </td>
-                            <td class="table-cell"><a href="{{route('center.edit', $center)}}">Modificar</a></td>
-                            <td class="table-cell">
+                            <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300"><a href="{{route('center.edit', $center)}}">Modificar</a></td>
+                            <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300">
                                 <form action="{{ route('center.destroy', $center) }}" method="POST">
                                     @csrf
                                     @method('DELETE')

@@ -28,6 +28,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('center/{center}/activate', [CenterController::class, 'activate'])->name('center.activate');
 
     Route::resource('professional', ProfessionalController::class);
+    Route::get('professional/{professional}/activate', [ProfessionalController::class, 'activate'])->name('professional.activate');
+
     
 
     Route::resource('project_comission', Project_comissionController::class);
