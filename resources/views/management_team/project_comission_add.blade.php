@@ -18,40 +18,44 @@
         @yield('contingut')
             <main class="flex-grow flex flex-col items-center w-full py-10">
                 <h1 class="text-white text-3xl w-10/12 text-center p-10 border-b-6 border-[#ff7300]">Formulari afegir nou projecte / comissió</h1>
-                <form action="{{ route('project_comission.store') }}" method="POST" enctype="multipart/form-data" class="m-10 flex flex-col w-5/12 p-10  bg-black-transparent rounded-3xl">
+                
+                <form action="{{ route('project_comission.store') }}" method="POST" enctype="multipart/form-data" class="m-10 flex flex-wrap w-5/12 p-10  bg-black-transparent rounded-3xl">
                     @csrf
-                    <label for="name" class="text-white text-xl">Nom del projecte:</label>
-                    <input type="text" name="name" id="name" value="{{ old('name') }}" required>
+                    <label for="name" class="text-white text-xl w-full">Nom del projecte:</label>
+                    <input type="text" name="name" id="name" value="{{ old('name') }}" required class="w-full bg-white-transparent p-3 my-3 text-black rounded-3xl cursor-pointer">
 
                     <label for="professional_manager_id" class="text-white text-xl">Manager del projecte:</label>
-                    <select name="professional_manager_id" id="professional_manager_id" required>
+                    <select name="professional_manager_id" id="professional_manager_id" required class="bg-white-transparent p-3 my-3 text-black rounded-3xl cursor-pointer w-full">
                         <option value="">-- Selecciona un professional --</option>
                         @foreach ($professionals as $professional)
                             <option value="{{ $professional->id }}" {{ old('professional_manager_id')}}>{{ $professional->name }} {{ $professional->surnames }}</option>
                         @endforeach
                     </select>
 
-                    <label for="start_date" class="text-white text-xl">Data d'inici:</label>
-                    <input type="date" name="start_date" id="start_date" value="{{ old('start_date') }}" required>
+                    <label for="start_date" class="text-white text-xl w-full">Data d'inici:</label>
+                    <input type="date" name="start_date" id="start_date" value="{{ old('start_date') }}" required class="bg-white-transparent p-3 my-3 text-white rounded-3xl cursor-pointer w-full">
 
-                    <label for="description" class="text-white text-xl">Descripció:</label>
-                    <textarea name="description" id="description" rows="4" required>{{ old('description') }}</textarea>
+                    <label for="description" class="text-white text-xl w-full">Descripció:</label>
+                    <textarea name="description" id="description" rows="4" required class="bg-white-transparent p-3 my-3 text-white rounded-3xl cursor-pointer w-full">{{ old('description') }}</textarea>
 
                     <label for="observation" class="text-white text-xl">Observacions:</label>
-                    <textarea name="observation" id="observation" rows="4" required>{{ old('observation') }}</textarea>
+                    <textarea name="observation" id="observation" rows="4" required class="bg-white-transparent p-3 mb-2 text-white rounded-3xl cursor-pointer w-full">{{ old('observation') }}</textarea>
 
-                    <span>Tipus:</span>
-                    <input type="radio" id="projecte" name="type" value="Projecte" {{ old('type') }} required>
-                    <label for="projecte">Projecte</label><br>
+                    <span class="text-white text-xl w-full my-3">Tipus:</span>
+                    <label for="projecte" class="text-white text-xl my-3">Projecte</label>
+                    <input type="radio" id="projecte" name="type" value="Projecte" {{ old('type') }} required class="m-2 w-[1vw] cursor-pointer">
+                    
+                    <label for="comissio" class="text-white text-xl my-3">Comissió</label>
+                    <input type="radio" id="comissio" name="type" value="Comissió" {{ old('type') }} class="m-2 w-[1vw] cursor-pointer">
+                    
 
-                    <input type="radio" id="comissio" name="type" value="Comissió" {{ old('type') }}>
-                    <label for="comissio">Comissió</label><br><br>
+                    <label for="pujar_fitxer" class="text-white text-xl w-full my-3">Pujar arxiu:</label> 
+                    <input type="file" name="path[]" id="path" multiple class="bg-white-transparent p-3 mb-2 text-white rounded-3xl cursor-pointer w-full">
 
-                    Pujar arxiu: <input type="file" name="path[]" id="path" multiple>
-
-                    <button type="submit" class="m-5 text-lg text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300] transition-all duration-300 rounded-full p-5">Crear Projecte</button>
+                    <button class="m-5 text-lg text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300] transition-all duration-300 rounded-full p-5 w-full">Crear Projecte</button>
                 </form>
             </main>
+        @include('components.footer')
     @endauth
 
     @guest
