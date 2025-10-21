@@ -113,7 +113,7 @@ class ProfessionalController extends Controller
             'shirt_size' => 'nullable',
             'trousers_size' => 'nullable',
             'shoes_size' => 'nullable',
-            'renovation_date' => 'nullable',
+            'renovation_date' => 'required',
         ]);
         
         $validated['professional_id'] = $professional->id; 
