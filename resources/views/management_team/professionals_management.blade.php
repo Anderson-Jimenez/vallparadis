@@ -9,34 +9,54 @@
 
 </head>
 
-<body>
-    
+<body class="min-h-screen flex flex-col bg-[#2D3E50]">
+    @include('partials.icons')
     @auth
-        <h1>Gestió Professionals</h1>
-        <br>
-        <table class="table-base table-wrapper">
-        
-            <tr class="table-row">
-                <th class="table-cell">Nom</th>
-                <th class="table-cell">Cognoms</th>
-                <th class="table-cell">Estat</th>
-            </tr>
-
-            @foreach ($professionals as $professional)
+        @include('components.navbar')
+        @yield('contingut')
+            <main class="flex-grow flex flex-col items-center w-full py-10">
+                <h1 class="text-white text-3xl w-10/12 text-center p-10 border-b-6 border-[#ff7300]">Gestió Professionals</h1>
+                <table class="border-solid w-[50vw] m-15">
                 
-                <tr class="table-row">
-                    <td class="table-cell">{{ $professional->name }}</td>
-                    <td class="table-cell">{{ $professional->surnames }}</td>
-                    <td class="table-cell">{{ $professional->link_status }}</td>
-                    <td class="table-cell">{{ $professional->status }}</td>
-                    <td class="table-cell"><a href="">Modificar</a></td>
-                    <td class="table-cell"><a href="">Eliminar</a></td>
-                </tr>
-            @endforeach
-        
-        </table>
-        <br>
-        <a href="{{route('professional.create')}}">Afegir Professionals</a>
+                    <tr class="table-row">
+                        <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">Nom</th>
+                        <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">Cognoms</th>
+                        <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">Estat</th>
+                        <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">Afegir/Modificar Uniforme</th>
+                    </tr>
+
+                    @foreach ($professionals as $professional)
+                        
+                        <tr class="table-row">
+                            <td class="p-4 text-sm hover:bg-[#b4b4b459] transition duration-300">{{ $professional->name }}</td>
+                            <td class="p-4 text-sm hover:bg-[#b4b4b459] transition duration-300">{{ $professional->surnames }}</td>
+                            <td class="p-4 text-sm hover:bg-[#b4b4b459] transition duration-300">{{ $professional->link_status }}</td>
+                            <td class="p-4 text-sm hover:bg-[#b4b4b459] transition duration-300"><a href="{{route('professional.send_uniform', $professional)}}">Afegir/Modificar</a></td>
+                            <td class="p-4 text-sm hover:bg-[#b4b4b459] transition duration-300">
+                                
+                                <form action="{{ route('professional.activate', $professional) }}">
+                                    @csrf
+                                
+                                    <button type="submit">{{ $professional->status }}</button>
+                                </form>
+                            </td>
+                            
+                            <td class="p-4 text-sm hover:bg-[#b4b4b459] transition duration-300"><a href="{{route('professional.edit', $professional)}}">Modificar</a></td>
+
+                            <td class="p-4 text-sm hover:bg-[#b4b4b459] transition duration-300">
+                                <form action="{{ route('professional.destroy', $professional) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                
+                </table>
+                <a href="{{route('professional.create')}}" class="text-lg text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300] transition-all duration-300 rounded-full p-8">Afegir Professionals</a>
+            </main>
+            @include('components.footer')
     @endauth
 
     @guest
