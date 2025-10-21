@@ -15,7 +15,16 @@
         @include('components.navbar')
         @yield('contingut')
             <main class="flex-grow flex flex-col items-center w-full py-10">
-                <h1 class="text-white text-3xl w-10/12 text-center p-10 border-b-6 border-[#ff7300]">Gestió Professionals</h1>
+                <h1 class="text-white text-3xl text-center p-10 border-b-6 border-[#ff7300] w-10/12">Gestió Professionals</h1>
+                <a href="{{ route('professionals.exportar-locker') }}" class="text-lg text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300] transition-all duration-300 rounded-full p-8">
+                    Exportar guixetes
+                </a>
+                <a href="{{ route('professionals.exportar-historial-uniforms') }}" class="text-lg text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300] transition-all duration-300 rounded-full p-8">
+                    Exportar historial uniforms
+                </a>
+                <a href="{{ route('professionals.exportar-uniforms') }}" class="text-lg text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300] transition-all duration-300 rounded-full p-8">
+                    Exportar uniforms
+                </a>
                 <table class="border-solid w-[50vw] m-15">
                 
                     <tr class="table-row">
