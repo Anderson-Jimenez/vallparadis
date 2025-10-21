@@ -43,7 +43,7 @@
                                 </form>
                             </td>
                             <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300"><a href="{{route('center.edit', $center)}}">Modificar</a></td>
-                            <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300">
+                            <td class="p-4 text-sm hover:bg-[#42131359] hover:text-[#ff7300] transition duration-300">
                                 <form action="{{ route('center.destroy', $center) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
@@ -54,7 +54,7 @@
                     @endforeach
                 </table>
 
-                <a href="{{route('center.create')}}" class="text-lg text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300] transition-all duration-300 rounded-full p-8" >
+                <a href="{{route('center.create')}}" class="text-sm text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300] transition-all duration-300 rounded-3xl p-4" >
                     afegir centre
                 </a>
             </main>

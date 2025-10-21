@@ -59,7 +59,7 @@
                     </a>
                 </aside>
                 
-                <!--S'haria de posar un controllador o quelcom similar-->
+                <!--S'haria de posar un controllador o quelcom similar -->
                 <section class=" w-4/5">
                     <div class="flex w-full h-max">
                         <div class="w-1/4 h-[20vh] bg-[#949494] m-4 rounded-3xl"></div>

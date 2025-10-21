@@ -8,11 +8,11 @@
     @vite("resources/css/app.css")
 
 </head>
-<body class="bg-forms ">
+<body>
     <main class="bg-geometrical h-screen flex justify-center items-center bg-cover">
         @include('partials.icons')
         
-        <div class="flex bg-white-transparent w-[60vw] h-[70vh] items-center rounded-2xl">
+        <div class="flex bg-black-transparent w-[60vw] h-[70vh] items-center rounded-2xl">
             <section class="h-full w-[60vw] flex flex-col justify-center items-center relative ">
                 <img src="{{ asset('img/logo.png') }}" alt="logo_vallparadis" class="absolute top-5 left-5 w-[15vw]">
                 <h1 class="txt-orange text-5xl font-bold text-center">Benvinguts a la fundació VallParadís!</h1>
