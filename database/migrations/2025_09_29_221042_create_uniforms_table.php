@@ -16,11 +16,11 @@ return new class extends Migration
 
             $table->unsignedBigInteger('professional_id');
             $table->foreign('professional_id')->references('id')->on('professionals')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('shirt_size', 255);
-            $table->string('trausers_size', 255);
-            $table->string('shoes_size', 255);
-            $table->date('renovation_date');
-            $table->string('docs_route', 255);
+            $table->string('shirt_size', 255)->nullable();
+            $table->string('trausers_size', 255)->nullable();
+            $table->string('shoes_size', 255)->nullable();
+            $table->date('renovation_date')->nullable();
+            $table->string('docs_route', 255)->nullable();
 
             $table->timestamps();
         });

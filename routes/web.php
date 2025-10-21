@@ -29,8 +29,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('professional', ProfessionalController::class);
     Route::get('professional/{professional}/activate', [ProfessionalController::class, 'activate'])->name('professional.activate');
-
-    
+    Route::get('professional/{professional}/send_uniform', [ProfessionalController::class, 'send_uniform'])->name('professional.send_uniform');
+    Route::post('professional/{professional}/uniform', [ProfessionalController::class, 'uniform'])->name('professional.uniform');
 
     Route::resource('project_comission', Project_comissionController::class);
     Route::get('project_comission/{project_comission}/activate', [Project_comissionController::class, 'activate'])->name('project_comission.activate');

@@ -31,7 +31,7 @@
                             <td class="p-4 text-sm hover:bg-[#b4b4b459] transition duration-300">{{ $professional->name }}</td>
                             <td class="p-4 text-sm hover:bg-[#b4b4b459] transition duration-300">{{ $professional->surnames }}</td>
                             <td class="p-4 text-sm hover:bg-[#b4b4b459] transition duration-300">{{ $professional->link_status }}</td>
-                            
+                            <td class="p-4 text-sm hover:bg-[#b4b4b459] transition duration-300"><a href="{{route('professional.send_uniform', $professional)}}">Afegir/Modificar</a></td>
                             <td class="p-4 text-sm hover:bg-[#b4b4b459] transition duration-300">
                                 
                                 <form action="{{ route('professional.activate', $professional) }}">
@@ -40,7 +40,7 @@
                                     <button type="submit">{{ $professional->status }}</button>
                                 </form>
                             </td>
-
+                            
                             <td class="p-4 text-sm hover:bg-[#b4b4b459] transition duration-300"><a href="{{route('professional.edit', $professional)}}">Modificar</a></td>
 
                             <td class="p-4 text-sm hover:bg-[#b4b4b459] transition duration-300">

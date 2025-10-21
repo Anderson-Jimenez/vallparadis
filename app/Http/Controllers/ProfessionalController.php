@@ -100,4 +100,32 @@ class ProfessionalController extends Controller
         $professional->save();
         return redirect()->route('professional.index');
     }
+    public function send_uniform(Professional $professional)
+    {
+        $uniform = Uniform::where('professional_id', $professional->id)->latest()->first();
+        
+        return view('management_team.professional_uniform',['professional'=>$professional, 'uniform'=>$uniform]);
+    }
+    public function uniform(Request $request, Professional $professional)
+    {
+        $validated = request()->validate([
+
+            'shirt_size' => 'nullable',
+            'trousers_size' => 'nullable',
+            'shoes_size' => 'nullable',
+            'renovation_date' => 'nullable',
+        ]);
+        
+        $validated['professional_id'] = $professional->id; 
+        $file = $request->file('docs_route');
+        if ($file) {
+            
+            $name_file = time().'-'. $file->getClientOriginalName();
+            $validated['docs_route'] = Storage::disk('uniforms')->putFileAs('', $file, $name_file);
+            
+        }
+        
+        Uniform::create($validated);
+        return redirect()->route('professional.index');
+    }
 }

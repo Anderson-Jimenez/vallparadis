@@ -55,6 +55,14 @@ return [
             'url' => env('APP_URL').'/storage',
             'throw' => false,
         ],
+
+        'uniforms' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/uniforms'),
+            'visibility' => 'public',
+            'url' => env('APP_URL').'/storage',
+            'throw' => false,
+        ],
         
 
         's3' => [
