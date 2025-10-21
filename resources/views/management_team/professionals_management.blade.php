@@ -36,9 +36,8 @@
                                 
                                 <form action="{{ route('professional.activate', $professional) }}">
                                     @csrf
-                                
-                                    <button type="submit">{{ $professional->status }}</button>
-                                </form>
+                                    <button>{{ $professional->status }}</button>
+                               </form>
                             </td>
                             
                             <td class="p-4 text-sm hover:bg-[#b4b4b459] transition duration-300"><a href="{{route('professional.edit', $professional)}}">Modificar</a></td>
