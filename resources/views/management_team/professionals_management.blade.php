@@ -31,7 +31,7 @@
                         <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">Nom</th>
                         <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">Cognoms</th>
                         <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">Estat</th>
-                        <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">Afegir/Modificar Uniforme</th>
+                        <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">Afegir Uniforme</th>
                     </tr>
 
                     @foreach ($professionals as $professional)
@@ -40,7 +40,7 @@
                             <td class="p-4 text-sm hover:bg-[#b4b4b459] transition duration-300">{{ $professional->name }}</td>
                             <td class="p-4 text-sm hover:bg-[#b4b4b459] transition duration-300">{{ $professional->surnames }}</td>
                             <td class="p-4 text-sm hover:bg-[#b4b4b459] transition duration-300">{{ $professional->link_status }}</td>
-                            <td class="p-4 text-sm hover:bg-[#b4b4b459] transition duration-300"><a href="{{route('professional.send_uniform', $professional)}}">Afegir/Modificar</a></td>
+                            <td class="p-4 text-sm hover:bg-[#b4b4b459] transition duration-300"><a href="{{route('professional.send_uniform', $professional)}}">Afegir</a></td>
                             <td class="p-4 text-sm hover:bg-[#b4b4b459] transition duration-300">
                                 
                                 <form action="{{ route('professional.activate', $professional) }}">
