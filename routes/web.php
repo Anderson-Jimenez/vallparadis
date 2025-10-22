@@ -34,4 +34,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('project_comission', Project_comissionController::class);
     Route::get('project_comission/{project_comission}/activate', [Project_comissionController::class, 'activate'])->name('project_comission.activate');
+
+
+    Route::get('/professionals/exportar-locker', [ProfessionalController::class, 'exportar_excel_locker'])->name('professionals.exportar-locker');
+    Route::get('/professionals/exportar-historial-uniforms', [ProfessionalController::class, 'exportar_excel_uniforms_history'])->name('professionals.exportar-historial-uniforms');
+    Route::get('/professionals/exportar-uniforms', [ProfessionalController::class, 'exportar_excel_uniforms'])->name('professionals.exportar-uniforms');
+
 });

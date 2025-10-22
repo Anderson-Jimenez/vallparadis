@@ -11,13 +11,18 @@
 <body class="min-h-screen flex flex-col bg-[#2D3E50]">
     @include('partials.icons')     
     @auth
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        @endif
         @include('components.navbar')
         @yield('contingut')
             <main class="flex-grow flex flex-col items-center w-full py-10">
 
                 <h1 class="text-white text-2xl w-10/12 text-center p-10 border-b-6 border-[#ff7300]">Gestió Centre</h1>
                 
-                <table class=" border-solid w-[60vw] m-15">
+                <table class="border-solid w-[60vw] m-15">
                     <tr class="table-row">
                         <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">Nom</th>
                         <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">Ubicació</th>
@@ -34,23 +39,22 @@
                             <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300">
                                 <form action="{{ route('center.activate', $center) }}">
                                     @csrf
-                                
-                                    <button type="submit">{{ $center->status }}</button>
+                                    <button>{{ $center->status }}</button>
                                 </form>
                             </td>
                             <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300"><a href="{{route('center.edit', $center)}}">Modificar</a></td>
-                            <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300">
+                            <td class="p-4 text-sm hover:bg-[#42131359] hover:text-[#ff7300] transition duration-300">
                                 <form action="{{ route('center.destroy', $center) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit">Eliminar</button>
+                                    <button>Eliminar</button>
                                 </form>
                             </td>
                         </tr>
                     @endforeach
                 </table>
 
-                <a href="{{route('center.create')}}" class="text-lg text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300] transition-all duration-300 rounded-full p-8" >
+                <a href="{{route('center.create')}}" class="text-sm text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300] transition-all duration-300 rounded-3xl p-4" >
                     afegir centre
                 </a>
             </main>

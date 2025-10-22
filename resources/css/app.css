@@ -22,7 +22,7 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
-
+/*
 input[type=password],input[type=name], label{
   @apply w-4/5;
   @apply m-1;
@@ -33,3 +33,4 @@ input[type=password],input[type=name]{
     @apply h-[1vw];
     @apply p-4.5;
 }
+*/

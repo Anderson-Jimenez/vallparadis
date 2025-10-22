@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('shirt_size', 255)->nullable();
             $table->string('trausers_size', 255)->nullable();
             $table->string('shoes_size', 255)->nullable();
-            $table->date('renovation_date')->nullable();
+            $table->date('renovation_date');
             $table->string('docs_route', 255)->nullable();
 
             $table->timestamps();

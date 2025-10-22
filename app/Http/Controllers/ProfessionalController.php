@@ -4,7 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Professional;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Uniform;
+use App\Exports\LockerExport;
+use App\Exports\Uniforms_historyExport;
+use App\Exports\UniformsExport;
+
+
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProfessionalController extends Controller
 {
@@ -113,7 +120,7 @@ class ProfessionalController extends Controller
             'shirt_size' => 'nullable',
             'trausers_size' => 'nullable',
             'shoes_size' => 'nullable',
-            'renovation_date' => 'nullable',
+            'renovation_date' => 'required',
         ]);
         
         $validated['professional_id'] = $professional->id; 
@@ -127,5 +134,17 @@ class ProfessionalController extends Controller
         
         Uniform::create($validated);
         return redirect()->route('professional.index');
+    }
+    public function exportar_excel_locker()
+    {
+        return Excel::download(new LockerExport, 'locker.xlsx');
+    }
+    public function exportar_excel_uniforms_history()
+    {
+        return Excel::download(new Uniforms_historyExport, 'uniforms_history.xlsx');
+    }
+    public function exportar_excel_uniforms()
+    {
+        return Excel::download(new UniformsExport, 'uniforms.xlsx');
     }
 }

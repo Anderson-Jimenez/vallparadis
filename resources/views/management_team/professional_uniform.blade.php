@@ -7,7 +7,7 @@
     <title>Afegir professional</title>
     @vite("resources/css/app.css")
 </head>
-<body>
+<body class="min-h-screen flex flex-col bg-[#2D3E50]">
     @auth
         
         @if ($errors->any())
@@ -15,54 +15,56 @@
                 <li>{{ $error }}</li>
             @endforeach
         @endif
-
-        <form action="{{ route('professional.uniform', $professional) }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            
-            <h1><strong>Uniformes de professional</strong></h1><br><br>
-            <label for="shirt_size">Talla camisa:</label>
-            <select name="shirt_size" id="shirt_size">
+        @include('components.navbar')
+        @yield('contingut')
+        <main class="flex-grow flex flex-col items-center w-full py-10">
+            <h1 class="text-white text-2xl w-10/12 text-center p-10 border-b-6 border-[#ff7300]">Gestió uniformes professional</h1>
+            <form action="{{ route('professional.uniform', $professional) }}" method="POST" enctype="multipart/form-data" class="m-10 flex flex-col w-5/12 p-10  bg-black-transparent rounded-3xl">
+                @csrf                
+                <label for="shirt_size" class="text-white text-xl">Talla camisa:</label>
+                <select name="shirt_size" id="shirt_size" class="bg-white-transparent p-3 my-3 text-black rounded-3xl cursor-pointer w-full">
+                    
+                    <option value="{{ $uniform ? $uniform->shirt_size : '' }}">
+                        {{ $uniform ? $uniform->shirt_size : 'Uniforme para elegir' }}
+                    </option>
+                    <option value="XS">XS</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <option value="2XL">2XL</option>
+                    <option value="3XL">3XL</option>
+                    <option value="4XL">4XL</option>
+                </select>
                 
-                <option value="{{ $uniform ? $uniform->shirt_size : '' }}">
-                    {{ $uniform ? $uniform->shirt_size : 'Uniforme para elegir' }}
-                </option>
-                <option value="XS">XS</option>
-                <option value="S">S</option>
-                <option value="M">M</option>
-                <option value="L">L</option>
-                <option value="XL">XL</option>
-                <option value="2XL">2XL</option>
-                <option value="3XL">3XL</option>
-                <option value="4XL">4XL</option>
-            </select>
-            
-            <label for="trausers_size">Talla pantalón:</label>
-            <select name="trausers_size" id="trausers_size">
-                <option value="{{ $uniform ? $uniform->trausers_size : '' }}">
-                    {{ $uniform ? $uniform->trausers_size : 'Uniforme para elegir' }}
-                </option>
-                @for ($i = 36; $i <= 56; $i++)
-                    <option value="{{ $i }}">{{ $i }}</option>
-                @endfor
-            </select>
+                <label for="trausers_size" class="text-white text-xl">Talla pantalón:</label>
+                <select name="trausers_size" id="trausers_size" class="bg-white-transparent p-3 my-3 text-black rounded-3xl cursor-pointer w-full">
+                    <option value="{{ $uniform ? $uniform->trausers_size : '' }}">
+                        {{ $uniform ? $uniform->trausers_size : 'Uniforme para elegir' }}
+                    </option>
+                    @for ($i = 36; $i <= 56; $i++)
+                        <option value="{{ $i }}">{{ $i }}</option>
+                    @endfor
+                </select>
 
-            <label for="shoes_size">Talla calzado:</label>
-            <select name="shoes_size" id="shoes_size">
-                <option value="{{ $uniform ? $uniform->shoes_size : '' }}">
-                    {{ $uniform ? $uniform->shoes_size : 'Uniforme para elegir' }}
-                </option>
-                @for ($i = 36; $i <= 56; $i++)
-                    <option value="{{ $i }}">{{ $i }}</option>
-                @endfor
-            </select>
+                <label for="shoes_size" class="text-white text-xl">Talla calzado:</label>
+                <select name="shoes_size" id="shoes_size" class="bg-white-transparent p-3 my-3 text-black rounded-3xl cursor-pointer w-full">
+                    <option value="{{ $uniform ? $uniform->shoes_size : '' }}">
+                        {{ $uniform ? $uniform->shoes_size : 'Uniforme para elegir' }}
+                    </option>
+                    @for ($i = 36; $i <= 56; $i++)
+                        <option value="{{ $i }}">{{ $i }}</option>
+                    @endfor
+                </select>
 
-            <label for="renovation_date">Fecha de renovación:</label>
-            <input type="date" name="renovation_date" id="renovation_date" value="{{ $uniform ? $uniform->renovation_date : '' }}">
+                <label for="renovation_date" class="text-white text-xl">Fecha de renovación:</label>
+                <input type="date" name="renovation_date" id="renovation_date" value="{{ $uniform ? $uniform->renovation_date : '' }}" required class="bg-white-transparent p-3 my-3 text-black rounded-3xl cursor-pointer w-full">
 
-            <label for="docs_route">Documento:</label>
-            <input type="file" name="docs_route" id="docs_route">
-            <button >Crear Uniforme</button>
-        </form>
+                <label for="docs_route" class="text-white text-xl">Documento:</label>
+                <input type="file" name="docs_route" id="docs_route" class="bg-white-transparent p-3 my-3 text-black rounded-3xl cursor-pointer w-full">
+                <button class="m-5 text-lg text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300] transition-all duration-300 rounded-full p-5">Crear Uniforme</button>
+            </form>
+        </main>
     @endauth
 
     @guest
