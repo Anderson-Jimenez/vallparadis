@@ -111,7 +111,7 @@ class ProfessionalController extends Controller
         $validated = request()->validate([
 
             'shirt_size' => 'nullable',
-            'trousers_size' => 'nullable',
+            'trausers_size' => 'nullable',
             'shoes_size' => 'nullable',
             'renovation_date' => 'nullable',
         ]);
