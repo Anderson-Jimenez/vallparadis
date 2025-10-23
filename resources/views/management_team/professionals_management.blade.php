@@ -9,13 +9,15 @@
 
 </head>
 
-<body class="min-h-screen flex flex-col bg-[#2D3E50]">
+<body class="min-h-screen flex flex-col">
     @include('partials.icons')
     @auth
         @include('components.navbar')
-        @yield('contingut')
-            <main class="flex-grow flex flex-col items-center w-full py-10">
-                <h1 class="text-white text-3xl text-center p-10 border-b-6 border-[#ff7300] w-10/12">Gestió Professionals</h1>
+        <main class="flex-grow flex w-full">
+            @yield('contingut')
+            @include('components.aside')
+            <section class="flex flex-col items-center w-4/5">
+                <h1 class="txt-orange text-3xl text-center p-10 border-b-6 border-[#ff7300] w-10/12">Gestió Professionals</h1>
                 <a href="{{ route('professionals.exportar-locker') }}" class="text-lg text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300] transition-all duration-300 rounded-full p-8">
                     Exportar guixetes
                 </a>
@@ -63,7 +65,8 @@
                 
                 </table>
                 <a href="{{route('professional.create')}}" class="text-lg text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300] transition-all duration-300 rounded-full p-8">Afegir Professionals</a>
-            </main>
+            </section>
+        </main>
             @include('components.footer')
     @endauth
 

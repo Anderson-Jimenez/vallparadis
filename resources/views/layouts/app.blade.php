@@ -9,7 +9,10 @@
         @include('partials.icons')
         <!-- PLANTILLA HEADER -->
         @include('components.navbar')
+        
         <main>
+            <!-- PLANTILLA ASIDE -->
+            @include('components.aside')
             @yield('contingut')
         </main>
         <!-- PLANTILLA FOOTER -->
