@@ -20,7 +20,7 @@
 
                 @foreach ($professionals as $professional)
                     
-                    <div id="{{ $professional->name }}" class="w-4/5 bg-white flex rounded-3xl p-5 my-3 border border-[#FF7400] justify-between shadow-md">
+                    <div id="{{ $professional->id }}" class="w-4/5 bg-white flex rounded-3xl p-5 my-3 border border-[#FF7400] justify-between shadow-md">
                         <div class="flex w-1/4 items-center">
                             <svg class="w-11 h-11 txt-orange  mr-3">
                                 <use xlink:href="#professional_icon"></use>
@@ -39,6 +39,8 @@
                                         <use xlink:href="#edit_icon"></use>
                                     </svg>
                                 </a>
+
+
                                 <!--
                                     <div class="relative group inline-block">
                                         <span class="absolute left-1/2 -translate-x-1/2 bottom-8 bg-white text-gray-900 text-sm px-2 py-1 rounded-md border border-gray-300 shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200">
