@@ -6,7 +6,7 @@
 @tailwind template;
 @tailwind login;
 
-
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@500;700&display=swap');
 @import './components/colors.css';
 @import './components/table.css';
 @import './components/backgrounds.css';
@@ -22,15 +22,10 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
-/*
-input[type=password],input[type=name], label{
-  @apply w-4/5;
-  @apply m-1;
-}
-input[type=password],input[type=name]{
-    @apply bg-white;
-    @apply rounded-2xl;
-    @apply h-[1vw];
-    @apply p-4.5;
-}
-*/
+ body {
+    @apply font-[Lato];
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-[Poppins];
+  }
