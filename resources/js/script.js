@@ -1,13 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
   const professionals = document.querySelectorAll('.professional');
   const info_div = document.getElementById('professional-info');
+  let uniform = document.getElementById('give-uniform');
+  let professionals_div = document.querySelectorAll('.professional-info');
+  let principal_panell = document.getElementById('principal_content');
 
   professionals.forEach(professional => {
     professional.addEventListener('click', () => {
       // Tomamos los datos del div clicado
       
       const input = professional.querySelectorAll('input');
-
+      let professional_id = input[0].value;
       let name = input[1].value;
       let surnames = input[2].value;
       let phone = input[3].value;
@@ -29,6 +32,13 @@ document.addEventListener('DOMContentLoaded', () => {
       info_email.textContent = 'Correu electrònic: ' + email;
       info_phone.textContent = 'Número de telefon: ' + phone;
       info_status.textContent = 'Estat Actual: ' + status;
+      uniform.href = "/professional/"+ professional_id+"/send_uniform";
+      professionals_div.forEach(div => {
+        div.classList.remove('w-4/5');
+        div.classList.add('w-3/6');
+      });
+      principal_panell.classList.remove();
+
     });
   });
 });
