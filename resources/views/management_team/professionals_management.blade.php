@@ -20,7 +20,7 @@
 
                 @foreach ($professionals as $professional)
                     
-                    <div id="{{ $professional->id }}" class="w-4/5 bg-white flex rounded-3xl p-5 my-3 border border-[#FF7400] justify-between shadow-md">
+                    <div id="{{ $professional->id }}" class="professional w-4/5 bg-white flex rounded-3xl p-5 my-3 border border-[#FF7400] justify-between shadow-md">
                         <div class="flex w-1/4 items-center">
                             <svg class="w-11 h-11 txt-orange  mr-3">
                                 <use xlink:href="#professional_icon"></use>
@@ -28,36 +28,49 @@
                             <p class="txt-orange text-lg">{{ $professional->name }} {{ $professional->surnames }}</p>
                         </div>
                         <div class="flex w-1/4 items-center justify-around">
-                            <form action="{{ route('professional.activate', $professional) }}" class="w-[10%] rounded-3xl ">
-                                @csrf
-                                <button class="btn-status text-md">{{ $professional->status }}</button>
-                            </form>
-
-                            
-                                <a href="{{route('professional.edit', $professional)}}" title="Editar dades professional">
-                                    <svg class="w-9 h-9 txt-orange">
-                                        <use xlink:href="#edit_icon"></use>
-                                    </svg>
-                                </a>
-
-
-                                <!--
-                                    <div class="relative group inline-block">
-                                        <span class="absolute left-1/2 -translate-x-1/2 bottom-8 bg-white text-gray-900 text-sm px-2 py-1 rounded-md border border-gray-300 shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                                        Editar professional
-                                        </span>
-                                    </div>
-                                -->
-
+                            @if ($professional->status == 'active')
+                                <form action="{{ route('professional.activate', $professional) }}" class=" text-center bg-[#fffff] rounded-4xl p-3 w-2/5 border border-[#FF7400] txt-orange cursor-pointer">
+                                    @csrf
+                                    <button id="activate_desactivate_btn" class="active text-md cursor-pointer">
+                                        {{ $professional->status }}
+                                    </button>
+                                </form>
+                            @else
+                                <form action="{{ route('professional.activate', $professional) }}" class="rounded-4xl bg-[#FF7400] p-3 text-white text-center w-2/5 cursor-pointer">
+                                    @csrf
+                                    <button id="activate_desactivate_btn" class="innactive text-md cursor-pointer">
+                                        {{ $professional->status }}
+                                    </button>
+                                </form>
+                            @endif
+                        
+                            <a href="{{route('professional.edit', $professional)}}" title="Editar dades professional">
+                                <svg class="w-9 h-9 txt-orange">
+                                    <use xlink:href="#edit_icon"></use>
+                                </svg>
+                            </a>
+                            <!--
+                                <div class="relative group inline-block">
+                                    <span class="absolute left-1/2 -translate-x-1/2 bottom-8 bg-white text-gray-900 text-sm px-2 py-1 rounded-md border border-gray-300 shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                    Editar professional
+                                    </span>
+                                </div>
+                            -->
+                            <input type="text" value="{{ $professional->name }}" class="hidden">
+                            <input type="text" value="{{ $professional->surnames }}" class="hidden">
+                            <input type="text" value="{{ $professional->phone_number }}" class="hidden">
+                            <input type="text" value="{{ $professional->email_address }}" class="hidden">
+                            <input type="text" value="{{ $professional->address }}" class="hidden">
+                            <input type="text" value="{{ $professional->status }}" class="hidden">
                         </div>
-                    </div>                              
-                @endforeach
-                    <div class="flex flex-col">
-                        <svg class="w-20 h-20 txt-orange  mr-3">
-                            <use xlink:href="#professional_icon"></use>
-                        </svg>
-                        <h1></h1>
                     </div>
+                @endforeach
+                <div id="professional-info" class="hidden w-4/5 bg-white rounded-3xl p-5 my-5 border border-[#FF7400] shadow-md">
+                    <h2 id="info-name" class="text-2xl font-bold text-[#FF7400] mb-3"></h2>
+                    <p id="info-email"></p>
+                    <p id="info-phone"></p>
+                    <p id="info-status"></p>
+                </div>                    
             </section>
 
 

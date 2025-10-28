@@ -2,4 +2,4 @@
 
 import '../css/app.css';
 import '../../tailwind.config'
-import './buttons.js'
+import './script.js'
