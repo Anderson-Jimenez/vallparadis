@@ -1,13 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
   
-  
   const professionals = document.querySelectorAll('.professional');
   const info_div = document.getElementById('professional-info');
   let uniform = document.getElementById('give-uniform');
   let professionals_div = document.querySelectorAll('.professional-info');
   let activo = false;
 
-
+  let principal_content = document.getElementById('principal-content');
 
   professionals.forEach(professional => {
     
@@ -38,18 +37,24 @@ document.addEventListener('DOMContentLoaded', () => {
         info_phone.textContent = 'Número de telefon: ' + phone;
         info_status.textContent = 'Estat Actual: ' + status;
         uniform.href = "/professional/"+ professional_id+"/send_uniform";
+        principal_content.classList.remove('items-center');
+        principal_content.classList.add('items-left');
         professionals_div.forEach(div => {
           div.classList.remove('w-4/5');
           div.classList.add('w-3/6');
         });
+        
       
       }
       else{
+        principal_content.classList.remove('items-left');
+        principal_content.classList.add('items-center');
         professionals_div.forEach(div => {
           div.classList.remove('w-3/6');
           div.classList.add('w-4/5');
         });
         info_div.classList.add('hidden');
+
       }
       activo = !activo;
     });

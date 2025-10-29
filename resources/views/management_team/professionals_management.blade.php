@@ -17,7 +17,7 @@
             @yield('contingut')
             @include('components.aside')
 
-            <section id="principal_content" class="w-4/5 flex-grow flex flex-col items-center relative">
+            <section id="principal-content" class="w-4/5 flex-grow flex flex-col items-center relative">
                 <div class="flex border-b-6 border-[#2D3E50] items-center w-4/5 justify-between">
                     <h1 class="text-[#2D3E50] text-3xl text-center p-7 flex-grow">Gestió Professionals</h1>
 
@@ -62,8 +62,8 @@
                         </div>
 
                         <div class="flex items-center space-x-4">
-                            @if ($professional->status == 'active')
-                                <form action="{{ route('professional.activate', $professional) }}" method="POST">
+                            @if ($professional->status == 'inactive')
+                                <form action="{{ route('professional.activate', $professional) }}" method="GET">
                                     @csrf
                                     <button id="activate_desactivate_btn"
                                             class="bg-white text-[#FF7400] border border-[#FF7400]
@@ -73,7 +73,7 @@
                                     </button>
                                 </form>
                             @else
-                                <form action="{{ route('professional.activate', $professional) }}" method="POST">
+                                <form action="{{ route('professional.activate', $professional) }}" method="GET">
                                     @csrf
                                     <button id="activate_desactivate_btn"
                                             class="bg-[#FF7400] text-white border border-[#FF7400]
