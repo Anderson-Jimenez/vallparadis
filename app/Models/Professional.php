@@ -33,4 +33,5 @@ class Professional extends Authenticatable
     {
         return $this->HasMany(Project_comission::class, 'professional_manager_id');
     }
+
 }

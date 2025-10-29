@@ -13,4 +13,5 @@ class Uniform extends Model
     public function professional(): BelongsTo {
         return $this->belongsTo(Professional::class);
     }
+    
 }
