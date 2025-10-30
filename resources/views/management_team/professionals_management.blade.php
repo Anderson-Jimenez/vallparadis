@@ -41,58 +41,59 @@
                 </div>
 
                 {{-- Listado de professionals --}}
-                @foreach ($professionals as $professional)
-                    <div class="professional-info w-4/5 bg-white flex rounded-3xl p-5 my-3 border border-[#FF7400]
-                                justify-between shadow-md hover:scale-105 transition-all duration-400">
-                        <div id="{{ $professional->id }}" class="professional flex items-center cursor-pointer">
-                            <svg class="w-8 h-8 txt-orange mr-3">
-                                <use xlink:href="#professional_icon"></use>
-                            </svg>
-                            <p class="txt-orange text-lg">
-                                {{ $professional->name }} {{ $professional->surnames }}
-                            </p>
-
-                            <input type="text" value="{{ $professional->id }}" class="hidden">
-                            <input type="text" value="{{ $professional->name }}" class="hidden">
-                            <input type="text" value="{{ $professional->surnames }}" class="hidden">
-                            <input type="text" value="{{ $professional->phone_number }}" class="hidden">
-                            <input type="text" value="{{ $professional->email_address }}" class="hidden">
-                            <input type="text" value="{{ $professional->address }}" class="hidden">
-                            <input type="text" value="{{ $professional->status }}" class="hidden">
-                        </div>
-
-                        <div class="flex items-center space-x-4">
-                            @if ($professional->status == 'inactive')
-                                <form action="{{ route('professional.activate', $professional) }}" method="GET">
-                                    @csrf
-                                    <button id="activate_desactivate_btn"
-                                            class="bg-white text-[#FF7400] border border-[#FF7400]
-                                                   rounded-full px-5 py-2 shadow-md hover:bg-[#FF7400]
-                                                   hover:text-white transition">
-                                        active
-                                    </button>
-                                </form>
-                            @else
-                                <form action="{{ route('professional.activate', $professional) }}" method="GET">
-                                    @csrf
-                                    <button id="activate_desactivate_btn"
-                                            class="bg-[#FF7400] text-white border border-[#FF7400]
-                                                   rounded-full px-5 py-2 shadow-md hover:bg-white
-                                                   hover:text-[#FF7400] transition">
-                                        inactive
-                                    </button>
-                                </form>
-                            @endif
-
-                            <a href="{{ route('professional.edit', $professional) }}" title="Editar dades professional">
-                                <svg class="w-8 h-8 txt-orange">
-                                    <use xlink:href="#edit_icon"></use>
+                <div class="w-4/5 flex items-center flex-col mt-8" id="prof-info-container">
+                    @foreach ($professionals as $professional)
+                        <div class="professional-info w-full bg-white flex rounded-3xl p-5 my-3 border border-[#FF7400]
+                                    justify-between shadow-md hover:scale-105 transition-all duration-400">
+                            <div id="{{ $professional->id }}" class="professional flex items-center cursor-pointer">
+                                <svg class="w-8 h-8 txt-orange mr-3">
+                                    <use xlink:href="#professional_icon"></use>
                                 </svg>
-                            </a>
-                        </div>
-                    </div>
-                @endforeach
+                                <p class="txt-orange text-lg">
+                                    {{ $professional->name }} {{ $professional->surnames }}
+                                </p>
 
+                                <input type="text" value="{{ $professional->id }}" class="hidden">
+                                <input type="text" value="{{ $professional->name }}" class="hidden">
+                                <input type="text" value="{{ $professional->surnames }}" class="hidden">
+                                <input type="text" value="{{ $professional->phone_number }}" class="hidden">
+                                <input type="text" value="{{ $professional->email_address }}" class="hidden">
+                                <input type="text" value="{{ $professional->address }}" class="hidden">
+                                <input type="text" value="{{ $professional->status }}" class="hidden">
+                            </div>
+
+                            <div class="flex items-center space-x-4">
+                                @if ($professional->status == 'inactive')
+                                    <form action="{{ route('professional.activate', $professional) }}" method="GET">
+                                        @csrf
+                                        <button id="activate_desactivate_btn"
+                                                class="bg-white text-[#FF7400] border border-[#FF7400]
+                                                        rounded-full px-5 py-2 shadow-md hover:bg-[#FF7400]
+                                                        hover:text-white transition">
+                                            active
+                                        </button>
+                                    </form>
+                                @else
+                                    <form action="{{ route('professional.activate', $professional) }}" method="GET">
+                                        @csrf
+                                        <button id="activate_desactivate_btn"
+                                                class="bg-[#FF7400] text-white border border-[#FF7400]
+                                                        rounded-full px-5 py-2 shadow-md hover:bg-white
+                                                        hover:text-[#FF7400] transition">
+                                            inactive
+                                        </button>
+                                    </form>
+                                @endif
+
+                                <a href="{{ route('professional.edit', $professional) }}" title="Editar dades professional">
+                                    <svg class="w-8 h-8 txt-orange">
+                                        <use xlink:href="#edit_icon"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
                 {{-- Botón para añadir profesional --}}
                 <a href="{{ route('professional.create') }}"
                    class="text-sm text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300]
@@ -102,8 +103,8 @@
 
                 {{-- Panel lateral (flotante) con información del profesional --}}
                 <div id="professional-info"
-                     class="hidden absolute top-1/4 right-20 w-1/4 bg-white rounded-3xl p-6 border border-[#FF7400]
-                            shadow-lg text-center flex-col items-center transition-all duration-300">
+                     class="opacity-0 translate-y-5 absolute top-[15%] right-40 w-1/4 bg-white rounded-3xl p-6 border border-[#FF7400]
+                        shadow-lg flex flex-col items-center transition-all duration-200 ease-out animate-slide-in">
                     <svg class="w-32 h-32 txt-orange mb-3">
                         <use xlink:href="#professional_icon"></use>
                     </svg>
