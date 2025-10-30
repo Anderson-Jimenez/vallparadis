@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\{BelongsTo, BelongsToMany, HasMany, HasOne};
 
 class Course extends Model
 {
@@ -13,8 +14,8 @@ class Course extends Model
         return $this->belongsToMany(Professional::class);
     }
 
-    public function centers(): BelongsToMany
+    public function centers(): BelongsTo
     {
-        return $this->belongsToMany(Center::class);
+        return $this->belongsTo(Center::class);
     }
 }

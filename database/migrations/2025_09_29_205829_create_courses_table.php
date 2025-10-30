@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('code_forcem', 255);
             $table->integer('hours');
             $table->string('type', 255);
-            $table->string('face_to_face/online', 255);
-            $table->string('trainig_name', 255);
+            $table->string('mode', 255);
+            $table->string('training_name', 255);
             $table->timestamps();
         });
     }
