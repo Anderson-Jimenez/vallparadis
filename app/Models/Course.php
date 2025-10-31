@@ -9,7 +9,7 @@ class Course extends Model
 {
     protected $table = "courses";
 
-    protected $fillable = ['center_id','code_forcem','hours','type','mode','training_name'];
+    protected $fillable = ['center_id','code_forcem','hours','type','mode','training_name','status'];
 
     public function centers(): BelongsTo
     {

@@ -21,7 +21,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        return view('management_team.course_add');
     }
 
     /**
@@ -29,7 +29,17 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'code_forcem'   => 'required',
+            'hours'         => 'required',
+            'type'          => 'required',
+            'mode'          => 'required',
+            'training_name' => 'required',
+        ]);
+        $validated['center_id'] = session('center_id');
+        $validated['status'] = 'active'; 
+        Course::create($validated);
+        return redirect()->route('course.index');
     }
 
     /**
