@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('type', 255);
             $table->string('mode', 255);
             $table->string('training_name', 255);
+            $table->string('status', 255);
             $table->timestamps();
         });
     }

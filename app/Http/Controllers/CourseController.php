@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Course;
 
 class CourseController extends Controller
 {
@@ -11,7 +12,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        $courses = Course::get();
+        return view('management_team.courses_management',['courses'=>$courses]);
     }
 
     /**
@@ -57,8 +59,16 @@ class CourseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Course $course)
     {
-        //
+        $course->delete(); // elimina el registro
+        return redirect()->route('course.index');
+    }
+
+    public function activate(Course $course)
+    {   
+        $course->status = $course->status == 'active' ? 'inactive' : 'active';
+        $course->save();
+        return redirect()->route('course.index');
     }
 }

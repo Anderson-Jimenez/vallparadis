@@ -9,10 +9,7 @@ class Course extends Model
 {
     protected $table = "courses";
 
-    public function professionals(): BelongsToMany
-    {
-        return $this->belongsToMany(Professional::class);
-    }
+    protected $fillable = ['center_id','code_forcem','hours','type','mode','training_name'];
 
     public function centers(): BelongsTo
     {
