@@ -53,17 +53,27 @@ class CourseController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Course $course)
     {
-        //
+        return view('management_team.course_change',['course'=>$course]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Course $course)
     {
-        //
+        $validated = $request->validate([
+            'code_forcem'   => 'required',
+            'hours'         => 'required',
+            'type'          => 'required',
+            'mode'          => 'required',
+            'training_name' => 'required',
+        ]);
+        $validated['center_id'] = session('center_id');
+        $validated['status'] = 'active'; 
+        $course->update($validated);
+        return redirect()->route('course.index');
     }
 
     /**
