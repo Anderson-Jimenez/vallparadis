@@ -18,26 +18,24 @@
             @include('components.aside')
 
             <section id="principal-content" class="w-4/5 flex-grow flex flex-col items-center relative">
-                <div class="flex border-b-6 border-[#2D3E50] items-center w-4/5 justify-between">
-                    <h1 class="text-[#2D3E50] text-3xl text-center p-7 flex-grow">Gestió Professionals</h1>
-
-                    <div class="flex space-x-3">
+                <h1 class="text-[#2D3E50] text-4xl pt-7 pb-1 w-4/5 border-b-4">Gestió Professionals</h1>
+                <h3 class="text-[#384452a1] text-xl w-4/5 py-3">Adminsitració i seguiment dels professionals del centre</h3>
+                <div class="flex space-x-3 w-4/5">
                         <a href="{{ route('professionals.exportar-locker') }}"
                            class="text-sm text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300]
-                                  transition-all duration-300 rounded-4xl px-5 py-2 text-center">
+                                  transition-all duration-300 rounded-xl px-5 py-2 text-center">
                             Exportar guixetes
                         </a>
                         <a href="{{ route('professionals.exportar-historial-uniforms') }}"
                            class="text-sm text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300]
-                                  transition-all duration-300 rounded-4xl px-5 py-2 text-center">
+                                  transition-all duration-300 rounded-xl px-5 py-2 text-center">
                             Exportar historial uniforms
                         </a>
                         <a href="{{ route('professionals.exportar-uniforms') }}"
                            class="text-sm text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300]
-                                  transition-all duration-300 rounded-4xl px-5 py-2 text-center">
+                                  transition-all duration-300 rounded-xl px-5 py-2 text-center">
                             Exportar uniforms
                         </a>
-                    </div>
                 </div>
 
                 {{-- Listado de professionals --}}
@@ -63,26 +61,26 @@
                             </div>
 
                             <div class="flex items-center space-x-4">
-                                @if ($professional->status == 'inactive')
-                                    <form action="{{ route('professional.activate', $professional) }}" method="GET">
-                                        @csrf
-                                        <button id="activate_desactivate_btn"
-                                                class="bg-white text-[#FF7400] border border-[#FF7400]
-                                                        rounded-full px-5 py-2 shadow-md hover:bg-[#FF7400]
-                                                        hover:text-white transition">
-                                            active
-                                        </button>
-                                    </form>
-                                @else
-                                    <form action="{{ route('professional.activate', $professional) }}" method="GET">
-                                        @csrf
-                                        <button id="activate_desactivate_btn"
-                                                class="bg-[#FF7400] text-white border border-[#FF7400]
-                                                        rounded-full px-5 py-2 shadow-md hover:bg-white
-                                                        hover:text-[#FF7400] transition">
-                                            inactive
-                                        </button>
-                                    </form>
+                            @if ($professional->status == 'inactive')
+                                <form action="{{ route('professional.activate', $professional) }}" method="GET">
+                                    @csrf
+                                    <button id="activate_desactivate_btn"
+                                            class="bg-[#DCFCE7] text-[#16A34A]
+                                                rounded-full px-5 py-2 shadow-md hover:bg-[#BBF7D0]
+                                                    transition">
+                                        active
+                                    </button>
+                                </form>
+                            @else
+                                <form action="{{ route('professional.activate', $professional) }}" method="GET">
+                                    @csrf
+                                    <button id="activate_desactivate_btn"
+                                            class="bg-[#FEE2E2] text-[#DC2626]
+                                                rounded-full px-7 py-4 shadow-md hover:bg-[#FEE2E2]
+                                                transition">
+                                        inactive
+                                    </button>
+                                </form>
                                 @endif
 
                                 <a href="{{ route('professional.edit', $professional) }}" title="Editar dades professional">
@@ -96,9 +94,9 @@
                 </div>
                 {{-- Botón para añadir profesional --}}
                 <a href="{{ route('professional.create') }}"
-                   class="text-sm text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300]
-                          transition-all duration-300 rounded-3xl px-5 py-2 mt-5">
-                    afegir professional
+                   class="fixed bottom-6 right-6 text-lg text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300]
+                          transition-all duration-300 rounded-2xl px-7 py-4 mt-5">
+                    + Afegir professional
                 </a>
 
                 {{-- Panel lateral (flotante) con información del profesional --}}
