@@ -64,19 +64,17 @@
                                 @if ($professional->status == 'inactive')
                                     <form action="{{ route('professional.activate', $professional) }}" method="GET">
                                         @csrf
-                                        <button id="activate_desactivate_btn"
-                                                class="bg-[#DCFCE7] text-[#16A34A]
+                                        <button class="bg-[#DCFCE7] text-[#16A34A]
                                                     rounded-full px-5 py-2 shadow-md hover:bg-[#BBF7D0]
-                                                        transition">
+                                                    transition">
                                             active
                                         </button>
                                     </form>
                                 @else
                                     <form action="{{ route('professional.activate', $professional) }}" method="GET">
                                         @csrf
-                                        <button id="activate_desactivate_btn"
-                                                class="bg-[#FEE2E2] text-[#DC2626]
-                                                    rounded-full px-7 py-4 shadow-md hover:bg-[#FEE2E2]
+                                        <button class="bg-[#FEE2E2] text-[#DC2626]
+                                                    rounded-full px-5 py-2 shadow-md hover:bg-[#FEE2E2]
                                                     transition">
                                             inactive
                                         </button>
@@ -101,8 +99,8 @@
 
                 {{-- Panel lateral (flotante) con información del profesional --}}
                 <div id="professional-info"
-                     class="opacity-0 translate-y-5 absolute top-[15%] right-40 w-1/4 bg-white rounded-3xl p-6 border border-[#FF7400]
-                        shadow-lg flex flex-col items-center transition-all duration-200 ease-out animate-slide-in">
+                     class="hidden  translate-y-5 absolute top-[15%] right-40 w-1/4 bg-white rounded-3xl p-6 border border-[#FF7400]
+                        shadow-lg flex-col items-center transition-all duration-200 ease-out animate-slide-in">
                     <svg class="w-32 h-32 txt-orange mb-3">
                         <use xlink:href="#professional_icon"></use>
                     </svg>

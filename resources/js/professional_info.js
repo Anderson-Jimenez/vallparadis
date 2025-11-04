@@ -26,8 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if(!activo){
         // para eliminar la classe hidden del div y que sea visible
-        info_div.classList.remove('opacity-0', 'translate-y-5');
-        info_div.classList.add('opacity-100', 'translate-y-0');
+        info_div.classList.remove('hidden', 'translate-y-5');
+        info_div.classList.add('flex', 'translate-y-0');
 
         const info_name = document.getElementById('info-name');
         const info_email = document.getElementById('info-email');
@@ -55,8 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
           div.classList.remove('w-3/6');
           div.classList.add('w-full');
         });
-        info_div.classList.add('opacity-0', 'translate-y-5');
-        info_div.classList.remove('opacity-100', 'translate-y-0');
+        info_div.classList.add('hidden', 'translate-y-5');
+        info_div.classList.remove('flex', 'translate-y-0');
 
       }
       activo = !activo;
