@@ -61,26 +61,26 @@
                             </div>
 
                             <div class="flex items-center space-x-4">
-                            @if ($professional->status == 'inactive')
-                                <form action="{{ route('professional.activate', $professional) }}" method="GET">
-                                    @csrf
-                                    <button id="activate_desactivate_btn"
-                                            class="bg-[#DCFCE7] text-[#16A34A]
-                                                rounded-full px-5 py-2 shadow-md hover:bg-[#BBF7D0]
+                                @if ($professional->status == 'inactive')
+                                    <form action="{{ route('professional.activate', $professional) }}" method="GET">
+                                        @csrf
+                                        <button id="activate_desactivate_btn"
+                                                class="bg-[#DCFCE7] text-[#16A34A]
+                                                    rounded-full px-5 py-2 shadow-md hover:bg-[#BBF7D0]
+                                                        transition">
+                                            active
+                                        </button>
+                                    </form>
+                                @else
+                                    <form action="{{ route('professional.activate', $professional) }}" method="GET">
+                                        @csrf
+                                        <button id="activate_desactivate_btn"
+                                                class="bg-[#FEE2E2] text-[#DC2626]
+                                                    rounded-full px-7 py-4 shadow-md hover:bg-[#FEE2E2]
                                                     transition">
-                                        active
-                                    </button>
-                                </form>
-                            @else
-                                <form action="{{ route('professional.activate', $professional) }}" method="GET">
-                                    @csrf
-                                    <button id="activate_desactivate_btn"
-                                            class="bg-[#FEE2E2] text-[#DC2626]
-                                                rounded-full px-7 py-4 shadow-md hover:bg-[#FEE2E2]
-                                                transition">
-                                        inactive
-                                    </button>
-                                </form>
+                                            inactive
+                                        </button>
+                                    </form>
                                 @endif
 
                                 <a href="{{ route('professional.edit', $professional) }}" title="Editar dades professional">
