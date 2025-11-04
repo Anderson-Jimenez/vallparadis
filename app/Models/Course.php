@@ -3,18 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\{BelongsTo, BelongsToMany, HasMany, HasOne};
 
 class Course extends Model
 {
     protected $table = "courses";
 
-    public function professionals(): BelongsToMany
-    {
-        return $this->belongsToMany(Professional::class);
-    }
+    protected $fillable = ['center_id','code_forcem','hours','type','mode','training_name','status'];
 
-    public function centers(): BelongsToMany
+    public function centers(): BelongsTo
     {
-        return $this->belongsToMany(Center::class);
+        return $this->belongsTo(Center::class);
     }
 }

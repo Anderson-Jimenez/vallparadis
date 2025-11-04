@@ -37,7 +37,7 @@
                             </a>
                         </li>
                         <li class="group my-4 rounded-lg transition-all duration-300">
-                            <a href="{{ route('project_comission.index') }}" class="flex items-center gap-3 p-4 rounded-lg bg-[#2D3E50] group-hover:bg-[#ff7300] transition-all duration-300">
+                            <a href="{{ route('course.index') }}" class="flex items-center gap-3 p-4 rounded-lg bg-[#2D3E50] group-hover:bg-[#ff7300] transition-all duration-300">
                             
                                 <svg class="w-10 h-10 text-white">
                                     <use xlink:href="#courses_icon"></use>

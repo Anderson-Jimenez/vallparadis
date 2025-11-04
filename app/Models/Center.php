@@ -19,4 +19,8 @@ class Center extends Model
         return $this->hasMany(Project_comission::class);
     }
 
+    public function courses(): HasMany {
+        return $this->hasMany(Course::class);
+    }
+
 }
