@@ -45,4 +45,5 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('course', CourseController::class);
     Route::get('course/{course}/activate', [CourseController::class, 'activate'])->name('course.activate');
+    Route::get('course/{course}/assign_professional', [CourseController::class, 'assign_professional'])->name('course.assign_professional');
 });

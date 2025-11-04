@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Course;
+use App\Models\Professional;
 
 class CourseController extends Controller
 {
@@ -90,5 +91,10 @@ class CourseController extends Controller
         $course->status = $course->status == 'active' ? 'inactive' : 'active';
         $course->save();
         return redirect()->route('course.index');
+    }
+
+    public function assign_professional(Course $course){
+        $professionals = Professional::get();
+        return view('management_team.course_assign_professional',['course'=>$course, 'professionals'=>$professionals]);
     }
 }

@@ -17,16 +17,19 @@
             @endforeach
         @endif
         @include('components.navbar')
-        <main class="flex-grow flex w-full">
+        <main class="grow flex w-full">
             @include('components.aside')
             @yield('contingut')
                 <section class="flex flex-col items-center w-4/5">
                     <h1 class="txt-orange text-2xl w-10/12 text-center p-10 border-b-6 border-[#ff7300]">Gestió Cursos</h1>
                         <div class="w-5/6 h-full flex flex-wrap">
                             @foreach ($courses as $course)
-                                <div class="w-[22.3%] h-3/12 mt-8 m-4 rounded-2xl bg-courses flex items-center text-center">
-                                    <h1 class="text-white">{{$course->training_name}}</h1>
-                                </div>
+                                <a href="{{route('course.assign_professional', $course)}}" class="w-[22.3%] h-3/12 mt-8 m-4 flex items-center justify-center bg-courses rounded-2xl">
+                                    
+                                    <h1 class="text-white text-center">{{$course->training_name}}</h1>
+                                    
+                                </a>
+                                
                             @endforeach
                         </div>
                         
