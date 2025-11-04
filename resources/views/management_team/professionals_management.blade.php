@@ -80,7 +80,11 @@
                                         </button>
                                     </form>
                                 @endif
-
+                                <a href="">
+                                    <svg class="w-8 h-8 txt-orange">
+                                        <use xlink:href="#see_evaluations"></use>
+                                    </svg>
+                                </a>
                                 <a href="{{ route('professional.edit', $professional) }}" title="Editar dades professional">
                                     <svg class="w-8 h-8 txt-orange">
                                         <use xlink:href="#edit_icon"></use>
