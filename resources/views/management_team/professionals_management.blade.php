@@ -42,7 +42,7 @@
                 <div class="w-4/5 flex items-center flex-col mt-8" id="prof-info-container">
                     @foreach ($professionals as $professional)
                         <div class="professional-info w-full bg-white flex rounded-3xl p-5 my-3 border border-[#FF7400]
-                                    justify-between shadow-md hover:scale-105 transition-all duration-400">
+                                    justify-between shadow-md hover:scale-102 transition-all duration-400">
                             <div id="{{ $professional->id }}" class="professional flex items-center cursor-pointer">
                                 <svg class="w-8 h-8 txt-orange mr-3">
                                     <use xlink:href="#professional_icon"></use>
@@ -74,19 +74,20 @@
                                     <form action="{{ route('professional.activate', $professional) }}" method="GET">
                                         @csrf
                                         <button class="bg-[#FEE2E2] text-[#DC2626]
-                                                    rounded-full px-5 py-2 shadow-md hover:bg-[#FEE2E2]
-                                                    transition">
+                                                    rounded-full px-5 py-2 shadow-md hover:bg-[#FECACA]
+                                                    transitio cursor-pointer">
                                             inactive
                                         </button>
                                     </form>
                                 @endif
-                                <a href="">
-                                    <svg class="w-8 h-8 txt-orange">
+                                <a href="#" class="flex items-center bg-[#F3F4F6] hover:bg-[#E5E7EB] p-2 rounded-xl border-1 border-[#6B7280]">
+                                    <svg class="w-8 h-8 text-[#6B7280]">
                                         <use xlink:href="#see_evaluations"></use>
                                     </svg>
+                                    <p class="ml-2 text-sm text-[#6B7280]">Veure/Fer Seguiments</p>
                                 </a>
-                                <a href="{{ route('professional.edit', $professional) }}" title="Editar dades professional">
-                                    <svg class="w-8 h-8 txt-orange">
+                                <a href="{{ route('professional.edit', $professional) }}" title="Editar dades professional" class="border-1 border-[#ff7300] rounded-full p-2 transition ease-in duration-200 hover:bg-[#ffa65d91]">
+                                    <svg class="w-8 h-8 txt-orange ">
                                         <use xlink:href="#edit_icon"></use>
                                     </svg>
                                 </a>
