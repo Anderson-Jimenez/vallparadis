@@ -33,9 +33,9 @@
                         </aside>
                         <div class="h-4/5 w-3/6 bg-white rounded-3xl p-6 border border-[#FF7400] flex-col items-center mt-8 ">
                             @foreach ($professionals as $professional)
-                                <div draggable="true" class="professional-info w-full bg-white flex rounded-3xl p-5 my-3 border border-[#FF7400]
+                                <div  class="professional-info w-full bg-white flex rounded-3xl p-5 my-3 border border-[#FF7400]
                                     justify-between shadow-md hover:scale-105 transition-all duration-400">
-                                    <div id="{{ $professional->id }}" class="professional flex items-center cursor-pointer">
+                                    <div draggable="true" id="{{ $professional->id }}" class="professional flex items-center cursor-pointer">
                                         <svg class="w-8 h-8 txt-orange mr-3">
                                             <use xlink:href="#professional_icon"></use>
                                         </svg>
