@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Professional;
+use App\Models\Monitoring;
+
 use Illuminate\Support\Facades\Storage;
 use App\Models\Uniform;
 use App\Exports\LockerExport;

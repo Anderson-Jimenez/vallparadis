@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let uniform = document.getElementById('give-uniform');
   let professionals_div = document.querySelectorAll('.professional-info');
   let activo = false;
+  
 
   let principal_content = document.getElementById('principal-content');
 
@@ -22,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
       let email = input[4].value;
       let address = input[5].value;
       let status = input[6].value;
-      
 
       if(!activo){
         // para eliminar la classe hidden del div y que sea visible
@@ -38,15 +38,15 @@ document.addEventListener('DOMContentLoaded', () => {
         info_email.textContent = 'Correu electrònic: ' + email;
         info_phone.textContent = 'Número de telefon: ' + phone;
         info_status.textContent = 'Estat Actual: ' + status;
+
         uniform.href = "/professional/"+ professional_id+"/send_uniform";
+
         prof_info_container.classList.remove('items-center');
         prof_info_container.classList.add('items-left');
         professionals_div.forEach(div => {
           div.classList.remove('w-full');
           div.classList.add('w-3/6');
-        });
-        
-      
+        });     
       }
       else{
         prof_info_container.classList.remove('items-left');
@@ -64,24 +64,3 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
-
-
-
-/*          canviar fons al boto de activacio            
-let activate_desactivate_btn = document.getElementById('activate_desactivate_btn');
-
-activate_desactivate_btn.addEventListener('click',toggleClass);
-
-
-function toggleClass(objecte){
-    if (objecte.classList.contains('active')){
-        objecte.classList.remove('active');
-        objecte.classList.add('innactive bg-[#fffff] rounded-3xl p-5 border border-[#FF7400]');
-    }
-    else{  
-        objecte.classList.remove('innactive');
-        objecte.classList.add('active bg-[#fffff] rounded-3xl p-5 border border-[#FF7400]');
-    }
-}
-
-*/
