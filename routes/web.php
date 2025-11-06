@@ -6,6 +6,8 @@ use App\Http\Controllers\CenterController;
 use App\Http\Controllers\ProfessionalController;
 use App\Http\Controllers\Project_comissionController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\MonitoringController;
+
 
 
 // Mostrar formulari de login
@@ -36,9 +38,9 @@ Route::middleware(['auth'])->group(function () {
 
     //Monitoring
     Route::resource('monitoring', MonitoringController::class);
-    Route::get('monitoring/{professional}/see_monitorings', [MonitoringController::class, 'see_monitorings'])->name('monitoring.index');
-
-
+    //Route::get('/monitoring/{professional}', [MonitoringController::class, 'index'])->name('monitoring.index');
+    Route::get('/monitoring/professional/{professional}', [MonitoringController::class, 'index'])
+    ->name('monitoring.monitorings');   
 
     //Projectes i comissions
     Route::resource('project_comission', Project_comissionController::class);

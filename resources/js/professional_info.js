@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let address = input[5].value;
       let status = input[6].value;
 
+      
       if(!activo){
         // para eliminar la classe hidden del div y que sea visible
         info_div.classList.remove('hidden', 'translate-y-5');

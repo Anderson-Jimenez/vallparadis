@@ -14,10 +14,9 @@ class MonitoringController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Professional $professional)
     {
-        $monitorings = Course::get();
-        return view('management_team.professional_monitoring',['monitorings'=>$monitorings]);
+        return view('management_team.professional_monitoring',['professional'=>$professional]);
     }
 
     /**
@@ -33,7 +32,16 @@ class MonitoringController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'professional_id' => 'required',
+            'type' => 'required',
+            'date' => 'required',
+            'issue' => 'required',
+            'comments' => 'required',
+        ]);
+        //Subir proyecto
+        $validated['professional_monitoring_id'] = session('current_professional_id');
+        Monitoring::create($validated);
     }
 
     /**

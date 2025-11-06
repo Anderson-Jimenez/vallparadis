@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\{BelongsTo, BelongsToMany, HasMany, HasOne};
 
 class Monitoring extends Model
 {
@@ -20,7 +21,7 @@ class Monitoring extends Model
         'comments',
     ];
      
-    public function professional()
+    public function professional(): BelongsTo
     {
         return $this->belongsTo(Professional::class);
     }

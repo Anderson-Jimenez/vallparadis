@@ -43,7 +43,7 @@
                     @foreach ($professionals as $professional)
                         <div class="professional-info w-full bg-white flex rounded-3xl p-5 my-3 border border-[#FF7400]
                                     justify-between shadow-md hover:scale-102 transition-all duration-400">
-                            <div id="{{ $professional->id }}" class="professional flex items-center cursor-pointer">
+                            <div id="{{$professional->id}}" class="professional flex items-center cursor-pointer">
                                 <svg class="w-10 h-10 txt-orange mr-3">
                                     <use xlink:href="#professional_icon"></use>
                                 </svg>
@@ -67,7 +67,7 @@
                                         <button class="bg-[#DCFCE7] text-[#16A34A]
                                                     rounded-full px-5 py-2 shadow-md hover:bg-[#BBF7D0]
                                                     transition cursor-pointer">
-                                            active
+                                            Activar
                                         </button>
                                     </form>
                                 @else
@@ -76,11 +76,11 @@
                                         <button class="bg-[#FEE2E2] text-[#DC2626]
                                                     rounded-full px-5 py-2 shadow-md hover:bg-[#FECACA]
                                                     transitio cursor-pointer">
-                                            inactive
+                                            Desactivar
                                         </button>
                                     </form>
                                 @endif
-                                <a href="{{ route('monitoring.index') }}" class="flex items-center bg-[#F3F4F6] hover:bg-[#E5E7EB] p-2 rounded-xl border-1 border-[#6B7280]">
+                                <a href="{{ route('monitoring.monitorings', $professional->id) }}" class="flex items-center bg-[#F3F4F6] hover:bg-[#E5E7EB] p-2 rounded-xl border-1 border-[#6B7280]">
                                     <svg class="w-8 h-8 text-[#6B7280]">
                                         <use xlink:href="#see_evaluations"></use>
                                     </svg>

@@ -149,9 +149,5 @@ class ProfessionalController extends Controller
     {
         return Excel::download(new UniformsExport, 'uniforms.xlsx');
     }
-    public function show_follow_ups(Professional $professional)
-    {
-       // return view('management_team.follow-up_professional', ['professional' => $professional]);
-    }
 
 }
