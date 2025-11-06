@@ -97,4 +97,8 @@ class CourseController extends Controller
         $professionals = Professional::get();
         return view('management_team.course_assign_professional',['course'=>$course, 'professionals'=>$professionals]);
     }
+
+    public function assign_professional_to_course(Request $request){
+
+    }
 }

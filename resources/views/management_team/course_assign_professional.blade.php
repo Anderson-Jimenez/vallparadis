@@ -18,12 +18,14 @@
         @endif
         @include('components.navbar')
         <main class="grow flex w-full">
+            @extends('layouts.app')
             @include('components.aside')
             @yield('contingut')
                 <main class="flex flex-col items-center w-4/5">
                     <h1 class="txt-orange text-2xl w-10/12 text-center p-10 border-b-6 border-[#ff7300]">Assignar professionals a cursos</h1>
                     <section class="w-full h-full flex flex-wrap flex-col items-center">
                         <aside id="drop_zona" class="h-4/5 w-3/12 bg-white rounded-3xl p-6 border border-[#FF7400] flex-col items-center mt-8 ">
+                            <input type="text" value="{{ $course->id }}" class="hidden">
                             <h2 class="text-2xl font-bold text-[#FF7400] mb-3">{{$course->training_name}}</h2>
                             <p class="text-gray-600 mb-1">{{$course->code_forcem}}</p>
                             <p class="text-gray-600 mb-1">{{$course->hours}}</p>
@@ -36,6 +38,7 @@
                                 <div  class="professional-info w-full bg-white flex rounded-3xl p-5 my-3 border border-[#FF7400]
                                     justify-between shadow-md hover:scale-105 transition-all duration-400">
                                     <div draggable="true" id="{{ $professional->id }}" class="professional flex items-center cursor-pointer">
+                                        <input type="text" value="{{ $professional->id }}" class="hidden">
                                         <svg class="w-8 h-8 txt-orange mr-3">
                                             <use xlink:href="#professional_icon"></use>
                                         </svg>
