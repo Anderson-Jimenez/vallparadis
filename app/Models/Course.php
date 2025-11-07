@@ -15,4 +15,11 @@ class Course extends Model
     {
         return $this->belongsTo(Center::class);
     }
+
+    public function professionals(): BelongsToMany
+    {
+        return $this->belongsToMany(Professional::class, 'professionals_courses')
+            ->withPivot('start_date', 'end_date', 'certificate')
+            ->withTimestamps();
+    }
 }

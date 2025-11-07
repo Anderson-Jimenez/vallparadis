@@ -25,15 +25,28 @@
                     <h1 class="txt-orange text-2xl w-10/12 text-center p-10 border-b-6 border-[#ff7300]">Assignar professionals a cursos</h1>
                     <section class="w-full h-full flex flex-wrap flex-col items-center">
                         <aside id="drop_zona" class="h-4/5 w-3/12 bg-white rounded-3xl p-6 border border-[#FF7400] flex-col items-center mt-8 ">
-                            <input type="text" value="{{ $course->id }}" class="hidden">
                             <h2 class="text-2xl font-bold text-[#FF7400] mb-3">{{$course->training_name}}</h2>
                             <p class="text-gray-600 mb-1">{{$course->code_forcem}}</p>
                             <p class="text-gray-600 mb-1">{{$course->hours}}</p>
                             <p class="text-gray-600 mb-4">{{$course->type}}</p>
                             <p class="text-gray-600 mb-4">{{$course->mode}}</p>
-                            <div id = "drop_estat" class="h-1/4 bg-red"> </div>
+                            <!-- ZONA DE ASIGNACIÓN -->
+                            <h3 class="mt-6 text-lg font-semibold text-[#FF7400]">Professionals assignats</h3>
+
+                            <div id="assigned_zone" 
+                                class="min-h-32 border-2 border-dashed border-[#FF7400] bg-[#FFF4E9] rounded-xl p-3 mt-2">
+                            </div>
+
+                            <!-- BOTÓN -->
+                            <button id="save_assignments"
+                                class="mt-6 bg-[#FF7400] text-white px-4 py-2 rounded-xl hover:bg-[#e36300] transition">
+                                Guardar Assignació
+                            </button>
+
+                            <input type="hidden" id="course_id" value="{{ $course->id }}">
                         </aside>
-                        <div class="h-4/5 w-3/6 bg-white rounded-3xl p-6 border border-[#FF7400] flex-col items-center mt-8 ">
+                        <div id="professionals_list" class="h-4/5 w-3/6 bg-white rounded-3xl p-6 border border-[#FF7400] flex-col items-center mt-8 ">
+                            <h2 class="text-xl font-bold text-[#FF7400] mb-4">Llista de professionals</h2>
                             @foreach ($professionals as $professional)
                                 <div  class="professional-info w-full bg-white flex rounded-3xl p-5 my-3 border border-[#FF7400]
                                     justify-between shadow-md hover:scale-105 transition-all duration-400">
@@ -46,8 +59,6 @@
                                             {{ $professional->name }} {{ $professional->surnames }}
                                         </p>
                                     </div>
-
-                                    
                                 </div>
                             @endforeach
                         </div>
