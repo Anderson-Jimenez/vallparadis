@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\Monitoring;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -14,9 +14,10 @@ class MonitoringController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Professional $professional)
+    public function index(Professional $professional, Monitoring $monitoring)
     {
-        return view('management_team.professional_monitoring',['professional'=>$professional]);
+         $monitoring = Monitoring::where('professional_id', $professional->id)->get();
+        return view('management_team.professional_monitoring',['professional'=>$professional, 'monitoring'=>$monitoring]);
     }
 
     /**
@@ -40,7 +41,7 @@ class MonitoringController extends Controller
             'comments' => 'required',
         ]);
         //Subir proyecto
-        $validated['professional_monitoring_id'] = session('current_professional_id');
+        $validated['professional_monitoring_id'] = Auth::user()->id;
         Monitoring::create($validated);
     }
 
