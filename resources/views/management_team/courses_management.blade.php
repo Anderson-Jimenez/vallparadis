@@ -25,8 +25,17 @@
                         <div class="w-5/6 h-full flex flex-wrap">
                             @foreach ($courses as $course)
                                 <a href="{{route('course.assign_professional', $course)}}" class="w-[22.3%] h-3/12 mt-8 m-4 flex items-center justify-center bg-courses rounded-2xl">
-                                    
                                     <h1 class="text-white text-center">{{$course->training_name}}</h1>
+                                    <a href="{{route('course.edit', $course)}}">
+                                        <svg class="w-8 h-8 txt-orange mr-3">
+                                            <use xlink:href="#course_edit_icon"></use>
+                                        </svg>
+                                    </a>
+                                    <a href="{{route('course.destroy', $course)}}">
+                                        <svg class="w-8 h-8 txt-orange mr-3">
+                                            <use xlink:href="#course_delete_icon"></use>
+                                        </svg>
+                                    </a>
                                     
                                 </a>
                                 
