@@ -66,7 +66,6 @@
                                 <input type="text" value="{{ $professional_monitoring->name }}" class="hidden">
                                 <input type="text" value="{{ $professional_monitoring->type }}" class="hidden">
                                 <input type="text" value="{{ $professional_monitoring->date }}" class="hidden">
-                                <input type="text" value="{{ $professional_monitoring->issue }}" class="hidden">
                                 <input type="text" value="{{ $professional_monitoring->comments }}" class="hidden">
                             </div>
                         @endforeach

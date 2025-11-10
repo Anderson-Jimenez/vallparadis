@@ -16,13 +16,14 @@ document.addEventListener('DOMContentLoaded', () => {
     monitorings.forEach(monitoring => { 
         monitoring.addEventListener('click', () => { 
             const input = monitoring.querySelectorAll('input'); 
-            let professional_name = input[0].value; 
-            let monitoring_type = input[1].value; 
-            let date = input[2].value; 
-            let issue = input[3].value; 
+
+            let issue = input[0].value; 
+            let professional_name = input[1].value; 
+            let type = input[2].value; 
+            let date = input[3].value; 
             let comments = input[4].value; 
 
-            document.getElementById("view_monitoring_type").textContent = monitoring_type;
+            document.getElementById("view_monitoring_type").textContent = type;
             document.getElementById("view_monitoring_date").textContent = date;
             document.getElementById("view_monitoring_issue").textContent = issue;
             document.getElementById("view_monitoring_comments").textContent = comments;
