@@ -66,6 +66,7 @@
                                 <input type="text" value="{{ $professional_monitoring->name }}" class="hidden">
                                 <input type="text" value="{{ $professional_monitoring->type }}" class="hidden">
                                 <input type="text" value="{{ $professional_monitoring->date }}" class="hidden">
+                                <input type="text" value="{{ $professional_monitoring->issue }}" class="hidden">
                                 <input type="text" value="{{ $professional_monitoring->comments }}" class="hidden">
                             </div>
                         @endforeach
@@ -81,7 +82,7 @@
                         @csrf
                         <div class="flex justify-between items-center mb-6 w-full">
                             <h2 class="text-2xl font-bold txt-orange">Nou informe</h2>
-                            <button id="close_add_monitoring" class="txt-orange text-xl font-bold hover:text-orange-700 cursor-pointer">✕</button>
+                            <button id="close_add_monitoring" class="txt-orange text-xl font-bold hover:text-orange-700">✕</button>
                         </div>            
                         <div>
                             <p class="text-orange-500 font-semibold uppercase text-sm">Realitzat per:</p>
