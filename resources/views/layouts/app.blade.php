@@ -2,6 +2,7 @@
 <html lang="ca">
     <head>
         <meta charset="UTF-8">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>@yield('titol', 'El meu projecte Laravel')</title>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>

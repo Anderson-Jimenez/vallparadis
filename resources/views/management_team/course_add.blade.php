@@ -22,19 +22,7 @@
                     @csrf
 
                     <label for="code_forcem" class="text-white text-xl">Codi FORCEM:</label>
-                    <select id="code_forcem" name="code_forcem" required class="bg-white-transparent p-3 my-3 text-black rounded-3xl cursor-pointer w-full">
-                        <option value="HORTA">HORTA</option>
-                        <option value="LA PINEDA">LA PINEDA</option>
-                        <option value="AMETLLA">AMETLLA</option>
-                        <option value="M. BETRIU">M. BETRIU</option>
-                        <option value="T. DE LLOPS">T. DE LLOPS</option>
-                        <option value="MAS I DALMAU">MAS I DALMAU</option>
-                        <option value="MORA LA NOVA">MORA LA NOVA</option>
-                        <option value="TAMARIU">TAMARIU</option>
-                        <option value="TURSIA">TURSIA</option>
-                        <option value="CAMBRILS SUITE">CAMBRILS SUITE</option>
-                        <option value="POBLENOU">POBLENOU</option>
-                    </select>
+                    <input type="text" id="code_forcem" name="code_forcem" value="{{ old('code_forcem') }}" required class="bg-white-transparent p-3 mb-2 text-white rounded-3xl">
 
                     <label for="hours" class="text-white text-xl">Horas:</label>
                     <input type="number" id="hours" name="hours" value="{{ old('hours') }}" required class="bg-white-transparent p-3 mb-2 text-white rounded-3xl">

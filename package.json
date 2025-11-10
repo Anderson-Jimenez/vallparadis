@@ -18,6 +18,7 @@
         "vite": "^7.0.4"
     },
     "dependencies": {
+        "flowbite": "^3.1.2",
         "jquery": "^3.7.1"
     }
 }

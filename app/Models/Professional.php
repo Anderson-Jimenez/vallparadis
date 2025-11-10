@@ -21,7 +21,9 @@ class Professional extends Authenticatable
 
     public function courses(): BelongsToMany
     {
-        return $this->belongsToMany(Course::class);
+        return $this->belongsToMany(Course::class, 'professionals_courses')
+            ->withPivot('start_date', 'end_date', 'certificate')
+            ->withTimestamps();
     }
 
     public function uniforms(): HasMany

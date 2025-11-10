@@ -8,7 +8,7 @@
     @vite("resources/css/app.css")
 
 </head>
-<body class="min-h-screen flex flex-col ">
+<body class="min-h-screen flex flex-col bg-[#E9EDF2]">
     @include('partials.icons')     
     @auth
         @if ($errors->any())
@@ -17,46 +17,31 @@
             @endforeach
         @endif
         @include('components.navbar')
-        <main class="flex-grow flex w-full">
+        <main class="grow flex w-full">
             @include('components.aside')
             @yield('contingut')
                 <section class="flex flex-col items-center w-4/5">
                     <h1 class="txt-orange text-2xl w-10/12 text-center p-10 border-b-6 border-[#ff7300]">Gestió Cursos</h1>
-                
-                    <table class="border-solid w-[60vw] m-15">
-                        <tr class="table-row">
-                            <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">CODI FORCEM</th>
-                            <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">HORES</th>
-                            <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">TIPUS</th>
-                            <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">PRESENCIAL / ON LINE</th>
-                            <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">NOM FORMACIÓ / TALLER / JORNADA / CONGRÉS</th>
-                        </tr>
-
-                        @foreach ($courses as $course)
-                            <tr class="table-row">
-                                <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300">{{ $course->code_forcem }}</td>
-                                <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300">{{ $course->hours }}</td>
-                                <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300">{{ $course->type }}</td>
-                                <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300">{{ $course->mode }}</td>
-                                <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300">{{ $course->training_name }}</td>
-                                <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300">
-                                    <form action="{{ route('course.activate', $course) }}">
-                                        @csrf
-                                        <button>{{ $course->status }}</button>
-                                    </form>
-                                </td>
-                                <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300"><a href="{{route('course.edit', $course)}}">Modificar</a></td>
-                                <td class="p-4 text-sm hover:bg-[#42131359] hover:text-[#ff7300] transition duration-300">
-                                    <form action="{{ route('course.destroy', $course) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button>Eliminar</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </table>
-
+                        <div class="w-5/6 h-full flex flex-wrap">
+                            @foreach ($courses as $course)
+                                <a href="{{route('course.assign_professional', $course)}}" class="w-[22.3%] h-3/12 mt-8 m-4 flex items-center justify-center bg-courses rounded-2xl">
+                                    <h1 class="text-white text-center">{{$course->training_name}}</h1>
+                                    <a href="{{route('course.edit', $course)}}">
+                                        <svg class="w-8 h-8 txt-orange mr-3">
+                                            <use xlink:href="#course_edit_icon"></use>
+                                        </svg>
+                                    </a>
+                                    <a href="{{route('course.destroy', $course)}}">
+                                        <svg class="w-8 h-8 txt-orange mr-3">
+                                            <use xlink:href="#course_delete_icon"></use>
+                                        </svg>
+                                    </a>
+                                    
+                                </a>
+                                
+                            @endforeach
+                        </div>
+                        
                     <a href="{{route('course.create')}}" class="text-sm text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300] transition-all duration-300 rounded-3xl p-4" >
                         afegir curs
                     </a>
