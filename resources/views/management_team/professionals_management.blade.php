@@ -17,7 +17,7 @@
             @yield('contingut')
             @include('components.aside')
 
-            <section id="principal-content" class="w-4/5 flex-grow flex flex-col items-center relative">
+            <section id="principal-content" class="w-4/5 flex flex-col items-center relative">
                 <h1 class="text-[#2D3E50] text-4xl pt-7 pb-1 w-4/5 border-b-4">Gestió Professionals</h1>
                 <h3 class="text-[#384452a1] text-xl w-4/5 py-3">Adminsitració i seguiment dels professionals del centre</h3>
                 <div class="flex space-x-3 w-4/5">
@@ -80,13 +80,19 @@
                                         </button>
                                     </form>
                                 @endif
-                                <a href="{{ route('monitoring.monitorings', $professional->id) }}" class="flex items-center bg-[#F3F4F6] hover:bg-[#E5E7EB] p-2 rounded-xl border-1 border-[#6B7280]">
+                                <a href="{{ route('professionals.evaluations', $professional->id) }}" class="flex items-center bg-[#F3F4F6] hover:bg-[#E5E7EB] p-2 rounded-xl border border-[#6B7280]">
+                                    <svg class="w-8 h-8 text-[#6B7280]">
+                                        <use xlink:href="#evaluations_icon"></use>
+                                    </svg>
+                                    <p class="ml-2 text-sm text-[#6B7280]">Veure/Fer Avaluacions</p>
+                                </a>
+                                <a href="{{ route('monitoring.monitorings', $professional->id) }}" class="flex items-center bg-[#F3F4F6] hover:bg-[#E5E7EB] p-2 rounded-xl border border-[#6B7280]">
                                     <svg class="w-8 h-8 text-[#6B7280]">
                                         <use xlink:href="#see_evaluations"></use>
                                     </svg>
                                     <p class="ml-2 text-sm text-[#6B7280]">Veure/Fer Seguiments</p>
                                 </a>
-                                <a href="{{ route('professional.edit', $professional) }}" title="Editar dades professional" class="border-1 border-[#ff7300] rounded-full p-2 transition ease-in duration-200 hover:bg-[#ffa65d91]">
+                                <a href="{{ route('professional.edit', $professional) }}" title="Editar dades professional" class="border border-[#ff7300] rounded-full p-2 transition ease-in duration-200 hover:bg-[#ffa65d91]">
                                     <svg class="w-8 h-8 txt-orange ">
                                         <use xlink:href="#edit_icon"></use>
                                     </svg>
