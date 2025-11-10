@@ -16,7 +16,7 @@ class MonitoringController extends Controller
      */
     public function index(Professional $professional, Monitoring $monitoring)
     {
-         $monitoring = Monitoring::where('professional_id', $professional->id)->get();
+        $monitoring = Monitoring::where('professional_id', $professional->id)->paginate(3);
         return view('management_team.professional_monitoring',['professional'=>$professional, 'monitoring'=>$monitoring]);
     }
 
