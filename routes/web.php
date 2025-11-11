@@ -50,6 +50,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/professionals/exportar-locker', [ProfessionalController::class, 'exportar_excel_locker'])->name('professionals.exportar-locker');
     Route::get('/professionals/exportar-historial-uniforms', [ProfessionalController::class, 'exportar_excel_uniforms_history'])->name('professionals.exportar-historial-uniforms');
     Route::get('/professionals/exportar-uniforms', [ProfessionalController::class, 'exportar_excel_uniforms'])->name('professionals.exportar-uniforms');
+    Route::get('/courses/export-excel', [CourseController::class, 'export_excel'])->name('courses.export_excel');
 
     Route::resource('course', CourseController::class);
     Route::get('course/{course}/activate', [CourseController::class, 'activate'])->name('course.activate');

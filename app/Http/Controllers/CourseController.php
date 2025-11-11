@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\Professional;
 use App\Models\Professional_course;
+use App\Exports\CoursesExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CourseController extends Controller
 {
@@ -109,5 +111,10 @@ class CourseController extends Controller
             Professional_course::create($validated);
         }
         return response()->json(['status' => 'ok','redirect' => route('course.index')]);
+    }
+
+    public function export_excel()
+    {
+        return Excel::download(new CoursesExport, 'courses_assigned.xlsx');
     }
 }
