@@ -78,7 +78,7 @@
 
                 </div>
                 <div id="add_monitoring" class="hidden h-11/12 w-3/5 bg-white rounded-3xl shadow-black-500 shadow-2xl absolute left-[30%] p-10">
-                    <form action="{{ route('monitoring.store') }}" method="POST" class="space-y-6">
+                    <form action="{{ route('monitoring.store',$professional->id) }}" method="POST" class="space-y-6">
                         @csrf
                         <div class="flex justify-between items-center mb-6 w-full">
                             <h2 class="text-2xl font-bold txt-orange">Nou informe</h2>

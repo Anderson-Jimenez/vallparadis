@@ -39,4 +39,8 @@ class Professional extends Authenticatable
     {
         return $this->HasMany(Monitoring::class);
     }
+    public function evaluation(): HasMany
+    {
+        return $this->hasMany(Evaluation::class, 'assessed_professional_id');
+    }
 }

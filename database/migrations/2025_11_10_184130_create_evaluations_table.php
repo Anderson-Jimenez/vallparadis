@@ -14,11 +14,16 @@ return new class extends Migration
         Schema::create('evaluations', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('professional_id');
-            $table->unsignedBigInteger('professional_assessed_id');
+            $table->unsignedBigInteger('evaluator_id'); // professional q avalua
+            
+            $table->unsignedBigInteger('assessed_professional_id');
 
-            $table->foreign('professional_id')->references('id')->on('professionals')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('professional_assessed_id')->references('id')->on('professionals')->onUpdate('cascade')->onDelete('cascade');
+            $table->date('evaluation_date')->nullable();
+            $table->integer('average_score')->nullable();
+
+            $table->foreign('evaluator_id')->references('id')->on('professionals')->onDelete('cascade');
+            $table->foreign('assessed_professional_id')->references('id')->on('professionals')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
