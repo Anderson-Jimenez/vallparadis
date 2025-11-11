@@ -39,14 +39,18 @@ Route::middleware(['auth'])->group(function () {
     Route::post('professional/{professional}/uniform', [ProfessionalController::class, 'uniform'])->name('professional.uniform');
 
     //Monitoring
-    Route::resource('monitoring', MonitoringController::class);
+    //Route::resource('monitoring', MonitoringController::class);
     Route::get('/monitoring/professional/{professional}', [MonitoringController::class, 'index'])
     ->name('monitoring.monitorings');   
+    Route::post('/monitoring/{professional}', [MonitoringController::class, 'store'])->name('monitoring.store');
 
+    
     //Evaluations
     Route::resource('evaluations', EvaluationController::class);
     Route::get('/professionals/{professional}/evaluations', [EvaluationController::class, 'index'])->name('professionals.evaluations');  
     Route::get('/evaluations/create/{professional}', [EvaluationController::class, 'create'])->name('evaluations.create_evaluations');
+
+    Route::get('/evaluations/{evaluation}', [EvaluationController::class, 'show'])->name('evaluations.show_results_evaluation');
 
     //Projectes i comissions
     Route::resource('project_comission', Project_comissionController::class);

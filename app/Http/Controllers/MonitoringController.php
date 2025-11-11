@@ -31,18 +31,21 @@ class MonitoringController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request,Professional $professional)
     {
         $validated = $request->validate([
-            'professional_id' => 'required',
+
             'type' => 'required',
             'date' => 'required',
             'issue' => 'required',
             'comments' => 'required',
         ]);
-        //Subir proyecto
+        $validated['professional_id'] = $professional->id;
+
         $validated['professional_monitoring_id'] = Auth::user()->id;
+
         Monitoring::create($validated);
+        return redirect()->route('monitoring.monitorings', $professional->id)->with('success', 'Avaluació creada correctament.');
     }
 
     /**

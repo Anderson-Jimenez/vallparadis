@@ -63,6 +63,7 @@ class EvaluationController extends Controller
             'evaluator_id' => Auth::user()->id,
             'assessed_professional_id' => $validated['assessed_professional_id'],
             'evaluation_date' => $validated['evaluation_date'],
+            'average_score' => $request->input('total_score'),
         ]);
         //EvaluationResult::create($validated);
         
@@ -79,7 +80,30 @@ class EvaluationController extends Controller
      */
     public function show(Evaluation $evaluation)
     {
-        //
+        $questions = [
+        "Realitza una correcta atenció a l'usuari",
+        "Es preocupa per satisfer les seves necessitats dins dels recursos dels que disposa",
+        "S'ha integrat dins de l'equip de treball i participa i coopera sense dificultats",
+        "Pot treballar amb altres equips diferents al seu si es necessita",
+        "Compleix amb les funcions establertes",
+        "Assolix els objectius utilitzant els recursos disponibles per aconseguir els resultats esperats",
+        "És coherent amb el que diu i amb les seves actuacions",
+        "Les seves actuacions van alineades amb els valors de la nostra Entitat",
+        "Mostra capacitat i interès per aplicar la normativa i els procediments establerts",
+        "La seva actitud envers els seus responsables/comandaments és correcta",
+        "Té capacitat per comprendre i acceptar i adequar-se als canvis",
+        "Desenvolupa amb autonomia les seves funcions, sense necessitat de recolzament immediat/constant",
+        "Fa suggeriments i propostes de millora",
+        "Assolix els objectius, esforçant-se per aconseguir el resultat esperat",
+        "La quantitat de treball que desenvolupa en relació amb el temps és adequada",
+        "Realitza les tasques amb la qualitat esperada i/o necessària",
+        "Expressa amb claredat i ordre els aspectes rellevants de la informació",
+        "Dóna el suport documental necessari per desenvolupar les tasques requerides del lloc de treball",
+        "Mostra interès i motivació envers el seu lloc de treball",
+        "La seva entrada i permanència en el lloc de treball es duu a terme sense retards o absències no justificades",
+    ];
+
+        return view('management_team.show_results_evaluation',['evaluation'=>$evaluation, 'questions'=>$questions]);
     }
 
     /**

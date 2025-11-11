@@ -21,8 +21,6 @@
 
                     <div class="flex justify-between items-center mb-6 w-full">
                         <h2 class="text-2xl font-bold txt-orange">Nova Avaluació</h2>
-                        <p>avalacio per el professional {{$professional->id}}</p>
-                        <button id="close_add_evaluation" class="txt-orange text-xl font-bold hover:text-orange-700">✕</button>
                     </div>
 
                     <div>
@@ -78,12 +76,10 @@
                             @endforeach
                         </tbody>
                     </table>
-
-                    <div>
-                        <label class="text-orange-500 font-semibold uppercase text-sm">Comentaris</label>
-                        <textarea name="comments" rows="4" class="w-full bg-gray-200 rounded-2xl px-4 py-3 mt-2 text-gray-800 border-none focus:ring-2 focus:ring-orange-400"></textarea>
-                    </div>
-
+                    <input type="hidden" name="total_score" id="total_score" value="0">
+                    <p class="mt-4 text-right text-gray-600">
+                        <strong>Puntuació total:</strong> <span id="score_display">0</span> / 10
+                    </p>
                     <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-full transition-all">
                         Guardar Avaluació
                     </button>
