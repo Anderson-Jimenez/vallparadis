@@ -48,14 +48,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const professional_id = event.dataTransfer.getData("professional_id");
 
-        // ✅ Solo eliminar si es clon en zona asignada
+        
         const element = assigned_zone.querySelector(`[data-id="${professional_id}"]`);
         if (element) {
             element.remove();
         }
     }
 
-    // Activar drag para cada profesional en lista original
+    // Activar drag para cada profesional 
     professionals.forEach(professional => {
         const input_professional = professional.querySelector("input");
         const professional_id = input_professional.value;
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => {
             if (data.status === 'ok') {
-                // ✅ REDIRIGIMOS DESDE AQUÍ
+                
                 window.location.href = data.redirect;
             }
         })
