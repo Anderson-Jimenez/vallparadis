@@ -53,15 +53,17 @@
                         @foreach ($evaluations as $evaluation)
                             <div class="evaluation-info w-11/12 bg-white flex rounded-3xl p-5 my-3 border border-[#FF7400]
                                         justify-between shadow-md hover:scale-102 transition-all duration-400 cursor-pointer">
-                                <div id="{{$evaluation->assessed_professional_id}}" class="professional_evaluated flex items-center ">
-                                    <svg class="w-10 h-10 txt-orange mr-3">
-                                        <use xlink:href="#documentation_icon"></use>
-                                    </svg>
-                                    <p class="txt-orange text-lg">
-                                        Evaluació dia {{ $evaluation->evaluation_date }}
-                                    </p>
-                                
-                                </div>
+                                <a href="{{ route('evaluations.show_results_evaluation',$evaluation) }}" class="w-full" id="see-evaluations-details">
+                                    <div id="{{$evaluation->assessed_professional_id}}" class="professional_evaluated flex items-center ">
+                                        <svg class="w-10 h-10 txt-orange mr-3">
+                                            <use xlink:href="#documentation_icon"></use>
+                                        </svg>
+                                        <p class="txt-orange text-lg">
+                                            Evaluació dia {{ $evaluation->evaluation_date }}
+                                        </p>
+                                    
+                                    </div>
+                                </a>
                             </div>
                         @endforeach
                     </div>

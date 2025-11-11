@@ -4,49 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Resultats Avaluació</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 </head>
 <body class="min-h-screen flex flex-col bg-[#E9EDF2]">
-    @extends('layouts.app')
     @include('partials.icons')
     @auth
         @include('components.navbar')
-        <div class="max-w-4xl mx-auto p-6">
+            
+        <div class="flex flex-col w-4/5 mx-auto p-6 items-center bg-white">
+            <a href="{{ route('professionals.evaluations', $evaluation->assessed_professional_id) }}" class="flex items-center w-max mt-4 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-full">
+                <svg class="w-8 h-8 text-white mr-2">
+                    <use xlink:href="#back_arrow_icon"></use>
+                </svg>
+                Tornar enrere
+            </a>
             <h1 class="text-2xl font-bold mb-4">Informe de Avaluació</h1>
-            <p class="mb-2"><strong>Professional:</strong> {{ $evaluation->assessedProfessional->name }}</p>
-            <p class="mb-4"><strong>Data:</strong> {{ $evaluation->evaluation_date }}</p>
 
-            <table class="w-full border-collapse border border-gray-300">
-                <thead class="bg-orange-100">
-                    <tr>
-                        <th class="border p-2">Pregunta</th>
-                        <th class="border p-2">Resposta</th>
+            <table class="w-4/5 text-left border mt-6 border-collapse">
+                <thead class="bg-orange-100 border">
+                    <tr class="border">
+                        <th class="p-2 border">Pregunta</th>
+                        <th class="text-center border">Gens d’acord</th>
+                        <th class="text-center border">Poc d’acord</th>
+                        <th class="text-center border">Bastant d’acord</th>
+                        <th class="text-center border">Molt d’acord</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($evaluation->results as $index => $result)
-                        @php
-                            $value = $result->score;
-                            $color = match($value) {
-                                1 => 'bg-red-200 text-red-800',
-                                2 => 'bg-yellow-200 text-yellow-800',
-                                3 => 'bg-blue-200 text-blue-800',
-                                4 => 'bg-green-200 text-green-800',
-                                default => ''
-                            };
-                        @endphp
-                        <tr class="border-b">
-                            <td class="border p-2">{{ $questions[$index] }}</td>
-                            <td class="border p-2 text-center font-bold {{ $color }}">{{ $value }}</td>
+                    @foreach ($questions as $index => $question)
+                        <tr class="bg-white border">
+                            <td class="p-2">{{ $question }}</td>
+                            @for ($i = 1; $i <= 4; $i++)
+
+
+                                <td class="text-center border">
+                                    <input type="text" name="q{{ $index + 1 }}" value="" class="w-1/12">
+                                </td>
+                            @endfor
                         </tr>
                     @endforeach
                 </tbody>
             </table>
 
-            <a href="{{ route('professionals.evaluations', $evaluation->assessed_professional_id) }}" class="inline-block mt-4 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-full">
-                Tornar enrere
-            </a>
+
         </div>
+        @include('components.footer')
     @endauth
 
     @guest
