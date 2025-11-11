@@ -50,8 +50,9 @@
                         @endforeach
                     </div>
                         
-                    <a href="{{route('course.create')}}" class="text-sm text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300] transition-all duration-300 rounded-3xl p-4" >
-                        afegir curs
+                    <a href="{{route('course.create')}}" class="fixed bottom-6 right-6 text-lg text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300]
+                          transition-all duration-300 rounded-2xl px-7 py-4 mt-5">
+                        + Afegir nou curs
                     </a>
                 </section>
             
