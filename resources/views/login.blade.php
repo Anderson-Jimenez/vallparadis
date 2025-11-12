@@ -19,7 +19,7 @@
             </section>
 
             <section class="w-[30vw] text-center flex items-center justify-around flex-col">
-                <img src="{{ asset('img/login/Login_icon.png') }}" alt="icone_login" class="h-[22vh] w-[12vw]">
+                <img src="{{ asset('img/login/Login_icon.png') }}" alt="icone_login" class="h-[25vh] w-[12vw]">
                 <h3 class="text-login w-4/5 font-bold text-3xl mb-2">Login</h3>
                 <form action="{{route('login.submit') }}" method="POST" class="flex flex-wrap justify-center">
                     @csrf

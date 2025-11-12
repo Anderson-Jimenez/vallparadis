@@ -17,5 +17,5 @@
     color: #fca21c;
 }
 .bg-gradient-login{
-    background: linear-gradient(42deg,rgba(255, 149, 64, 1) 0%, rgba(255, 255, 255, 1) 86%);
+   background: linear-gradient(42deg,rgba(255, 149, 64, 1) 0%, rgba(253, 231, 169, 1) 56%, rgba(255, 255, 255, 1) 98%);
 }
