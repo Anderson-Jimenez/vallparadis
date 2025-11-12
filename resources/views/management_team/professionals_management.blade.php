@@ -100,6 +100,9 @@
                             </div>
                         </div>
                     @endforeach
+                    <div class="w-full flex justify-around mt-6 mb-4">
+                        {{ $professionals->links('pagination::tailwind') }}
+                    </div>
                 </div>
                 {{-- Botón para añadir profesional --}}
                 <a href="{{ route('professional.create') }}"
