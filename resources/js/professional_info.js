@@ -46,14 +46,14 @@ document.addEventListener('DOMContentLoaded', () => {
         prof_info_container.classList.add('items-left');
         professionals_div.forEach(div => {
           div.classList.remove('w-full');
-          div.classList.add('w-3/6');
+          div.classList.add('w-4/6');
         });     
       }
       else{
         prof_info_container.classList.remove('items-left');
         prof_info_container.classList.add('items-center');
         professionals_div.forEach(div => {
-          div.classList.remove('w-3/6');
+          div.classList.remove('w-4/6');
           div.classList.add('w-full');
         });
         info_div.classList.add('hidden', 'translate-y-5');
