@@ -13,6 +13,10 @@ export default {
         secondary: "#F59E0B", // amarillo
         accent: "#10B981",    // verde
       },
+      fontFamily: {
+        inter: ['Inter', 'sans-serif'],
+        dmserif: ['DM Serif Display', 'serif'],
+      },
     },
   },
   plugins: [],

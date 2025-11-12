@@ -1,3 +1,6 @@
-.bg-geometrical{
-    background-image: url("../../../public/img/login/fondo2.png");
+.bg-login{
+    background-image: url("../../../public/img/login/fondo2.jpg");
+}
+.bg-principal-login{
+    background-image: url("../../../public/img/login/login_bg.jpg");
 }

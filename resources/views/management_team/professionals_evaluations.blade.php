@@ -14,9 +14,8 @@
         @include('components.navbar')
 
         <main class="flex w-full">
-            @yield('contingut')
             @include('components.aside')
-
+            @yield('contingut')
             <section id="principal-content" class="w-4/5 flex items-center">
                 <aside class="bg-white relative left-20 flex flex-col items-center justify-center w-1/4 text-center border-2 border-[#FF7400] h-[70%] rounded-2xl">
                     <svg class="w-40 h-40 txt-orange">

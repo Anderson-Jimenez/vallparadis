@@ -8,8 +8,14 @@
     color: #ff7300;
 }
 .bg-black-transparent{
-    background-color: rgba(0, 0, 0, 0.437);
+    background-color: rgba(0, 0, 0, 0.308);
 }
 .bg-courses{
     background: linear-gradient(135deg, #D7DDE8, #757F9A);
+}
+.text-login{
+    color: #fca21c;
+}
+.bg-gradient-login{
+    background: linear-gradient(42deg,rgba(255, 149, 64, 1) 0%, rgba(255, 255, 255, 1) 86%);
 }

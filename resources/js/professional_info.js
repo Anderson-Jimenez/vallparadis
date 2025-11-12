@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         prof_info_container.classList.add('items-left');
         professionals_div.forEach(div => {
           div.classList.remove('w-full');
-          div.classList.add('w-3/6');
+          div.classList.add('w-4/6');
         });     
       }
       else{

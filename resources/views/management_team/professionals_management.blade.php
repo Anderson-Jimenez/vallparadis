@@ -57,7 +57,7 @@
                                 <input type="text" value="{{ $professional->phone_number }}" class="hidden">
                                 <input type="text" value="{{ $professional->email_address }}" class="hidden">
                                 <input type="text" value="{{ $professional->address }}" class="hidden">
-                                <input type="text" value="{{ $professional->status }}" class="hidden">
+                                <input type="text" value="{{ $professional->link_status }}" class="hidden">
                             </div>
 
                             <div class="flex items-center space-x-4">
