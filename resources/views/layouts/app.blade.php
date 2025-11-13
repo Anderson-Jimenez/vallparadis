@@ -9,7 +9,7 @@
     <body>
         @include('partials.icons')
         <!-- PLANTILLA HEADER -->
-        @include('components.navbar')
+        @include('components.sidebar')
         
         <main>
             <!-- PLANTILLA ASIDE -->

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Gestió Professionals</title>
+    <!--<script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>-->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -15,7 +16,7 @@
 
         <main class="flex w-full">
             @yield('contingut')
-            @include('components.aside')
+            @include('components.sidebar')
 
             <section id="principal-content" class="w-4/5 flex flex-col items-center relative">
                 <h1 class="text-[#2D3E50] text-4xl pt-7 pb-1 w-4/5 border-b-4">Gestió Professionals</h1>
@@ -80,18 +81,33 @@
                                         </button>
                                     </form>
                                 @endif
-                                <a href="{{ route('professionals.evaluations', $professional->id) }}" class="flex items-center bg-[#F3F4F6] hover:bg-[#E5E7EB] p-2 rounded-xl border border-[#6B7280]">
-                                    <svg class="w-8 h-8 text-[#6B7280]">
-                                        <use xlink:href="#evaluations_icon"></use>
-                                    </svg>
-                                    <p class="ml-2 text-sm text-[#6B7280]">Veure/Fer Avaluacions</p>
-                                </a>
-                                <a href="{{ route('monitoring.monitorings', $professional->id) }}" class="flex items-center bg-[#F3F4F6] hover:bg-[#E5E7EB] p-2 rounded-xl border border-[#6B7280]">
-                                    <svg class="w-8 h-8 text-[#6B7280]">
-                                        <use xlink:href="#see_evaluations"></use>
-                                    </svg>
-                                    <p class="ml-2 text-sm text-[#6B7280]">Veure/Fer Seguiments</p>
-                                </a>
+                                <!--link dropdown: https://tailwindcss.com/plus/ui-blocks/application-ui/elements/dropdowns-->
+                                <el-dropdown class="inline-block">
+                                    <button class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold txt-orange shadow-xs inset-ring-1 inset-ring-gray-300 hover:bg-gray-50">
+                                        Opcions de professionals
+                                         <svg class="w-7 h-7 txt-orange">
+                                            <use xlink:href="#dropdown_arrow"></use>
+                                        </svg>
+                                    </button>
+
+                                    <el-menu anchor="bottom end" popover class="w-56 origin-top-right rounded-md bg-white shadow-lg outline-1 outline-black/5 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
+                                        <div class="py-1">
+                                            <a href="{{ route('professionals.evaluations', $professional->id) }}" class="flex items-center px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
+                                                <svg class="w-5 h-5 text-[#6B7280]">
+                                                    <use xlink:href="#evaluations_icon"></use>
+                                                </svg>
+                                                <p class="ml-2 text-sm text-[#6B7280]">Veure/Fer Avaluacions</p>
+                                            </a>
+                                            <a href="{{ route('monitoring.monitorings', $professional->id) }}" class="flex items-center px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
+                                                <svg class="w-5 h-5 text-[#6B7280]">
+                                                    <use xlink:href="#see_evaluations"></use>
+                                                </svg>
+                                                <p class="ml-2 text-sm text-[#6B7280]">Veure/Fer Seguiments</p>
+                                            </a>
+                                        </div>
+                                    </el-menu>
+                                </el-dropdown>
+
                                 <a href="{{ route('professional.edit', $professional) }}" title="Editar dades professional" class="border border-[#ff7300] rounded-full p-2 transition ease-in duration-200 hover:bg-[#ffa65d91]">
                                     <svg class="w-8 h-8 txt-orange ">
                                         <use xlink:href="#edit_icon"></use>
