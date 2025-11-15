@@ -12,7 +12,7 @@
     @auth
         @include('components.navbar')
         <main class="w-screen flex">
-            @include('components.aside')
+            @include('components.sidebar')
             @yield('contingut')
             
             <!--S'haria de posar un controllador o quelcom similar -->
