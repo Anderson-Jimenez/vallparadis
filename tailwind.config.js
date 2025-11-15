@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
     "./resources/**/*.blade.php",
     "./resources/**/*.js",
@@ -9,14 +9,9 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {
-        primary: "#1E40AF",   // azul por ejemplo
-        secondary: "#F59E0B", // amarillo
-        accent: "#10B981",    // verde
-      },
       fontFamily: {
-        inter: ['Inter', 'sans-serif'],
-        dmserif: ['DM Serif Display', 'serif'],
+        heading: ['Nunito', 'sans-serif'],     
+        body: ['Poppins', 'sans-serif'],
       },
     },
   },
