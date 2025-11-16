@@ -3,7 +3,8 @@
   class="bg-[#2D3E50] p-6 h-[45vw] flex flex-col justify-between w-1/5 transition-all duration-300 ease-in-out">
 
   <!-- Botón Toggle -->
-  <div class="flex justify-end mb-6">
+  <div class="flex justify-between mb-6 items-center p-2 border-b-2 border-white">
+    <h1 class="text-white text-2xl sidebar-text">VallParadís</h1>
     <button id="sidebar-toggle"
       class="p-2 rounded-md hover:bg-[#ff7300] transition text-white"
       aria-label="Colapsar menú">
@@ -17,34 +18,52 @@
 
   <!-- Lista de enlaces -->
   <ul class="flex-1 flex flex-col items-start space-y-3">
-    <li class="group rounded-lg transition-all duration-300 w-full">
+    <li class="group rounded-lg transition-all duration-300 w-full" title="panell de control">
+      <a href="{{route('principal')}}"
+        class="flex items-center gap-3 p-3 rounded-lg bg-[#2D3E50] group-hover:bg-[#ff7300] transition-all duration-300 w-full">
+        <svg class="w-8 h-8 text-white">
+          <use xlink:href="#dashboard_icon"></use>
+        </svg>
+        <span class="sidebar-text text-white text-lg">Panell de Control</span>
+      </a>
+    </li>
+    
+    <li class="group rounded-lg transition-all duration-300 w-full" title="gestió de centres">
       <a href="{{ route('center.index') }}"
-        class="flex items-center gap-3 p-3 rounded-lg bg-[#2D3E50] group-hover:bg-[#ff7300] transition-all duration-300 w-full justify-start">
-        <svg class="w-8 h-8 text-white"><use xlink:href="#professional_icon"></use></svg>
+        class="flex items-center gap-3 p-3 rounded-lg bg-[#2D3E50] group-hover:bg-[#ff7300] transition-all duration-300 w-full">
+        <svg class="w-8 h-8 text-white">
+          <use xlink:href="#center_icon"></use>
+        </svg>
         <span class="sidebar-text text-white text-lg">Gestió Centre</span>
       </a>
     </li>
 
-    <li class="group rounded-lg transition-all duration-300 w-full">
+    <li class="group rounded-lg transition-all duration-300 w-full" title="gestió de professionals">
       <a href="{{ route('professional.index') }}"
-        class="flex items-center gap-3 p-3 rounded-lg bg-[#2D3E50] group-hover:bg-[#ff7300] transition-all duration-300 w-full justify-start">
-        <svg class="w-8 h-8 text-white"><use xlink:href="#center_icon"></use></svg>
+        class="flex items-center gap-3 p-3 rounded-lg bg-[#2D3E50] group-hover:bg-[#ff7300] transition-all duration-300 w-full">
+        <svg class="w-8 h-8 text-white">
+          <use xlink:href="#professional_icon"></use>
+        </svg>
         <span class="sidebar-text text-white text-lg">Gestió Professionals</span>
       </a>
     </li>
 
-    <li class="group rounded-lg transition-all duration-300 w-full">
+    <li class="group rounded-lg transition-all duration-300 w-full" title="gestió de projectes i comisisions">
       <a href="{{ route('project_comission.index') }}"
-        class="flex items-center gap-3 p-3 rounded-lg bg-[#2D3E50] group-hover:bg-[#ff7300] transition-all duration-300 w-full justify-start">
-        <svg class="w-10 h-10 text-white"><use xlink:href="#project_icon"></use></svg>
+        class="flex items-center gap-3 p-3 rounded-lg bg-[#2D3E50] group-hover:bg-[#ff7300] transition-all duration-300 w-full">
+        <svg class="w-10 h-10 text-white">
+          <use xlink:href="#project_icon"></use>
+        </svg>
         <span class="sidebar-text text-white text-lg">Gestió Projectes i comissions</span>
       </a>
     </li>
 
-    <li class="group rounded-lg transition-all duration-300 w-full">
+    <li class="group rounded-lg transition-all duration-300 w-full" title="gestió de cursos">
       <a href="{{ route('course.index') }}"
-        class="flex items-center gap-3 p-3 rounded-lg bg-[#2D3E50] group-hover:bg-[#ff7300] transition-all duration-300 w-full justify-start">
-        <svg class="w-10 h-10 text-white"><use xlink:href="#courses_icon"></use></svg>
+        class="flex items-center gap-3 p-3 rounded-lg bg-[#2D3E50] group-hover:bg-[#ff7300] transition-all duration-300 w-full">
+        <svg class="w-10 h-10 text-white">
+          <use xlink:href="#courses_icon"></use>
+        </svg>
         <span class="sidebar-text text-white text-lg">Gestió de Cursos</span>
       </a>
     </li>
@@ -70,16 +89,20 @@
     isCollapsed = !isCollapsed;
 
     if (isCollapsed) {
-      // Colapsar: reducir ancho, ocultar textos
+      // reducir ancho y ocultar textos
       sidebar.classList.remove('w-1/5');
       sidebar.classList.add('w-[5vw]', 'items-center');
-      textElements.forEach(el => el.classList.add('hidden'));
+      textElements.forEach(el => 
+        el.classList.add('hidden')
+      );
       logoutButton.classList.add('hidden');
     } else {
-      // Expandir: restaurar tamaño original
+      // restaurar tamaño original
       sidebar.classList.remove('w-[5vw]', 'items-center');
       sidebar.classList.add('w-1/5');
-      textElements.forEach(el => el.classList.remove('hidden'));
+      textElements.forEach(el => 
+        el.classList.remove('hidden')
+      );
       logoutButton.classList.remove('hidden');
     }
   });
