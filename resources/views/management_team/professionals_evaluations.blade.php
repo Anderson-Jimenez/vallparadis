@@ -14,7 +14,7 @@
         @include('components.navbar')
 
         <main class="flex w-full">
-            @include('components.aside')
+            @include('components.sidebar')
             @yield('contingut')
             <section id="principal-content" class="w-4/5 flex items-center">
                 <aside class="bg-white relative left-20 flex flex-col items-center justify-center w-1/4 text-center border-2 border-[#FF7400] h-[70%] rounded-2xl">
@@ -45,7 +45,7 @@
                         <a id="add_evaluations_btn" href="{{ route('evaluations.create_evaluations',$professional) }}"
                             class="text-lg text-white bg-[#ff7300] hover:bg-[#ff73008a]
                             transition-all duration-300 rounded-2xl px-7 py-4 mt-5 mr-5">
-                            + Nova Evaluació
+                            + Nova Avaluació
                         </a>
                     </div>
                     <div class="w-full flex items-center  flex-col mt-8" id="prof-info-container">      

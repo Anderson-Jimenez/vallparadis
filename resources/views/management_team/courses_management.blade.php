@@ -18,7 +18,7 @@
         @endif
         @include('components.navbar')
         <main class="grow flex w-full">
-            @include('components.aside')
+            @include('components.sidebar')
             @yield('contingut')
                 <section class="flex flex-col items-center w-4/5">
                     <h1 class="txt-orange text-2xl w-10/12 text-center p-10 border-b-6 border-[#ff7300]">Gestió Cursos</h1>

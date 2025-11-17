@@ -19,7 +19,7 @@
         @include('components.navbar')
         <main class="flex-grow flex w-full">
             @yield('contingut')
-            @include('components.aside')
+            @include('components.sidebar')
             <section class="flex flex-col items-center w-4/5">
                 <h1 class="txt-orange text-2xl w-10/12 text-center p-10 border-b-6 border-[#ff7300]">Gestió Projectes i Comissions</h1>
 
