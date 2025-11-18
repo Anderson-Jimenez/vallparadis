@@ -14,9 +14,9 @@
         @include('components.navbar')
 
         <main class="flex w-full">
-            @yield('contingut')
+            
             @include('components.sidebar')
-
+            @yield('contingut')
             <section id="principal-content" class="w-4/5 flex flex-col items-center relative">
                 <h1 class="text-[#2D3E50] text-4xl pt-7 pb-1 w-4/5 border-b-4">Gestió Professionals</h1>
                 <h3 class="text-[#384452a1] text-xl w-4/5 py-3">Adminsitració i seguiment dels professionals del centre</h3>
