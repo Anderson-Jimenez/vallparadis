@@ -1,6 +1,6 @@
 <!-- Sidebar desplegable -->
 <aside id="sidebar"
-  class="bg-[#2D3E50] p-6 h-[45vw] flex flex-col justify-between w-1/5 transition-all duration-300 ease-in-out">
+  class="bg-[#213c57] p-6 h-[45vw] flex flex-col justify-between w-1/5 transition-all duration-300 ease-in-out">
 
   <!-- Botón Toggle -->
   <div class="flex justify-between mb-6 items-center p-2 border-b-2 border-white">
@@ -20,7 +20,7 @@
   <ul class="flex-1 flex flex-col items-start space-y-3">
     <li class="group rounded-lg transition-all duration-300 w-full" title="panell de control">
       <a href="{{route('principal')}}"
-        class="flex items-center gap-3 p-3 rounded-lg bg-[#2D3E50] group-hover:bg-[#ff7300] transition-all duration-300 w-full">
+        class="flex items-center gap-3 p-3 rounded-lg group-hover:bg-[#ff7300] transition-all duration-300 w-full">
         <svg class="w-8 h-8 text-white">
           <use xlink:href="#dashboard_icon"></use>
         </svg>
@@ -30,7 +30,7 @@
     
     <li class="group rounded-lg transition-all duration-300 w-full" title="gestió de centres">
       <a href="{{ route('center.index') }}"
-        class="flex items-center gap-3 p-3 rounded-lg bg-[#2D3E50] group-hover:bg-[#ff7300] transition-all duration-300 w-full">
+        class="flex items-center gap-3 p-3 rounded-lg group-hover:bg-[#ff7300] transition-all duration-300 w-full">
         <svg class="w-8 h-8 text-white">
           <use xlink:href="#center_icon"></use>
         </svg>
@@ -40,7 +40,7 @@
 
     <li class="group rounded-lg transition-all duration-300 w-full" title="gestió de professionals">
       <a href="{{ route('professional.index') }}"
-        class="flex items-center gap-3 p-3 rounded-lg bg-[#2D3E50] group-hover:bg-[#ff7300] transition-all duration-300 w-full">
+        class="flex items-center gap-3 p-3 rounded-lg group-hover:bg-[#ff7300] transition-all duration-300 w-full">
         <svg class="w-8 h-8 text-white">
           <use xlink:href="#professional_icon"></use>
         </svg>
@@ -50,7 +50,7 @@
 
     <li class="group rounded-lg transition-all duration-300 w-full" title="gestió de projectes i comisisions">
       <a href="{{ route('project_comission.index') }}"
-        class="flex items-center gap-3 p-3 rounded-lg bg-[#2D3E50] group-hover:bg-[#ff7300] transition-all duration-300 w-full">
+        class="flex items-center gap-3 p-3 rounded-lg group-hover:bg-[#ff7300] transition-all duration-300 w-full">
         <svg class="w-10 h-10 text-white">
           <use xlink:href="#project_icon"></use>
         </svg>
@@ -60,7 +60,7 @@
 
     <li class="group rounded-lg transition-all duration-300 w-full" title="gestió de cursos">
       <a href="{{ route('course.index') }}"
-        class="flex items-center gap-3 p-3 rounded-lg bg-[#2D3E50] group-hover:bg-[#ff7300] transition-all duration-300 w-full">
+        class="flex items-center gap-3 p-3 rounded-lg group-hover:bg-[#ff7300] transition-all duration-300 w-full">
         <svg class="w-10 h-10 text-white">
           <use xlink:href="#courses_icon"></use>
         </svg>

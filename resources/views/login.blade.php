@@ -15,7 +15,7 @@
         <div class="flex w-[55vw] h-[75vh] items-center rounded-3xl shadow-orange-100 shadow-2xl">
             <section class="h-full w-4/6 bg-login  bg-cover flex flex-col justify-center items-center relative rounded-l-3xl">
                 <img src="{{ asset('img/logo.png') }}" alt="logo_vallparadis" class="absolute top-5 left-5 w-[13vw]">
-                <h1 class="text-login text-4xl font-bold text-center">Benvinguts a la fundació VallParadís!</h1>
+                <h1 class="text-login text-5xl font-bold text-center">Benvinguts a la fundació VallParadís!</h1>
             </section>
             <section class="w-2/6 h-full text-center bg-white rounded-r-3xl flex items-center  justify-center flex-col">
                 <img src="{{ asset('img/login/Login_icon.png') }}" alt="icone_login" class="h-1/4 w-2/4">
