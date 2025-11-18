@@ -8,12 +8,10 @@
     </head>
     <body>
         @include('partials.icons')
-        <!-- PLANTILLA HEADER -->
-        @include('components.navbar')
-        
+        <!-- PLANTILLA HEADER -->  
         <main>
             <!-- PLANTILLA ASIDE -->
-            @include('components.aside')
+            @include('components.sidebar')
             @yield('contingut')
         </main>
         <!-- PLANTILLA FOOTER -->

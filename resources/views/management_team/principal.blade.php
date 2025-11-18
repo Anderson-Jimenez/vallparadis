@@ -7,12 +7,12 @@
     @vite("resources/css/app.css")
 
 </head>
-<body>
+<body class="bg-[#E9EDF2]">
     @include('partials.icons')
     @auth
         @include('components.navbar')
         <main class="w-screen flex">
-            @include('components.aside')
+            @include('components.sidebar')
             @yield('contingut')
             
             <!--S'haria de posar un controllador o quelcom similar -->

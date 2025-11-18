@@ -15,7 +15,7 @@
 
         <main class="flex w-full">
             @yield('contingut')
-            @include('components.aside')
+            @include('components.sidebar')
 
             <section id="principal-content" class="w-4/5 flex items-center">
                 <aside class="bg-white relative left-20 flex flex-col items-center justify-center w-1/4 text-center border-2 border-[#FF7400] h-[70%] rounded-2xl">
@@ -51,7 +51,7 @@
                     </div>
                     <div class="w-full flex items-center  flex-col mt-8" id="prof-info-container">      
                         @foreach ($monitoring as $professional_monitoring)
-                            <div class="monitoring-info w-11/12 bg-white flex rounded-3xl p-5 my-3 border border-[#FF7400]
+                            <div class="monitoring-info w-11/12 bg-white flex justify-between rounded-3xl p-5 my-3 border border-[#FF7400]
                                         justify-between shadow-md hover:scale-102 transition-all duration-400 cursor-pointer">
                                 <div id="{{$professional_monitoring->professional_id}}" class="monitoring flex items-center ">
                                     <svg class="w-10 h-10 txt-orange mr-3">
@@ -60,7 +60,13 @@
                                     <p class="txt-orange text-lg">
                                         {{ $professional_monitoring->issue }}#{{ $professional_monitoring->id }}
                                     </p>
+
                                 
+                                </div>
+                                <div class="flex items-center mr-10">   
+                                    <p class="txt-orange text-lg">
+                                        {{ $professional_monitoring->date }}
+                                    </p>
                                 </div>
                                 <input type="text" value="{{ $professional_monitoring->issue }}#{{ $professional_monitoring->id }}" class="hidden">
                                 <input type="text" value="{{ $professional_monitoring->name }}" class="hidden">
@@ -78,7 +84,7 @@
 
                 </div>
                 <div id="add_monitoring" class="hidden h-11/12 w-3/5 bg-white rounded-3xl shadow-black-500 shadow-2xl absolute left-[30%] p-10">
-                    <form action="{{ route('monitoring.store',$professional->id) }}" method="POST" class="space-y-6">
+                    <form action="{{ route('monitoring.store',$professional) }}" method="POST" class="space-y-6">
                         @csrf
                         <div class="flex justify-between items-center mb-6 w-full">
                             <h2 class="text-2xl font-bold txt-orange">Nou informe</h2>

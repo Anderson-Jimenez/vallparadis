@@ -15,7 +15,7 @@
 
         <main class="flex w-full">
             @yield('contingut')
-            @include('components.aside')
+            @include('components.sidebar')
 
             <section id="principal-content" class="w-4/5 flex flex-col items-center relative">
                 <h1 class="text-[#2D3E50] text-4xl pt-7 pb-1 w-4/5 border-b-4">Gestió Professionals</h1>
@@ -80,18 +80,36 @@
                                         </button>
                                     </form>
                                 @endif
-                                <a href="{{ route('professionals.evaluations', $professional->id) }}" class="flex items-center bg-[#F3F4F6] hover:bg-[#E5E7EB] p-2 rounded-xl border border-[#6B7280]">
-                                    <svg class="w-8 h-8 text-[#6B7280]">
-                                        <use xlink:href="#evaluations_icon"></use>
-                                    </svg>
-                                    <p class="ml-2 text-sm text-[#6B7280]">Veure/Fer Avaluacions</p>
-                                </a>
-                                <a href="{{ route('monitoring.monitorings', $professional->id) }}" class="flex items-center bg-[#F3F4F6] hover:bg-[#E5E7EB] p-2 rounded-xl border border-[#6B7280]">
-                                    <svg class="w-8 h-8 text-[#6B7280]">
-                                        <use xlink:href="#see_evaluations"></use>
-                                    </svg>
-                                    <p class="ml-2 text-sm text-[#6B7280]">Veure/Fer Seguiments</p>
-                                </a>
+                                <!--link dropdown: https://tailwindcss.com/plus/ui-blocks/application-ui/elements/dropdowns-->
+                                <div class="relative inline-block text-left group">
+                                    <!-- Botón -->
+                                    <button type="button" class="flex w-full justify-center items-center border border-[#ff7300] rounded-md bg-white px-3 py-2 text-sm font-semibold txt-orange shadow-xs hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2">
+                                        Opcions de professionals
+                                        <svg class="w-7 h-7 txt-orange">
+                                            <use xlink:href="#dropdown_arrow"></use>
+                                        </svg>
+                                    </button>
+
+                                    <!-- Dropdown menu -->
+                                    <div class="absolute right-0 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 transform scale-95 group-hover:scale-100 group-focus-within:scale-100 z-50">
+                                        <a href="{{ route('professionals.evaluations', $professional->id) }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                            <svg class="w-5 h-5 text-[#6B7280]">
+                                                <use xlink:href="#evaluations_icon"></use>
+                                            </svg>
+                                            <span class="ml-2 text-[#6B7280]">Veure/Fer Avaluacions</span>
+                                        </a>
+
+                                        <a href="{{ route('monitoring.monitorings', $professional->id) }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                            <svg class="w-5 h-5 text-[#6B7280]">
+                                                <use xlink:href="#see_evaluations"></use>
+                                            </svg>
+                                            <span class="ml-2 text-[#6B7280]">Veure/Fer Seguiments</span>
+                                        </a>
+                                    </div>
+                                </div>
+
+
+
                                 <a href="{{ route('professional.edit', $professional) }}" title="Editar dades professional" class="border border-[#ff7300] rounded-full p-2 transition ease-in duration-200 hover:bg-[#ffa65d91]">
                                     <svg class="w-8 h-8 txt-orange ">
                                         <use xlink:href="#edit_icon"></use>
