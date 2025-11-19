@@ -16,7 +16,7 @@
   </div>
 
   <!-- Lista de enlaces -->
-  <ul class="flex-1 flex flex-col items-start space-y-3 mb-40">
+  <ul class="flex-1 flex flex-col items-start space-y-3 mb-[32vh]">
     <li class="group rounded-lg transition-all duration-300 w-full" title="panell de control">
       <a href="{{route('principal')}}"
         class="flex items-center gap-3 p-3 rounded-lg group-hover:bg-[#ff7300] transition-all duration-300 w-full">
