@@ -21,45 +21,113 @@
             @include('components.sidebar')
             @yield('contingut')
                 <section class="flex flex-col items-center w-4/5">
-                    <h1 class="txt-orange text-2xl w-10/12 text-center p-10 border-b-6 border-[#ff7300]">Gestió Centre</h1>
-                
-                    <table class="border-solid w-[60vw] m-15">
-                        <tr class="table-row">
-                            <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">Nom</th>
-                            <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">Ubicació</th>
-                            <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">Teléfon</th>
-                            <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">Email</th>
-                        </tr>
+                    @if ($centers->count() == 1)
+                        <h1 class="txt-orange text-4xl w-10/12 text-left py-4 pt-10 border-b-2 border-[#ff7300]">
+                            Gestió Centre
+                        </h1>
+                        @php $center = $centers->first(); @endphp
+                        <div class="flex w-9/12 justify-around">
+                            <div class="p-6 my-10 bg-white shadow-md rounded-xl w-3/6 flex flex-col gap-3 border border-[#ff7300] hover:shadow-xl transition hover:scale-105 ">
+                                <h2 class="text-xl font-bold text-[#ff7300]">{{ $center->center_name }}</h2>
 
-                        @foreach ($centers as $center)
-                            <tr class="table-row">
-                                <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300">{{ $center->center_name }}</td>
-                                <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300">{{ $center->location }}</td>
-                                <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300">{{ $center->phone_number }}</td>
-                                <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300">{{ $center->email_address }}</td>
-                                <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300">
-                                    <form action="{{ route('center.activate', $center) }}">
-                                        @csrf
-                                        <button>{{ $center->status }}</button>
-                                    </form>
-                                </td>
-                                <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300"><a href="{{route('center.edit', $center)}}">Modificar</a></td>
-                                <td class="p-4 text-sm hover:bg-[#42131359] hover:text-[#ff7300] transition duration-300">
-                                    <form action="{{ route('center.destroy', $center) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button>Eliminar</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </table>
+                                <p><strong>Ubicació:</strong> {{ $center->location }}</p>
+                                <p><strong>Teléfon:</strong> {{ $center->phone_number }}</p>
+                                <p><strong>Email:</strong> {{ $center->email_address }}</p>
 
-                    <a href="{{route('center.create')}}" class="text-sm text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300] transition-all duration-300 rounded-3xl p-4" >
-                        afegir centre
-                    </a>
+                                <div class="mt-4 flex gap-6">
+                                    <a href="{{ route('center.edit', $center) }}" class="flex items-center rounded-2xl px-5 py-2 text-[#ff7300] hover:underline border border-[#ff7300]">
+                                        Modificar
+                                    </a>   
+                                    @if ($center->status == "active")
+                                        <form action="{{ route('center.activate', $center) }}" method="GET">
+                                            @csrf
+                                            <button class="bg-[#DCFCE7] text-[#16A34A]
+                                                    rounded-2xl px-5 py-2 shadow-md hover:bg-[#BBF7D0]
+                                                    transition cursor-pointer">
+                                                Actiu
+                                            </button>
+                                        </form>
+                                    @else
+                                        <form action="{{ route('center.activate', $center) }}" method="GET">
+                                            @csrf
+                                            <button class="bg-[#FEE2E2] text-[#DC2626]
+                                                        rounded-2xl px-5 py-2 shadow-md hover:bg-[#FECACA]
+                                                        transitio cursor-pointer">
+                                                Inactiu
+                                            </button>
+                                        </form>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="w-4/12 my-10 bg-white shadow-md rounded-xl flex justify-center items-center flex-col gap-3 border border-[#ff7300] hover:shadow-xl transition">
+                                <svg class="w-3/6 h-3/6 txt-orange mr-3">
+                                    <use xlink:href="#professional_icon"></use>
+                                </svg>
+                                <a href="{{route('center.create')}}" 
+                                    class="text-sm text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300] hover:border hover:border-[#ff7300]  transition-all duration-300 rounded-2xl p-4">
+                                    + Afegir centre
+                                </a>
+                            </div>
+                        </div>
+                        
+                    @else
+                        <h1 class="txt-orange text-4xl w-10/12 text-left py-4 pt-10 border-b-2 border-[#ff7300]">
+                            Gestió Centre
+                        </h1>
+                        <div class="flex items-center w-10/12 h-[10vh]">
+                            <a href="{{route('center.create')}}" 
+                                class="text-sm text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300] hover:border hover:border-[#ff7300]  transition-all duration-300 rounded-2xl p-4">
+                                + Afegir centre
+                            </a>
+                        </div>
+
+                        <div class="flex flex-wrap justify-center gap-6 w-10/12 my-5">
+
+                            @foreach ($centers as $center)
+                                <div class="bg-white shadow-md p-5 rounded-xl w-[280px] flex flex-col 
+                                            hover:shadow-xl transition border border-[#ff7300]">
+
+                                    <h2 class="text-lg font-bold text-[#ff7300] mb-2">{{ $center->center_name }}</h2>
+
+                                    <p class="text-sm">{{ $center->location }}</p>
+                                    <p class="text-sm">{{ $center->phone_number }}</p>
+                                    <p class="text-sm">{{ $center->email_address }}</p>
+
+                                    <div class="mt-4 flex gap-4 justify-between">
+                                        <a href="{{ route('center.edit', $center) }}" class="flex items-center rounded-2xl px-5 py-2 text-[#ff7300] hover:underline border border-[#ff7300]">
+                                            Modificar
+                                        </a>
+
+                                        @if ($center->status == "active")
+                                            <form action="{{ route('center.activate', $center) }}" method="GET">
+                                                @csrf
+                                                <button class="bg-[#DCFCE7] text-[#16A34A]
+                                                        rounded-2xl px-5 py-2 shadow-md hover:bg-[#BBF7D0]
+                                                        transition cursor-pointer">
+                                                    Actiu
+                                                </button>
+                                            </form>
+                                        @else
+                                            <form action="{{ route('center.activate', $center) }}" method="GET">
+                                                @csrf
+                                                <button class="bg-[#FEE2E2] text-[#DC2626]
+                                                            rounded-2xl px-5 py-2 shadow-md hover:bg-[#FECACA]
+                                                            transitio cursor-pointer">
+                                                    Inactiu
+                                                </button>
+                                            </form>
+                                        @endif
+                                    </div>
+                                </div>
+                            @endforeach
+
+                        </div>
+
+                    @endif
+
+
+
                 </section>
-            
         </main>
 
         @include('components.footer')

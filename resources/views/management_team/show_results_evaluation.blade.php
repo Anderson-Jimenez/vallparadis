@@ -13,16 +13,16 @@
     @auth
         @include('components.navbar')
             
-        <div class="flex flex-col w-4/5 mx-auto p-6 items-center bg-white">
+        <div class="flex flex-col w-4/5 mx-auto p-6 items-center bg-white m-10 rounded-3xl">
             <a href="{{ route('professionals.evaluations', $evaluation->assessed_professional_id) }}" class="flex items-center w-max mt-4 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-full">
                 <svg class="w-8 h-8 text-white mr-2">
                     <use xlink:href="#back_arrow_icon"></use>
                 </svg>
                 Tornar enrere
             </a>
-            <h1 class="text-2xl font-bold mb-4">Informe de Avaluació</h1>
+            <h1 class="text-2xl font-bold mb-4 text-left">Informe de Avaluació</h1>
 
-            <table class="w-4/5 text-left border mt-6 border-collapse">
+            <table class="w-4/5 text-left border m-6 border-collapse">
                 <thead class="bg-orange-100 border">
                     <tr class="border">
                         <th class="p-2 border">Pregunta</th>
@@ -36,11 +36,21 @@
                     @foreach ($questions as $index => $question)
                         <tr class="bg-white border">
                             <td class="p-2">{{ $question }}</td>
+                            @php
+                                $answer = optional($evaluation->results)->{'q'.($index+1)};
+                            @endphp
                             @for ($i = 1; $i <= 4; $i++)
-
-
-                                <td class="text-center border">
-                                    <input type="text" name="q{{ $index + 1 }}" value="" class="w-1/12">
+                                <td class="text-center border 
+                                    @if($answer == $i)
+                                        {{ $i == 1 ? 'bg-red-300' : '' }}
+                                        {{ $i == 2 ? 'bg-yellow-300' : '' }}
+                                        {{ $i == 3 ? 'bg-orange-300' : '' }}
+                                        {{ $i == 4 ? 'bg-green-300' : '' }}
+                                    @endif
+                                    ">
+                                    @if($answer == $i)
+                                        ✔
+                                    @endif
                                 </td>
                             @endfor
                         </tr>
