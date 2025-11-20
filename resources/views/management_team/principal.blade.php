@@ -16,12 +16,18 @@
             @yield('contingut')
             
             <!--S'haria de posar un controllador o quelcom similar -->
-            <section class=" w-4/5">
+            <section class=" w-full">
                 <div class="flex w-full h-max">
-                    <div class="w-1/4 h-[20vh] bg-[#949494] m-4 rounded-3xl"></div>
-                    <div class="w-1/4 h-[20vh] bg-[#949494] m-4 rounded-3xl"></div>
-                    <div class="w-1/4 h-[20vh] bg-[#949494] m-4 rounded-3xl"></div>
-                    <div class="w-1/4 h-[20vh] bg-[#949494] m-4 rounded-3xl"></div>
+                    <div class="w-4/12 h-[30vh] bg-white m-5 rounded-3xl border border-[#ff7300] shadow-lg flex flex-col justify-center items-center">
+                        <h1 class="txt-orange text-3xl">Professionals Actius</h1>
+                    </div>
+                    <div class="w-4/12 h-[30vh] bg-white m-5 rounded-3xl border border-[#ff7300] shadow-lg flex flex-col justify-center items-center">
+                        <h1 class="txt-orange text-3xl">Projectes en procés</h1>
+                        
+                    </div>
+                    <div class="w-4/12 h-[30vh] bg-white m-5 rounded-3xl border border-[#ff7300] shadow-lg flex flex-col justify-center items-center txt-orange text-3xl">
+                        <h1 class="txt-orange text-3xl">Cursos Actius</h1>
+                    </div>
                 </div>
 
             </section>

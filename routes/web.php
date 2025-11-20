@@ -12,6 +12,7 @@ use App\Http\Controllers\EvaluationController;
 
 
 
+
 // Mostrar formulari de login
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 
@@ -37,6 +38,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('professional/{professional}/activate', [ProfessionalController::class, 'activate'])->name('professional.activate');
     Route::get('professional/{professional}/send_uniform', [ProfessionalController::class, 'send_uniform'])->name('professional.send_uniform');
     Route::post('professional/{professional}/uniform', [ProfessionalController::class, 'uniform'])->name('professional.uniform');
+
+    Route::get('/professionals', [ProfessionalController::class, 'index'])->name('professionals.index');
+    Route::get('/professionals/search', [ProfessionalController::class, 'search'])->name('professionals.search');
 
     //Monitoring
     //Route::resource('monitoring', MonitoringController::class);

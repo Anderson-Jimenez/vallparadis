@@ -22,7 +22,7 @@
             @yield('contingut')
                 <section class="flex flex-col items-center w-4/5">
                     @if ($centers->count() == 1)
-                        <h1 class="txt-orange text-4xl w-10/12 text-left py-4 pt-10 border-b-2 border-[#ff7300]">
+                        <h1 class="txt-orange text-4xl w-10/12 text-left py-4 pt-10 border-b-2 border-[#        ]">
                             Gestió Centre
                         </h1>
                         @php $center = $centers->first(); @endphp
@@ -61,7 +61,7 @@
                             </div>
                             <div class="w-4/12 my-10 bg-white shadow-md rounded-xl flex justify-center items-center flex-col gap-3 border border-[#ff7300] hover:shadow-xl transition">
                                 <svg class="w-3/6 h-3/6 txt-orange mr-3">
-                                    <use xlink:href="#professional_icon"></use>
+                                    <use xlink:href="#house_plus_icon"></use>
                                 </svg>
                                 <a href="{{route('center.create')}}" 
                                     class="text-sm text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300] hover:border hover:border-[#ff7300]  transition-all duration-300 rounded-2xl p-4">

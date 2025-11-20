@@ -37,7 +37,6 @@
                             Exportar uniforms
                         </a>
                 </div>
-
                 {{-- Listado de professionals --}}
                 <div class="w-4/5 flex items-center flex-col mt-8" id="prof-info-container">
                     @foreach ($professionals as $professional)
