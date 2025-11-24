@@ -1,5 +1,5 @@
 <!-- Sidebar desplegable -->
-<aside id="sidebar" class="bg-[#213c57] p-6 h-full flex flex-col justify-between w-1/5 transition-all duration-300 ease-in-out">
+<aside id="sidebar" class="bg-[#213c57] p-6 h-screen flex flex-col justify-between w-1/5 transition-all duration-300 ease-in-out">
 
   <!-- Botón Toggle -->
   <div class="flex justify-between mb-6 items-center p-2 border-b-2 border-white">
@@ -16,7 +16,7 @@
   </div>
 
   <!-- Lista de enlaces -->
-  <ul class="flex-1 flex flex-col items-start space-y-3 mb-[32vh]">
+  <ul class="flex-1 flex flex-col items-start space-y-3">
     <li class="group rounded-lg transition-all duration-300 w-full" title="panell de control">
       <a href="{{route('principal')}}"
         class="flex items-center gap-3 p-3 rounded-lg group-hover:bg-[#ff7300] transition-all duration-300 w-full">
@@ -67,11 +67,6 @@
       </a>
     </li>
   </ul>
-
-  <a href="{{ route('logout') }}"
-    class="sidebar-logout flex justify-center items-center w-[15vw] h-[3vw] bg-white text-[#ff7300] px-3 py-1 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-[#ff7300] hover:text-white mx-auto">
-    Tancar sessió
-  </a>
 </aside>
 
 <!-- JS -->

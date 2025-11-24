@@ -34,13 +34,13 @@ class Project_comissionController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-        'professional_manager_id' => 'required',
-        'name' => 'required',
-        'start_date' => 'required',
-        'description' => 'required',
-        'observation' => 'required',
-        'type' => 'required',
-        'path.*' => 'file|mimes:pdf,doc,docx,txt|max:5120',
+            'professional_manager_id' => 'required',
+            'name' => 'required',
+            'start_date' => 'required',
+            'description' => 'required',
+            'observation' => 'required',
+            'type' => 'required',
+            'path.*' => 'file|mimes:pdf,doc,docx,txt|max:5120',
         ]);
         //Subir proyecto
         $validated['center_id'] = session('center_id');

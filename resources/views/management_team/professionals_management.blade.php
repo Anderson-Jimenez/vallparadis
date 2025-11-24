@@ -17,8 +17,8 @@
             
             @include('components.sidebar')
             @yield('contingut')
-            <section id="principal-content" class="w-4/5 flex flex-col items-center relative">
-                <h1 class="text-[#2D3E50] text-4xl pt-7 pb-1 w-4/5 border-b-4">Gestió Professionals</h1>
+            <section id="principal-content" class="w-full flex flex-col items-center relative">
+                <h1 class="text-[#2D3E50] text-4xl pt-7 pb-1 w-4/5 border-b-4 border-[#213c57]">Gestió Professionals</h1>
                 <h3 class="text-[#384452a1] text-xl w-4/5 py-3">Adminsitració i seguiment dels professionals del centre</h3>
                 <div class="flex space-x-3 w-4/5">
                         <a href="{{ route('professionals.exportar-locker') }}"
@@ -117,9 +117,6 @@
                             </div>
                         </div>
                     @endforeach
-                    <div class="w-full flex justify-around mt-6 mb-4">
-                        {{ $professionals->links('pagination::tailwind') }}
-                    </div>
                 </div>
                 {{-- Botón para añadir profesional --}}
                 <a href="{{ route('professional.create') }}"
@@ -147,8 +144,6 @@
                 </div>
             </section>
         </main>
-
-        @include('components.footer')
     @endauth
 
     @guest
