@@ -149,5 +149,5 @@ class ProfessionalController extends Controller
     {
         return Excel::download(new UniformsExport, 'uniforms.xlsx');
     }
- 
+    
 }

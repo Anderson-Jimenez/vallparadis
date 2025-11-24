@@ -17,42 +17,67 @@
             @endforeach
         @endif
         @include('components.navbar')
-        <main class="flex-grow flex w-full">
+        <main class="flex-grow flex w-full flex-1">
             @yield('contingut')
             @include('components.sidebar')
-            <section class="flex flex-col items-center w-4/5">
-                <h1 class="txt-orange text-2xl w-10/12 text-center p-10 border-b-6 border-[#ff7300]">Gestió Projectes i Comissions</h1>
-
-                <table class="border-solid w-[60vw] m-15">
-                    <tr class="table-row">
-                        <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">Responsable</th>
-                        <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">Nom</th>
-                        <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">Data d'inici</th>
-                        <th class="p-4 text-sm txt-orange hover:bg-[#b4b4b459] transition duration-300">Tipus</th>
-                    </tr>
-
+            <section class="flex flex-col items-center w-full">
+                <h1 class="text-[#213c57] text-2xl w-11/12 py-6  border-b-6 border-[#213c57] mb-10">Gestió Projectes i Comissions</h1>                 
+                <div class="flex w-11/12">
+                    <section class="comissions w-2/4 h-[50vh] border border-[#ff7300] rounded-2xl flex flex-col items-center mr-5">
+                        <h2 class="txt-orange text-2xl p-5">Gestió de comissions</h2>
+                        @foreach ($projects_comissions as $project_comission)
+                            @if ($project_comission->type=="Comissió")
+                                <div class="comission-info w-11/12 bg-white flex rounded-3xl p-5 my-3 border border-[#FF7400]
+                                        justify-between shadow-md hover:scale-102 transition-all duration-400">
+                                    <div id="{{$project_comission->id}}" class="comission flex items-center cursor-pointer">
+                                        <svg class="w-8 h-8 txt-orange mr-3">
+                                            <use xlink:href="#evaluations_icon"></use>
+                                        </svg>
+                                        <p class="txt-orange text-lg">
+                                            {{ $project_comission->name }}
+                                        </p>
+                                    </div>
+                                    <a href="{{route('project_comission.edit', $project_comission)}}" title="Editar dades">
+                                        <svg class="w-10 h-10 txt-orange mr-3">
+                                            <use xlink:href="#edit_icon"></use>
+                                        </svg>                                            
+                                    </a>
+                                </div>
+                            @endif
+                    @endforeach
+                </section>
+                <section class="projects w-2/4 h-[50vh] border border-[#ff7300] ml-5 rounded-2xl flex flex-col items-center">
+                    <h2 class="txt-orange text-2xl p-5">Gestió de projectes</h2>
                     @foreach ($projects_comissions as $project_comission)
-                        <tr class="table-row">
-                            <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300">{{ $project_comission->manager->name }}</td>
-                            <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300">{{ $project_comission->name }}</td>
-                            <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300">{{ $project_comission->start_date }}</td>
-                            <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300">{{ $project_comission->type }}</td>
+                        @if ($project_comission->type=="Projecte")
+                            <div class="comission-info w-11/12 bg-white flex rounded-3xl p-5 my-3 border border-[#FF7400]
+                                    justify-between shadow-md hover:scale-102 transition-all duration-400">
+                                <div id="{{$project_comission->id}}" class="comission flex items-center cursor-pointer">
+                                    <svg class="w-8 h-8 txt-orange mr-3">
+                                        <use xlink:href="#evaluations_icon"></use>
+                                    </svg>
+                                    <p class="txt-orange text-lg">
+                                        {{ $project_comission->name }}
+                                    </p>
+                                </div>
+                                <a href="{{route('project_comission.edit', $project_comission)}}" title="Editar dades">
+                                    <svg class="w-10 h-10 txt-orange mr-3">
+                                        <use xlink:href="#edit_icon"></use>
+                                    </svg>                                            
+                                </a>
+                            </div>
+                        @endif
+                    @endforeach
+                </section>
+                </div>
+               
+                
                             <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300">
-                                <form action="{{ route('project_comission.activate', $project_comission) }}">
-                                    @csrf
-                                    <button>{{ $project_comission->status }}</button>
-                                </form>
-                            </td>
-                            <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300"><a href="{{route('project_comission.edit', $project_comission)}}">Modificar</a></td>
                             <td class="p-4 text-sm hover:bg-[#b4b4b459] hover:text-[#ff7300] transition duration-300">
-                                <form action="{{ route('project_comission.destroy', $project_comission) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button>Eliminar</button>
-                                </form>
+
                             </td>
                         </tr>
-                    @endforeach
+
                 
                 </table>
                 <a href="{{route('project_comission.create')}}" class="text-lg text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300] transition-all duration-300 rounded-full p-8">Afegir Projectes/Comissions</a>
