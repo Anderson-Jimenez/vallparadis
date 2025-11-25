@@ -20,7 +20,7 @@
         <main class="flex-grow flex w-full">
             @include('components.sidebar')
             @yield('contingut')
-                <section class="flex flex-col items-center w-4/5">
+                <section class="flex flex-col items-center w-full">
                     @if ($centers->count() == 1)
                         <h1 class="txt-orange text-4xl w-10/12 text-left py-4 pt-10 border-b-2 border-[#        ]">
                             Gestió Centre

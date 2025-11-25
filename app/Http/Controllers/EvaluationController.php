@@ -16,7 +16,7 @@ class EvaluationController extends Controller
      */
     public function index(Professional $professional)
     {
-        $evaluations = Evaluation::where('assessed_professional_id', $professional->id)->orderBy('evaluation_date', 'asc')->paginate(3);
+        $evaluations = Evaluation::where('assessed_professional_id', $professional->id)->orderBy('evaluation_date', 'asc')->get();
         return view('management_team.professionals_evaluations',['professional'=>$professional, 'evaluations'=>$evaluations]);
     }
 

@@ -23,7 +23,7 @@ class ProfessionalController extends Controller
     public function index()
     {
         //parent_table_model::with('relational_table_model')->get()
-        $professionals = Professional::paginate(3);
+        $professionals = Professional::all();
         return view('management_team.professionals_management',['professionals'=>$professionals]);
     }
 
@@ -149,5 +149,5 @@ class ProfessionalController extends Controller
     {
         return Excel::download(new UniformsExport, 'uniforms.xlsx');
     }
-
+    
 }
