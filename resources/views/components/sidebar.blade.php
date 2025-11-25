@@ -1,5 +1,5 @@
 <!-- Sidebar desplegable -->
-<aside id="sidebar" class="bg-[#213c57] p-6 h-screen flex flex-col justify-between w-1/5 transition-all duration-300 ease-in-out">
+<aside id="sidebar" class="bg-[#213c57] p-6 min-h-screen flex flex-col justify-between w-1/5 transition-all duration-300 ease-in-out">
 
   <!-- Botón Toggle -->
   <div class="flex justify-between mb-6 items-center p-2 border-b-2 border-white">
