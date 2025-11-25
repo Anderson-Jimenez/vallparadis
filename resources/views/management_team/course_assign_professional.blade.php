@@ -37,7 +37,7 @@
 
                                 <h3 class="mt-6 text-lg font-semibold text-[#FF7400]">Professionals assignats</h3>
                                 <div id="assigned_zone" 
-                                    class="min-h-32 border-2 border-dashed border-[#FF7400] bg-[#FFF4E9] rounded-xl p-3 mt-2 w-full">
+                                    class="min-h-32 h-[10vw] border-2 border-dashed border-[#FF7400] bg-[#FFF4E9] rounded-xl p-3 mt-2 w-full flex flex-col overflow-y-auto">
                                 </div>
 
                                 <button id="save_assignments"
@@ -65,15 +65,13 @@
                                     </div>
                                 @endforeach
                                 <div class="w-full flex justify-around mt-6 mb-4">
-                                    {{ $professionals->links('pagination::tailwind') }}
+                                    
                                 </div>
                             </div>
                         </section>
                     </section>
                 
             </main>
-
-            @include('components.footer')
         @endauth
 
         @guest

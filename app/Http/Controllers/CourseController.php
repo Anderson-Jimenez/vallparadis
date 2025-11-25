@@ -97,7 +97,7 @@ class CourseController extends Controller
     }
 
     public function assign_professional(Course $course){
-        $professionals = Professional::paginate(3);
+        $professionals = Professional::get();
         return view('management_team.course_assign_professional',['course'=>$course, 'professionals'=>$professionals]);
     }
 
