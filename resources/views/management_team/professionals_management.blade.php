@@ -18,9 +18,22 @@
             @include('components.sidebar')
             @yield('contingut')
             <section id="principal-content" class="w-full flex flex-col items-center">
-                <h1 class="text-[#2D3E50] text-4xl pt-7 pb-1 w-4/5 border-b-4 border-[#213c57]">Gestió Professionals</h1>
-                <h3 class="text-[#384452a1] text-xl w-4/5 py-3">Adminsitració i seguiment dels professionals del centre</h3>
-                <div class="flex space-x-3 w-4/5">
+                <div class="w-11/12 border-b-4 border-[#213c57] flex items-center justify-between py-4">
+                    <h1 class="text-[#2D3E50] text-4xl pt-7 pb-1 w-4/5">Gestió Professionals</h1>
+                    {{-- Botón para añadir profesional --}}
+                    <a href="{{ route('professional.create') }}"
+                    class="flex items-center text-sm text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300]
+                                transition-all duration-300 rounded-xl px-5 py-2 text-center h-3/4">
+                         
+                        <svg class="w-6 h-6 mr-2">
+                            <use xlink:href="#add_prof_icon"></use>
+                        </svg>
+                        Afegir professional
+                    </a>
+                </div>
+                
+                <h3 class="text-[#384452a1] text-xl w-11/12 py-3">Adminsitració i seguiment dels professionals del centre</h3>
+                <div class="flex space-x-3 w-11/12">
                         <a href="{{ route('professionals.exportar-locker') }}"
                            class="text-sm text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300]
                                   transition-all duration-300 rounded-xl px-5 py-2 text-center">
@@ -36,9 +49,10 @@
                                   transition-all duration-300 rounded-xl px-5 py-2 text-center">
                             Exportar uniforms
                         </a>
+
                 </div>
                 {{-- Listado de professionals --}}
-                <div class="w-4/5 flex items-center flex-col mt-8 bg-black p-10 rounded-2xl overflow-auto h-[100vh]" id="prof-info-container">
+                <div class="w-11/12 flex items-center flex-col mt-8 bg-[#fef2e6] p-10 rounded-xl overflow-auto h-[60vh]" id="prof-info-container">
                     @foreach ($professionals as $professional)
                         @if ($professional->status=="active")
                             <div class="professional-info w-full bg-white flex rounded-3xl p-5 my-3 border border-[#FF7400]
@@ -65,7 +79,7 @@
                                         <form action="{{ route('professional.activate', $professional) }}" method="GET">
                                             @csrf
                                             <button class="bg-[#DCFCE7] text-[#16A34A]
-                                                        rounded-full px-5 py-2 shadow-md hover:bg-[#BBF7D0]
+                                                        rounded-xl px-5 py-2 shadow-md hover:bg-[#BBF7D0]
                                                         transition cursor-pointer">
                                                 Activar
                                             </button>
@@ -74,55 +88,52 @@
                                         <form action="{{ route('professional.activate', $professional) }}" method="GET">
                                             @csrf
                                             <button class="bg-[#FEE2E2] text-[#DC2626]
-                                                        rounded-full px-5 py-2 shadow-md hover:bg-[#FECACA]
+                                                        rounded-xl px-5 py-2 shadow-md hover:bg-[#FECACA]
                                                         transitio cursor-pointer">
                                                 Desactivar
                                             </button>
                                         </form>
                                     @endif
                                     <!--link dropdown: https://tailwindcss.com/plus/ui-blocks/application-ui/elements/dropdowns-->
-                                    <el-dropdown class="inline-block">
-                                        <button class="txt-orange flex items-center justify-center w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs inset-ring-1  hover:bg-gray-50">
-                                            Opcions de professionals
-                                            <svg class="w-7 h-7 txt-orange">
-                                                <use xlink:href="#dropdown_arrow"></use>
-                                            </svg>
-                                        </button>
+                                    <div class="w-4/5 flex">
+                                        <el-dropdown class="inline-block rounded-tl-xl rounded-bl-xl">
+                                            <button class="text-white flex items-center rounded-tl-xl rounded-bl-xl justify-center w-full justify-center gap-x-1.5  bg-[#ff7300] px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs inset-ring-1  hover:bg-[#FEAB51]">
+                                                Opcions de professionals
+                                                <svg class="w-7 h-7 text-white">
+                                                    <use xlink:href="#dropdown_arrow"></use>
+                                                </svg>
+                                            </button>
 
-                                        <el-menu anchor="bottom end" popover class="w-56 origin-top-right rounded-md bg-white shadow-lg outline-1 outline-black/5 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
-                                            <div class="py-1">
-                                                <a href="{{ route('professionals.evaluations', $professional->id) }}" class="flex txt-orange items-center px-4 py-4 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
-                                                    <svg class="w-5 h-5 txt-orange mr-2">
-                                                        <use xlink:href="#see_evaluations"></use>
-                                                    </svg>
-                                                    Veure/Fer Avaluacions
-                                                </a>
-                                                <a href="{{ route('monitoring.monitorings', $professional->id) }}" class="flex txt-orange items-center px-4 py-4 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
-                                                    <svg class="w-5 h-5 txt-orange mr-2">
-                                                        <use xlink:href="#evaluations_icon"></use>
-                                                    </svg>
-                                                    Veure/Fer Seguiments
-                                                </a>
-        
-                                            </div>
-                                        </el-menu>
-                                    </el-dropdown>
-                                    <a href="{{ route('professional.edit', $professional) }}" title="Editar dades professional" class="border border-[#ff7300] rounded-full p-2 transition ease-in duration-200 hover:bg-[#ffa65d91]">
-                                        <svg class="w-8 h-8 txt-orange ">
-                                            <use xlink:href="#edit_icon"></use>
-                                        </svg>
-                                    </a>
+                                            <el-menu anchor="bottom end" popover class="w-56 origin-top-right rounded-md bg-white shadow-lg outline-1 outline-black/5 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
+                                                <div class="py-1">
+                                                    <a href="{{ route('professionals.evaluations', $professional->id) }}" class="flex txt-orange items-center px-4 py-4 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
+                                                        <svg class="w-5 h-5 txt-orange mr-2">
+                                                            <use xlink:href="#see_evaluations"></use>
+                                                        </svg>
+                                                        Veure/Fer Avaluacions
+                                                    </a>
+                                                    <a href="{{ route('monitoring.monitorings', $professional->id) }}" class="flex txt-orange items-center px-4 py-4 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
+                                                        <svg class="w-5 h-5 txt-orange mr-2">
+                                                            <use xlink:href="#evaluations_icon"></use>
+                                                        </svg>
+                                                        Veure/Fer Seguiments
+                                                    </a>
+            
+                                                </div>
+                                            </el-menu>
+                                        </el-dropdown>
+                                        <a href="{{ route('professional.edit', $professional) }}" title="Editar dades professional" class="border border-[#ff7300] rounded-tr-xl rounded-br-xl gap-x-1.5 px-3 py-2 transition ease-in duration-200 hover:bg-[#ffa65d91]">
+                                            <svg class="w-6 h-6 txt-orange ">
+                                                <use xlink:href="#edit_icon"></use>
+                                            </svg>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         @endif
                     @endforeach
                 </div>
-                {{-- Botón para añadir profesional --}}
-                <a href="{{ route('professional.create') }}"
-                   class="fixed bottom-6 right-6 text-lg text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300]
-                          transition-all duration-300 rounded-2xl px-7 py-4 mt-5">
-                    + Afegir professional
-                </a>
+
 
                 {{-- Panel lateral (flotante) con información del profesional --}}
                 <div id="professional-info"
