@@ -1,5 +1,5 @@
 <!-- Sidebar desplegable -->
-<aside id="sidebar" class="bg-[#213c57] p-6 min-h-screen flex flex-col justify-between w-1/5 transition-all duration-300 ease-in-out">
+<aside id="sidebar" class="sidebar-gradient p-6 flex flex-col min-h-screen justify-between w-1/5 transition-all duration-300 ease-in-out">
 
   <!-- Botón Toggle -->
   <div class="flex justify-between mb-6 items-center p-2 border-b-2 border-white">
@@ -16,7 +16,7 @@
   </div>
 
   <!-- Lista de enlaces -->
-  <ul class="flex-1 flex flex-col items-start space-y-3">
+  <ul class="flex-1 flex flex-col items-start space-y-3 h-max-content ">
     <li class="group rounded-lg transition-all duration-300 w-full" title="panell de control">
       <a href="{{route('principal')}}"
         class="flex items-center gap-3 p-3 rounded-lg group-hover:bg-[#ff7300] transition-all duration-300 w-full">
