@@ -3,7 +3,7 @@
 
   <!-- Botón Toggle -->
   <div class="flex justify-between mb-6 items-center p-2 border-b-2 border-white">
-    <h1 class="text-white text-2xl sidebar-text">VallParadís</h1>
+    <h1 class="text-white text-2xl sidebar-text font-bold">VallParadís</h1>
     <button id="sidebar-toggle"
       class="p-2 rounded-md hover:bg-[#ff7300] transition text-white"
       aria-label="Colapsar menú">
@@ -16,54 +16,55 @@
   </div>
 
   <!-- Lista de enlaces -->
-  <ul class="flex-1 flex flex-col items-start space-y-3 h-max-content ">
-    <li class="group rounded-lg transition-all duration-300 w-full" title="panell de control">
+  <ul class="flex-1 flex flex-col items-start space-y-3 h-max-content">
+    <li class="group rounded-lg transition-all duration-300 w-full hover:bg-white" title="panell de control">
       <a href="{{route('principal')}}"
-        class="flex items-center gap-3 p-3 rounded-lg group-hover:bg-[#ff7300] transition-all duration-300 w-full">
-        <svg class="w-8 h-8 text-white">
+        class="flex items-center gap-3 p-3 rounded-lg w-full transition-all duration-300">
+        <svg class="w-8 h-8 text-white group-hover:text-[#ff7300]">
           <use xlink:href="#dashboard_icon"></use>
         </svg>
-        <span class="sidebar-text text-white text-lg">Panell de Control</span>
+        <span class="sidebar-text text-white text-lg group-hover:text-[#ff7300] font-semibold">
+          Panell de Control
+        </span>
       </a>
     </li>
-    
-    <li class="group rounded-lg transition-all duration-300 w-full" title="gestió de centres">
+    <li class="group rounded-lg transition-all duration-300 w-full hover:bg-white" title="gestió de centres">
       <a href="{{ route('center.index') }}"
-        class="flex items-center gap-3 p-3 rounded-lg group-hover:bg-[#ff7300] transition-all duration-300 w-full">
-        <svg class="w-8 h-8 text-white">
+        class="flex items-center gap-3 p-3 rounded-lg w-full transition-all duration-300">
+        <svg class="w-8 h-8 text-white group-hover:text-[#ff7300]">
           <use xlink:href="#center_icon"></use>
         </svg>
-        <span class="sidebar-text text-white text-lg">Gestió Centre</span>
+        <span class="sidebar-text text-white text-lg  group-hover:text-[#ff7300] font-semibold">Gestió Centre</span>
       </a>
     </li>
 
-    <li class="group rounded-lg transition-all duration-300 w-full" title="gestió de professionals">
+    <li class="group rounded-lg transition-all duration-300 w-full hover:bg-white" title="gestió de professionals">
       <a href="{{ route('professional.index') }}"
-        class="flex items-center gap-3 p-3 rounded-lg group-hover:bg-[#ff7300] transition-all duration-300 w-full">
-        <svg class="w-8 h-8 text-white">
+        class="flex items-center gap-3 p-3 rounded-lg w-full transition-all duration-300">
+        <svg class="w-8 h-8 text-white group-hover:text-[#ff7300]">
           <use xlink:href="#professional_icon"></use>
         </svg>
-        <span class="sidebar-text text-white text-lg">Gestió Professionals</span>
+        <span class="sidebar-text text-white text-lg  group-hover:text-[#ff7300] font-semibold">Gestió Professionals</span>
       </a>
     </li>
 
-    <li class="group rounded-lg transition-all duration-300 w-full" title="gestió de projectes i comisisions">
+    <li class="group rounded-lg transition-all duration-300 w-full hover:bg-white" title="gestió de projectes i comisisions">
       <a href="{{ route('project_comission.index') }}"
-        class="flex items-center gap-3 p-3 rounded-lg group-hover:bg-[#ff7300] transition-all duration-300 w-full">
-        <svg class="w-10 h-10 text-white">
+        class="flex items-center gap-3 p-3 rounded-lg w-full transition-all duration-300">
+        <svg class="w-8 h-8 text-white group-hover:text-[#ff7300]">
           <use xlink:href="#project_icon"></use>
         </svg>
-        <span class="sidebar-text text-white text-lg">Gestió Projectes i comissions</span>
+        <span class="sidebar-text text-white text-lg  group-hover:text-[#ff7300] font-semibold">Gestió Projectes i comissions</span>
       </a>
     </li>
 
-    <li class="group rounded-lg transition-all duration-300 w-full" title="gestió de cursos">
+    <li class="group rounded-lg transition-all duration-300 w-full hover:bg-white" title="gestió de cursos">
       <a href="{{ route('course.index') }}"
-        class="flex items-center gap-3 p-3 rounded-lg group-hover:bg-[#ff7300] transition-all duration-300 w-full">
-        <svg class="w-10 h-10 text-white">
+        class="flex items-center gap-3 p-3 rounded-lg w-full transition-all duration-300">
+        <svg class="w-10 h-10 text-white group-hover:text-[#ff7300]">
           <use xlink:href="#courses_icon"></use>
         </svg>
-        <span class="sidebar-text text-white text-lg">Gestió de Cursos</span>
+        <span class="sidebar-text text-white text-lg  group-hover:text-[#ff7300] font-semibold">Gestió de Cursos</span>
       </a>
     </li>
   </ul>

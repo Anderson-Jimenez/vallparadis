@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('email_address',255)->unique();                                              
             $table->string('address', 255);
             $table->integer('number_locker');
+            $table->string('occupation', 255);
             $table->string('clue_locker', 255);
             $table->string('link_status', 255);
             $table->string('status', 255);

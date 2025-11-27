@@ -97,8 +97,8 @@
                                     <!--link dropdown: https://tailwindcss.com/plus/ui-blocks/application-ui/elements/dropdowns-->
                                     <div class="w-4/5 flex">
                                         <el-dropdown class="inline-block rounded-tl-xl rounded-bl-xl">
-                                            <button class="text-white flex items-center rounded-tl-xl rounded-bl-xl justify-center w-full justify-center gap-x-1.5  bg-[#ff7300] px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs inset-ring-1  hover:bg-[#FEAB51]">
-                                                Opcions de professionals
+                                            <button class="text-white flex items-center rounded-tl-xl rounded-bl-xl w-full justify-center gap-x-1.5  bg-[#ff7300] px-3 py-2 text-sm font-semibold shadow-xs inset-ring-1  hover:bg-[#FEAB51]">
+                                                Opcions de professional
                                                 <svg class="w-7 h-7 text-white">
                                                     <use xlink:href="#dropdown_arrow"></use>
                                                 </svg>
@@ -137,8 +137,8 @@
 
                 {{-- Panel lateral (flotante) con información del profesional --}}
                 <div id="professional-info"
-                     class="hidden  translate-y-5 absolute top-[15%] right-40 w-1/4 bg-white rounded-3xl p-6 border border-[#FF7400]
-                        shadow-lg flex-col items-center transition-all duration-200 ease-out animate-slide-in">
+                     class="hidden translate-y-5 absolute top-[48%] right-35  bg-white rounded-2xl p-6 border border-[#FF7400]
+                        shadow-lg flex-col items-center transition-all duration-200 ease-out animate-slide-in w-[18%]">
                     <svg class="w-32 h-32 txt-orange mb-3">
                         <use xlink:href="#professional_icon"></use>
                     </svg>
