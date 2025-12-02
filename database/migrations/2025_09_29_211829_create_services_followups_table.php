@@ -11,16 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('services', function (Blueprint $table) {
+        Schema::create('services_followups', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_general_service');
-            $table->foreign('id_general_service')->references('id')->on('generales_services')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_general_service')->references('id')->on('general_services')->onUpdate('cascade')->onDelete('cascade');
 
-            $table->string('staff',255);
-            $table->string('schedule',255);
             $table->string('comment',255);
-
-
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('services');
+        Schema::dropIfExists('services_followups');
     }
 };

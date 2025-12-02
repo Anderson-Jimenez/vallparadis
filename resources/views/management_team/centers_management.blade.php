@@ -17,7 +17,7 @@
             @endforeach
         @endif
         @include('components.navbar')
-        <main class="flex-grow flex w-full">
+        <main class="grow flex w-full">
             @include('components.sidebar')
             @yield('contingut')
                 <section class="flex flex-col items-center w-full">

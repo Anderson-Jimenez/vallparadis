@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
             ProfessionalsSeeder::class,
             Projects_comissionsSeeder::class,
             CoursesSeeder::class,
-            RolesSeeder::class
+            RolesSeeder::class,
+            General_servicesSeeder::class
             //Espai per posar altres seeders
         ]);
 

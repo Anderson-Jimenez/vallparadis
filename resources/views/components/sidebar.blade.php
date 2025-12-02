@@ -67,6 +67,16 @@
         <span class="sidebar-text text-white text-lg  group-hover:text-[#ff7300] font-semibold">Gestió de Cursos</span>
       </a>
     </li>
+
+    <li class="group rounded-lg transition-all duration-300 w-full hover:bg-white" title="gestió de cursos">
+      <a href="{{ route('general_service.index') }}"
+        class="flex items-center gap-3 p-3 rounded-lg w-full transition-all duration-300">
+        <svg class="w-10 h-10 text-white group-hover:text-[#ff7300]">
+          <use xlink:href="#courses_icon"></use>
+        </svg>
+        <span class="sidebar-text text-white text-lg  group-hover:text-[#ff7300] font-semibold">Gestió de Serveis Generals</span>
+      </a>
+    </li>
   </ul>
 </aside>
 

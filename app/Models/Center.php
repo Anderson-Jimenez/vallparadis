@@ -23,4 +23,8 @@ class Center extends Model
         return $this->hasMany(Course::class);
     }
 
+    public function general_services(): HasMany {
+        return $this->hasMany(General_service::class);
+    }
+
 }

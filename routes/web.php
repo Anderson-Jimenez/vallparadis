@@ -8,6 +8,7 @@ use App\Http\Controllers\Project_comissionController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\EvaluationController;
+use App\Http\Controllers\General_serviceController;
 
 
 
@@ -71,5 +72,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('course/{course}/assign_professional', [CourseController::class, 'assign_professional'])->name('course.assign_professional');
     Route::post('/assign_professional_to_course', [CourseController::class, 'assign_professional_to_course'])->name('course.assign_professional_to_course');
 
+
+    Route::resource('general_service', General_serviceController::class);
 
 });

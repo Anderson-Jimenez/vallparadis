@@ -16,7 +16,7 @@
         @endif
         @include('components.navbar')   
         @yield('contingut')
-            <main class="flex-grow flex flex-col items-center w-full py-10">
+            <main class="grow flex flex-col items-center w-full py-10">
                 <h1 class="text-white text-3xl w-10/12 text-center p-10 border-b-6 border-[#ff7300]">Formulari afegir nou projecte / comissió</h1>
                 
                 <form action="{{ route('project_comission.store') }}" method="POST" enctype="multipart/form-data" class="m-10 flex flex-wrap w-5/12 p-10  bg-black-transparent rounded-3xl">
