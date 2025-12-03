@@ -9,6 +9,8 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\General_serviceController;
+use App\Http\Controllers\External_ContactsController;
+
 
 
 
@@ -74,5 +76,7 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::resource('general_service', General_serviceController::class);
+
+    Route::resource('external_contacts', External_ContactsController::class);
 
 });
