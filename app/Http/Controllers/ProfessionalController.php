@@ -20,11 +20,15 @@ class ProfessionalController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //parent_table_model::with('relational_table_model')->get()
-        $professionals = Professional::all();
-        return view('management_team.professionals_management',['professionals'=>$professionals]);
+        $status = $request->get('status', 'active');
+        $professionals = Professional::where('status', $status)->get();
+
+        return view('management_team.professionals_management', [
+            'professionals' => $professionals,
+            'status' => $status
+        ]);
     }
 
     /**
@@ -107,7 +111,7 @@ class ProfessionalController extends Controller
     {   
         $professional->status = $professional->status == 'active' ? 'inactive' : 'active';
         $professional->save();
-        return redirect()->route('professional.index');
+        return back();
     }
     public function send_uniform(Professional $professional)
     {
