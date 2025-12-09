@@ -35,9 +35,9 @@ class General_serviceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(General_service $service)
     {
-        //
+        //return view('management_team.general_services',['service'=>$service]);
     }
 
     /**

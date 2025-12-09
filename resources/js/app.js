@@ -4,4 +4,5 @@ import './professional_info.js'
 import './courses_assignment.js'
 import './monitoring.js'
 import './evaluations.js'
+import './general_service.js';
 
