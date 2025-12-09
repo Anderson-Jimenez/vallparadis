@@ -22,17 +22,9 @@
             @yield('contingut')
                 <section class="flex flex-col items-center w-4/5">
                     <div class="w-11/12 border-b-4 border-[#213c57] flex items-center justify-between py-4">
-                    <h1 class="text-[#2D3E50] text-4xl pt-7 pb-1 w-4/5">Gestió Serveis Generals</h1>
-                    {{-- Botón para añadir profesional --}}
-                    <a href="{{ route('professional.create') }}"
-                    class="flex items-center text-sm text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300]
-                                transition-all duration-300 rounded-xl px-5 py-2 text-center h-3/4">
-                         
-                        <svg class="w-6 h-6 mr-2">
-                            <use xlink:href="#add_prof_icon"></use>
-                        </svg>
-                        Afegir servei
-                    </a>
+                        <h1 class="text-[#2D3E50] text-4xl pt-7 pb-1 w-4/5">Gestió Serveis Generals</h1>
+                        
+                        
                     </div>
                                         
                     <div class="w-11/12 flex items-center flex-col mt-8 bg-[#fef2e6] p-10 rounded-xl overflow-auto h-[60vh]" id="prof-info-container">
@@ -49,15 +41,6 @@
                                     </p>
 
                                 </div>
-                                <div class="w-4/5 flex">
-                                    
-                                    <a href="{{ route('general_service.edit', $service) }}" title="Editar dades professional" class="border border-[#ff7300] rounded-tr-xl rounded-br-xl gap-x-1.5 px-3 py-2 transition ease-in duration-200 hover:bg-[#ffa65d91]">
-                                        <svg class="w-6 h-6 txt-orange ">
-                                            <use xlink:href="#edit_icon"></use>
-                                        </svg>
-                                    </a>
-                                </div>
-                                
                             </div>
                             
                         @endforeach
