@@ -4,8 +4,10 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\External_Contacts;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
-class ExternalContactsSeeder extends Seeder
+class ExternalContactSeeder extends Seeder
 {
     public function run()
     {
