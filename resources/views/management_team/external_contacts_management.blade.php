@@ -42,31 +42,18 @@
                             Exportar uniforms
                         </a>
                     </div>
-                    <div class="rounded-xl">
-                        @if ($status == 'active')
-                            <a href="{{ route('professional.index', ['status' => 'inactive']) }}"
-                            class="px-6 py-4 bg-red-500 text-white m-2 rounded-lg" >
-                                Mostrar inactius
-                            </a>
-                        @else
-                            <a href="{{ route('professional.index', ['status' => 'active']) }}"
-                            class="px-6 py-4 bg-green-500 text-white rounded-lg m-2">
-                                Mostrar actius
-                            </a>
-                        @endif
-                    </div>
                 </div>
                 {{-- Listado de professionals --}}
                 <div class="w-11/12 flex items-center flex-col mt-8 bg-[#fef2e6] p-10 rounded-xl overflow-auto h-[60vh]" id="prof-info-container">
-                    @foreach ($professionals as $professional)
+                    @foreach ($external_contacts  as $external_contact)
                         <div class="professional-info w-full bg-white flex rounded-3xl p-5 my-3 border border-[#FF7400]
                                 justify-between shadow-md hover:scale-102 transition-all duration-400">
-                            <div id="{{$professional->id}}" class="professional flex items-center cursor-pointer">
+                            <div id="{{$external_contact->id}}" class="professional flex items-center cursor-pointer">
                                 <svg class="w-10 h-10 txt-orange mr-3">
                                     <use xlink:href="#professional_icon"></use>
                                 </svg>
                                 <p class="txt-orange text-lg">
-                                    {{ $professional->name }} {{ $professional->surnames }}
+                                    {{ $external_contact->name }} {{ $external_contact->surnames }}
                                 </p>
 
                                 <input type="text" value="{{ $professional->id }}" class="hidden">
