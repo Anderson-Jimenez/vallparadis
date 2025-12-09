@@ -12,6 +12,7 @@ class ExternalContactsSeeder extends Seeder
         $data = [
 
             [
+                'name'          => 'Pedro',
                 'type'          => 'assistencials',
                 'purpose_type'  => 'motiu',
                 'purpose'       => 'Coordinació de pacient extern',
@@ -24,6 +25,7 @@ class ExternalContactsSeeder extends Seeder
             ],
 
             [
+                'name'          => 'Lucia',
                 'type'          => 'serveis generals',
                 'purpose_type'  => 'servei',
                 'purpose'       => 'Manteniment i reparacions',
@@ -36,6 +38,7 @@ class ExternalContactsSeeder extends Seeder
             ],
 
             [
+                'name'          => 'Javier',
                 'type'          => 'assistencials',
                 'purpose_type'  => 'servei',
                 'purpose'       => 'Subministrament de material mèdic',
@@ -48,6 +51,7 @@ class ExternalContactsSeeder extends Seeder
             ],
 
             [
+                'name'          => 'Max',
                 'type'          => 'serveis generals',
                 'purpose_type'  => 'motiu',
                 'purpose'       => 'Gestió d\'incidències informàtiques',
@@ -60,6 +64,7 @@ class ExternalContactsSeeder extends Seeder
             ],
 
             [
+                'name'          => 'Marta',
                 'type'          => 'assistencials',
                 'purpose_type'  => 'motiu',
                 'purpose'       => 'Coordinació emergències',
