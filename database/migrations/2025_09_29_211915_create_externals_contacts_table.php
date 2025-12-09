@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('externals_contacts', function (Blueprint $table) {
             $table->id();
+            $table->string('name',255);
             $table->string('type',255);
             $table->enum('purpose_type', ['motiu', 'servei']);
             $table->string('purpose', 255);//per agrupar millor el nom, a mes de que les / en noms de base de dades donen error(motiu/servei). 
