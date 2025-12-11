@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('services_followups', function (Blueprint $table) {
+        Schema::create('general_services_followups', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_general_service');
-            $table->foreign('id_general_service')->references('id')->on('general_services')->onUpdate('cascade')->onDelete('cascade');
-
+            $table->unsignedBigInteger('general_service_id');
+            $table->foreign('general_service_id')->references('id')->on('general_services')->onUpdate('cascade')->onDelete('cascade');
+            $table->date('date');
+            $table->text('issue');
             $table->string('comment',255);
             $table->timestamps();
         });
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('services_followups');
+        Schema::dropIfExists('general_services_followups');
     }
 };

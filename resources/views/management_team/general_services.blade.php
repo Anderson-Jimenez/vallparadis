@@ -34,6 +34,11 @@
                                     <p class="txt-orange text-lg">
                                         {{$service->type}}
                                     </p>
+
+                                    
+                                    
+                                    
+
                                     <div class="w-4/5 flex">
                                         <el-dropdown class="inline-block rounded-tl-xl rounded-bl-xl">
                                             <button class="text-white flex items-center rounded-tl-xl rounded-bl-xl w-full justify-center gap-x-1.5  bg-[#ff7300] px-3 py-2 text-sm font-semibold shadow-xs inset-ring-1  hover:bg-[#FEAB51]">
@@ -45,19 +50,33 @@
 
                                             <el-menu anchor="bottom end" popover class="w-56 origin-top-right rounded-md bg-white shadow-lg outline-1 outline-black/5 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
                                                 <div class="py-1">
-                                                        <div id="service-info" class="flex txt-orange items-center px-4 py-4 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
-                                                            <svg class="w-5 h-5 txt-orange mr-2">
-                                                                <use xlink:href="#evaluations_icon"></use>
-                                                            </svg>
-                                                            Veure servei
-                                                        </div>
-                                                        
-                                                    
-                                                    <a href="{{ route('monitoring.monitorings', $service) }}" class="flex txt-orange items-center px-4 py-4 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
+                                                    <div class="service-info flex txt-orange items-center px-4 py-4 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden"
+                                                        data-manager="{{ $service->manager }}"
+                                                        data-contact="{{ $service->contact }}"
+                                                        data-staff="{{ $service->staff }}"
+                                                        data-schedule="{{ $service->schedule }}">
+                                                        <svg class="w-5 h-5 txt-orange mr-2">
+                                                            <use xlink:href="#evaluations_icon"></use>
+                                                        </svg>
+                                                        Veure servei
+                                                    </div>
+
+                                                    <div class="edit-service flex txt-orange items-center px-4 py-4 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden"
+                                                        data-id="{{ $service->id }}"
+                                                        data-manager="{{ $service->manager }}"
+                                                        data-contact="{{ $service->contact }}"
+                                                        data-staff="{{ $service->staff }}"
+                                                        data-schedule="{{ $service->schedule }}">
                                                         <svg class="w-5 h-5 txt-orange mr-2">
                                                             <use xlink:href="#evaluations_icon"></use>
                                                         </svg>
                                                         Editar Servei
+                                                    </div>
+                                                    <a href="{{ route('general_service_followup.index', $service) }}" class="followup-service flex txt-orange items-center px-4 py-4 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
+                                                        <svg class="w-5 h-5 txt-orange mr-2">
+                                                            <use xlink:href="#evaluations_icon"></use>
+                                                        </svg>
+                                                        Fer/Veure seguiments
                                                     </a>
                                                     
                                                     
@@ -75,37 +94,84 @@
                         @endforeach
                     </div>
                     {{-- DETALLES DEL INFORME (OCULTO) --}}
-                    <div id="view-service" class="hidden flex-col items-center h-11/12 w-3/5 bg-white rounded-3xl shadow-black-500 shadow-2xl absolute left-[30%] p-10 overflow-y-auto">
+                    <div id="view-service" class="hidden flex-col items-center h-3/5 w-3/5 bg-white rounded-3xl shadow-black-500 shadow-2xl absolute left-[30%] p-10 overflow-y-auto">
                         <div class="flex justify-between items-center mb-6 w-full">
                             <h2 class="text-2xl font-bold txt-orange">Detalls del servei</h2>
-                            <button id="close_view_monitoring" class="txt-orange text-xl font-bold hover:text-orange-700">✕</button>
+                            <button id="close_view_general_service" class="txt-orange text-xl font-bold hover:text-orange-700">✕</button>
                         </div>
 
                         <div class="space-y-6 w-full">
                             <div>
                                 <p class="txt-orange font-semibold uppercase text-sm">Manager:</p>
-                                <div id="view_monitoring_by" class="inline-block bg-gray-200 rounded-full px-4 py-1 text-gray-700 font-medium mt-1">—</div>
+                                <div id="view_manager" class="inline-block bg-gray-200 rounded-full px-4 py-1 text-gray-700 font-medium mt-1">—</div>
                             </div>
 
                             <div class="w-full">
                                 <p class="txt-orange font-semibold uppercase text-sm">Contacte:</p>
-                                <div id="view_professional_name" class="inline-block bg-gray-200 rounded-full px-4 py-1 text-gray-700 font-medium mt-1">—</div>
+                                <div id="view_contact" class="inline-block bg-gray-200 rounded-full px-4 py-1 text-gray-700 font-medium mt-1">—</div>
                             </div>
 
                             
                             <div>
                                 <p class="txt-orange font-semibold uppercase text-sm">Personal:</p>
-                                <div id="view_monitoring_comments" class="bg-gray-200 rounded-2xl p-4 mt-2 text-gray-800 leading-relaxed">
+                                <div id="view_staff" class="bg-gray-200 rounded-2xl p-4 mt-2 text-gray-800 leading-relaxed">
                                     —
                                 </div>
                             </div>
                             <div>
                                 <p class="txt-orange font-semibold uppercase text-sm">Horaris:</p>
-                                <div id="view_monitoring_comments" class="bg-gray-200 rounded-2xl p-4 mt-2 text-gray-800 leading-relaxed">
+                                <div id="view_schedule" class="bg-gray-200 rounded-2xl p-4 mt-2 text-gray-800 leading-relaxed">
                                     —
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div id="edit_general_service" class="hidden h-11/12 w-3/5 bg-white rounded-3xl shadow-black-500 shadow-2xl absolute left-[30%] p-10">
+                        <form id="edit_service_form" action="" method="POST" class="space-y-6">
+                            @csrf
+                            @method('PUT')
+                            <div class="flex justify-between items-center mb-6 w-full">
+                                <h2 class="text-2xl font-bold txt-orange">Editar Servei</h2>
+                                <button id="close_edit_general_service" type="button" class="txt-orange text-xl font-bold hover:text-orange-700">✕</button>
+                            </div>            
+                            <div>
+                                <p class="text-orange-500 font-semibold uppercase text-sm">Manager</p>
+                                <div class="inline-block bg-gray-200 rounded-full px-4 py-1 text-gray-700 font-medium mt-1">
+                                    <input type="text" name="manager" value="">
+                                </div>
+                                
+                            </div>
+
+                            
+                            <div>
+                                <p class="text-orange-500 font-semibold uppercase text-sm">Contacte</p>
+                                <div class="inline-block bg-gray-200 rounded-full px-4 py-1 text-gray-700 font-medium mt-1">
+                                    <input type="text" name="contact" value="">
+                                </div>
+                                
+                            </div>
+
+                            
+
+                            <div>
+                                <label class="text-orange-500 font-semibold uppercase text-sm">Personal</label>
+                                <textarea name="staff" rows="6" 
+                                        class="w-full bg-gray-200 rounded-2xl px-4 py-3 mt-2 text-gray-800 border-none focus:ring-2 focus:ring-orange-400" >
+                                    </textarea>
+                            </div>
+                            <div>
+                                <label class="text-orange-500 font-semibold uppercase text-sm">Horaris</label>
+                                <textarea name="schedule" rows="6"
+                                        class="w-full bg-gray-200 rounded-2xl px-4 py-3 mt-2 text-gray-800 border-none focus:ring-2 focus:ring-orange-400" >
+                                    </textarea>
+                            </div>
+
+                            <button type="submit"
+                                    class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-full transition-all">
+                                    Guardar
+                            </button>
+                            
+                        </form>     
                     </div>
                 </section>
             

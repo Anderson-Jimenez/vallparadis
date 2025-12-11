@@ -9,6 +9,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\General_serviceController;
+use App\Http\Controllers\General_service_followupController;
 use App\Http\Controllers\External_ContactsController;
 
 
@@ -76,6 +77,11 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::resource('general_service', General_serviceController::class);
+    //Route::resource('general_service_followup', General_service_followupController::class);
+    Route::get('general_service/{general_service}/followups', [General_service_followupController::class, 'index'])
+        ->name('general_service_followup.index');
+    Route::post('general_service/{general_service}/followups', [General_service_followupController::class, 'store'])
+    ->name('general_service_followup.store');
 
     Route::resource('external_contacts', External_ContactsController::class);
 

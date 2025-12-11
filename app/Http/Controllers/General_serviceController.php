@@ -51,9 +51,23 @@ class General_serviceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, General_service $general_service)
     {
-        //
+        $validated = $request->validate([
+            'manager' => 'required',
+            'contact' => 'required',
+            'staff' => 'required',
+            'schedule' => 'required',
+        ]);
+
+        // Opcional: añadir o modificar campos adicionales si lo necesitas
+        // $validated['status'] = 'active';
+
+        // Actualizar el servicio con los datos validados
+        $general_service->update($validated);
+
+        // Redirigir a la lista de servicios o a donde quieras
+        return redirect()->route('general_service.index')->with('success', 'Servicio actualizado correctamente.');
     }
 
     /**
