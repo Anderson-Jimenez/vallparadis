@@ -87,34 +87,22 @@ class External_ContactsController extends Controller
     }
     public function search(Request $request)
     {
-        // 1. Validamos que haya parámetro 'q'
-        if (!$request->has('q') || strlen($request->q) < 2) {
-            return response()->json([]);
+        $data = External_Contacts::where("name", "like", "%".$request->text."%") //buscar per nom, email o nom de l'organització
+        ->orWhere("organization", "like", "%".$request->text."%")
+        ->orWhere("email_address", "like", "%".$request->text."%") 
+        ->take(10)
+        ->get();
+        $response = [
+            "success"=>false,
+            "message"=>"Ha hagut un error"
+        ];
+        if ($request->ajax()){ 
+            $response = [
+                "success"=>true,
+                "message"=>"Consulta correcte",
+                "data"=>$data
+            ]; 
         }
-        
-        $search = $request->input('q');
-        
-        // 2. Creamos la consulta base
-        $query = ExternalContact::query()
-                    ->where(function($q) use ($search) {
-                        $q->where('name', 'LIKE', "%{$search}%")
-                        ->orWhere('organization', 'LIKE', "%{$search}%");
-                    });
-        
-        // 3. Aplicamos filtro de purpose si existe
-        if ($request->has('purpose') && $request->purpose != '') {
-            $query->where('purpose_type', $request->purpose);
-        }
-        
-        // 4. Aplicamos filtro de origin si existe
-        if ($request->has('origin') && $request->origin != '') {
-            $query->where('origin_type', $request->origin);
-        }
-        
-        // 5. Ejecutamos la consulta
-        $results = $query->limit(50)->get();
-        
-        // 6. Devolvemos los resultados
-        return response()->json($results);
+        return response()->json($response);
     }
 }

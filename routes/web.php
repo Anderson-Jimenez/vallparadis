@@ -78,7 +78,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('general_service', General_serviceController::class);
 
     Route::resource('external_contacts', External_ContactsController::class);
-    Route::get('/search-contacts', [ExternalContactsController::class, 'search'])
-    ->name('search.contacts');
+    Route::post('/search-contacts', [External_ContactsController::class, 'search'])->name('search.contacts');
 
 });

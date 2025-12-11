@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Gestió Contactes Externs</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -28,20 +29,16 @@
                             <!-- Campo de búsqueda -->
                             <div class="relative">
                                 <input type="search" 
-                                    id="searchInput"
+                                    id="search_input"
+                                    name="text"
                                     placeholder="Cercar per nom o organització..." 
-                                    class="bg-white border border-[#ff7300] rounded-lg px-3 py-1 w-64">
-                                
-                                <!-- Spinner de carga (oculto por defecto) -->
-                                <div id="loading_spinner" 
-                                    class="absolute right-2 top-2 hidden">
-                                    <div class="animate-spin rounded-full h-5 w-5 border-b-2 border-[#ff7300]"></div>
-                                </div>
+                                    class="bg-white border border-[#ff7300] rounded-lg px-3 py-1 w-64"
+                                    >
                             </div>
                             
                             <!-- Filtro purpose_type -->
                             <div>
-                                <select name="purpose_type" class="border rounded px-3 py-1">
+                                <select name="purpose_type" id="purpose_type" class="border rounded px-3 py-1">
                                     <option value="">Tots els motius</option>
                                     <option value="motiu" {{ request('purpose_type') == 'motiu' ? 'selected' : '' }}>Motiu</option>
                                     <option value="servei" {{ request('purpose_type') == 'servei' ? 'selected' : '' }}>Servei</option>
@@ -50,7 +47,7 @@
                             
                             <!-- Filtro origin_type -->
                             <div>
-                                <select name="origin_type" class="border rounded px-3 py-1">
+                                <select name="origin_type"  id="origin_filter" class="border rounded px-3 py-1">
                                     <option value="">Tots els orígens</option>
                                     <option value="company" {{ request('origin_type') == 'company' ? 'selected' : '' }}>Company</option>
                                     <option value="department" {{ request('origin_type') == 'department' ? 'selected' : '' }}>Department</option>
@@ -71,7 +68,7 @@
                 </div>
                 
                 <!-- Listado de contactos -->
-                <div class="w-11/12 flex items-center flex-col mt-8 bg-[#fef2e6] p-10 rounded-xl overflow-auto h-[60vh]" id="prof-info-container">
+                <div class="w-11/12 flex items-center flex-col mt-8 bg-[#fef2e6] p-10 rounded-xl overflow-auto h-[60vh]" id="search_results">
                     @if($external_contacts->count() > 0)
                         @foreach ($external_contacts as $external_contact)
                             <div class="contact-info bg-white w-full p-4 mb-3 rounded shadow">
