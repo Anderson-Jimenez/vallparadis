@@ -21,7 +21,7 @@
                 <div class="w-11/12 border-b-4 border-[#213c57] flex items-center justify-between py-4">
                     <h1 class="text-[#2D3E50] text-4xl pt-7 pb-1 w-4/5">Gestió Professionals</h1>
                     {{-- Botón para añadir profesional --}}
-                    <a href="{{ route('professional.create') }}"
+                    <a href="{{ route('supplementary_service.create') }}"
                     class="flex items-center text-sm text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300]
                                 transition-all duration-300 rounded-xl px-5 py-2 text-center h-3/4">
                          

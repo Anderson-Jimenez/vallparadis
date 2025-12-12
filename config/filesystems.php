@@ -63,6 +63,14 @@ return [
             'url' => env('APP_URL').'/storage',
             'throw' => false,
         ],
+
+        'supplementary_services' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/supplementary_services'),
+            'visibility' => 'public',
+            'url' => env('APP_URL').'/storage',
+            'throw' => false,
+        ],
         
 
         's3' => [

@@ -37,7 +37,7 @@ class General_serviceController extends Controller
      */
     public function show(General_service $service)
     {
-        //return view('management_team.general_services',['service'=>$service]);
+        return view('management_team.general_services',['service'=>$service]);
     }
 
     /**
