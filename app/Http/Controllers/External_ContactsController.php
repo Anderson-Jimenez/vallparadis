@@ -11,12 +11,33 @@ class External_ContactsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $external_contacts = External_Contacts::get();
-        return view('management_team.external_contacts_management',['external_contacts'=>$external_contacts]);
-    }
+        public function index(Request $request)
+        {
+            $query = External_Contacts::query();
 
+            // Aplicar filtro de purpose_type si existe
+            if ($request->has('purpose_type') && $request->purpose_type != '') {
+                $query->where('purpose_type', $request->purpose_type);
+            }
+
+            // Aplicar filtro de origin_type si existe
+            if ($request->has('origin_type') && $request->origin_type != '') {
+                $query->where('origin_type', $request->origin_type);
+            }
+
+            // Ordenar
+            $query->orderBy('organization');
+
+            $external_contacts = $query->get();
+
+            return view('management_team.external_contacts_management', [
+                'external_contacts' => $external_contacts,
+                'filters' => [
+                    'purpose_type' => $request->purpose_type,
+                    'origin_type' => $request->origin_type,
+                ]
+            ]);
+        }
     /**
      * Show the form for creating a new resource.
      */
@@ -63,5 +84,25 @@ class External_ContactsController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function search(Request $request)
+    {
+        $data = External_Contacts::where("name", "like", "%".$request->text."%") //buscar per nom, email o nom de l'organització
+        ->orWhere("organization", "like", "%".$request->text."%")
+        ->orWhere("email_address", "like", "%".$request->text."%") 
+        ->take(10)
+        ->get();
+        $response = [
+            "success"=>false,
+            "message"=>"Ha hagut un error"
+        ];
+        if ($request->ajax()){ 
+            $response = [
+                "success"=>true,
+                "message"=>"Consulta correcte",
+                "data"=>$data
+            ]; 
+        }
+        return response()->json($response);
     }
 }

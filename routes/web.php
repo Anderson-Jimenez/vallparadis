@@ -98,5 +98,6 @@ Route::middleware(['auth'])->group(function () {
     )->name('supplementary_service_followup.store');
 
     Route::resource('external_contacts', External_ContactsController::class);
+    Route::post('/search-contacts', [External_ContactsController::class, 'search'])->name('search.contacts');
 
 });

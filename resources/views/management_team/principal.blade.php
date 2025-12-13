@@ -14,26 +14,12 @@
         <main class="w-screen flex flex-1">
             @include('components.sidebar')
             @yield('contingut')
-            @php
-                $active = \App\Models\Professional::where('status', 'active')->count();
-                $total = \App\Models\Professional::count();
-                $percentage = $total > 0 ? ($active / $total) * 100 : 0;
-            @endphp
+
             <!--S'haria de posar un controllador o quelcom similar -->
             <section class="w-full">
                 <div class="flex w-full h-max">
                     <div class="w-4/12 h-[30vh] bg-white m-5 rounded-3xl border border-[#ff7300] shadow-lg flex flex-col justify-center items-center">
                         <h1 class="txt-orange text-3xl">Professionals Actius</h1>
-                        
-                        <div class="w-10/12 bg-gray-200 rounded-full h-10">
-                            <div class="bg-[#ff7300] h-10 rounded-full"
-                                style="width: {{ $percentage }}%; transition: width 0.6s;">
-                                <p class="text-sm font-bold text-black mb-4 w-full text-right">
-                                    {{ $active }} / {{ $total }}
-                                </p>
-                            </div>
-                            
-                        </div>
                     </div>
                     <div class="w-4/12 h-[30vh] bg-white m-5 rounded-3xl border border-[#ff7300] shadow-lg flex flex-col justify-center items-center">
                         <h1 class="txt-orange text-3xl">Projectes en procés</h1>
