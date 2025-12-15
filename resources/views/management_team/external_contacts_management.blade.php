@@ -74,7 +74,7 @@
                 <div class="w-11/12 flex items-center flex-col mt-8 bg-[#fef2e6] p-10 rounded-xl overflow-auto h-[60vh]" id="search_results">
                     @if($external_contacts->count() > 0)
                         @foreach ($external_contacts as $external_contact)
-                            <div class="contact-info bg-white w-full px-5 mb-3 shadow flex justify-between items-center h-[10vw] rounded-lg">
+                            <div class="contact-info bg-white w-full px-5 mb-3 shadow flex justify-between items-center h-[10vh] rounded-lg">
                                     <div class="flex items-center w-1/6">
                                         <svg class="w-10 h-10 txt-orange mr-3">
                                             <use xlink:href="#professional_icon"></use>
@@ -82,7 +82,7 @@
                                         <h2 class="font-bold text-sm ">{{ $external_contact->name }}</h2>
                                     </div>
                                     <h3 class="w-3/12 text-sm"><strong>Organització: </strong>{{ $external_contact->organization }}</h3>
-                                    <h3 class="w-[30%] text-sm"><strong>Correu electrònic: </strong><a href="mailto:{{ $external_contact->email_address }}" class="underline">{{ $external_contact->email_address }} </a></h3>
+                                    <h3 class="w-[30%] text-sm"><strong>Correu electrònic: </strong><a target="_BLANK" href="mailto:{{ $external_contact->email_address }}" class="underline">{{ $external_contact->email_address }} </a></h3>
                                     <h3 class="w-1/6 text-sm"><strong>Telefòn: </strong>{{ $external_contact->phone_numer }}</h3>
 
                             </div>

@@ -22,25 +22,27 @@ window.addEventListener('load', function() {
             // Si el camp NO és buit i no hi ha resultats → mostrar missatge
             if (search_input.value.trim() !== "" && data.data.length === 0) {
                 search_results.innerHTML = `
-                    <div class="text-center py-8">
-                        <p class="text-gray-500">No s'han trobat contactes.</p>
-                    </div>
-                `;
+                    <div class="contact-info bg-white w-full px-5 mb-3 shadow flex justify-between items-center h-[10vh] rounded-lg">
+                        <h3 class="w-3/12 text-sm">No hi ha cap contacte que coincideixi amb els resultats</h3>
+                    </div>`;
             }
 
             //
             let html = "";
             for (let i in data.data) {
                 html += `
-                    <div class="contact-info bg-white w-full p-4 mb-3 rounded shadow">
-                        <div class="flex justify-between">
-                            <p><strong>Nom:</strong> ${data.data[i].name}</p>
-                            <p><strong>Motiu/Servei:</strong> ${data.data[i].purpose_type ?? ''}</p>
-                            <p><strong>Origen:</strong> ${data.data[i].origin_type ?? ''}</p>
-                            <p><strong>Organització:</strong> ${data.data[i].organization ?? ''}</p>
-                        </div>
-                    </div>
-                `;
+                        <div class="contact-info bg-white w-full px-5 mb-3 shadow flex justify-between items-center h-[5vw] rounded-lg">
+                            <div class="flex items-center w-1/6">
+                                <svg class="w-10 h-10 txt-orange mr-3">
+                                    <use xlink:href="#professional_icon"></use>
+                                </svg>
+                                <h2 class="font-bold text-sm ">${data.data[i].name}</h2>
+                            </div>
+                            <h3 class="w-3/12 text-sm"><strong>Organització: </strong>${data.data[i].organization ?? ''}</h3>
+                            <h3 class="w-[30%] text-sm"><strong>Correu electrònic: </strong><a target="_BLANK" href="mailto:${data.data[i].email_address ?? ''}" class="underline">${data.data[i].email_address ?? ''} </a></h3>
+                            <h3 class="w-1/6 text-sm"><strong>Telefòn: </strong>${data.data[i].phone_numer ?? ''}</h3>
+
+                        </div>`;
             }
 
             search_results.innerHTML = html;
