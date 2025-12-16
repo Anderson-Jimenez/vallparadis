@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => { 
     const services = document.querySelectorAll(".service-info");
     const editBtn = document.querySelectorAll(".edit-service");
+    const body = document.getElementById("bd");
     const view_div = document.getElementById("view-service");
     let edit_general_service = document.getElementById('edit_general_service');  
     const close_btn = document.getElementById("close_view_general_service");
@@ -22,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             view_div.classList.remove('hidden');
             view_div.classList.add('flex', 'z-50');
+            //body.classList.add('blur-lg');
         });
 
     });
@@ -43,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('textarea[name="schedule"]').value = schedule;
 
             edit_general_service.classList.remove('hidden');
+            //body.classList.remove('blur-lg');
             edit_general_service.classList.add('flex', 'z-50');
         });
     

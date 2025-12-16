@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => { 
     const services = document.querySelectorAll(".supp-service-info");
+    const body = document.getElementById("bd");
     const editBtn = document.querySelectorAll(".edit-supp-service");
     const view_div = document.getElementById("view-supp-service");
     let edit_supp_service = document.getElementById('edit_supp_service');  
@@ -26,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             view_div.classList.remove('hidden');
             view_div.classList.add('flex', 'z-50');
+            body.classList.add('blur-lg');
         });
 
     });

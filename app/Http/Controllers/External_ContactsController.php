@@ -43,7 +43,7 @@ class External_ContactsController extends Controller
      */
     public function create()
     {
-        //
+        return view('management_team.contacts_add');
     }
 
     /**

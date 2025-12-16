@@ -65,6 +65,12 @@
                                 <a href="{{ route('external_contacts.index') }}" class="h-[5vh] bg-gray-300 text-gray-700 px-6 py-1 rounded hover:bg-gray-400 flex items-center">
                                     Netejar
                                 </a>
+                                <a href="{{ route('external_contacts.create') }}" class="h-[5vh] bg-gray-300 text-gray-700 px-6 py-1 rounded hover:bg-gray-400 flex items-center">
+                                    <svg class="w-6 h-6 mr-2">
+                                        <use xlink:href="#add_prof_icon"></use>
+                                    </svg>
+                                    Afegir nou contacte
+                                </a>
                             </div>
                         </form>
                     </div>
