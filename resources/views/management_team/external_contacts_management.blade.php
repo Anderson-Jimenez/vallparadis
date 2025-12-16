@@ -31,7 +31,7 @@
                                 <input type="search" 
                                     id="search_input"
                                     name="text"
-                                    placeholder="Cercar per nom o organització..." 
+                                    placeholder="Cercar contactes del centre..." 
                                     class="bg-white border border-[#ff7300] rounded-lg px-3 py-1 w-[17vw] h-[5vh]"
                                     >
                                 <svg class="relative w-6 h-6 txt-orange right-10">
@@ -41,28 +41,28 @@
                             
                             <!-- Filtro purpose_type -->
                             <div>
-                                <select name="purpose_type" id="purpose_type" class="border rounded px-3 py-1">
-                                    <option value="">Tots els motius</option>
-                                    <option value="motiu" {{ request('purpose_type') == 'motiu' ? 'selected' : '' }}>Motiu</option>
-                                    <option value="servei" {{ request('purpose_type') == 'servei' ? 'selected' : '' }}>Servei</option>
+                                <select name="type" id="type_filter" class="rounded-lg px-3 py-1 h-[5vh] bg-white border border-[#ff7300] txt-orange">
+                                    <option value="">Tipus de servei</option>
+                                    <option value="assistencials" {{ request('type') == 'assistencials' ? 'selected' : '' }}>Assistencials</option>
+                                    <option value="serveis generals" {{ request('type') == 'serveis generals' ? 'selected' : '' }}>Serveis Generals</option>
                                 </select>
                             </div>
                             
                             <!-- Filtro origin_type -->
                             <div>
-                                <select name="origin_type"  id="origin_filter" class="border rounded px-3 py-1">
+                                <select name="origin_type"  id="origin_filter" class="rounded-lg px-4 py-1 h-[5vh] bg-white border border-[#ff7300] txt-orange">
                                     <option value="">Tots els orígens</option>
-                                    <option value="company" {{ request('origin_type') == 'company' ? 'selected' : '' }}>Company</option>
+                                    <option value="company" {{ request('origin_type') == 'company' ? 'selected' : '' }}>Companya</option>
                                     <option value="department" {{ request('origin_type') == 'department' ? 'selected' : '' }}>Department</option>
                                 </select>
                             </div>
                             
                             <!-- Botones de acción -->
                             <div class="flex space-x-2">
-                                <button type="submit" class="bg-[#ff7300] text-white px-4 py-1 rounded hover:bg-[#e56700]">
+                                <button type="submit" class="bg-[#ff7300] text-white px-6 py-1 rounded hover:bg-[#e56700] h-[5vh]">
                                     Filtrar
                                 </button>
-                                <a href="{{ route('external_contacts.index') }}" class="bg-gray-300 text-gray-700 px-4 py-1 rounded hover:bg-gray-400">
+                                <a href="{{ route('external_contacts.index') }}" class="h-[5vh] bg-gray-300 text-gray-700 px-6 py-1 rounded hover:bg-gray-400 flex items-center">
                                     Netejar
                                 </a>
                             </div>
@@ -74,7 +74,7 @@
                 <div class="w-11/12 flex items-center flex-col mt-8 bg-[#fef2e6] p-10 rounded-xl overflow-auto h-[60vh]" id="search_results">
                     @if($external_contacts->count() > 0)
                         @foreach ($external_contacts as $external_contact)
-                            <div class="contact-info bg-white w-full px-5 mb-3 shadow flex justify-between items-center h-[10vh] rounded-lg">
+                            <div class="contact-info bg-white w-full px-5 mb-3 shadow flex justify-between items-center h-[10vh] rounded-xl">
                                     <div class="flex items-center w-1/6">
                                         <svg class="w-10 h-10 txt-orange mr-3">
                                             <use xlink:href="#professional_icon"></use>

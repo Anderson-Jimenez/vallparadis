@@ -15,9 +15,9 @@ class External_ContactsController extends Controller
         {
             $query = External_Contacts::query();
 
-            // Aplicar filtro de purpose_type si existe
-            if ($request->has('purpose_type') && $request->purpose_type != '') {
-                $query->where('purpose_type', $request->purpose_type);
+            // Aplicar filtro de type si existe
+            if ($request->has('type') && $request->type != '') {
+                $query->where('type', $request->type);
             }
 
             // Aplicar filtro de origin_type si existe
