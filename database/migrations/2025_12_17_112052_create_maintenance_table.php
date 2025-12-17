@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('general_services', function (Blueprint $table) {
+        Schema::create('maintenance', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('center_id');
             $table->foreign('center_id')->references('id')->on('centers')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('type',255);
+            $table->date('start_date');
+            $table->string('description',255);
             $table->string('manager',255);
-            $table->string('contact',255);
-            $table->string('staff',255);
-            $table->string('schedule',255);
+            $table->string('docs',255);
             $table->string('status',255);
             $table->timestamps();
         });
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('general_services');
+        Schema::dropIfExists('maintenance');
     }
 };

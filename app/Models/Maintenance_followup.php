@@ -6,5 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Maintenance_followup extends Model
 {
-    //
+    protected $table = "maintenance_followups";
+
+    protected $fillable = ['maintenance_id','professional_id','date','description','docs'];
+
+    public function professional(): BelongsTo
+    {
+        return $this->belongsTo(Professional::class);
+    }
+
 }
