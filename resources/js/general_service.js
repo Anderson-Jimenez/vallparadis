@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => { 
     const services = document.querySelectorAll(".service-info");
     const editBtn = document.querySelectorAll(".edit-service");
+    const overlay = document.getElementById("overlay");
+    const body = document.getElementById("bd");
     const view_div = document.getElementById("view-service");
     let edit_general_service = document.getElementById('edit_general_service');  
     const close_btn = document.getElementById("close_view_general_service");
@@ -22,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             view_div.classList.remove('hidden');
             view_div.classList.add('flex', 'z-50');
+            overlay.classList.remove('hidden');
         });
 
     });
@@ -43,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('textarea[name="schedule"]').value = schedule;
 
             edit_general_service.classList.remove('hidden');
+            overlay.classList.remove('hidden');
             edit_general_service.classList.add('flex', 'z-50');
         });
     
@@ -51,9 +55,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     close_btn.addEventListener("click", () => { 
         view_div.classList.add("hidden"); 
+        overlay.classList.add('hidden');
     });
     close_add.addEventListener("click", () => { 
         edit_general_service.classList.add("hidden"); 
+        overlay.classList.add('hidden');
+
     });
     
 });

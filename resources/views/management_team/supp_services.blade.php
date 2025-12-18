@@ -47,8 +47,6 @@
 
                                     
                                     
-                                    
-
                                     <div class="w-4/5 flex">
                                         <el-dropdown class="inline-block rounded-tl-xl rounded-bl-xl">
                                             <button class="text-white flex items-center rounded-tl-xl rounded-bl-xl w-full justify-center gap-x-1.5  bg-[#ff7300] px-3 py-2 text-sm font-semibold shadow-xs inset-ring-1  hover:bg-[#FEAB51]">
@@ -108,7 +106,7 @@
                         @endforeach
                     </div>
                     {{-- DETALLES DEL INFORME (OCULTO) --}}
-                    <div id="view-supp-service" class="hidden flex-col items-center h-3/5 w-3/5 bg-white rounded-3xl shadow-black-500 shadow-2xl absolute left-[30%] p-10 overflow-y-auto">
+                    <div id="view-supp-service" class="hidden flex-col items-center h-3/5 w-1/4 bg-white rounded-3xl shadow-black-500 shadow-2xl absolute left-[30%] p-10 overflow-y-auto">
                         <div class="flex justify-between items-center mb-6 w-full">
                             <h2 class="text-2xl font-bold txt-orange">Detalls del servei</h2>
                             <button id="close_view_supp_service" class="txt-orange text-xl font-bold hover:text-orange-700">✕</button>

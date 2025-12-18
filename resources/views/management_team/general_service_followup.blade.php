@@ -65,8 +65,8 @@
                     
 
                 </div>
-                <div id="add_monitoring" class="hidden h-11/12 w-3/5 bg-white rounded-3xl shadow-black-500 shadow-2xl absolute left-[30%] p-10">
-                    <form action="{{ route('general_service_followup.store', $general_service) }}" method="POST" class="space-y-6">
+                <div id="add_monitoring" class="hidden h-11/12 w-2/5 bg-white rounded-3xl shadow-black-500 shadow-2xl absolute left-[40%] p-10">
+                    <form action="{{ route('general_service_followup.store', $general_service) }}" method="POST" class="space-y-6 signature-pad">
                         @csrf
                         <div class="flex justify-between items-center mb-6 w-full">
                             <h2 class="text-2xl font-bold txt-orange">Nou seguiment</h2>
@@ -98,9 +98,13 @@
                                     class="w-full bg-gray-200 rounded-2xl px-4 py-3 mt-2 text-gray-800 border-none focus:ring-2 focus:ring-orange-400"
                                     placeholder="Detalla aquí l'observació o seguiment realitzat..." required></textarea>
                         </div>
+                        <p class="mb-2 font-semibold">Firma</p>
 
-                        <button type="submit"
-                                class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-full transition-all">
+                        <canvas id="signature" width="400" height="200" class="border border-gray-400 rounded bg-white"></canvas>
+
+                        <button type="button" id="clear" class="mt-2 px-3 py-1 bg-gray-200 rounded">Clear</button>
+
+                        <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-full transition-all">
                                 Guardar Seguiment
                         </button>
                         
@@ -144,7 +148,9 @@
             </section>
         </main>
 
-        @include('components.footer')
+        <div id="overlay"
+            class="hidden fixed inset-0 bg-black/40 backdrop-blur-sm z-40">
+        </div>
     @endauth
 
     @guest

@@ -20,5 +20,5 @@
     background: linear-gradient(37deg,rgba(255, 115, 0, 0.86) 14%, rgba(255, 255, 255, 0.85) 100%);
 }
 .sidebar-gradient {
-    background: linear-gradient(0deg,rgba(254, 88, 4, 1) 0%, rgba(254, 171, 81, 1) 85%);
+    background: linear-gradient(0deg,rgba(254, 88, 4, 1) 0%, rgb(254, 171, 81) 85%);
 }

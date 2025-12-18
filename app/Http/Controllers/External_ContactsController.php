@@ -15,9 +15,9 @@ class External_ContactsController extends Controller
         {
             $query = External_Contacts::query();
 
-            // Aplicar filtro de purpose_type si existe
-            if ($request->has('purpose_type') && $request->purpose_type != '') {
-                $query->where('purpose_type', $request->purpose_type);
+            // Aplicar filtro de type si existe
+            if ($request->has('type') && $request->type != '') {
+                $query->where('type', $request->type);
             }
 
             // Aplicar filtro de origin_type si existe
@@ -43,7 +43,7 @@ class External_ContactsController extends Controller
      */
     public function create()
     {
-        //
+        return view('management_team.contacts_add');
     }
 
     /**
@@ -51,7 +51,27 @@ class External_ContactsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+        $validated = request()->validate([
+            'name'           => 'required',
+            'type'           => 'required',
+            'organization'   => 'required',
+
+            'purpose_type'   => 'required',
+            'origin_type'    => 'required',
+            'purpose'        => 'required',
+
+            'manager'        => 'required',
+            'phone_numer'    => 'required',
+            'email_address'  => 'required',
+            'comments'       => 'required',
+        ]);
+
+        External_Contacts::create($validated);
+
+        return redirect()
+            ->route('external_contacts.index')
+            ->with('success', 'Contacte creat correctament.');
     }
 
     /**
