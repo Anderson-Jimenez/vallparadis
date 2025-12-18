@@ -41,7 +41,12 @@
                         <div class="flex gap-4">
                             <div class="w-1/2">
                                 <label class="text-sm text-gray-600">Tipus de contacte *</label>
-                                <input name="type" class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1" placeholder="Introdueix el tipus de contacte">
+                                <select name="type" id="" class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1">
+                                    <option value="">Selecciona el tipus de contacte</option>
+                                    <option value="assistencials">Assistencials</option>
+                                    <option value="serveis generals">Serveis Generals</option>
+                                </select>
+                            
                             </div>
                             <div class="w-1/2">
                                 <label class="text-sm text-gray-600">Organització *</label>
@@ -68,8 +73,8 @@
                                 <select name="origin_type" required
                                         class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1">
                                     <option value="">Selecciona quin tipus d’origen</option>
-                                    <option value="empresa">Empresa</option>
-                                    <option value="departament">Departament</option>
+                                    <option value="company">Companya</option>
+                                    <option value="department">Departament</option>
                                 </select>
                             </div>
                         </div>
@@ -92,13 +97,13 @@
 
                             <div class="w-1/2">
                                 <label class="text-sm text-gray-600">Telèfon *</label>
-                                <input name="phone" required class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1" placeholder="+34 600 000 000">
+                                <input name="phone_numer" required class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1" placeholder="+34 600 000 000">
                             </div>
                         </div>
 
                         <div>
                             <label class="text-sm text-gray-600">Correu electrònic *</label>
-                            <input type="email" name="email" requiredclass="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1" placeholder="email@exemple.com">
+                            <input type="email" name="email_address" required class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1" placeholder="email@exemple.com">
                         </div>
                     </section>
                     <section class="flex flex-col gap-4">

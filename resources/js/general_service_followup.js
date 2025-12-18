@@ -3,12 +3,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const addBtn = document.getElementById('add_monitoring_btn');
     const addModal = document.getElementById('add_monitoring');
     const closeAddBtn = document.getElementById('close_add_monitoring');
+    const overlay = document.getElementById("overlay");
 
     if (addBtn) {
         addBtn.addEventListener('click', (e) => {
             e.preventDefault();
             addModal.classList.remove('hidden');
             addModal.classList.add('flex', 'z-50');
+            overlay.classList.remove('hidden');
         });
     }
 
@@ -17,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             addModal.classList.add('hidden');
             addModal.classList.remove('flex', 'z-50');
+            overlay.classList.add('hidden');
         });
     }
 
@@ -40,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Mostrar modal
             viewModal.classList.remove('hidden');
             viewModal.classList.add('flex', 'z-50');
+            overlay.classList.remove('hidden');
         });
     });
 
@@ -47,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         closeViewBtn.addEventListener('click', () => {
             viewModal.classList.add('hidden');
             viewModal.classList.remove('flex', 'z-50');
+            overlay.classList.add('hidden');
         });
     }
 });

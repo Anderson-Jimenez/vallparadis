@@ -51,7 +51,27 @@ class External_ContactsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+        $validated = request()->validate([
+            'name'           => 'required',
+            'type'           => 'required',
+            'organization'   => 'required',
+
+            'purpose_type'   => 'required',
+            'origin_type'    => 'required',
+            'purpose'        => 'required',
+
+            'manager'        => 'required',
+            'phone_numer'    => 'required',
+            'email_address'  => 'required',
+            'comments'       => 'required',
+        ]);
+
+        External_Contacts::create($validated);
+
+        return redirect()
+            ->route('external_contacts.index')
+            ->with('success', 'Contacte creat correctament.');
     }
 
     /**
