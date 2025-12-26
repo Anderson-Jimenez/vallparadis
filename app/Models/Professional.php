@@ -43,4 +43,8 @@ class Professional extends Authenticatable
     {
         return $this->hasMany(Evaluation::class, 'assessed_professional_id');
     }
+    public function maintenance_followups(): HasMany
+    {
+        return $this->HasMany(Maintenance_followup::class);
+    }
 }
