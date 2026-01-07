@@ -17,7 +17,7 @@ class EvaluationController extends Controller
     public function index(Professional $professional)
     {
         $evaluations = Evaluation::where('assessed_professional_id', $professional->id)->orderBy('evaluation_date', 'asc')->get();
-        return view('management_team.professionals_evaluations',['professional'=>$professional, 'evaluations'=>$evaluations]);
+        return view('professionals.evaluations.index',['professional'=>$professional, 'evaluations'=>$evaluations]);
     }
 
     /**
@@ -25,7 +25,7 @@ class EvaluationController extends Controller
      */
     public function create(Professional $professional,Evaluation $evaluations)
     {
-        return view('management_team.evaluation_add',['professional'=>$professional, 'evaluations'=>$evaluations]);
+        return view('professionals.evaluations.create',['professional'=>$professional, 'evaluations'=>$evaluations]);
     }
 
     /**
@@ -103,7 +103,7 @@ class EvaluationController extends Controller
         "La seva entrada i permanència en el lloc de treball es duu a terme sense retards o absències no justificades",
     ];
 
-        return view('management_team.show_results_evaluation',['evaluation'=>$evaluation, 'questions'=>$questions]);
+        return view('professionals.evaluations.results',['evaluation'=>$evaluation, 'questions'=>$questions]);
     }
 
     /**

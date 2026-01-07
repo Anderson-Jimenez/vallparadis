@@ -25,7 +25,7 @@ class ProfessionalController extends Controller
         $status = $request->get('status', 'active');
         $professionals = Professional::where('status', $status)->get();
 
-        return view('management_team.professionals_management', [
+        return view('professionals.index', [
             'professionals' => $professionals,
             'status' => $status
         ]);
@@ -36,7 +36,7 @@ class ProfessionalController extends Controller
      */
     public function create()
     {
-        return view('management_team.professional_add');
+        return view('professionals.create');
     }
 
     /**
@@ -75,7 +75,7 @@ class ProfessionalController extends Controller
      */
     public function edit(Professional $professional)
     {
-        return view('management_team.professional_change',['professional'=>$professional]);
+        return view('professionals.edit',['professional'=>$professional]);
     }
 
     /**
@@ -116,8 +116,8 @@ class ProfessionalController extends Controller
     public function send_uniform(Professional $professional)
     {
         $uniform = Uniform::where('professional_id', $professional->id)->latest()->first();
-        
-        return view('management_team.professional_uniform',['professional'=>$professional, 'uniform'=>$uniform]);
+
+        return view('professionals.uniform', ['professional'=>$professional, 'uniform'=>$uniform]);
     }
     public function uniform(Request $request, Professional $professional)
     {

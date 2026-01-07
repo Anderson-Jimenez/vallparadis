@@ -13,7 +13,7 @@ class General_serviceController extends Controller
     public function index()
     {
         $services = General_service::get();
-        return view('management_team.general_services',['services'=>$services]);
+        return view('services.general.index',['services'=>$services]);
     }
 
     /**
@@ -37,7 +37,7 @@ class General_serviceController extends Controller
      */
     public function show(General_service $service)
     {
-        return view('management_team.general_services',['service'=>$service]);
+        return view('services.general.index',['service'=>$service]);
     }
 
     /**

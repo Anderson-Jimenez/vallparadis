@@ -18,7 +18,7 @@
   <!-- Lista de enlaces -->
   <ul class="flex-1 flex flex-col items-start space-y-3 h-max-content">
     <li class="group rounded-lg transition-all duration-300 w-full hover:bg-white" title="panell de control">
-      <a href="{{route('principal')}}"
+      <a href="{{route('dashboard')}}"
         class="flex items-center gap-3 p-3 rounded-lg w-full transition-all duration-300">
         <svg class="w-8 h-8 text-white group-hover:text-[#ff7300]">
           <use xlink:href="#dashboard_icon"></use>
