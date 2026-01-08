@@ -17,7 +17,7 @@ class CourseController extends Controller
     public function index()
     {
         $courses = Course::get();
-        return view('management_team.courses_management',['courses'=>$courses]);
+        return view('courses.index',['courses'=>$courses]);
     }
 
     /**
@@ -25,7 +25,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('management_team.course_add');
+        return view('courses.create');
     }
 
     /**
@@ -59,7 +59,7 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        return view('management_team.course_change',['course'=>$course]);
+        return view('courses.edit',['course'=>$course]);
     }
 
     /**
@@ -98,7 +98,7 @@ class CourseController extends Controller
 
     public function assign_professional(Course $course){
         $professionals = Professional::get();
-        return view('management_team.course_assign_professional',['course'=>$course, 'professionals'=>$professionals]);
+        return view('courses.assign_professional',['course'=>$course, 'professionals'=>$professionals]);
     }
 
     public function assign_professional_to_course(Request $request){

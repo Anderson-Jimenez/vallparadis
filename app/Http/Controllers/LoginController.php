@@ -12,9 +12,9 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         if (Auth::check()) {
-            return redirect()->route('principal');
+            return redirect()->route('dashboard');
         }
-        return view('login');
+        return view('auth.login');
     }
 
     public function login(Request $request)
@@ -31,7 +31,7 @@ class LoginController extends Controller
         if ($professional && Hash::check($credentials['password'], $professional->password)) {
             session(['center_id' => $professional->center_id]);
             Auth::login($professional); // Comanda per
-            return redirect()->route('principal');
+            return redirect()->route('dashboard');
         }
         return back()->withErrors([
             'login' => 'Email o contraseña incorrectos.',

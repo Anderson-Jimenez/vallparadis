@@ -13,7 +13,7 @@ class CenterController extends Controller
     public function index()
     {
         $centers = Center::get();
-        return view('management_team.centers_management',['centers'=>$centers]);
+        return view('centers.index',['centers'=>$centers]);
     }
 
     /**
@@ -21,7 +21,7 @@ class CenterController extends Controller
      */
     public function create()
     {
-        return view('management_team.center_add');
+        return view('centers.create');
     }
 
     /**
@@ -53,7 +53,7 @@ class CenterController extends Controller
      */
     public function edit(Center $center)
     {
-        return view('management_team.center_change',['center'=>$center]);
+        return view('centers.edit',['center'=>$center]);
     }
 
     /**

@@ -51,7 +51,7 @@
                     </div>
                     <div class="w-full flex items-center  flex-col mt-8" id="prof-info-container">      
                         @foreach ($monitoring as $professional_monitoring)
-                            <div class="monitoring-info w-11/12 bg-white flex justify-between rounded-3xl p-5 my-3 border border-[#FF7400]
+                            <div class="monitoring-info w-11/12 bg-white flex rounded-3xl p-5 my-3 border border-[#FF7400]
                                         justify-between shadow-md hover:scale-102 transition-all duration-400 cursor-pointer">
                                 <div id="{{$professional_monitoring->professional_id}}" class="monitoring flex items-center ">
                                     <svg class="w-10 h-10 txt-orange mr-3">

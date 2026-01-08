@@ -31,9 +31,9 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/principal', function () {
-        return view('management_team.principal');
-    })->name('principal');
+    Route::get('/dashboard', function () {
+        return view('dashboard.index');
+    })->name('dashboard');
 
     // Vista administrador centers
     Route::resource('center', CenterController::class);
