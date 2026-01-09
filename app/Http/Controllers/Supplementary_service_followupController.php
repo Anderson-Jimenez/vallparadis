@@ -11,7 +11,7 @@ class Supplementary_service_followupController extends Controller
     public function index(Supplementary_service $supplementary_service)
     {
         $followups = $supplementary_service->supplementary_service_followups;
-        return view('management_team.supp_services_followups',['followups'=>$followups, 'supplementary_service'=>$supplementary_service]);
+        return view('services.support.followups',['followups'=>$followups, 'supplementary_service'=>$supplementary_service]);
     }
 
     public function store(Request $request, Supplementary_service $supplementary_service)

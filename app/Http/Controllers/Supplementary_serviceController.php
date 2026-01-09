@@ -14,7 +14,7 @@ class Supplementary_serviceController extends Controller
     public function index()
     {
         $supp_services = Supplementary_service::get();
-        return view('management_team.supp_services',['supp_services'=>$supp_services]);
+        return view('services.support.index',['supp_services'=>$supp_services]);
     }
 
     /**
@@ -22,7 +22,7 @@ class Supplementary_serviceController extends Controller
      */
     public function create()
     {
-        return view('management_team.supp_service_add');
+        return view('services.support.create');
     }
 
     /**
@@ -77,7 +77,7 @@ class Supplementary_serviceController extends Controller
      */
     public function show(General_service $service)
     {
-        return view('management_team.general_services',['service'=>$service]);
+        return view('services.support.index',['service'=>$service]);
     }
 
     /**

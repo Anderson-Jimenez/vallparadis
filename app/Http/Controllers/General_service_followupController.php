@@ -15,7 +15,7 @@ class General_service_followupController extends Controller
     {
         
         $followups = $general_service->general_services_followups;
-        return view('management_team.general_service_followup',['followups'=>$followups, 'general_service'=>$general_service]);
+        return view('services.general.followup',['followups'=>$followups, 'general_service'=>$general_service]);
     }
 
     /**

@@ -16,7 +16,7 @@ class Project_comissionController extends Controller
     public function index()
     {
         $projects_comissions = Project_comission::with(['manager'])->get();
-        return view('management_team.projects_comissions_management',['projects_comissions'=>$projects_comissions]);
+        return view('projects_comissions.index',['projects_comissions'=>$projects_comissions]);
     }
 
     /**
@@ -25,7 +25,7 @@ class Project_comissionController extends Controller
     public function create()
     {
         $professionals = Professional::get();
-        return view('management_team.project_comission_add',['professionals'=>$professionals]);
+        return view('projects_comissions.create',['professionals'=>$professionals]);
     }
 
     /**
@@ -78,7 +78,7 @@ class Project_comissionController extends Controller
     {
         $professionals = Professional::get();
         $professional_name = $project_comission->manager->name . ' ' . $project_comission->manager->surnames;
-        return view('management_team.project_comission_change',
+        return view('projects_comissions.edit',
         ['project_comission'=>$project_comission, 'professionals'=>$professionals, 'professional_name'=>$professional_name]);
     }
 

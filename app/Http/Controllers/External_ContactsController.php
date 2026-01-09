@@ -30,7 +30,7 @@ class External_ContactsController extends Controller
 
             $external_contacts = $query->get();
 
-            return view('management_team.external_contacts_management', [
+            return view('external_contacts.index', [
                 'external_contacts' => $external_contacts,
                 'filters' => [
                     'purpose_type' => $request->purpose_type,
@@ -43,7 +43,7 @@ class External_ContactsController extends Controller
      */
     public function create()
     {
-        return view('management_team.contacts_add');
+        return view('external_contacts.create');
     }
 
     /**
