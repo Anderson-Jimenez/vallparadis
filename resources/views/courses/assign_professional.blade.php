@@ -21,8 +21,8 @@
             <main class="flex w-full max-h-screen">
                 @include('components.sidebar')
                 @yield('contingut')
-                    <section class="flex flex-col items-center w-4/5 mt-8">
-                        <h1 class="txt-orange text-2xl w-10/12 text-center p-10 border-b-6 border-[#ff7300]">
+                    <section class="flex flex-col items-center w-4/5 mt-5">
+                        <h1 class="txt-orange text-4xl w-10/12 text-center p-7 border-b-6 border-[#ff7300]">
                             Assignar professionals a cursos
                         </h1>
 

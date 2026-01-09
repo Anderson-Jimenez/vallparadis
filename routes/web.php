@@ -13,6 +13,7 @@ use App\Http\Controllers\General_service_followupController;
 use App\Http\Controllers\Supplementary_serviceController;
 use App\Http\Controllers\Supplementary_service_followupController;
 use App\Http\Controllers\External_ContactsController;
+use App\Http\Controllers\Document_centerController;
 
 
 
@@ -65,6 +66,11 @@ Route::middleware(['auth'])->group(function () {
     //Projectes i comissions
     Route::resource('project_comission', Project_comissionController::class);
     Route::get('project_comission/{project_comission}/activate', [Project_comissionController::class, 'activate'])->name('project_comission.activate');
+
+    // Document Center
+    Route::resource('documents_center', Document_centerController::class);
+    Route::get('documents_center/{documents_center}/activate', [Document_centerController::class, 'activate'])->name('documents_center.activate');
+
 
     //Excels
     Route::get('/professionals/exportar-locker', [ProfessionalController::class, 'exportar_excel_locker'])->name('professionals.exportar-locker');
