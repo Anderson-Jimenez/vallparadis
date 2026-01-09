@@ -60,7 +60,6 @@
 
 
         </div>
-        @include('components.footer')
     @endauth
 
     @guest

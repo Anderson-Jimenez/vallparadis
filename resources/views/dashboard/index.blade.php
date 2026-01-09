@@ -33,9 +33,6 @@
             </section>
 
         </main>
-
-        @include('components.footer')
-
     @endauth
     @guest
         <h1>No has iniciado sesión.</h1>
