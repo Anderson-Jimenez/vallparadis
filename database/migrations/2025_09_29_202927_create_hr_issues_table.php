@@ -16,13 +16,15 @@ return new class extends Migration
             $table->unsignedBigInteger('center_id');
             $table->unsignedBigInteger('professional_id');
             $table->unsignedBigInteger('professional_sign_id');
+            $table->unsignedBigInteger('professional_who_id');
 
             $table->foreign('center_id')->references('id')->on('centers')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('professional_id')->references('id')->on('professionals')->onUpdate('cascade')->onDelete('cascade');
             $table->date('start_date');
             $table->string('description',255);
             $table->foreign('professional_sign_id')->references('id')->on('professionals')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('docs_route',255);
+            $table->foreign('professional_who_id')->references('id')->on('professionals')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('docs',255);
 
             $table->timestamps();
         });

@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('hr_followups', function (Blueprint $table) {
+        Schema::create('hr_issues_doc', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('hr_issue_id');
-
-            $table->foreign('hr_issue_id')->references('id')->on('hr_issues')->onUpdate('cascade')->onDelete('cascade');
-            $table->date('date');
-            $table->string('professional',255);
-            $table->string('docs',255);
-
+            $table->unsignedBigInteger('hr_issues_id');
+            $table->foreign('hr_issues_id')->references('id')->on('hr_issues')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('name',255);
+            $table->string('path',255);
+            $table->string('status',255);
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('hr_followups');
+        Schema::dropIfExists('hr_issues_doc');
     }
 };

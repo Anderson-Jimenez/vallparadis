@@ -16,4 +16,8 @@ class Maintenance_followup extends Model
         return $this->belongsTo(Professional::class);
     }
 
+    public function maintenance_followup_doc(): HasMany {
+        return $this->hasMany(Maintenance_followup_doc::class);
+    }
+
 }
