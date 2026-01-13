@@ -44,7 +44,7 @@ class Supplementary_serviceController extends Controller
         // Agregar el center_id desde la sesión
         $validated['center_id'] = session('center_id');
 
-        $validated['docs'] = '';
+        //$validated['docs'] = '';
 
         // Crear el registro principal
         $supp_service = Supplementary_service::create($validated);

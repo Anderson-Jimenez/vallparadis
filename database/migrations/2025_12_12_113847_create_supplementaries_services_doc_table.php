@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreign('supplementary_service_id')->references('id')->on('supplementaries_services')->onUpdate('cascade')->onDelete('cascade');
             $table->string('name',255);
             $table->string('path',255);
-            $table->string('status',255);
             $table->timestamps();
         });
     }
