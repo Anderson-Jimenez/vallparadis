@@ -51,7 +51,7 @@
     <li class="group rounded-lg transition-all duration-300 w-full hover:bg-white" title="gestió de projectes i comisisions">
       <a href="{{ route('project_comission.index') }}"
         class="flex items-center gap-3 p-3 rounded-lg w-full transition-all duration-300">
-        <svg class="w-8 h-8 text-white group-hover:text-[#ff7300]">
+        <svg class="w-10 h-10 text-white group-hover:text-[#ff7300]">
           <use xlink:href="#project_icon"></use>
         </svg>
         <span class="sidebar-text text-white text-lg  group-hover:text-[#ff7300] font-semibold">Gestió Projectes i comissions</span>
@@ -61,7 +61,7 @@
     <li class="group rounded-lg transition-all duration-300 w-full hover:bg-white" title="gestió de cursos">
       <a href="{{ route('course.index') }}"
         class="flex items-center gap-3 p-3 rounded-lg w-full transition-all duration-300">
-        <svg class="w-10 h-10 text-white group-hover:text-[#ff7300]">
+        <svg class="w-8 h-8 text-white group-hover:text-[#ff7300]">
           <use xlink:href="#courses_icon"></use>
         </svg>
         <span class="sidebar-text text-white text-lg  group-hover:text-[#ff7300] font-semibold">Gestió de Cursos</span>
@@ -80,7 +80,7 @@
     <li class="group rounded-lg transition-all duration-300 w-full hover:bg-white" title="gestió de serveis complementaris">
       <a href="{{ route('supplementary_service.index') }}"
         class="flex items-center gap-3 p-3 rounded-lg w-full transition-all duration-300">
-        <svg class="w-10 h-10 text-white group-hover:text-[#ff7300]">
+        <svg class="w-12 h-12 text-white group-hover:text-[#ff7300]">
           <use xlink:href="#services_icon"></use>
         </svg>
         <span class="sidebar-text text-white text-lg  group-hover:text-[#ff7300] font-semibold">Gestió de Serveis Complementaris</span>
@@ -89,10 +89,19 @@
     <li class="group rounded-lg transition-all duration-300 w-full hover:bg-white" title="gestió de cursos">
       <a href="{{ route('external_contacts.index') }}"
         class="flex items-center gap-3 p-3 rounded-lg w-full transition-all duration-300">
-        <svg class="w-10 h-10 text-white group-hover:text-[#ff7300]">
+        <svg class="w-8 h-8 text-white group-hover:text-[#ff7300]">
           <use xlink:href="#contacts_icon"></use>
         </svg>
         <span class="sidebar-text text-white text-lg  group-hover:text-[#ff7300] font-semibold">Contactes Externs</span>
+      </a>
+    </li>
+    <li class="group rounded-lg transition-all duration-300 w-full hover:bg-white" title="gestió de cursos">
+      <a href="{{ route('documents_center.index') }}"
+        class="flex items-center gap-3 p-3 rounded-lg w-full transition-all duration-300">
+        <svg class="w-10 h-10 text-white group-hover:text-[#ff7300]">
+          <use xlink:href="#docs_icon"></use>
+        </svg>
+        <span class="sidebar-text text-white text-lg  group-hover:text-[#ff7300] font-semibold">Documents</span>
       </a>
     </li>
   </ul>

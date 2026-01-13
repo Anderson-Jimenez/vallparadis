@@ -86,7 +86,6 @@
                 </form>   
             </div>
         </section>
-        @include('components.footer')
     @endauth
 
     @guest

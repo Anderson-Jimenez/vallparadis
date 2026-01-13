@@ -26,5 +26,8 @@ class Center extends Model
     public function general_services(): HasMany {
         return $this->hasMany(General_service::class);
     }
+    public function documents_center_info(): HasMany {
+        return $this->hasMany(Document_center_info::class);
+    }
 
 }

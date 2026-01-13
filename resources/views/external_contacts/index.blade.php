@@ -37,8 +37,7 @@
                                 <svg class="relative w-6 h-6 txt-orange right-10">
                                     <use xlink:href="#search_loupe"></use>
                                 </svg>
-                            </div>
-                            
+                            </div>    
                             <!-- Filtro purpose_type -->
                             <div>
                                 <select name="type" id="type_filter" class="rounded-lg px-3 py-1 h-[5vh] bg-white border border-[#ff7300] txt-orange">
