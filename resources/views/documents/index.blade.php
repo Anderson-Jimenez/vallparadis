@@ -72,17 +72,11 @@
                                             <option value="contracte" {{ old('type') == 'contracte' ? 'selected' : '' }}>Contracte</option>
                                             <option value="altres" {{ old('type') == 'altres' ? 'selected' : '' }}>Altres</option>
                                         </select>
-                                        @error('type')
-                                            <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
-                                        @enderror
                                     </div>
                                     
                                     <div class="w-full md:w-2/5 flex flex-col">
                                         <label for="date" class="text-xl my-2 text-[#2D3E50]">Data del document</label>
                                         <input type="date" name="date" value="{{ old('date', date('Y-m-d')) }}" id="date" class="w-full bg-white border border-[#ff7300] rounded-lg p-2 focus:ring-2 focus:ring-[#ff7300]" required />
-                                        @error('date')
-                                            <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
-                                        @enderror
                                     </div>
                                 </div>
                                 
@@ -108,6 +102,7 @@
 
                         </aside>
                         <aside class="w-1/2 bg-[#fef2e6] rounded-lg p-6 mr-4 flex flex-col items-center">
+                            <!--
                             <div class="flex items-center w-11/12 justify-between">
                                 <div class="flex items-center">
                                     <svg class="bg-[#ff7300] rounded-full w-12 h-12 p-2 mr-3 text-white">
@@ -131,6 +126,8 @@
                             <div class="flex w-11/12">
                                 
                             </div>
+                            -->
+                            
 
                         </aside>
                     </section>

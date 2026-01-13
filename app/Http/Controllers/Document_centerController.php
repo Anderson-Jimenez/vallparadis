@@ -16,8 +16,12 @@ class Document_centerController extends Controller
      */
     public function index()
     {
-        $documents_center = Document_center::get();
-        return view('documents.index',['documents_center'=>$documents_center]);
+        //$documents_center = Document_center::get();
+        
+
+
+        $documents = Document_center_info::with('documents_center_info')->where('center_id', session('center_id'))->orderBy('created_at', 'desc');
+        return view('documents.index',['documents_center'=>$documents]);
     }
 
     /**
@@ -37,7 +41,6 @@ class Document_centerController extends Controller
             'type' => 'required|string',
             'date' => 'required|date',
             'description' => 'required|string',
-            'files' => 'required|array',
             'files.*' => 'file|mimes:pdf,csv,docx,doc|max:10240', // 10MB máximo
         ]);
         $document_info = Document_center_info::create([
