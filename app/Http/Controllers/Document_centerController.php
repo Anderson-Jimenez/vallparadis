@@ -30,7 +30,37 @@ class Document_centerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'type' => 'required|string',
+            'date' => 'required|date',
+            'description' => 'required|string',
+            'professional_id' => 'required|integer',
+            'center_id' => 'required|integer',
+            'files' => 'required|array',
+            'files.*' => 'file|mimes:pdf,csv,docx,doc|max:10240', // 10MB máximo
+        ]);
+        $documentInfo = Document_center_info::create([
+            'type' => $validated['type'],
+            'date' => $validated['date'],
+            'description' => $validated['description'],
+            'professional_id' => $validated['professional_id'],
+            'center_id' => $validated['center_id'],
+        ]);
+        $files = $request->file('path');
+                $files = $request->file('path');
+        if ($files) {
+            foreach ($files as $file) {
+                $name_file = time().'-'. $file->getClientOriginalName();
+                $storage_path = Storage::disk('projects_comissions')->putFileAs('', $file, $name_file);
+                $project->projects_comissions_documents()->create([
+                    'name' => $project->name, // Nombre del proyecto como nombre del documento
+                    'path' => $storage_path,  // Ruta del archivo
+                ]);
+            }
+        }
+
+
+        return redirect()->route('documents_center.index');
     }
 
     /**

@@ -43,7 +43,7 @@
 
                                 <!-- Sección per pujar arxius -->
                                 <div class="flex items-center justify-center w-full bg-white my-5">
-                                    <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 bg-neutral-secondary-medium border-2 border-dashed border-[#ff7300] rounded-base cursor-pointer hover:bg-neutral-tertiary-medium">
+                                    <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-[25vh] bg-neutral-secondary-medium border-2 border-dashed border-[#ff7300] rounded-base cursor-pointer hover:bg-neutral-tertiary-medium">
                                         <div class="flex flex-col items-center justify-center text-body pt-5 pb-6">
                                             <svg class="w-8 h-8 mb-4 txt-orange">
                                                 <use xlink:href="#add_docs_icon"></use>
@@ -57,7 +57,7 @@
                                     </label>
                                 </div>
 
-                                <!-- Contenedor para mostrar archivos seleccionados -->
+                                <!-- Contenidor per arxius seleccionats-->
                                 <div id="selected-files" class="hidden mb-4 p-3 bg-gray-50 rounded-lg">
                                     <h3 class="text-lg font-semibold mb-2 text-[#2D3E50]">Arxius seleccionats:</h3>
                                     <ul id="file-list" class="space-y-2"></ul>
@@ -108,11 +108,14 @@
 
                         </aside>
                         <aside class="w-1/2 bg-[#fef2e6] rounded-lg p-6 mr-4 flex flex-col items-center">
-                            <div class="flex items-center w-11/12">
-                                <svg class="bg-[#ff7300] rounded-full w-12 h-12 p-2 mr-3 text-white">
-                                    <use xlink:href="#download_icon"></use>
-                                </svg>
-                                <h2 class="text-[#2D3E50] text-xl font-bold">Documents</h2>
+                            <div class="flex items-center w-11/12 justify-between">
+                                <div class="flex items-center">
+                                    <svg class="bg-[#ff7300] rounded-full w-12 h-12 p-2 mr-3 text-white">
+                                        <use xlink:href="#download_icon"></use>
+                                    </svg>
+                                    
+                                    <h2 class="text-[#2D3E50] text-xl font-bold">Documents</h2>
+                                </div>
                                 <div class="relative flex items-center ml-[5%]">
                                     <input type="search" 
                                         id="search_input"
@@ -124,6 +127,9 @@
                                         <use xlink:href="#search_loupe"></use>
                                     </svg>
                                 </div>
+                            </div>
+                            <div class="flex w-11/12">
+                                
                             </div>
 
                         </aside>

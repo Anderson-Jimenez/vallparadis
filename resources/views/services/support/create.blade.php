@@ -45,7 +45,6 @@
                     <button type="submit" class="m-5 text-lg text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300] transition-all duration-300 rounded-full p-5">Crear servei</button>
                 </form>
             </main>
-            @include('components.footer')   
     @endauth
 
     @guest
