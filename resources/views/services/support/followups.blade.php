@@ -144,8 +144,6 @@
                 
             </section>
         </main>
-
-        @include('components.footer')
     @endauth
 
     @guest

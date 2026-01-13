@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Document_center;
 use App\Models\Document_center_info;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class Document_centerController extends Controller
 {
@@ -34,26 +37,25 @@ class Document_centerController extends Controller
             'type' => 'required|string',
             'date' => 'required|date',
             'description' => 'required|string',
-            'professional_id' => 'required|integer',
-            'center_id' => 'required|integer',
             'files' => 'required|array',
             'files.*' => 'file|mimes:pdf,csv,docx,doc|max:10240', // 10MB máximo
         ]);
-        $documentInfo = Document_center_info::create([
+        $document_info = Document_center_info::create([
             'type' => $validated['type'],
             'date' => $validated['date'],
             'description' => $validated['description'],
-            'professional_id' => $validated['professional_id'],
-            'center_id' => $validated['center_id'],
+            'professional_id' => Auth::user()->id,
+            'center_id' => session('center_id'),
         ]);
-        $files = $request->file('path');
-                $files = $request->file('path');
+
+        $files = $request->file('files');
+                
         if ($files) {
             foreach ($files as $file) {
                 $name_file = time().'-'. $file->getClientOriginalName();
-                $storage_path = Storage::disk('projects_comissions')->putFileAs('', $file, $name_file);
-                $project->projects_comissions_documents()->create([
-                    'name' => $project->name, // Nombre del proyecto como nombre del documento
+                $storage_path = Storage::disk('documents')->putFileAs('', $file, $name_file);
+                $document_info->documents_center()->create([
+                    'document_center_info_id' => $document_info->id,
                     'path' => $storage_path,  // Ruta del archivo
                 ]);
             }

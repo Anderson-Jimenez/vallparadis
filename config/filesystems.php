@@ -64,6 +64,14 @@ return [
             'throw' => false,
         ],
 
+        'documents' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/documents'),
+            'visibility' => 'public',
+            'url' => env('APP_URL').'/storage',
+            'throw' => false,
+        ],
+
         'supplementary_services' => [
             'driver' => 'local',
             'root' => storage_path('app/public/supplementary_services'),
