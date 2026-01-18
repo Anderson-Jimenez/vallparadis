@@ -14,6 +14,7 @@ use App\Http\Controllers\Supplementary_serviceController;
 use App\Http\Controllers\Supplementary_service_followupController;
 use App\Http\Controllers\External_ContactsController;
 use App\Http\Controllers\Document_centerController;
+use App\Http\Controllers\MaintenanceController;
 
 
 
@@ -105,5 +106,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('external_contacts', External_ContactsController::class);
     Route::post('/search-contacts', [External_ContactsController::class, 'search'])->name('search.contacts');
+
+    Route::resource('maintenance', MaintenanceController::class);
 
 });

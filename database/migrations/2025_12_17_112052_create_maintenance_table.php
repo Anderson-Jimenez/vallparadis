@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('center_id');
             $table->foreign('center_id')->references('id')->on('centers')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('name',255);
             $table->date('start_date');
             $table->string('description',255);
             $table->string('manager',255);

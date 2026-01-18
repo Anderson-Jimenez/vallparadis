@@ -86,7 +86,7 @@
         <span class="sidebar-text text-white text-lg  group-hover:text-[#ff7300] font-semibold">Gestió de Serveis Complementaris</span>
       </a>
     </li>
-    <li class="group rounded-lg transition-all duration-300 w-full hover:bg-white" title="gestió de cursos">
+    <li class="group rounded-lg transition-all duration-300 w-full hover:bg-white" title="gestió de contactes externs">
       <a href="{{ route('external_contacts.index') }}"
         class="flex items-center gap-3 p-3 rounded-lg w-full transition-all duration-300">
         <svg class="w-8 h-8 text-white group-hover:text-[#ff7300]">
@@ -95,7 +95,7 @@
         <span class="sidebar-text text-white text-lg  group-hover:text-[#ff7300] font-semibold">Contactes Externs</span>
       </a>
     </li>
-    <li class="group rounded-lg transition-all duration-300 w-full hover:bg-white" title="gestió de cursos">
+    <li class="group rounded-lg transition-all duration-300 w-full hover:bg-white" title="gestió de documents interns">
       <a href="{{ route('documents_center.index') }}"
         class="flex items-center gap-3 p-3 rounded-lg w-full transition-all duration-300">
         <svg class="w-10 h-10 text-white group-hover:text-[#ff7300]">
@@ -104,9 +104,17 @@
         <span class="sidebar-text text-white text-lg  group-hover:text-[#ff7300] font-semibold">Documents</span>
       </a>
     </li>
+    <li class="group rounded-lg transition-all duration-300 w-full hover:bg-white" title="gestió de manteniment">
+      <a href="{{ route('maintenance.index') }}"
+        class="flex items-center gap-3 p-3 rounded-lg w-full transition-all duration-300">
+        <svg class="w-10 h-10 text-white group-hover:text-[#ff7300]">
+          <use xlink:href="#maintenance_icon"></use>
+        </svg>
+        <span class="sidebar-text text-white text-lg  group-hover:text-[#ff7300] font-semibold">Manteniment</span>
+      </a>
+    </li>
   </ul>
 </aside>
-
 <!-- JS -->
 <script>
   const sidebar = document.getElementById('sidebar');
