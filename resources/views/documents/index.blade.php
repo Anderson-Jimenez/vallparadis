@@ -53,7 +53,7 @@
                                             </p>
                                             <p class="text-xs txt-orange">PDF, CSV, DOCX o DOC</p>
                                         </div>
-                                        <input id="dropzone-file" type="file" class="hidden" name="files[]" multiple accept=".pdf,.csv,.docx,.doc" required />
+                                        <input id="dropzone-file" type="file" class="hidden" name="files[]" multiple required />
                                     </label>
                                 </div>
 
@@ -96,19 +96,13 @@
                                     Pujar document
                                 </button>
                             </form>
-                            
-
-
-
                         </aside>
                         <aside class="w-1/2 bg-[#fef2e6] rounded-lg p-6 mr-4 flex flex-col items-center">
-                            <!--
                             <div class="flex items-center w-11/12 justify-between">
                                 <div class="flex items-center">
                                     <svg class="bg-[#ff7300] rounded-full w-12 h-12 p-2 mr-3 text-white">
                                         <use xlink:href="#download_icon"></use>
                                     </svg>
-                                    
                                     <h2 class="text-[#2D3E50] text-xl font-bold">Documents</h2>
                                 </div>
                                 <div class="relative flex items-center ml-[5%]">
@@ -123,10 +117,63 @@
                                     </svg>
                                 </div>
                             </div>
-                            <div class="flex w-11/12">
+                            <div class="flex flex-col w-11/12 overflow-auto h-[75vh] p-1">
+                                @foreach ($documents_center as $info)
+                                        @foreach ($info->documents_center as $doc)
+                                            @php
+                                                $extension = strtolower(pathinfo($doc->path, PATHINFO_EXTENSION));
+
+                                                $iconId = match ($extension) {
+                                                    'pdf' => 'icon-pdf',
+                                                    'doc', 'docx' => 'icon-word',
+                                                    'xls', 'xlsx' => 'icon-excel',
+                                                    'csv' => 'icon-csv',
+                                                    default => 'icon-file',
+                                                };
+
+                                                $iconColor = match ($extension) {
+                                                    'pdf' => 'text-red-500',
+                                                    'doc', 'docx' => 'text-blue-500',
+                                                    'xls', 'xlsx', 'csv' => 'text-green-600',
+                                                    default => 'text-gray-400',
+                                                };
+                                            @endphp
+
+                                                <div class="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm my-2">
+                                                    
+                                                    <div class="flex items-center gap-4">
+                                                        <svg class="w-8 h-8 {{ $iconColor }}">
+                                                            <use xlink:href="#{{ $iconId }}"></use>
+                                                        </svg>
+
+                                                        <div>
+                                                            @php
+                                                                $filename = preg_replace('/^\d+-/', '', basename($doc->path));
+                                                            @endphp
+                                                            <p class="font-medium">
+                                                                {{ $filename }}
+                                                            </p>
+                                                            <p class="text-sm text-gray-500">
+                                                                {{ $info->type }} · {{ $info->created_at->diffForHumans() }} <!--Per mostrar el nom, el tipus de document i quan s'ha creat-->
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+                                                    {{-- Actions --}}
+                                                    <div class="flex items-center gap-4 text-blue-600">
+                                                        <a href="{{ route('documents_center.index', $doc->id) }}">
+                                                            ⬇️
+                                                        </a>
+                                                        <a href="{{ route('documents_center.show', $doc->id) }}">
+                                                            👁️
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                            @endforeach
+                                        @endforeach
                                 
                             </div>
-                            -->
                             
 
                         </aside>

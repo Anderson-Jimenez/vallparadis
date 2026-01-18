@@ -23,7 +23,9 @@
                 <form action="{{route('login.submit') }}" method="POST" class="flex flex-wrap justify-center">
                     @csrf
                     <label for="username" class="text-login w-full text-left pl-[2vw]">Nom d'usuari</label>
+
                     <input type="name" name="username" class="w-4/5 bg-black-transparent h-8 rounded-3xl my-1 p-5">
+                    
                     <label for="password" class ="text-login w-full my-1 text-left pl-[2vw]">Contrasenya</label>
                     <input type="password" name="password" class="w-4/5 bg-black-transparent h-8 rounded-3xl my-1 p-5">
                     <a href="#" class="text-login text-sm underline p-2 w-full my-1">Has oblidat la contrasenya?</a>
