@@ -16,12 +16,23 @@ class Document_centerController extends Controller
      */
     public function index()
     {
-        //$documents_center = Document_center::get();
-        
+        $documents = Document_center_info::with('documents_center')
+            ->where('center_id', session('center_id'))
+            ->orderBy('created_at', 'desc')
+            ->get();
 
+        $latest_documents = Document_center::with('document_center_info')
+            ->whereHas('document_center_info', function ($q) {
+                $q->where('center_id', session('center_id'));
+            })
+            ->orderBy('created_at', 'desc')
+            ->take(3)
+            ->get();
 
-        $documents = Document_center_info::with('documents_center')->where('center_id', session('center_id'))->orderBy('created_at', 'desc')->get();
-        return view('documents.index',['documents_center'=>$documents]);
+        return view('documents.index', [
+            'documents_center' => $documents,
+            'latest_documents' => $latest_documents
+        ]);
     }
 
     /**
@@ -108,5 +119,28 @@ class Document_centerController extends Controller
         $filename = preg_replace('/^\d+-/', '', basename($document->path));
 
         return Storage::disk('documents')->download($document->path, $filename);
+    }
+
+    public function search(Request $request)
+    {
+        $data = Document_center::where("path", "like", "%".$request->text."%") //buscar pel nom de l'arxiu
+        ->take(5)
+        ->get();
+        $data = Document_center_info::where("type", "like", "%".$request->text."%") //buscar pel nom de l'arxiu
+        ->orWhere("description", "like", "%".$request->text."%")
+        ->take(5)
+        ->get();
+        $response = [
+            "success"=>false,
+            "message"=>"Ha hagut un error"
+        ];
+        if ($request->ajax()){ 
+            $response = [
+                "success"=>true,
+                "message"=>"Consulta correcte",
+                "data"=>$data
+            ]; 
+        }
+        return response()->json($response);
     }
 }

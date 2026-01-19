@@ -72,6 +72,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('documents_center/{documents_center}/activate', [Document_centerController::class, 'activate'])->name('documents_center.activate');
     Route::get('/documents-center/download/{document}', [Document_centerController::class, 'download'])
     ->name('documents_center.download');
+    Route::post('/search-documents', [Document_center::class, 'search'])->name('search.documents');
+
 
     //Excels
     Route::get('/professionals/exportar-locker', [ProfessionalController::class, 'exportar_excel_locker'])->name('professionals.exportar-locker');

@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const file_input = document.getElementById('dropzone-file');
+    const search_input = document.getElementById('search_input');
     const file_list = document.getElementById('file-list');
     const selected_files_div = document.getElementById('selected-files');
     
