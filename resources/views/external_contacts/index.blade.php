@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Gestió Contactes Externs</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/contacts.js'])
 </head>
 
 <body class="min-h-screen flex flex-col bg-[#E9EDF2]">
@@ -26,7 +26,6 @@
                     <div class="flex justify-around items-center space-x-4">
                         <!-- Formulario único para todos los filtros -->
                         <form method="GET" action="{{ route('external_contacts.index') }}" class="flex space-x-4 items-center">
-                            <!-- Campo de búsqueda -->
                             <div class="relative flex items-center">
                                 <input type="search" 
                                     id="search_input"
