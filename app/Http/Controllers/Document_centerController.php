@@ -99,4 +99,14 @@ class Document_centerController extends Controller
     {
         //
     }
+    public function download(Document_center $document)
+    {
+        if (!Storage::disk('documents')->exists($document->path)) {
+            abort(404, 'Arxiu no trobat');
+        }
+
+        $filename = preg_replace('/^\d+-/', '', basename($document->path));
+
+        return Storage::disk('documents')->download($document->path, $filename);
+    }
 }

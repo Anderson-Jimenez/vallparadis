@@ -61,12 +61,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     form.addEventListener('submit', function(e) {
         const maxSize = 10 * 1024 * 1024;
-        const allowedTypes = [
-            'application/pdf',
-            'text/csv',
-            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-            'application/msword'
-        ];
         
         if (selected_files.length === 0) {
             e.preventDefault();
@@ -82,12 +76,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (file.size > maxSize) {
                 e.preventDefault();
                 alert(`L'arxiu "${file.name}" supera el límit de 10MB.`);
-                flag = true;
-            }
-            
-            if (!flag && !allowedTypes.includes(file.type)) {
-                e.preventDefault();
-                alert(`El archivo "${file.name}" no tiene un formato permitido.\nFormatos aceptados: PDF, CSV, DOCX, DOC`);
                 flag = true;
             }
             

@@ -70,7 +70,8 @@ Route::middleware(['auth'])->group(function () {
     // Document Center
     Route::resource('documents_center', Document_centerController::class);
     Route::get('documents_center/{documents_center}/activate', [Document_centerController::class, 'activate'])->name('documents_center.activate');
-
+    Route::get('/documents-center/download/{document}', [Document_centerController::class, 'download'])
+    ->name('documents_center.download');
 
     //Excels
     Route::get('/professionals/exportar-locker', [ProfessionalController::class, 'exportar_excel_locker'])->name('professionals.exportar-locker');
