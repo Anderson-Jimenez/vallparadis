@@ -38,7 +38,7 @@
                         </a>
                     </div>
                                         
-                    <div class="w-10/12 flex items-center bg-[#fef2e6] rounded-xl overflow-auto">
+                    <div class="w-10/12 h-full flex flex-col  bg-[#fef2e6] rounded-xl overflow-auto">
                         <div class="relative flex items-center mt-10">
                             <input type="search" 
                                 id="search_input"
@@ -49,6 +49,17 @@
                                 <use xlink:href="#search_loupe"></use>
                             </svg>
                         </div>
+                        @foreach($maintenances as $maintenance)
+                            <div class="bg-white border border-[#ff7300] rounded-lg h-1/3 mt-5 px-3">
+                                @if ($maintenance->status == 'inactive')
+                                    <span class="px-6 py-4 bg-red-500 text-white m-2 rounded-full w-max" >Finalitzat</span>
+                                @else
+                                    <p class="px-6 py-4 bg-green-500 text-white rounded-lg m-2 w-max">En progress</p>
+                                @endif
+                                <h2 class="text-xl">{{$maintenance->name}}</h2>
+                                <p>{{$maintenance->description}}</p>
+                            </div>
+                        @endforeach
                     </div>
                     
                 </section>
