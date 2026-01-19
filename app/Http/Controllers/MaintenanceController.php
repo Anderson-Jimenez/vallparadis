@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Maintenance;
+use Illuminate\Support\Facades\Storage;
+
 
 class MaintenanceController extends Controller
 {
@@ -29,7 +31,39 @@ class MaintenanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = request()->validate([
+            'name' => 'required',
+            'start_date' => 'required|date',
+
+            'manager' => 'required',
+            'phone' => 'nullable',
+            'email' => 'nullable',
+            'description' => 'required',
+            'docs.*' => 'file|mimes:pdf,doc,docx,txt|max:5120'
+        ]);
+        $validated['center_id'] = session('center_id');
+        $validated['status'] = 'active';
+        $maintenance = Maintenance::create($validated);
+
+        $files = $request->file('docs');
+        if ($files) {
+            foreach ($files as $file) {
+                // Generar un nombre único para cada archivo
+                $name_file = time() . '-' . $file->getClientOriginalName();
+
+                // Guardar archivo en el disco 'supplementary_services' (configurado en config/filesystems.php)
+                $storage_path = Storage::disk('maintenance')->putFileAs('', $file, $name_file);
+
+                // Guardar registro en la tabla relacionada
+                $maintenance->maintenance_doc()->create([
+                    'name' => $file->getClientOriginalName(), // Nombre original del archivo
+                    'path' => $storage_path,                 // Ruta de almacenamiento
+                ]);
+            }
+        }
+
+        return redirect()->route('maintenance.index');
+            
     }
 
     /**

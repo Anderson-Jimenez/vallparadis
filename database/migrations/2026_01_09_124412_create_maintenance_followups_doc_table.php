@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreign('maintenance_followups_id')->references('id')->on('maintenance_followups')->onUpdate('cascade')->onDelete('cascade');
             $table->string('name',255);
             $table->string('path',255);
-            $table->string('status',255);
             $table->timestamps();
         });
     }

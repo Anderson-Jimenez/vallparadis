@@ -22,3 +22,6 @@
 .sidebar-gradient {
     background: linear-gradient(0deg,rgba(254, 88, 4, 1) 0%, rgb(254, 171, 81) 85%);
 }
+.bg-body{
+    background-color: #FEF2E6;
+}

@@ -18,8 +18,7 @@ return new class extends Migration
             $table->foreign('maintenance_id')->references('id')->on('maintenance')->onUpdate('cascade')->onDelete('cascade');
             $table->date('date');
             $table->foreign('professional_id')->references('id')->on('professionals')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('description', 255);
-            $table->string('docs', 255);
+            $table->text('description');
             $table->timestamps();
         });
     }

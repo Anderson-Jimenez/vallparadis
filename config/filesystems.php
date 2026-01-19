@@ -79,6 +79,14 @@ return [
             'url' => env('APP_URL').'/storage',
             'throw' => false,
         ],
+
+        'maintenance' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/maintenance'),
+            'visibility' => 'public',
+            'url' => env('APP_URL').'/storage',
+            'throw' => false,
+        ],
         
 
         's3' => [

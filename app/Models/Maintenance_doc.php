@@ -9,7 +9,7 @@ class Maintenance_doc extends Model
 {
     protected $table = "maintenance_doc";
     
-    protected $fillable = ['maintenance_id', 'name', 'path','status'];
+    protected $fillable = ['maintenance_id', 'name', 'path'];
 
     public function maintenance(): BelongsTo
     {

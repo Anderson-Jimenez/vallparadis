@@ -10,13 +10,18 @@
 @include('partials.icons')
 
 @auth
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    @endif
     @include('components.navbar')
     <main class="flex justify-center py-10">
         <div class="w-3/4">
 
             <div class="flex items-center gap-2 mb-1">
                 <svg class="w-6 h-6 text-orange-500">
-                    <use xlink:href="#add_prof_icon"></use>
+                    <use xlink:href="#maintenance_icon"></use>
                 </svg>
                 <h1 class="text-2xl font-semibold">Afegir nova entrada de manteniment</h1>
             </div>
@@ -24,7 +29,7 @@
                 Ompliu informació per guardar la entrada de manteniment
             </p>
 
-            <form method="POST" action="{{ route('maintenance.index') }}" class="bg-white rounded-lg shadow overflow-hidden">
+            <form action="{{ route('maintenance.store') }}" method="POST" enctype="multipart/form-data" class="bg-white rounded-lg shadow overflow-hidden">
                 @csrf
                 <div class="bg-orange-500 text-white px-6 py-3">
                     <p class="font-semibold">Informació del manteniment</p>
@@ -36,11 +41,11 @@
                         <h2 class="font-semibold text-gray-700">Informació bàsica</h2>
                         <div>
                             <label class="text-sm text-gray-600">Nom manteniment *</label>
-                            <input name="name" required class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1" placeholder="Introdueix el nom">
+                            <input name="name" required class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1" placeholder="Introdueix el nom" value="{{ old('name') }}">
                         </div>
                         <div>
                             <label class="text-sm text-gray-600">Data d'obertura *</label>
-                            <input type="date" name="start_date" class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1" value="{{ old('date', date('Y-m-d')) }}">
+                            <input type="date" name="start_date" class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1" value="{{ old('start_date', date('Y-m-d')) }}">
                         </div>
                     </section>
                     
@@ -51,35 +56,37 @@
                         <div class="flex gap-4">
                             <div class="w-1/2">
                                 <label class="text-sm text-gray-600">Responsable</label>
-                                <input name="manager" class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1" placeholder="Nom del responsable">
+                                <input name="manager" required class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1" placeholder="Nom del responsable" value="{{ old('manager') }}">
                             </div>
 
                             <div class="w-1/2">
                                 <label class="text-sm text-gray-600">Telèfon *</label>
-                                <input name="phone_numer" required class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1" placeholder="+34 600 000 000">
+                                <input name="phone" class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1" placeholder="+34 600 000 000" value="{{ old('phone') }}">
                             </div>
                         </div>
 
                         <div>
-                            <label class="text-sm text-gray-600">Correu electrònic *</label>
-                            <input type="email" name="email_address" required class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1" placeholder="email@exemple.com">
+                            <label class="text-sm text-gray-600">Correu electrònic </label>
+                            <input type="email" name="email" class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1" placeholder="email@exemple.com" value="{{ old('email') }}">
                         </div>
                     </section>
                     <section class="flex flex-col gap-4">
                         <h2 class="font-semibold text-gray-700">Informació addicional</h2>
-                        <textarea name="comments" rows="3" class="w-full border-2 border-gray-200 rounded-md px-3 py-2" placeholder="Afegeix notes o comentaris addicionals"></textarea>
+                        <textarea name="description" rows="3" class="w-full border-2 border-gray-200 rounded-md px-3 py-2" placeholder="Afegeix notes o comentaris addicionals"></textarea>
+                        <h2 class="font-semibold text-gray-700">Afegir documentació</h2>
+                        <input type="file" name="docs[]" multiple class="w-full border-2 border-gray-200 rounded-md px-3 py-2">
                     </section>
 
                     <div class="flex justify-between items-center border-t pt-6">
-                        <a href="{{ route('external_contacts.index') }}" class="border border-[#ff7300] txt-orange hover:underline px-6 py-4 rounded-xl">
+                        <a href="{{ route('maintenance.index') }}" class="border border-[#ff7300] txt-orange hover:underline px-6 py-4 rounded-xl">
                             Cancel·lar
                         </a>
 
                         <button type="submit" class="bg-orange-500 text-white px-6 py-4 rounded-md hover:bg-white hover:text-[#ff7300] hover:border-[#ff7300] border flex items-center">
                             <svg class="w-6 h-6 mr-2">
-                                <use xlink:href="#add_prof_icon"></use>
+                                <use xlink:href="#maintenance_icon"></use>
                             </svg>
-                            Afegir contacte
+                            Afegir nova entrada de manteniment
                         </button>
                     </div>
                 </div>

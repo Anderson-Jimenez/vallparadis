@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('supplementaries_service_id', 'ssf_service_id')->references('id')->on('supplementaries_services')->onUpdate('cascade')->onDelete('cascade');
             $table->date('date');
             $table->text('issue');
-            $table->string('comment',255);
+            $table->text('comment');
             $table->timestamps();
         });
     }

@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('manager',255);
             $table->string('email_address',255);
             $table->string('phone_number',20);
-            $table->string('docs',255);
-            $table->text('comments');          
+            $table->text('comments');     
+            $table->string('status',20);     
 
             $table->timestamps();
         });

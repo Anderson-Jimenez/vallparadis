@@ -8,7 +8,7 @@
     @vite("resources/css/app.css")
 
 </head>
-<body class="min-h-screen flex flex-col bg-[#E9EDF2]">
+<body class="min-h-screen flex flex-col bg-body">
     @include('partials.icons')     
     @auth
         @if ($errors->any())
@@ -21,22 +21,34 @@
             @include('components.sidebar')
             @yield('contingut')
                 <section class="flex flex-col items-center w-4/5">
-                    <div class="w-11/12 border-b-4 border-[#213c57] flex items-center justify-between py-4">
-                        <h1 class="text-[#2D3E50] text-4xl pt-7 pb-1 w-4/5">Gestió Manteniment</h1>
-                        {{-- Botón para añadir profesional --}}
+                    <div class="w-full bg-white flex items-center justify-between py-4 px-[5%]">
+                        <div class="">
+                            <h1 class="text-[#2D3E50] text-4xl pb-1 w-4/5">Gestió Manteniment</h1>
+                            <p class="text-[#2D3E50]">Administra i realitza seguiments de tots els manteniments</p>
+                        </div>
+                        
                         <a href="{{ route('maintenance.create') }}"
                         class="flex items-center text-sm text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300]
                                     transition-all duration-300 rounded-xl px-5 py-2 text-center h-3/4">
                             
                             <svg class="w-6 h-6 mr-2">
-                                <use xlink:href="#add_prof_icon"></use>
+                                <use xlink:href="#maintenance_icon"></use>
                             </svg>
                             Afegir entrada manteniment
                         </a>
                     </div>
                                         
-                    <div class="w-11/12 flex items-center mt-8 bg-[#fef2e6] p-10 rounded-xl overflow-auto h-[60vh]">
-                        
+                    <div class="w-10/12 flex items-center bg-[#fef2e6] rounded-xl overflow-auto">
+                        <div class="relative flex items-center mt-10">
+                            <input type="search" 
+                                id="search_input"
+                                name="text"
+                                placeholder="Cercar manteniments..." 
+                                class="bg-white border border-[#ff7300] rounded-lg px-3 py-1 w-[30vw] h-[5vh]">
+                            <svg class="relative w-6 h-6 txt-orange right-10">
+                                <use xlink:href="#search_loupe"></use>
+                            </svg>
+                        </div>
                     </div>
                     
                 </section>

@@ -9,7 +9,7 @@ class Maintenance extends Model
 {
     protected $table = "maintenance";
 
-    protected $fillable = ['center_id','name','start_date','description','manager','docs','status'];
+    protected $fillable = ['center_id','name','start_date','manager','phone','email','description','status'];
 
     public function centers(): BelongsTo
     {

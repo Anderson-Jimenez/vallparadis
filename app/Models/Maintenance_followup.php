@@ -9,7 +9,7 @@ class Maintenance_followup extends Model
 {
     protected $table = "maintenance_followups";
 
-    protected $fillable = ['maintenance_id','professional_id','date','description','docs'];
+    protected $fillable = ['maintenance_id','professional_id','date','description'];
 
     public function professional(): BelongsTo
     {

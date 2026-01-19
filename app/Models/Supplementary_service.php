@@ -16,8 +16,8 @@ class Supplementary_service extends Model
         'manager',
         'email_address',
         'phone_number',
-        'docs',
         'comments',
+        'status'
     ];
 
     public function centers(): BelongsTo
