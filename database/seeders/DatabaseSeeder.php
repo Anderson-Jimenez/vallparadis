@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
             CoursesSeeder::class,
             RolesSeeder::class,
             General_servicesSeeder::class,
-            ExternalContactSeeder::class
+            ExternalContactSeeder::class,
+            Hr_pending_issueSeeder::class,
             //Espai per posar altres seeders
         ]);
 

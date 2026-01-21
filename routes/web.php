@@ -15,6 +15,7 @@ use App\Http\Controllers\Supplementary_service_followupController;
 use App\Http\Controllers\External_ContactsController;
 use App\Http\Controllers\Document_centerController;
 use App\Http\Controllers\MaintenanceController;
+use App\Http\Controllers\Hr_pending_issueController;
 
 
 
@@ -111,5 +112,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/search-contacts', [External_ContactsController::class, 'search'])->name('search.contacts');
 
     Route::resource('maintenance', MaintenanceController::class);
+    
+    // Recursos RRHH - Temes Pendents
+    Route::resource('hr_pending_issue', Hr_pending_issueController::class);
 
 });

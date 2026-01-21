@@ -87,6 +87,13 @@ return [
             'url' => env('APP_URL').'/storage',
             'throw' => false,
         ],
+        'hr_pending_issue' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/hr_pending_issue'),
+            'visibility' => 'public',
+            'url' => env('APP_URL').'/storage',
+            'throw' => false,
+        ],
         
 
         's3' => [

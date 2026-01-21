@@ -29,5 +29,8 @@ class Center extends Model
     public function documents_center_info(): HasMany {
         return $this->hasMany(Document_center_info::class);
     }
-
+        public function hr_pending_issues(): HasMany
+    {
+        return $this->hasMany(Hr_pending_issue::class, 'center_id');
+    }
 }
