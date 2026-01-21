@@ -30,11 +30,11 @@
             @include('components.sidebar')
             
             <section class="w-full flex flex-col items-center gap-8 p-4">
-                <div class="w-full max-w-7xl border-b-4 border-[#213c57] flex items-center py-4">
+                <div class="w-11/12 border-b-4 border-[#213c57] flex items-center py-4">
                     <h1 class="text-[#2D3E50] text-4xl pt-7 pb-1">Gestió Documents del Centre</h1>
                 </div>
 
-                <section class="w-full max-w-7xl flex flex-col lg:flex-row gap-6">
+                <section class="w-11/12 flex flex-col lg:flex-row gap-6">
                     <!-- Sección izquierda - Formulario (altura más compacta) -->
                     <aside class="w-full lg:w-1/2 bg-white shadow-lg rounded-lg p-6 flex flex-col h-fit">
                         <form action="{{ route('documents_center.store') }}" method="post" enctype="multipart/form-data" class="flex flex-col">
@@ -216,7 +216,7 @@
                 </section>
 
                 <!-- Sección de últimos archivos subidos -->
-                <section class="w-full max-w-7xl bg-white shadow-lg rounded-lg p-6 mb-8">
+                <section class="w-11/12 bg-white shadow-lg rounded-lg p-6 mb-8">
                     <div class="flex items-center mb-4">
                         <svg class="bg-[#ff7300] rounded-full w-9 h-9 p-2 mr-3 text-white shrink-0">
                             <use xlink:href="#clock_icon"></use>
