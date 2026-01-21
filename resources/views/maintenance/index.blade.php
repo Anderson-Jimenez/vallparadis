@@ -49,15 +49,25 @@
                                 <use xlink:href="#search_loupe"></use>
                             </svg>
                         </div>
+                        <!--link dropdown: https://tailwindcss.com/plus/ui-blocks/application-ui/elements/dropdowns-->
+                        
                         @foreach($maintenances as $maintenance)
                             <div class="bg-white border border-[#ff7300] rounded-lg h-1/3 mt-5 px-3">
                                 @if ($maintenance->status == 'inactive')
-                                    <span class="px-6 py-4 bg-red-500 text-white m-2 rounded-full w-max" >Finalitzat</span>
+                                    <p class="px-3 py-2 bg-red-500 text-white m-4 rounded-full w-max" >Finalitzat</p>
                                 @else
-                                    <p class="px-6 py-4 bg-green-500 text-white rounded-lg m-2 w-max">En progress</p>
+                                    <p class="px-3 py-2 bg-green-500 text-white rounded-full m-4 w-max">En progress</p>
                                 @endif
-                                <h2 class="text-xl">{{$maintenance->name}}</h2>
-                                <p>{{$maintenance->description}}</p>
+                                <p class=" text-2xl pb-3 w-4/5 pl-4">{{$maintenance->name}}</p>
+                                <p class="text-[#2D3E50] pb-3 pl-4">{{$maintenance->description}}</p>
+                                <hr class="mt-12 mx-4">
+                                <a href="{{ route('maintenance.show', $maintenance) }}" class="flex items-center mb-1 mt-4 text-[#ff7300] pl-4">
+                                    
+                                    <svg class="w-5 h-6 mr-2">
+                                        <use xlink:href="#maintenance_icon"></use>
+                                    </svg>
+                                    Veure detalls
+                                </a>
                             </div>
                         @endforeach
                     </div>
