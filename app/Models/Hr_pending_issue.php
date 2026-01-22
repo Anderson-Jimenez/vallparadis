@@ -17,6 +17,7 @@ class Hr_pending_issue extends Model
         'center_id',
         'opened_at',
         'affected_professional_id',
+        'context',
         'description',
         'registered_by_professional_id',
         'derived_to_professional_id',

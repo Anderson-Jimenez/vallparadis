@@ -19,7 +19,7 @@
         <main class="grow flex w-full">
             @include('components.sidebar')
             @yield('contingut')
-                <section class="flex flex-col items-center w-4/5">
+                <section class="flex flex-col items-center w-4/5 flex-1 overflow-hidden min-h-0">
                     <div class="w-full bg-white flex items-center justify-between py-4 px-[5%] shadow-sm">
                         <div>
                             <h1 class="text-[#2D3E50] text-4xl pb-1">Temes Pendents amb RRHH</h1>
@@ -45,7 +45,7 @@
                             </svg>
                         </div>
                         <select class="bg-white border border-gray-300 rounded-lg px-4 py-3 shadow-sm focus:border-[#ff7300] focus:outline-none">
-                            <option>Todos los estados</option>
+                            <option>Tots els estats</option>
                             <option>En process</option>
                             <option>Urgent</option>
                             <option>Finalitzat</option>
@@ -54,35 +54,14 @@
                     </div>
                                         
                     <!-- Lista de temas -->
-                    <div class="w-11/12 flex flex-col space-y-6 mb-10">
+                    <div class="w-11/12 flex flex-col space-y-6 mb-10 overflow-y-auto flex-1 min-h-0">
                         @foreach($hr_pending_issues as $issue)
                             <div class="bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-300">
                                 <!-- Estado -->
-                                <div class="px-6 pt-4">
-                                    @if($issue->status == 'urgent')
-                                        <span class="inline-block px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">
-                                            Urgent
-                                        </span>
-                                    @elseif($issue->status == 'in_process')
-                                        <span class="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
-                                            En process
-                                        </span>
-                                    @elseif($issue->status == 'completed')
-                                        <span class="inline-block px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium">
-                                            Finalitzat
-                                        </span>
-                                    @else
-                                        <span class="inline-block px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-medium">
-                                            Pendent
-                                        </span>
-                                    @endif
-                                </div>
-                                
-                                <div class="p-6">
-                                    <!-- Título y profesional -->
+                                <div class="px-6 pt-4 flex justify-between">
                                     <div class="mb-4">
                                         <h3 class="text-xl font-semibold text-gray-900 mb-1">
-                                            {{ $issue-> }}
+                                            {{ $issue-> context }}
                                         </h3>
                                         <div class="flex items-center text-gray-600 text-sm">
                                             <span class="font-medium">Data Obertura:</span>
@@ -90,22 +69,75 @@
                                         </div>
                                     </div>
                                     
+                                    @if($issue->status == 'urgent')
+                                        <span class=" px-3 py-2 bg-red-100 text-red-800 rounded-2xl text-sm font-medium flex items-center h-max">
+                                            Urgent
+                                        </span>
+                                    @elseif($issue->status == 'in_process')
+                                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-2xl text-sm font-medium flex items-center h-max">
+                                            En process
+                                        </span>
+                                    @elseif($issue->status == 'completed')
+                                        <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-2xl text-sm font-medium flex items-center h-max">
+                                            Finalitzat
+                                        </span>
+                                    @else
+                                        <span class="px-3 bg-orange-100 text-orange-800 rounded-2xl text-sm font-medium inline items-center h-max">
+                                            Pendent
+                                        </span>
+                                    @endif
+                                </div>
+                        
+                                <div class="p-6">
+                                    <!-- Professionals implicats -->
+                                    <div class="flex items-center mb-4 space-x-6 justify-between">
+                                        <div>
+                                            <span class="text-gray-600 text-sm">Registrat per</span>
+                                            <div class="flex items-center w-1/3">
+                                                <svg class="w-5 h-5 text-gray-400 mr-2">
+                                                    <use xlink:href="#professional_icon"></use>
+                                                </svg>
+                                                <span class="text-gray-600 text-sm flex items-center">
+                                                    {{ $issue->registered_by_professional->name }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center w-1/3">
+                                            <svg class="w-5 h-5 text-gray-400 mr-2">
+                                                <use xlink:href="#professional_icon"></use>
+                                            </svg>
+                                            <span class="text-gray-600 text-sm flex items-center">
+                                                {{ $issue->affected_professional->name }}
+                                            </span>
+                                        </div>
+                                        <div class="flex items-center w-1/3">
+                                            <svg class="w-5 h-5 text-gray-400 mr-2">
+                                                <use xlink:href="#professional_icon"></use>
+                                            </svg>
+                                            <span class="text-gray-600 text-sm flex items-center">
+                                                {{ $issue->derived_to_professional?->name ?? 'No derivat' }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    
+                                    
                                     <!-- Descripción -->
+                                    <div class="flex"></div>
                                     <div class="mb-6">
                                         <h4 class="font-medium text-gray-700 mb-2">Descripció</h4>
                                         <p class="text-gray-600 line-clamp-2">
                                             {{ $issue->description }}
                                         </p>
                                     </div>
-                                    
+                                    <hr class="text-gray-300">
                                     <!-- Documentos -->
-                                    <div class="flex items-center justify-between">
+                                    <div class="flex items-center justify-between mt-3">
                                         <div class="flex items-center">
                                             <svg class="w-5 h-5 text-gray-400 mr-2">
-                                                <use xlink:href="#document_icon"></use>
+                                                <use xlink:href="#attached_icon"></use>
                                             </svg>
-                                            <span class="text-gray-600 text-sm">
-                                                [{{ $issue->documents->count() }} document(s) adjunt(s)]
+                                            <span class="text-gray-600 text-sm flex items-center">
+                                                {{ $issue->documents->count() }} document(s) adjunt(s)
                                             </span>
                                         </div>
                                         
@@ -113,7 +145,10 @@
                                         <div class="flex space-x-3">
                                             <a href="{{ route('hr_pending_issue.index', $issue) }}" 
                                                class="text-[#ff7300] hover:text-orange-700 font-medium text-sm px-4 py-2 rounded-lg border border-[#ff7300] hover:bg-orange-50 transition-colors duration-200">
-                                                Veure detalls
+
+                                               
+                                               
+                                               Veure detalls
                                             </a>
                                             <a href="{{ route('hr_pending_issue.index', $issue) }}" 
                                                class="text-gray-700 hover:text-gray-900 font-medium text-sm px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors duration-200">
@@ -122,7 +157,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <hr>
                             </div>
                         @endforeach
                         

@@ -15,7 +15,12 @@ class Hr_pending_issueController extends Controller
 
     public function index()
     {
-        $hr_pending_issues = Hr_pending_issue::with(['affected_professional', 'documents'])->orderBy('opened_at', 'desc')->get();
+        $hr_pending_issues = Hr_pending_issue::with([
+            'registered_by_professional',
+            'affected_professional',
+            'derived_to_professional',
+            'documents'
+        ])->orderBy('opened_at', 'desc')->get();
     
         return view('rrhh.index', compact('hr_pending_issues'));
     }
@@ -38,6 +43,8 @@ class Hr_pending_issueController extends Controller
             'affected_professional_id' => 'required|exists:professionals,id',
             'derived_to_professional_id' => 'nullable|exists:professionals,id',
             'opened_at' => 'required|date',
+            'context' => 'required|string',
+            'status' => 'nullable|in:in_process,urgent,completed',
             'description' => 'required|string',
             'files.*' => 'file|max:10240',
         ]);
@@ -45,7 +52,7 @@ class Hr_pending_issueController extends Controller
 
         $registered_by = Auth::user()->id;
 
-        // Validación personalizada: no puede derivar a sí mismo
+        // No es pot derivar a la mateixa persona que registra l'assumpte
         if ($validated['derived_to_professional_id'] && $validated['derived_to_professional_id'] == $registered_by) {
             return back()->withErrors([
                 'derived_to_professional_id' => 'No es pot derivar a la mateixa persona que registra l\'assumpte.'
@@ -60,7 +67,8 @@ class Hr_pending_issueController extends Controller
             'derived_to_professional_id' => $validated['derived_to_professional_id'],
             'opened_at' => $validated['opened_at'],
             'description' => $validated['description'],
-            'status' => 'in_process',
+            'context' => $validated['context'],
+            'status' => $validated['status'],
         ]);
 
         

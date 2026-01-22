@@ -41,43 +41,62 @@
                 </div>
 
                 <div class="p-8 flex flex-col gap-8">
-                    <!-- Professional afectat -->
+                    <!-- Context -->  
                     <div>
-                        <label class="text-sm text-gray-600">Professional afectat *</label>
-                        <select name="affected_professional_id" required class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1">
-                            @foreach($professionals as $prof)
-                                <option value="{{ $prof->id }}" {{ old('affected_professional_id') == $prof->id ? 'selected' : '' }}>
-                                    {{ $prof->name }}
-                                </option>
-                            @endforeach
-                        </select>
+                        <label class="text-sm text-gray-600">Context *</label>
+                        <input type="text" name="context" required class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1"
+                            value="{{ old('context') }}" placeholder="Breu descripció del tema pendent">
                     </div>
 
-                    <!-- Professional registrador -->
-                    <div class="flex flex-col">
-                        <label class="text-sm text-gray-600">Registrat per *</label>
+                    <div class="flex justify-between gap-6">
+                        <!-- Professional registrador -->
+                        <div class="flex flex-col w-1/3">
+                            <label class="text-sm text-gray-600">Registrat per *</label>
 
-                        <span class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1 bg-amber-50">{{Auth::user()->name}}</span>
+                            <span class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1 bg-amber-50">{{Auth::user()->name}}</span>
+                        </div>
+                        <!-- Professional afectat -->
+                        <div class="w-1/3">
+                            <label class="text-sm text-gray-600">Professional afectat *</label>
+                            <select name="affected_professional_id" required class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1">
+                                @foreach($professionals as $prof)
+                                    <option value="{{ $prof->id }}" {{ old('affected_professional_id') == $prof->id ? 'selected' : '' }}>
+                                        {{ $prof->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <!-- Professional derivat (opcional) -->
+                        <div class="w-1/3">
+                            <label class="text-sm text-gray-600">Derivat a (opcional)</label>
+                            <select name="derived_to_professional_id" class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1">
+                                <option value="">-- Cap --</option>
+                                @foreach($professionals as $prof)
+                                    <option value="{{ $prof->id }}" {{ old('derived_to_professional_id') == $prof->id ? 'selected' : '' }}>
+                                        {{ $prof->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
+                    <div class="flex justify-between gap-6">
+                        <!-- Data d'obertura -->
+                        <div class="w-1/2">
+                            <label class="text-sm text-gray-600">Data d'obertura *</label>
+                            <input type="date" name="opened_at" required class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1"
+                                value="{{ old('opened_at', date('Y-m-d')) }}">
+                        </div>
+                        <div class="w-1/2">
+                            <label class="text-sm text-gray-600">Estat *</label>
+                            <select name="status" required class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1">
+                                <option value="pending" {{ old('status') == 'pending' ? 'selected' : '' }}>Pendent</option>
+                                <option value="in_process" {{ old('status') == 'in_process' ? 'selected' : '' }}>En process</option>
+                                <option value="urgent" {{ old('status') == 'urgent' ? 'selected' : '' }}>Urgent</option>
+                                <option value="completed" {{ old('status') == 'completed' ? 'selected' : '' }}>Finalitzat</option>
+                            </select>
+                        </div>
 
-                    <!-- Professional derivat (opcional) -->
-                    <div>
-                        <label class="text-sm text-gray-600">Derivat a (opcional)</label>
-                        <select name="derived_to_professional_id" class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1">
-                            <option value="">-- Cap --</option>
-                            @foreach($professionals as $prof)
-                                <option value="{{ $prof->id }}" {{ old('derived_to_professional_id') == $prof->id ? 'selected' : '' }}>
-                                    {{ $prof->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <!-- Fecha de apertura -->
-                    <div>
-                        <label class="text-sm text-gray-600">Data d'obertura *</label>
-                        <input type="date" name="opened_at" required class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1"
-                               value="{{ old('opened_at', date('Y-m-d')) }}">
                     </div>
 
                     <!-- Descripción -->
@@ -89,7 +108,7 @@
                     <!-- Arxius  -->
                     <div>
                         <label class="text-sm text-gray-600">Document adjunt</label>
-                        <input type="file" name="files[]" class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1">
+                        <input type="file" name="files[]" multiple class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1">
                     </div>
 
                     <!-- Botones -->
@@ -105,7 +124,6 @@
                             Afegir nou tema pendent
                         </button>
                     </div>
-
                 </div>
             </form>
         </div>

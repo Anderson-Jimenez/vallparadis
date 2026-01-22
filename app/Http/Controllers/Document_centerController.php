@@ -63,7 +63,7 @@ class Document_centerController extends Controller
         ]);
 
         $files = $request->file('files');
-                
+        
         if ($files) {
             foreach ($files as $file) {
                 $name_file = time().'-'. $file->getClientOriginalName();

@@ -24,6 +24,7 @@ return new class extends Migration {
                   ->on('professionals')
                   ->onDelete('restrict');
             
+            $table->string('context'); 
             $table->text('description');
             
             $table->unsignedBigInteger('registered_by_professional_id');
