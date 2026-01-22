@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('maintenance_followups_doc', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('maintenance_followups_id');
-            $table->foreign('maintenance_followups_id')->references('id')->on('maintenance_followups')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('maintenance_followup_id');
+            $table->foreign('maintenance_followup_id')->references('id')->on('maintenance_followups')->onUpdate('cascade')->onDelete('cascade');
             $table->string('name',255);
             $table->string('path',255);
             $table->timestamps();

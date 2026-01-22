@@ -16,7 +16,12 @@ class Maintenance extends Model
         return $this->belongsTo(Center::class);
     }
 
-    public function maintenance_doc(): HasMany {
+    public function maintenance_docs(): HasMany {
         return $this->hasMany(Maintenance_doc::class);
+    }
+
+    public function maintenance_followups(): HasMany
+    {
+        return $this->hasMany(Maintenance_followup::class);
     }
 }
