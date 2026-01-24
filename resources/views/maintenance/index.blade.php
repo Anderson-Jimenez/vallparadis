@@ -38,31 +38,35 @@
                         </a>
                     </div>
                                         
-                    <div class="w-10/12 h-full flex flex-col  bg-[#fef2e6] rounded-xl overflow-auto">
-                        <div class="relative flex items-center mt-10">
+                    <div class="w-10/12 mt-6 mb-3">
+                        <div class="relative">
                             <input type="search" 
                                 id="search_input"
                                 name="text"
                                 placeholder="Cercar manteniments..." 
-                                class="bg-white border border-[#ff7300] rounded-lg px-3 py-1 w-[30vw] h-[5vh]">
-                            <svg class="relative w-6 h-6 txt-orange right-10">
+                                class="bg-white border border-[#ff7300] rounded-lg px-3 py-2 w-full md:w-[30vw]">
+                            <svg class="absolute right-3 top-1/2 transform -translate-y-1/2 w-6 h-6 text-[#ff7300]">
                                 <use xlink:href="#search_loupe"></use>
                             </svg>
                         </div>
-                        <!--link dropdown: https://tailwindcss.com/plus/ui-blocks/application-ui/elements/dropdowns-->
-                        
+                    </div>
+
+                    <!-- Contenedor scrollable de tarjetas -->
+                    <div class="w-10/12 max-h-[80vh] flex flex-col bg-[#fef2e6] rounded-xl overflow-y-auto p-4 space-y-4">
                         @foreach($maintenances as $maintenance)
-                            <div class="bg-white border border-[#ff7300] rounded-lg h-1/3 mt-5 px-3">
+                            <div class="bg-white border border-[#ff7300] rounded-lg px-4 py-3 flex flex-col gap-2">
                                 @if ($maintenance->status == 'inactive')
-                                    <p class="px-3 py-2 bg-red-500 text-white m-4 rounded-full w-max" >Finalitzat</p>
+                                    <p class="px-3 py-1 bg-red-500 text-white rounded-full w-max">Finalitzat</p>
                                 @else
-                                    <p class="px-3 py-2 bg-green-500 text-white rounded-full m-4 w-max">En progress</p>
+                                    <p class="px-3 py-1 bg-green-500 text-white rounded-full w-max">En progress</p>
                                 @endif
-                                <p class=" text-2xl pb-3 w-4/5 pl-4">{{$maintenance->name}}</p>
-                                <p class="text-[#2D3E50] pb-3 pl-4">{{$maintenance->description}}</p>
-                                <hr class="mt-12 mx-4">
-                                <a href="{{ route('maintenance.show', $maintenance) }}" class="flex items-center mb-1 mt-4 text-[#ff7300] pl-4">
-                                    
+
+                                <p class="text-2xl font-semibold">{{$maintenance->name}}</p>
+                                <p class="text-[#2D3E50]">{{$maintenance->description}}</p>
+                                <hr class="mt-2 border-gray-300">
+                                
+                                <a href="{{ route('maintenance.show', $maintenance) }}" 
+                                class="flex items-center mt-2 text-[#ff7300] hover:underline">
                                     <svg class="w-5 h-6 mr-2">
                                         <use xlink:href="#maintenance_icon"></use>
                                     </svg>

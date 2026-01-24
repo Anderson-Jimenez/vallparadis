@@ -95,6 +95,13 @@ return [
             'throw' => false,
         ],
         
+        'maintenance_followups' => [
+            'driver' => 'local',
+            'root' => storage_path('app/maintenance_followups'),
+            'visibility' => 'public',
+            'url' => env('APP_URL') . '/storage',
+            'throw' => false,
+        ],
 
         's3' => [
             'driver' => 's3',
