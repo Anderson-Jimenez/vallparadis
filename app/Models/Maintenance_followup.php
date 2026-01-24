@@ -9,11 +9,16 @@ class Maintenance_followup extends Model
 {
     protected $table = "maintenance_followups";
 
-    protected $fillable = ['maintenance_id','professional_id','date','description'];
+    protected $fillable = ['maintenance_id','professional_id','date','issue','description'];
 
     public function professional(): BelongsTo
     {
         return $this->belongsTo(Professional::class);
+    }
+
+    public function maintenance(): BelongsTo
+    {
+        return $this->belongsTo(Maintenance::class);
     }
 
     public function maintenance_followup_doc(): HasMany {

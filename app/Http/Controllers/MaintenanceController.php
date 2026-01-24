@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Maintenance;
+use App\Models\Maintenance_doc;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -55,7 +56,7 @@ class MaintenanceController extends Controller
                 $storage_path = Storage::disk('maintenance')->putFileAs('', $file, $name_file);
 
                 // Guardar registro en la tabla relacionada
-                $maintenance->maintenance_doc()->create([
+                $maintenance->maintenance_docs()->create([
                     'name' => $file->getClientOriginalName(), // Nombre original del archivo
                     'path' => $storage_path,                 // Ruta de almacenamiento
                 ]);
@@ -71,23 +72,40 @@ class MaintenanceController extends Controller
      */
     public function show(Maintenance $maintenance)
     {
+        
         return view('maintenance.show',['maintenance'=>$maintenance]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Maintenance $maintenance)
     {
-        //
+        return view('maintenance.edit',['maintenance'=>$maintenance]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Maintenance $maintenance)
     {
-        //
+        // Validación de los datos recibidos
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'start_date' => 'required|date',
+            'manager' => 'required|string|max:255',
+            'phone' => 'nullable|string|max:50',
+            'email' => 'nullable|email|max:255',
+            'description' => 'nullable|string',
+        ]);
+
+        // Actualizar los datos del mantenimiento
+        $maintenance->update($validated);
+
+        // Redirigir a la vista del mantenimiento actualizado con mensaje de éxito
+        return redirect()
+            ->route('maintenance.show', $maintenance)
+            ->with('success', 'Manteniment actualitzat correctament.');
     }
 
     /**

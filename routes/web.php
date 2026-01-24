@@ -15,6 +15,9 @@ use App\Http\Controllers\Supplementary_service_followupController;
 use App\Http\Controllers\External_ContactsController;
 use App\Http\Controllers\Document_centerController;
 use App\Http\Controllers\MaintenanceController;
+use App\Http\Controllers\Maintenance_docController;
+use App\Http\Controllers\Maintenance_followupController;
+use App\Http\Controllers\Maintenance_followup_docController;
 
 
 
@@ -111,5 +114,37 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/search-contacts', [External_ContactsController::class, 'search'])->name('search.contacts');
 
     Route::resource('maintenance', MaintenanceController::class);
+    Route::post(
+        '/maintenance/{maintenance}/documents',
+        [Maintenance_docController::class, 'store']
+    )->name('maintenance.documents.store');
+
+    Route::get(
+        '/maintenance/documents/{document}/download',
+        [Maintenance_docController::class, 'download']
+    )->name('maintenance.documents.download');
+
+    Route::get(
+        '/maintenance/{maintenance}/followups',
+        [Maintenance_followupController::class, 'index']
+    )->name('maintenance.followups.index');
+
+    // Crear seguimiento
+    Route::post(
+        '/maintenance/{maintenance}/followup',
+        [Maintenance_followupController::class, 'store']
+    )->name('maintenance.followup.store');
+
+    // Ver seguimiento (opcional)
+    Route::get(
+        '/maintenance-followup/{followup}',
+        [Maintenance_followupController::class, 'show']
+    )->name('maintenance.followup.show');
+
+    // Descargar documento del seguimiento
+    Route::get(
+        '/maintenance-followup-doc/{doc}/download',
+        [Maintenance_followup_docController::class, 'download']
+    )->name('maintenance.followup.doc.download');
 
 });
