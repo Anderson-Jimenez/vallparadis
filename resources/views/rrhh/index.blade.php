@@ -56,12 +56,12 @@
                     <!-- Lista de temas -->
                     <div class="w-11/12 flex flex-col space-y-6 mb-10 overflow-y-auto flex-1 min-h-0">
                         @foreach($hr_pending_issues as $issue)
-                            <div class="bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                            <div class="bg-white rounded-xl shadow-md border border-gray-300 overflow-hidden hover:shadow-lg transition-shadow duration-300">
                                 <!-- Estado -->
-                                <div class="px-6 pt-4 flex justify-between">
+                                <div class="px-6 pt-4 flex justify-between border border-[#f0f0f0] bg-gray-50">
                                     <div class="mb-4">
                                         <h3 class="text-xl font-semibold text-gray-900 mb-1">
-                                            {{ $issue-> context }}
+                                            {{ $issue->context }}
                                         </h3>
                                         <div class="flex items-center text-gray-600 text-sm">
                                             <span class="font-medium">Data Obertura:</span>
@@ -90,36 +90,41 @@
                         
                                 <div class="p-6">
                                     <!-- Professionals implicats -->
-                                    <div class="flex items-center mb-4 space-x-6 justify-between">
+                                    <div class="flex items-center mb-4 space-x-6 justify-start gap-20">
                                         <div>
-                                            <span class="text-gray-600 text-sm">Registrat per</span>
-                                            <div class="flex items-center w-1/3">
-                                                <svg class="w-5 h-5 text-gray-400 mr-2">
+                                            <span class="font-medium text-gray-700">Registrat per</span>
+                                            <div class="flex mt-1 items-center">
+                                                <svg class="w-6 h-6 text-gray-500 mr-2">
                                                     <use xlink:href="#professional_icon"></use>
                                                 </svg>
-                                                <span class="text-gray-600 text-sm flex items-center">
+                                                <span class="text-gray-500 text-sm flex items-center">
                                                     {{ $issue->registered_by_professional->name }}
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="flex items-center w-1/3">
-                                            <svg class="w-5 h-5 text-gray-400 mr-2">
-                                                <use xlink:href="#professional_icon"></use>
-                                            </svg>
-                                            <span class="text-gray-600 text-sm flex items-center">
-                                                {{ $issue->affected_professional->name }}
-                                            </span>
+                                        <div>
+                                            <span class="font-medium text-gray-700">Professional Afectat</span>
+                                            <div class="flex items-center mt-1">
+                                                <svg class="w-5 h-5 text-gray-500 mr-2">
+                                                    <use xlink:href="#professional_icon"></use>
+                                                </svg>
+                                                <span class="text-gray-500 text-sm flex items-center">
+                                                    {{ $issue->affected_professional->name }}
+                                                </span>
+                                            </div>
                                         </div>
-                                        <div class="flex items-center w-1/3">
-                                            <svg class="w-5 h-5 text-gray-400 mr-2">
-                                                <use xlink:href="#professional_icon"></use>
-                                            </svg>
-                                            <span class="text-gray-600 text-sm flex items-center">
-                                                {{ $issue->derived_to_professional?->name ?? 'No derivat' }}
-                                            </span>
+                                        <div>
+                                            <span class="font-medium text-gray-700">Derivat a</span>
+                                            <div class="flex mt-1 items-center">
+                                                <svg class="w-6 h-6 text-gray-500 mr-2">
+                                                    <use xlink:href="#professional_icon"></use>
+                                                </svg>
+                                                <span class="text-gray-500 text-sm flex items-center">
+                                                    {{ $issue->derived_to_professional?->name ?? 'No derivat' }}
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
-                                    
                                     
                                     <!-- Descripción -->
                                     <div class="flex"></div>
@@ -145,9 +150,6 @@
                                         <div class="flex space-x-3">
                                             <a href="{{ route('hr_pending_issue.index', $issue) }}" 
                                                class="text-[#ff7300] hover:text-orange-700 font-medium text-sm px-4 py-2 rounded-lg border border-[#ff7300] hover:bg-orange-50 transition-colors duration-200">
-
-                                               
-                                               
                                                Veure detalls
                                             </a>
                                             <a href="{{ route('hr_pending_issue.index', $issue) }}" 
