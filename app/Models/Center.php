@@ -30,4 +30,8 @@ class Center extends Model
         return $this->hasMany(Document_center_info::class);
     }
 
+    public function recent_activities(): HasMany {
+        return $this->hasMany(Recent_activity::class);
+    }
+
 }
