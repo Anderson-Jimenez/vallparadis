@@ -1,4 +1,4 @@
-//import '@tailwindplus/elements';
+import '@tailwindplus/elements';
 import '../css/app.css';
 import './professional_info.js';
 import './courses_assignment.js';
