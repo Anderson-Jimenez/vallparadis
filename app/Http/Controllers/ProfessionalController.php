@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Professional;
 use App\Models\Monitoring;
+use App\Models\Recent_activity;
 
 use Illuminate\Support\Facades\Storage;
 use App\Models\Uniform;
@@ -56,9 +58,20 @@ class ProfessionalController extends Controller
             'clue_locker' => 'required',
         ]);
         $validated['center_id'] = session('center_id');
+        $validated['occupation'] = ' '; 
         $validated['link_status'] = 'Actiu'; 
         $validated['status'] = 'active'; 
         Professional::create($validated);
+
+        $validated['center_id'] = session('center_id');
+        $validated['link_status'] = 'Actiu'; 
+        $validated['status'] = 'active'; 
+        Recent_activity::create([
+            'center_id' => session('center_id'),
+            'professional_id' => Auth::user()->id,
+            'type' => 'Nou professional registrat',
+            'description' => Auth::user()->name." ha afegit a ".$validated['name']." al equip",
+        ]);
         return redirect()->route('professional.index');
     }
 

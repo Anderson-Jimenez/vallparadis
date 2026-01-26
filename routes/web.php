@@ -19,6 +19,7 @@ use App\Http\Controllers\Hr_pending_issueController;
 use App\Http\Controllers\Maintenance_docController;
 use App\Http\Controllers\Maintenance_followupController;
 use App\Http\Controllers\Maintenance_followup_docController;
+use App\Http\Controllers\Recent_activityController;
 
 
 
@@ -37,9 +38,9 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard.index');
-    })->name('dashboard');
+    Route::resource('recent_activity', Recent_activity::class);
+    Route::get('/dashboard', [Recent_activityController::class, 'index'])
+    ->name('dashboard');
 
     // Vista administrador centers
     Route::resource('center', CenterController::class);

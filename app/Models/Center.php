@@ -33,4 +33,8 @@ class Center extends Model
     {
         return $this->hasMany(Hr_pending_issue::class, 'center_id');
     }
+    public function recent_activities(): HasMany {
+        return $this->hasMany(Recent_activity::class);
+    }
+
 }
