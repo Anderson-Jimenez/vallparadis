@@ -131,6 +131,13 @@
                                                     </svg>
                                                     Veure/Fer Seguiments
                                                 </a>
+
+                                                <a href="{{ route('accidents.index', $professional) }}" class="flex txt-orange items-center px-4 py-4 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
+                                                    <svg class="w-5 h-5 txt-orange mr-2">
+                                                        <use xlink:href="#evaluations_icon"></use>
+                                                    </svg>
+                                                    Accidentabilitat
+                                                </a>
         
                                             </div>
                                         </el-menu>
