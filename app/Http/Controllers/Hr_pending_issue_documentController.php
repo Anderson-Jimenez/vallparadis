@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Hr_pending_issue_document;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class Hr_pending_issue_documentController extends Controller
 {
@@ -61,5 +63,9 @@ class Hr_pending_issue_documentController extends Controller
     public function destroy(Hr_pending_issue_document $hr_pending_issue_document)
     {
         //
+    }
+    public function download(Hr_pending_issue_document $document)
+    {
+        return Storage::disk('hr_pending_issue')->download($document->path);
     }
 }

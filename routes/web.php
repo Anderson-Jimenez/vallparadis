@@ -150,5 +150,5 @@ Route::middleware(['auth'])->group(function () {
     
     // Recursos RRHH - Temes Pendents
     Route::resource('hr_pending_issue', Hr_pending_issueController::class);
-
+    Route::get('/rrhh/documents/{document}/download', [Hr_pending_issueController::class, 'download'])->name('hr_pending_issue.documents.download');
 });

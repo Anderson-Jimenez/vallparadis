@@ -72,7 +72,6 @@ class MaintenanceController extends Controller
      */
     public function show(Maintenance $maintenance)
     {
-        
         return view('maintenance.show',['maintenance'=>$maintenance]);
     }
 
