@@ -19,34 +19,57 @@
     <section class="w-full p-6 space-y-8">
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
 
-            <div class="bg-white rounded-3xl border-l-8 border-[#ff7300] shadow-lg flex h-[25vh] p-10 items-stretch ">
+            <div class="bg-white rounded-3xl border-l-8 border-[#ff7300] shadow-lg flex h-[20vh] pl-6 py-7 items-stretch ">
                 <div class="w-5/6">
-                    <h1 class="txt-orange text-2xl font-semibold">Professionals Actius</h1>
+                    <h1 class="text-gray-600 text-xl font-semibold">Professionals Actius</h1>
                     <p class="text-4xl font-bold mt-5">{{ $professionals_count }}</p>
                 </div>
-                
-                <div class="h-5/6 flex items-center justify-between w-1/4">
-                    
-                    <svg class="w-23 h-23 text-white sidebar-gradient rounded-full">
+
+                <div class="flex justify-end pt-6 pr-4 h-full">
+
+                    <svg class="w-20 h-20 text-white sidebar-gradient rounded-full p-4">
                         <use xlink:href="#professionals_icon"></use>
                     </svg>
                 </div>
                 
             </div>
 
-            <div class="bg-white rounded-3xl border-l-7 border-[#ff7300] shadow-lg flex flex-col justify-center items-center h-[25vh]">
-                <h1 class="txt-orange text-2xl font-semibold">Projectes en procés</h1>
-                <p class="text-4xl font-bold mt-2">{{ $projects_count }}</p>
+            <div class="bg-white rounded-3xl border-l-8 border-[#ff7300] shadow-lg flex h-[20vh] pl-6 py-7 items-stretch">
+                <div class="w-5/6">
+                    <h1 class="text-gray-600 text-xl font-semibold">Projectes en procés</h1>
+                    <p class="text-4xl font-bold mt-5">{{ $projects_count }}</p>
+                </div>
+
+                <div class="flex justify-end pt-6 pr-4 h-full">
+                    <svg class="w-20 h-20 text-white sidebar-gradient rounded-full p-4">
+                        <use xlink:href="#project_icon"></use>
+                    </svg>
+                </div>
+
             </div>
 
-            <div class="bg-white rounded-3xl border-l-7 border-[#ff7300] shadow-lg flex flex-col justify-center items-center h-[25vh]">
-                <h1 class="txt-orange text-2xl font-semibold">Cursos Actius</h1>
-                <p class="text-4xl font-bold mt-2">{{ $courses_count }}</p>
+            <div class="bg-white rounded-3xl border-l-8 border-[#ff7300] shadow-lg flex h-[20vh] pl-6 py-7 items-stretch">
+                <div class="w-5/6">
+                    <h1 class="txt-orange text-2xl font-semibold">Cursos Actius</h1>
+                    <p class="text-4xl font-bold mt-2">{{ $courses_count }}</p>
+                </div>
+                <div class="flex justify-end pt-6 pr-4 h-full">
+                    <svg class="w-20 h-20 text-white sidebar-gradient rounded-full p-4">
+                        <use xlink:href="#courses_icon"></use>
+                    </svg>
+                </div>
             </div>
 
-            <div class="bg-white rounded-3xl border-l-7 border-[#ff7300] shadow-lg flex flex-col justify-center items-center h-[25vh]">
-                <h1 class="txt-orange text-2xl font-semibold">Documents centre</h1>
-                <p class="text-4xl font-bold mt-2">{{ $document_count }}</p>
+            <div class="bg-white rounded-3xl border-l-8 border-[#ff7300] shadow-lg flex h-[20vh] pl-6 py-7 items-stretch">
+                <div class="w-5/6">
+                    <h1 class="txt-orange text-2xl font-semibold">Documents centre</h1>
+                    <p class="text-4xl font-bold mt-2">{{ $document_count }}</p>
+                </div>
+                <div class="flex justify-end pt-6 pr-4 h-full">
+                    <svg class="w-20 h-20 text-white sidebar-gradient rounded-full p-4">
+                        <use xlink:href="#documents_icon"></use>
+                    </svg>
+                </div>
             </div>
         </div>
 
