@@ -28,11 +28,10 @@
                     
                     <label for="password" class ="text-login w-full my-1 text-left pl-[2vw]">Contrasenya</label>
                     <input type="password" name="password" class="w-4/5 bg-black-transparent h-8 rounded-3xl my-1 p-5">
-                    <a href="#" class="text-login text-sm underline p-2 w-full my-1">Has oblidat la contrasenya?</a>
                     <input type="submit" value="Iniciar sesión" class="bg-[#FF7400] rounded-2xl text-sm text-white w-[10vw] h-[5vh] hover:bg-[#f8c49a] cursor-pointer transition duration-500"/>
                 </form>
             </section>
-    </div>
+        </div>
     </main>
 </body>
 

@@ -8,7 +8,7 @@
     @vite("resources/css/app.css")
 
 </head>
-<body class="min-h-screen flex flex-col ">
+<body class="min-h-screen flex flex-col bg-body">
     @include('partials.icons')     
     @auth
         @if ($errors->any())
@@ -22,9 +22,12 @@
             @yield('contingut')
                 <section class="flex flex-col items-center w-full">
                     @if ($centers->count() == 1)
-                        <h1 class="txt-orange text-4xl w-10/12 text-left py-4 pt-10 border-b-2 border-[#        ]">
-                            Gestió Centre
-                        </h1>
+                    <div class="w-full bg-white flex items-center justify-between py-4 px-[5%] shadow-sm">
+                        <div>
+                            <h1 class="text-[#2D3E50] text-4xl pb-1">Gestió Centre</h1>
+                            <p class="text-[#2d3e50b7] text-lg pl-2">Administracio i modificacio de centres</p>
+                        </div>
+                    </div>
                         @php $center = $centers->first(); @endphp
                         <div class="flex w-9/12 justify-around">
                             <div class="p-6 my-10 bg-white shadow-md rounded-xl w-3/6 flex flex-col gap-3 border border-[#ff7300] hover:shadow-xl transition hover:scale-105 ">
