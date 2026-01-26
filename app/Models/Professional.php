@@ -9,7 +9,7 @@ class Professional extends Authenticatable
 {
     protected $table = "professionals";
 
-    protected $fillable = ['center_id','name','surnames','username','password','phone_number','email_address','address','number_locker','clue_locker','link_status','status'];
+    protected $fillable = ['center_id','name','surnames','username','password','phone_number','email_address','address','number_locker','occupation','clue_locker','link_status','status'];
 
     protected $hidden = ['password'];
 
@@ -46,6 +46,10 @@ class Professional extends Authenticatable
     public function maintenance_followups(): HasMany
     {
         return $this->HasMany(Maintenance_followup::class);
+    }
+    public function recent_activities(): HasMany
+    {
+        return $this->HasMany(Recent_Activity::class);
     }
     public function affectedIssues(): HasMany
     {
