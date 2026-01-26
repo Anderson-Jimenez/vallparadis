@@ -148,11 +148,11 @@
                                         
                                         <!-- Accions -->
                                         <div class="flex space-x-3">
-                                            <a href="{{ route('hr_pending_issue.index', $issue) }}" 
+                                            <a href="{{ route('hr_pending_issue.show', $issue) }}" 
                                                class="text-[#ff7300] hover:text-orange-700 font-medium text-sm px-4 py-2 rounded-lg border border-[#ff7300] hover:bg-orange-50 transition-colors duration-200">
                                                Veure detalls
                                             </a>
-                                            <a href="{{ route('hr_pending_issue.index', $issue) }}" 
+                                            <a href="{{ route('hr_pending_issue.edit', $issue) }}" 
                                                class="text-gray-700 hover:text-gray-900 font-medium text-sm px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors duration-200">
                                                 Editar
                                             </a>
