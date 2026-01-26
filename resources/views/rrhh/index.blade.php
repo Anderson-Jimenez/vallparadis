@@ -16,10 +16,10 @@
             @endforeach
         @endif
         @include('components.navbar')
-        <main class="grow flex w-full">
+        <main class="grow flex w-full flex-1">
             @include('components.sidebar')
             @yield('contingut')
-                <section class="flex flex-col items-center w-4/5 flex-1 overflow-hidden min-h-0">
+                <section class="flex flex-col items-center w-full flex-1 overflow-y-auto min-h-0">
                     <div class="w-full bg-white flex items-center justify-between py-4 px-[5%] shadow-sm">
                         <div>
                             <h1 class="text-[#2D3E50] text-4xl pb-1">Temes Pendents amb RRHH</h1>

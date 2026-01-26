@@ -7,7 +7,7 @@
     @vite("resources/css/app.css")
 </head>
 
-<body class="bg-body">
+<body class="bg-body min-h-screen flex flex-col">
 @include('partials.icons')
 
 @auth
