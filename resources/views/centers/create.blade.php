@@ -1,46 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Afegir centres</title>
-    @vite("resources/css/app.css")
+    <title>Afegir nou centre</title>
+    @vite('resources/css/app.css')
 </head>
-<body class="min-h-screen flex flex-col bg-[#2D3E50]">
-   @auth
-        @if ($errors->any())
+
+<body class="bg-orange-50 min-h-screen">
+
+@auth
+    @if ($errors->any())
+        <ul class="mb-4 px-10">
             @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+                <li class="text-red-500">{{ $error }}</li>
             @endforeach
-        @endif
-        @include('components.navbar')
-        @yield('contingut')
-            <main class="flex-grow flex flex-col items-center w-full py-10">
-                <h1 class="text-white text-3xl w-10/12 text-center p-10 border-b-6 border-[#ff7300]">Formulari afegir nou centre</h1>
-                <form action="{{ route('center.store') }}" method="POST" class="m-10 flex flex-col w-5/12 p-10  bg-black-transparent rounded-3xl">
-                    @csrf
+        </ul>
+    @endif
 
-                    <label for="center_name" class="text-white text-xl">Nom del centre:</label>
-                    <input type="text" name="center_name" id="center_name" value="{{ old('center_name') }}" required class="bg-white-transparent p-3 mb-2 text-white rounded-3xl">
+    @include('components.navbar')
 
-                    <label for="location" class="text-white text-xl">Ubicació:</label>
-                    <input type="text" name="location" id="location" value="{{ old('location') }}" required class="bg-white-transparent p-3 mb-2 text-white rounded-3xl">
+    <main class="flex justify-center py-10">
+        <div class="w-3/4">
+            <h1 class="text-2xl font-semibold">Afegir nou centre</h1>
+            <p class="text-gray-500 mb-6">
+                Ompliu la informació per crear un nou centre
+            </p>
 
-                    <label for="phone_number" class="text-white text-xl">Telèfon:</label>
-                    <input type="text" name="phone_number" id="phone_number" value="{{ old('phone_number') }}" required class="bg-white-transparent p-3 mb-2 text-white rounded-3xl">
+            <!-- Formulario -->
+            <form action="{{ route('center.store') }}" method="POST" class="bg-white rounded-lg shadow overflow-hidden">
+                @csrf
 
-                    <label for="email_address" class="text-white text-xl">Correu electrònic:</label>
-                    <input type="email" name="email_address" id="email_address" value="{{ old('email_address') }}" required class="bg-white-transparent p-3 mb-2 text-white rounded-3xl">
+                <div class="bg-orange-500 text-white px-6 py-3">
+                    <p class="font-semibold">Informació del centre</p>
+                    <p class="text-sm opacity-80">Els camps marcats amb * són obligatoris</p>
+                </div>
+                <div class="p-8 flex flex-col gap-8">
 
-                    <button type="submit" class="m-5 text-lg text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300] transition-all duration-300 rounded-full p-5">Crear centre</button>
-                </form>
-            </main>
-    @endauth
+                    <div>
+                        <label class="text-sm text-gray-600">Nom del centre *</label>
+                        <input
+                            type="text"
+                            name="center_name"
+                            required
+                            value="{{ old('center_name') }}"
+                            class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1"
+                            placeholder="Nom del centre">
+                    </div>
 
-    @guest
-        <h1>No has iniciado sesión.</h1>
-        <meta http-equiv="refresh" content="2; URL={{ route('login') }}" />
-    @endguest
+                    <div>
+                        <label class="text-sm text-gray-600">Ubicació *</label>
+                        <input
+                            type="text"
+                            name="location"
+                            required
+                            value="{{ old('location') }}"
+                            class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1"
+                            placeholder="Adreça o ciutat">
+                    </div>
+
+                    <div class="flex gap-6">
+                        <div class="w-1/2">
+                            <label class="text-sm text-gray-600">Telèfon *</label>
+                            <input
+                                type="text"
+                                name="phone_number"
+                                required
+                                value="{{ old('phone_number') }}"
+                                class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1"
+                                placeholder="Número de telèfon">
+                        </div>
+
+                        <div class="w-1/2">
+                            <label class="text-sm text-gray-600">Correu electrònic *</label>
+                            <input type="email" name="email_address" required value="{{ old('email_address') }}" class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1"
+                                placeholder="email@centre.com">
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center border-t pt-6">
+                        <a href="{{ route('center.index') }}"
+                           class="border border-orange-500 text-orange-500 hover:underline px-6 py-4 rounded-xl">
+                            Cancel·lar
+                        </a>
+
+                        <button type="submit"
+                                class="bg-orange-500 text-white px-6 py-4 rounded-md hover:bg-white hover:text-orange-500 hover:border-orange-500 border transition flex items-center">
+                            Crear centre
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </main>
+@endauth
+
+@guest
+    <h1>No has iniciat sessió.</h1>
+    <meta http-equiv="refresh" content="2; URL={{ route('login') }}">
+@endguest
+
 </body>
 </html>

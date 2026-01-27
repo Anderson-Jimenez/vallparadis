@@ -26,3 +26,13 @@
 .bg-body{
     background-color: #FEF2E6;
 }
+.center-item.active {
+    background-color: #eff6ff;
+    border-color: #3b82f6;
+}
+#center-detail {
+    transition: all 0.3s ease-in-out;
+}
+.flex-grow {
+    flex-grow: 1;
+}

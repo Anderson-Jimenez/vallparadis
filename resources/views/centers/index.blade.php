@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Gestió Centre</title>
     @vite(['resources/css/app.css', 'resources/js/centers.js'])
 
@@ -22,7 +23,7 @@
             @yield('contingut')
                 @if ($centers->count() == 1)
                     <section class="flex flex-col items-center w-full">
-                        <div class="w-full bg-white flex items-center justify-between py-4 px-[5%] shadow-sm">
+                        <div class="w-full bg-white flex items-center justify-between py-4 px-10 shadow-sm border-b-2 border-gray-300">
                             <div>
                                 <h1 class="text-[#2D3E50] text-4xl pb-1">Gestió Centre</h1>
                                 <p class="text-[#2d3e50b7] text-lg pl-2">Administracio i modificacio de centres</p>
@@ -121,37 +122,35 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="mt-4 flex gap-6">
-                                    
-                                </div>
                             </div>
                         </div>
                     </section>    
                 @else
                     <section class="flex flex-col items-center w-full">
-                        <div class="w-full bg-white flex items-center justify-between py-4 px-7 shadow-sm border-b-2 border-gray-300 ">
+                        <div class="w-full bg-white flex items-center justify-between py-4 px-10 shadow-sm border-b-2 border-gray-300">
                             <div>
                                 <h1 class="text-[#2D3E50] text-4xl pb-1">Gestió Centre</h1>
                                 <p class="text-[#2d3e50b7] text-lg pl-2">Administracio i modificacio de centres</p>
                             </div>
                             <a href="{{route('center.create')}}" 
-                                class=" text-white sidebar-gradient hover:opacity-40 transition-all duration-300 rounded-lg px-5 py-3 text-base">
+                                class="text-sm text-white sidebar-gradient hover:opacity-40 transition-all duration-300 rounded-lg p-4">
                                 <svg class="w-5 h-5 inline-block mr-2">
                                     <use xlink:href="#add_icon"></use>
                                 </svg>
                                 Afegir centre
                             </a>
                         </div>
-                        <section class="flex w-full">
-                            <aside class="flex flex-col w-1/5 bg-white h-screen justify-start">
-                                <div class="p-6 border-b border-gray-300 mb-3">
+                        
+                        <section class="flex w-full h-full">
+                            <aside class="flex flex-col w-1/4 bg-white h-auto border-r border-gray-300">
+                                <div class="p-6 border-b border-gray-300">
                                     <h2 class="text-2xl font-semibold text-gray-700">Llista de Centres</h2>
-                                    <p class="text-gray-500">Gestiona els centres des da aquesta secció.</p>
+                                    <p class="text-gray-500">Gestiona els centres des d'aquesta secció.</p>
                                 </div>
-                                <div class="flex flex-col overflow-y-auto">
+                                <div class="flex flex-col overflow-y-auto p-3">
                                     @foreach ($centers as $center)
                                         <div
-                                            class="center-item mx-3 my-1 rounded-lg cursor-pointer p-4 border border-gray-300 hover:bg-gray-100"
+                                            class="center-item mx-1 my-2 rounded-lg cursor-pointer p-4 border border-gray-300 hover:bg-gray-50 transition-all duration-200"
                                             data-id="{{ $center->id }}"
                                             data-name="{{ $center->center_name }}"
                                             data-location="{{ $center->location }}"
@@ -168,44 +167,27 @@
                                                 <span class="text-red-600 text-base pl-2">● Inactiu</span>
                                             @endif
                                         </div>
-                                
                                     @endforeach
                                 </div>
                             </aside>
-                            <section id="center-detail" class="w-4/6 p-6 hidden">
-                                <div class="bg-white shadow-md rounded-xl p-6">
-                                    <h2 id="detail-name" class="text-3xl font-bold mb-4"></h2>
+                            
+                            
+                            <section id="center-detail" class="w-3/4 p-6 hidden">
+                                <div id="detail-content" class="hidden">
 
-                                    <div class="grid grid-cols-2 gap-6">
-                                        <div>
-                                            <h3 class="font-semibold text-gray-700">Ubicació</h3>
-                                            <p id="detail-location"></p>
-                                        </div>
-
-                                        <div>
-                                            <h3 class="font-semibold text-gray-700">Telèfon</h3>
-                                            <p id="detail-phone"></p>
-                                        </div>
-
-                                        <div>
-                                            <h3 class="font-semibold text-gray-700">Email</h3>
-                                            <p id="detail-email"></p>
-                                        </div>
-
-                                        <div>
-                                            <h3 class="font-semibold text-gray-700">Estat</h3>
-                                            <p id="detail-status"></p>
-                                        </div>
-                                    </div>
+                                </div>
+                                
+                                <div id="no-center-selected" class="flex flex-col items-center justify-center h-full text-gray-500">
+                                    <svg class="w-24 h-24 mb-4 text-gray-300">
+                                        <use xlink:href="#building_icon"></use>
+                                    </svg>
+                                    <h2 class="text-2xl font-semibold mb-2">Selecciona un centre</h2>
+                                    <p class="text-lg">Fes clic en un centre de la llista per veure'n els detalls.</p>
                                 </div>
                             </section>
                         </section>
                     </section>
                 @endif
-
-
-
-                
         </main>
 
     @endauth
