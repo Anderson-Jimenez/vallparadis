@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestió Serveis Generals</title>
-    @vite("resources/css/app.css")
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="min-h-screen flex flex-col bg-body">
     @include('partials.icons')
@@ -27,7 +27,6 @@
 
             <div class="flex flex-col w-full items-center">
 
-                {{-- Header --}}
                 <div class="flex items-center mb-8 bg-white py-4 px-10 w-full">
                     <div>
                         <h1 class="text-3xl font-bold text-gray-800">Gestió Serveis Generals</h1>
@@ -131,7 +130,7 @@
                                                     @if($service->manager)
                                                         <div class="flex items-center">
                                                             <svg class="w-4 h-4 text-gray-400 mr-2 shrink-0">
-                                                                <use xlink:href="#user_icon"></use>
+                                                                <use xlink:href="#professionals_icon"></use>
                                                             </svg>
                                                             <span class="text-sm text-gray-600">
                                                                 {{ $service->manager }}
@@ -154,7 +153,7 @@
                                                 @if($service->staff)
                                                     <div class="flex items-start mb-2">
                                                         <svg class="w-4 h-4 text-gray-400 mt-1 mr-2 shrink-0">
-                                                            <use xlink:href="#staff_icon"></use>
+                                                            <use xlink:href="#professional_icon"></use>
                                                         </svg>
                                                         <p class="text-gray-600 text-sm line-clamp-2">
                                                             {{ $service->staff }}
@@ -165,7 +164,7 @@
                                                 @if($service->schedule)
                                                     <div class="flex items-start">
                                                         <svg class="w-4 h-4 text-gray-400 mt-1 mr-2 shrink-0">
-                                                            <use xlink:href="#schedule_icon"></use>
+                                                            <use xlink:href="#project_icon"></use>
                                                         </svg>
                                                         <p class="text-gray-600 text-sm line-clamp-2">
                                                             {{ $service->schedule }}
@@ -175,13 +174,39 @@
                                             </div>
 
                                             <div class="ml-4 flex items-start">
-                                                <a href="{{ route('general_service.edit', $service) }}" 
-                                                   class="flex items-center justify-center w-10 h-10 text-gray-400 hover:text-orange-500 hover:bg-orange-50 rounded-lg transition-all duration-300"
-                                                   title="Editar servei">
-                                                    <svg class="w-7 h-7">
-                                                        <use xlink:href="#edit_icon"></use>
-                                                    </svg>
-                                                </a>
+
+                                                <el-dropdown class="inline-block rounded-tl-xl rounded-bl-xl">
+                                                    <button class="text-white flex items-center rounded-tl-xl rounded-xl w-full justify-center gap-x-1.5  bg-[#ff7300] px-3 py-2 text-sm font-semibold shadow-xs inset-ring-1  hover:bg-[#FEAB51]">
+                                                        Opcions de servei
+                                                        <svg class="w-7 h-7 text-white">
+                                                            <use xlink:href="#dropdown_arrow"></use>
+                                                        </svg>
+                                                    </button>
+
+                                                    <el-menu anchor="bottom end" popover class="w-56 origin-top-right rounded-md bg-white shadow-lg outline-1 outline-black/5 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
+                                                        <div class="py-1">
+                                                            <a href="{{ route('general_service.index', $service) }}" class="followup-service flex txt-orange items-center px-4 py-4 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
+                                                                <svg class="w-5 h-5 txt-orange mr-2">
+                                                                    <use xlink:href="#evaluations_icon"></use>
+                                                                </svg>
+                                                                Veure detalls del servei
+                                                            </a>
+                                                            <a href="{{ route('general_service.index', $service) }}" class="followup-service flex txt-orange items-center px-4 py-4 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
+                                                                <svg class="w-5 h-5 txt-orange mr-2">
+                                                                    <use xlink:href="#evaluations_icon"></use>
+                                                                </svg>
+                                                                Editar servei
+                                                            </a>
+                                                            <a href="{{ route('general_service_followup.index', $service) }}" class="followup-service flex txt-orange items-center px-4 py-4 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
+                                                                <svg class="w-5 h-5 txt-orange mr-2">
+                                                                    <use xlink:href="#evaluations_icon"></use>
+                                                                </svg>
+                                                                Fer/Veure seguiments
+                                                            </a>
+
+                                                        </div>
+                                                    </el-menu>
+                                                </el-dropdown>
                                             </div>
                                         </div>
                                     @endforeach
