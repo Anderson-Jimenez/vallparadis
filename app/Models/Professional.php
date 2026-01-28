@@ -67,4 +67,17 @@ class Professional extends Authenticatable
     {
         return $this->hasMany(Hr_pending_issue_followup::class, 'professional_id');
     }
+
+    public function affected_prof_accident(): HasMany
+    {
+        return $this->hasMany(Accident::class, 'affected_professional_id');
+    }
+    public function registered_prof_accident(): HasMany
+    {
+        return $this->hasMany(Accident::class, 'registered_professional_id');
+    }
+    public function accident_followups(): HasMany
+    {
+        return $this->HasMany(Accident_followup::class);
+    }
 }

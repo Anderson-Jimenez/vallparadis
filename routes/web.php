@@ -20,7 +20,7 @@ use App\Http\Controllers\Maintenance_docController;
 use App\Http\Controllers\Maintenance_followupController;
 use App\Http\Controllers\Maintenance_followup_docController;
 use App\Http\Controllers\Recent_activityController;
-use App\Models\Project_comission_document;
+
 
 
 
@@ -152,5 +152,5 @@ Route::middleware(['auth'])->group(function () {
     
     // Recursos RRHH - Temes Pendents
     Route::resource('hr_pending_issue', Hr_pending_issueController::class);
-    Route::get('/rrhh/documents/{document}/download', [Hr_pending_issueController::class, 'download'])->name('hr_pending_issue.documents.download');
+
 });
