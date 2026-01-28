@@ -41,7 +41,7 @@ class Project_comissionController extends Controller
             'description' => 'required',
             'observation' => 'required',
             'type' => 'required',
-            'path.*' => 'file|mimes:pdf,doc,docx,txt|max:5120',
+            'path.*' => 'file|max:5120',
         ]);
         //Subir proyecto
         $validated['center_id'] = session('center_id');
@@ -101,7 +101,7 @@ class Project_comissionController extends Controller
         'description' => 'required',
         'observation' => 'required',
         'type' => 'required',
-        'path.*' => 'file|mimes:pdf,doc,docx,txt|max:5120',
+        'path.*' => 'file|max:5120',
         ]);
         //Subir proyecto
         $validated['center_id'] = session('center_id');
@@ -115,8 +115,8 @@ class Project_comissionController extends Controller
                 $name_file = time().'-'. $file->getClientOriginalName();
                 $storage_path = Storage::disk('projects_comissions')->putFileAs('', $file, $name_file);
                 $project_comission->projects_comissions_documents()->create([
-                    'name' => $project->name, // Nombre del proyecto como nombre del documento
-                    'path' => $storage_path,  // Ruta del archivo
+                    'name' => $project_comission->name, 
+                    'path' => $storage_path,  
                 ]);
             }
         }

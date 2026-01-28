@@ -153,6 +153,7 @@ Route::middleware(['auth'])->group(function () {
     
     // Recursos RRHH - Temes Pendents
     Route::resource('hr_pending_issue', Hr_pending_issueController::class);
+    Route::get('/hr_pending_issue/documents/{document}/download', [Hr_pending_issueController::class, 'download'])->name('hr_pending_issue.documents.download');
 
     Route::resource('accidents', AccidentsController::class);
     Route::get('/professionals/{professional}/accidents', [AccidentsController::class, 'index'])->name('professionals.accidents.index');
