@@ -1,69 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Afegir projecte/comissio</title>
-    @vite("resources/css/app.css")
+    <title>Editar projecte / comissió</title>
+    @vite('resources/css/app.css')
 </head>
-<body class="min-h-screen flex flex-col bg-[#2D3E50]">
-    @auth
-        @if ($errors->any())
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        @endif
-        @include('components.navbar')
-        @yield('contingut')
-            <main class="flex flex-col items-center w-full py-10">
-                <h1 class="text-white text-3xl w-10/12 text-center p-10 border-b-6 border-[#ff7300]">Formulari modificar projecte / comissió</h1>
-                <form action="{{ route('project_comission.update', $project_comission) }}" method="POST" enctype="multipart/form-data" class="m-10 flex flex-wrap w-5/12 p-10  bg-black-transparent rounded-3xl">
-                    @csrf
-                    @method('PUT')
-                    <label for="name" class="text-white text-xl w-full">Nom del projecte:</label>
-                    <input type="text" name="name" id="name" value="{{ $project_comission->name }}" required class="w-full bg-white-transparent p-3 my-3 text-black rounded-3xl cursor-pointer">
 
-                    <label for="professional_manager_id" class="text-white text-xl w-full">Manager del projecte:</label>
-                    <select name="professional_manager_id" id="professional_manager_id" required class="w-full bg-white-transparent p-3 my-3 text-black rounded-3xl cursor-pointer">
-                        <option value="{{ $project_comission->professional_manager_id }}">{{ $professional_name }}</option>
-                        @foreach ($professionals as $professional)
-                            <option value="{{ $professional->id }}" {{ old('professional_manager_id')}}>{{ $professional->name }} {{ $professional->surnames }}</option>
-                        @endforeach
-                    </select>
+<body class="bg-orange-50 min-h-screen">
 
-                    <label for="start_date" class="text-white text-xl w-full">Data d'inici:</label>
-                    <input type="date" name="start_date" id="start_date" value="{{ $project_comission->start_date }}" required class="w-full bg-white-transparent p-3 my-3 text-black rounded-3xl cursor-pointer">
+@include('components.navbar')
 
-                    <label for="description" class="text-white text-xl w-full">Descripció:</label>
-                    <textarea name="description" id="description" rows="4" required class="w-full bg-white-transparent p-3 my-3 text-black rounded-3xl cursor-pointer">{{ $project_comission->description }}</textarea>
+@auth
 
-                    <label for="observation" class="text-white text-xl w-full">Observacions:</label>
-                    <textarea name="observation" id="observation" rows="4" required class="w-full bg-white-transparent p-3 my-3 text-black rounded-3xl cursor-pointer">{{ $project_comission->observation }}</textarea>
+@if ($errors->any())
+    <ul class="mb-4 px-10">
+        @foreach ($errors->all() as $error)
+            <li class="text-red-500">{{ $error }}</li>
+        @endforeach
+    </ul>
+@endif
 
-                    <span class="text-white text-xl w-full my-3">Tipus:</span>
+<main class="flex justify-center py-10">
+    <div class="w-3/4">
 
-                    <label for="projecte" class="text-white text-xl my-3">Projecte</label>
-                    <input type="radio" id="projecte" name="type" value="Projecte" 
-                        {{ $project_comission->type == 'Projecte' ? 'checked' : '' }} required class="m-2 w-[1vw] cursor-pointer">
-                    
-                    <label for="comissio" class="text-white text-xl my-3">Comissió</label>
-                    <input type="radio" id="comissio" name="type" value="Comissió" 
-                        {{ $project_comission->type == 'Comissió' ? 'checked' : '' }} class="m-2 w-[1vw] cursor-pointer">
-                    
+        <form action="{{ route('project_comission.update', $project_comission) }}" method="POST" enctype="multipart/form-data" class="bg-white rounded-lg shadow overflow-hidden">
+            @csrf
+            @method('PUT')
 
-                    <span class="text-white text-xl w-full my-3">Pujar fitxer</span> 
-                    <input type="file" name="path[]" id="path" multiple class="w-full bg-white-transparent p-3 my-3 text-black rounded-3xl cursor-pointer">
+            <div class="bg-orange-500 text-white px-6 py-3">
+                <p class="font-semibold">Editar projecte / comissió</p>
+            </div>
 
-                    <button type="submit" class="m-5 text-lg text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300] transition-all duration-300 rounded-full p-5 w-full">Modificar Projecte</button>
-                </form>
-            </main>
-        
-    @endauth
+            <div class="p-8 flex flex-col gap-8">
 
-    @guest
-        <h1>No has iniciado sesión.</h1>
-        <meta http-equiv="refresh" content="2; URL={{ route('login') }}" />
-    @endguest
+                <section class="flex flex-col gap-4">
+                    <h2 class="font-semibold text-gray-700">Informació bàsica</h2>
+
+                    <div>
+                        <label class="text-sm text-gray-600">Nom del projecte *</label>
+                        <input name="name" required class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1" value="{{ old('name', $project_comission->name) }}">
+                    </div>
+
+                    <div>
+                        <label class="text-sm text-gray-600">Manager del projecte *</label>
+                        <select name="professional_manager_id"
+                                required
+                                class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1">
+                            @foreach ($professionals as $professional)
+                                <option value="{{ $professional->id }}"
+                                    {{ $project_comission->professional_manager_id == $professional->id ? 'selected' : '' }}>
+                                    {{ $professional->name }} {{ $professional->surnames }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="w-full">
+                        <label class="text-sm text-gray-600">Data d'inici *</label>
+                        <input type="date"
+                               name="start_date"
+                               required
+                               class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1"
+                               value="{{ old('start_date', $project_comission->start_date) }}">
+                    </div>
+                </section>
+
+                <section class="flex flex-col gap-4">
+                    <h2 class="font-semibold text-gray-700">Tipus</h2>
+
+                    <div class="flex gap-6">
+                        <label class="flex items-center gap-2">
+                            <input type="radio"
+                                   name="type"
+                                   value="Projecte"
+                                   {{ $project_comission->type === 'Projecte' ? 'checked' : '' }}>
+                            <span>Projecte</span>
+                        </label>
+
+                        <label class="flex items-center gap-2">
+                            <input type="radio"
+                                   name="type"
+                                   value="Comissió"
+                                   {{ $project_comission->type === 'Comissió' ? 'checked' : '' }}>
+                            <span>Comissió</span>
+                        </label>
+                    </div>
+                </section>
+
+                <section class="flex flex-col gap-4">
+                    <h2 class="font-semibold text-gray-700">Descripció</h2>
+                    <textarea name="description" rows="4" required class="w-full border-2 border-gray-200 rounded-md px-3 py-2">{{ old('description', $project_comission->description) }}</textarea>
+                </section>
+
+                <section class="flex flex-col gap-4">
+                    <h2 class="font-semibold text-gray-700">Observacions</h2>
+
+                    <textarea name="observation" rows="4"
+                        class="w-full border-2 border-gray-200 rounded-md px-3 py-2">{{ old('observation', $project_comission->observation) }}</textarea>
+                </section>
+
+                <section class="flex flex-col gap-4">
+                    <h2 class="font-semibold text-gray-700">Documents adjunts</h2>
+
+                    <input type="file" name="path[]" multiple class="w-full border-2 border-gray-200 rounded-md px-3 py-2">
+                </section>
+
+                <div class="flex justify-between items-center border-t pt-6">
+                    <a href="{{ route('project_comission.index', $project_comission) }}"
+                       class="border border-orange-500 text-orange-500 hover:underline px-6 py-4 rounded-xl">
+                        Cancel·lar edició
+                    </a>
+
+                    <button type="submit"
+                            class="bg-orange-500 text-white px-6 py-4 rounded-md hover:bg-white hover:text-orange-500 hover:border-orange-500 border transition">
+                        Guardar canvis
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</main>
+
+@endauth
+
+@guest
+    <h1>No has iniciat sessió.</h1>
+    <meta http-equiv="refresh" content="2; URL={{ route('login') }}">
+@endguest
+
 </body>
 </html>

@@ -20,7 +20,6 @@ use App\Http\Controllers\Maintenance_docController;
 use App\Http\Controllers\Maintenance_followupController;
 use App\Http\Controllers\Maintenance_followup_docController;
 use App\Http\Controllers\Recent_activityController;
-use App\Http\Controllers\AccidentsController;
 
 
 
@@ -73,6 +72,7 @@ Route::middleware(['auth'])->group(function () {
     //Projectes i comissions
     Route::resource('project_comission', Project_comissionController::class);
     Route::get('project_comission/{project_comission}/activate', [Project_comissionController::class, 'activate'])->name('project_comission.activate');
+    Route::get('/project-comission/documents/{document}/download', [Project_comissionController::class, 'downloadDocument'])->name('project_comission.documents.download');
 
     // Document Center
     Route::resource('documents_center', Document_centerController::class);
@@ -152,7 +152,5 @@ Route::middleware(['auth'])->group(function () {
     
     // Recursos RRHH - Temes Pendents
     Route::resource('hr_pending_issue', Hr_pending_issueController::class);
-
-    Route::resource('accidents', AccidentsController::class);
 
 });

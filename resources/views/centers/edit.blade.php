@@ -1,46 +1,110 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Modificar centre</title>
-    @vite("resources/css/app.css")
+    @vite(['resources/css/app.css'])
 </head>
-<body class="min-h-screen flex flex-col bg-[#2D3E50]">
-    @auth
-        @if ($errors->any())
+
+<body class="bg-orange-50 min-h-screen">
+
+@auth
+    @if ($errors->any())
+        <ul class="mb-4 px-10">
             @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+                <li class="text-red-500">{{ $error }}</li>
             @endforeach
-        @endif
-        @include('components.navbar')
-        @yield('contingut')
-            <main class="grow flex flex-col items-center w-full py-10">
-                <h1 class="text-white text-3xl w-10/12 text-center p-10 border-b-6 border-[#ff7300]">Modificar Dades Centre</h1>
-                <form action="{{ route('center.update', $center) }}" method="POST" class="m-10 flex flex-col w-5/12 p-10  bg-black-transparent rounded-3xl">
-                    @csrf
-                    @method('PUT')
-                    <label for="center_name" class="text-white text-xl">Nom del centre:</label>
-                    <input type="text" name="center_name" id="center_name" value="{{ $center->center_name }}" required class="bg-white-transparent p-3 mb-2 text-white rounded-3xl">
+        </ul>
+    @endif
 
-                    <label for="location" class="text-white text-xl">Ubicació:</label>
-                    <input type="text" name="location" id="location" value="{{ $center->location }}" required class="bg-white-transparent p-3 mb-2 text-white rounded-3xl">
+    @include('components.navbar')
 
-                    <label for="phone_number" class="text-white text-xl">Telèfon:</label>
-                    <input type="text" name="phone_number" id="phone_number" value="{{ $center->phone_number }}" required class="bg-white-transparent p-3 mb-2 text-white rounded-3xl">
+    <main class="flex justify-center py-10">
+        <div class="w-3/4">
 
-                    <label for="email_address" class="text-white text-xl">Correu electrònic:</label>
-                    <input type="email" name="email_address" id="email_address" value="{{ $center->email_address }}" required class="bg-white-transparent p-3 mb-2 text-white rounded-3xl">
+            <form action="{{ route('center.update', $center) }}" method="POST" class="bg-white rounded-lg shadow overflow-hidden">
+                @csrf
+                @method('PUT')
 
-                    <button type="submit" class="m-5 text-lg text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300] transition-all duration-300 rounded-full p-5">Modificar centre</button>
-                </form>
-            </main>
-    @endauth
+                <div class="bg-orange-500 text-white px-6 py-3">
+                    <p class="font-semibold">Modificar dades del centre</p>
+                    <p class="text-sm opacity-80">Actualitzeu la informació del centre</p>
+                </div>
 
-    @guest
-        <h1>No has iniciado sesión.</h1>
-        <meta http-equiv="refresh" content="2; URL={{ route('login') }}" />
-    @endguest
+                <div class="p-8 flex flex-col gap-8">
+
+                    <section class="flex flex-col gap-4">
+                        <h2 class="font-semibold text-gray-700">Informació bàsica</h2>
+
+                        <div>
+                            <label class="text-sm text-gray-600">Nom del centre *</label>
+                            <input
+                                type="text"
+                                name="center_name"
+                                required
+                                class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1"
+                                value="{{ old('center_name', $center->center_name) }}">
+                        </div>
+
+                        <div>
+                            <label class="text-sm text-gray-600">Ubicació *</label>
+                            <input
+                                type="text"
+                                name="location"
+                                required
+                                class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1"
+                                value="{{ old('location', $center->location) }}">
+                        </div>
+                    </section>
+
+                    <section class="flex flex-col gap-4">
+                        <h2 class="font-semibold text-gray-700">Informació de contacte</h2>
+
+                        <div class="flex gap-6">
+                            <div class="w-1/2">
+                                <label class="text-sm text-gray-600">Telèfon *</label>
+                                <input
+                                    type="text"
+                                    name="phone_number"
+                                    required
+                                    class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1"
+                                    value="{{ old('phone_number', $center->phone_number) }}">
+                            </div>
+
+                            <div class="w-1/2">
+                                <label class="text-sm text-gray-600">Correu electrònic *</label>
+                                <input
+                                    type="email"
+                                    name="email_address"
+                                    required
+                                    class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1"
+                                    value="{{ old('email_address', $center->email_address) }}">
+                            </div>
+                        </div>
+                    </section>
+
+                    <div class="flex justify-between items-center border-t pt-6">
+                        <a href="{{ route('center.index') }}"
+                           class="border border-orange-500 text-orange-500 hover:underline px-6 py-4 rounded-xl">
+                            Cancel·lar edició
+                        </a>
+
+                        <button type="submit"
+                                class="bg-orange-500 text-white px-6 py-4 rounded-md hover:bg-white hover:text-orange-500 hover:border-orange-500 border transition">
+                            Guardar canvis
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </main>
+@endauth
+
+@guest
+    <h1>No has iniciat sessió.</h1>
+    <meta http-equiv="refresh" content="2; URL={{ route('login') }}">
+@endguest
+
 </body>
 </html>

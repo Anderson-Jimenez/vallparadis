@@ -28,7 +28,7 @@ class Hr_pending_issueController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Professional $professional)
+    public function create()
     {
         $professionals = Professional::all();
         return view('rrhh.create',compact('professionals'));
@@ -50,7 +50,7 @@ class Hr_pending_issueController extends Controller
         ]);
         $validated['center_id'] = session('center_id');
 
-        $registered_by = Auth::user()->id;
+        $registered_by = Auth::id();
 
         // No es pot derivar a la mateixa persona que registra l'assumpte
         if ($validated['derived_to_professional_id'] && $validated['derived_to_professional_id'] == $registered_by) {
@@ -78,17 +78,15 @@ class Hr_pending_issueController extends Controller
                 $extension = $file->getClientOriginalExtension();
                 $fileName = $safeName . '.' . $extension;
 
-                // Guardar en disk 'hr_pending_issue' (configurado en filesystems.php)
-                $storage_path = $file->storeAs('', $fileName, 'hr_pending_issue');
+                $storage_path = Storage::disk('hr_pending_issue')->putFileAs('', $file, $fileName);
+                
 
-                // Guardar referencia en la tabla de documentos
                 Hr_pending_issue_document::create([
                     'hr_pending_issue_id' => $issue->id,
                     'path' => $storage_path,
                 ]);
             }
         }
-
         return redirect()->route('hr_pending_issue.index')
                         ->with('success', 'Tema pendent creat correctament.');
     }
@@ -98,7 +96,14 @@ class Hr_pending_issueController extends Controller
      */
     public function show(Hr_pending_issue $hr_pending_issue)
     {
-        //
+        $issue = $hr_pending_issue->load([
+            'registered_by_professional',
+            'affected_professional',
+            'derived_to_professional',
+            'documents'
+        ]);
+
+        return view('rrhh.show',compact('issue'));
     }
 
     /**
@@ -106,7 +111,8 @@ class Hr_pending_issueController extends Controller
      */
     public function edit(Hr_pending_issue $hr_pending_issue)
     {
-        //
+        $professionals = Professional::all();
+        return view('rrhh.edit', compact('hr_pending_issue', 'professionals'));
     }
 
     /**
@@ -114,14 +120,42 @@ class Hr_pending_issueController extends Controller
      */
     public function update(Request $request, Hr_pending_issue $hr_pending_issue)
     {
-        //
-    }
+        $validated = $request->validate([
+            'affected_professional_id' => 'required|exists:professionals,id',
+            'derived_to_professional_id' => 'nullable|exists:professionals,id',
+            'opened_at' => 'required|date',
+            'context' => 'required|string',
+            'status' => 'required|in:pending,in_process,urgent,completed',
+            'description' => 'required|string',
+        ]);
+        if ($validated['derived_to_professional_id'] && $validated['derived_to_professional_id'] == $hr_pending_issue->registered_by_professional_id) {
+            return back()->withErrors([
+                'derived_to_professional_id' =>
+                    'No es pot derivar a la mateixa persona que ha registrat el tema.'
+            ])->withInput();
+        }
+        $hr_pending_issue->update([
+            'affected_professional_id' => $validated['affected_professional_id'],
+            'derived_to_professional_id' => $validated['derived_to_professional_id'],
+            'opened_at' => $validated['opened_at'],
+            'context' => $validated['context'],
+            'status' => $validated['status'],
+            'description' => $validated['description'],
+        ]);
 
+        return redirect()
+            ->route('hr_pending_issue.show', $hr_pending_issue)
+            ->with('success', 'Tema pendent actualitzat correctament.');
+    }
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Hr_pending_issue $hr_pending_issue)
     {
         //
+    }
+    public function download(Hr_pending_issue_document $document)
+    {
+        return Storage::disk('hr_pending_issue')->download($document->path);
     }
 }

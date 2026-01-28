@@ -7,7 +7,7 @@
     @vite("resources/css/app.css")
 </head>
 
-<body class="bg-[#E9EDF2]">
+<body class="bg-body min-h-screen flex flex-col">
 @include('partials.icons')
 
 @auth
@@ -17,34 +17,82 @@
     @include('components.sidebar')
 
     <section class="w-full p-6 space-y-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 w-full">
 
-        <!-- ================== CARDS SUPERIORES ================== -->
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-            <div class="bg-white rounded-3xl border border-[#ff7300] shadow-lg flex flex-col justify-center items-center h-[25vh]">
-                <h1 class="txt-orange text-2xl font-semibold">Professionals Actius</h1>
-                <p class="text-4xl font-bold mt-2">{{ $professionals_count }}</p>
+            <div class="bg-white rounded-2xl shadow-md border-l-4 border-orange-500 flex items-center justify-between p-6">
+                <div>
+                    <p class="text-gray-500 text-sm md:text-base">
+                        Professionals Actius
+                    </p>
+                    <p class="text-3xl md:text-4xl font-bold text-gray-800 mt-4">
+                        {{ $professionals_count }}
+                    </p>
+                </div>
+
+                <div class="w-15 h-15 md:w-17 md:h-17 flex items-center justify-center rounded-full bg-orange-500 text-white shrink-0">
+                    <svg class="w-9 h-9 md:w-10 md:h-10">
+                        <use xlink:href="#professionals_icon"></use>
+                    </svg>
+                </div>
             </div>
 
-            <div class="bg-white rounded-3xl border border-[#ff7300] shadow-lg flex flex-col justify-center items-center h-[25vh]">
-                <h1 class="txt-orange text-2xl font-semibold">Projectes en procés</h1>
-                <p class="text-4xl font-bold mt-2">{{ $projects_count }}</p>
+            <div class="bg-white rounded-2xl shadow-md border-l-4 border-orange-500
+                        flex items-center justify-between p-6">
+                <div>
+                    <p class="text-gray-500 text-sm md:text-base">
+                        Projectes Actius
+                    </p>
+                    <p class="text-3xl md:text-4xl font-bold text-gray-800 my-4">
+                        {{ $projects_count }}
+                    </p>
+                </div>
+
+                <div class="w-15 h-15 md:w-17 md:h-17 flex items-center justify-center rounded-full bg-orange-500 text-white shrink-0">
+                    <svg class="w-9 h-9 md:w-10 md:h-10">
+                        <use xlink:href="#project_icon"></use>
+                    </svg>
+                </div>
             </div>
 
-            <div class="bg-white rounded-3xl border border-[#ff7300] shadow-lg flex flex-col justify-center items-center h-[25vh]">
-                <h1 class="txt-orange text-2xl font-semibold">Cursos Actius</h1>
-                <p class="text-4xl font-bold mt-2">{{ $courses_count }}</p>
+            <div class="bg-white rounded-2xl shadow-md border-l-4 border-orange-500
+                        flex items-center justify-between p-6">
+                <div>
+                    <p class="text-gray-500 text-sm md:text-base">
+                        Cursos Programats
+                    </p>
+                    <p class="text-3xl md:text-4xl font-bold text-gray-800 my-4">
+                        {{ $courses_count }}
+                    </p>
+                </div>
+
+                <div class="w-15 h-15 md:w-17 md:h-17
+                            flex items-center justify-center
+                            rounded-full bg-orange-500 text-white shrink-0">
+                    <svg class="w-9 h-9 md:w-10 md:h-10">
+                        <use xlink:href="#courses_icon"></use>
+                    </svg>
+                </div>
             </div>
 
-            <div class="bg-white rounded-3xl border border-[#ff7300] shadow-lg flex flex-col justify-center items-center h-[25vh]">
-                <h1 class="txt-orange text-2xl font-semibold">Documents centre</h1>
-                <p class="text-4xl font-bold mt-2">{{ $document_count }}</p>
+            <div class="bg-white rounded-2xl shadow-md border-l-4 border-orange-500 flex items-center justify-between p-6">
+                <div>
+                    <p class="text-gray-500 text-sm md:text-base">
+                        Documents Nous
+                    </p>
+                    <p class="text-3xl md:text-4xl font-bold text-gray-800 my-4">
+                        {{ $document_count }}
+                    </p>
+                </div>
+                <div class="w-15 h-15 md:w-17 md:h-17 flex items-center justify-center rounded-full bg-orange-500 text-white shrink-0">
+                    <svg class="w-9 h-9 md:w-10 md:h-10">
+                        <use xlink:href="#docs_icon"></use>
+                    </svg>
+                </div>
             </div>
         </div>
 
-        <!-- ================== ZONA INFERIOR ================== -->
         <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
 
-            <!-- ===== ACTIVITAT RECENT ===== -->
             <div class="xl:col-span-2 bg-white rounded-3xl shadow-lg p-6">
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-xl font-semibold">Activitat recent</h2>
@@ -53,7 +101,6 @@
                     </a>
                 </div>
 
-                <!-- Contenido vacío -->
                 @if ($recent_activity->isNotEmpty())
                     @foreach ($recent_activity as $item)
                         <div class="space-y-4 bg-amber-50 w-[40%]">
@@ -68,24 +115,34 @@
                 @endif
                 
             </div>
-
-            <!-- ===== ACCIONS RÀPIDES ===== -->
             <div class="bg-white rounded-3xl shadow-lg p-6">
                 <h2 class="text-xl font-semibold mb-4">Accions ràpides</h2>
+                <div class="flex flex-col gap-4">
+                    <a href="{{ route('professional.create') }}" class="pl-3 flex items-center sidebar-gradient text-white p-4 rounded-xl hover:opacity-80 justify-center text-xl">
+                        <svg class="w-6 h-6 md:w-7 md:h-7 mr-2">
+                            <use xlink:href="#add_icon"></use>
+                        </svg>
+                        Afegir Professional
+                    </a>
+                    <a href="{{ route('project_comission.create') }}" class="pl-3 flex items-center border border-[#ff7300] text-[#ff7300] p-4 rounded-xl hover:bg-[#ff7300] hover:text-white justify-center text-xl">
+                        <svg class="w-6 h-6 md:w-7 md:h-7 mr-2">
+                            <use xlink:href="#add_project_icon"></use>
+                        </svg>
+                        Afegir Projecte/Commissio
+                    </a>
+                    <a href="{{ route('course.create') }}" class="pl-3 flex items-center border border-[#FEAB51] text-[#FEAB51] p-4 rounded-xl hover:bg-[#FEAB51] hover:text-white justify-center text-xl">
+                        <svg class="w-6 h-6 md:w-7 md:h-7 mr-2">
+                            <use xlink:href="#add_docs_icon"></use>
+                        </svg>
+                        Programar Curs
+                    </a>
+                    <a href="{{ route('documents_center.index') }}" class="pl-3 flex items-center border border-gray-300 text-gray-600 p-4 rounded-xl hover:bg-gray-100 justify-center text-xl">
+                        <svg class="w-6 h-6 md:w-7 md:h-7 mr-2">
+                            <use xlink:href="#add_docs_icon"></use>
+                        </svg>
+                        Pujar Document
+                    </a>
 
-                <div class="flex flex-col gap-3">
-                    <!-- Botones vacíos, tú pondrás los links -->
-                    <button class="bg-[#ff7300] text-white py-3 rounded-xl hover:opacity-90">
-                        Acció ràpida 1
-                    </button>
-
-                    <button class="border border-[#ff7300] text-[#ff7300] py-3 rounded-xl hover:bg-[#ff7300] hover:text-white">
-                        Acció ràpida 2
-                    </button>
-
-                    <button class="border border-gray-300 text-gray-600 py-3 rounded-xl hover:bg-gray-100">
-                        Acció ràpida 3
-                    </button>
                 </div>
             </div>
 
