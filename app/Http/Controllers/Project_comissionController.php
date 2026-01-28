@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Models\Project_comission;
+use App\Models\Project_comission_document;
 use App\Models\Professional;
 
 class Project_comissionController extends Controller
@@ -66,9 +67,15 @@ class Project_comissionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Project_comission $project_comission)
     {
-        //
+        $project_comission->load([
+            'manager',
+            'center',
+            'projects_comissions_documents'
+        ]);
+
+        return view('projects_comissions.show', compact('project_comission'));
     }
 
     /**
@@ -131,5 +138,17 @@ class Project_comissionController extends Controller
         $project_comission->status = $project_comission->status == 'active' ? 'inactive' : 'active';
         $project_comission->save();
         return redirect()->route('project_comission.index');
+    }
+    public function downloadDocument(Project_comission_document $document)
+    {
+        $disk = Storage::disk('projects_comissions');
+
+        if (! $disk->exists($document->path)) {
+            abort(404, 'Document no trobat');
+        }
+
+        $downloadName = preg_replace('/^\d+-/', '', basename($document->path));
+
+        return $disk->download($document->path, $downloadName);
     }
 }

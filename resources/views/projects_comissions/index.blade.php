@@ -6,40 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Gestió Projectes i Comissions</title>
     @vite("resources/css/app.css")
-    <style>
-        /* Estilos personalizados para mejorar la apariencia */
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 3px;
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #cbd5e0;
-            border-radius: 3px;
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #a0aec0;
-        }
-        
-        .line-clamp-2 {
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-        }
-        
-        .line-clamp-3 {
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-        }
-    </style>
 </head>
 <body class="min-h-screen flex flex-col bg-body">
     @include('partials.icons')     
@@ -121,7 +87,6 @@
                         </div>
                     </div>
                     
-                    <!-- Tarjeta Inactivos -->
                     <div class="flex-1 min-w-[200px] bg-white rounded-xl p-6 shadow-sm border border-gray-200">
                         <div class="flex items-center justify-between">
                             <div>
@@ -139,9 +104,7 @@
                     </div>
                 </div>
 
-                <!-- Contenedor principal de Proyectos y Comisiones -->
                 <div class="flex flex-col lg:flex-row gap-8 w-11/12">
-                    <!-- Sección de Comisiones -->
                     <div class="flex-1 bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
 
                         <div class="bg-linear-to-r from-orange-500 to-orange-600 px-6 py-5">
@@ -158,7 +121,6 @@
                             </div>
                         </div>
                         
-                        <!-- Lista de Comisiones -->
                         <div class="p-6 max-h-[500px] overflow-y-auto custom-scrollbar">
                             @php
                                 $commissions = $projects_comissions->where('type', 'Comissió');
@@ -178,66 +140,68 @@
                             @else
                                 <div class="space-y-4">
                                     @foreach ($commissions as $project_comission)
-                                        <div class="group bg-gray-50 hover:bg-orange-50 border border-gray-200 rounded-xl p-5 transition-all duration-300 hover:border-orange-300 hover:shadow-md">
-                                            <div class="flex items-start justify-between">
-                                                <div class="flex-1">
-                                                    <div class="flex items-center mb-3">
-                                                        <svg class="w-6 h-6 text-orange-500 mr-3 shrink-0">
-                                                            <use xlink:href="#evaluations_icon"></use>
-                                                        </svg>
-                                                        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-orange-700">
-                                                            {{ $project_comission->name }}
-                                                        </h3>
-                                                    </div>
-                                                    
-                                                    <div class="flex flex-wrap gap-4 mb-3">
-                                                        @if($project_comission->start_date)
+                                        <a href="{{ route('project_comission.show', $project_comission) }}">
+                                            <div class="group bg-gray-50 hover:bg-orange-50 border border-gray-200 rounded-xl p-5 transition-all duration-300 hover:border-orange-300 hover:shadow-md">
+                                                <div class="flex items-start justify-between">
+                                                    <div class="flex-1">
+                                                        <div class="flex items-center mb-3">
+                                                            <svg class="w-6 h-6 text-orange-500 mr-3 shrink-0">
+                                                                <use xlink:href="#evaluations_icon"></use>
+                                                            </svg>
+                                                            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-orange-700">
+                                                                {{ $project_comission->name }}
+                                                            </h3>
+                                                        </div>
+                                                        
+                                                        <div class="flex flex-wrap gap-4 mb-3">
+                                                            @if($project_comission->start_date)
+                                                                <div class="flex items-center">
+                                                                    <svg class="w-4 h-4 text-gray-400 mr-2 shrink-0">
+                                                                        <use xlink:href="#calendar_icon"></use>
+                                                                    </svg>
+                                                                    <span class="text-sm text-gray-600">
+                                                                        {{ date('d/m/Y', strtotime($project_comission->start_date)) }}
+                                                                    </span>
+                                                                </div>
+                                                            @endif
+                                                            
                                                             <div class="flex items-center">
-                                                                <svg class="w-4 h-4 text-gray-400 mr-2 shrink-0">
-                                                                    <use xlink:href="#calendar_icon"></use>
+                                                                @if($project_comission->status === 'active')
+                                                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                                        Actiu
+                                                                    </span>
+                                                                @else
+                                                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                                                        Inactiu
+                                                                    </span>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        @if($project_comission->description)
+                                                            <div class="flex items-start">
+                                                                <svg class="w-4 h-4 text-gray-400 mt-1 mr-2 shrink-0">
+                                                                    <use xlink:href="#document_icon"></use>
                                                                 </svg>
-                                                                <span class="text-sm text-gray-600">
-                                                                    {{ date('d/m/Y', strtotime($project_comission->start_date)) }}
-                                                                </span>
+                                                                <p class="text-gray-600 text-sm line-clamp-2">
+                                                                    {{ $project_comission->description }}
+                                                                </p>
                                                             </div>
                                                         @endif
-                                                        
-                                                        <div class="flex items-center">
-                                                            @if($project_comission->status === 'active')
-                                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                                                    Actiu
-                                                                </span>
-                                                            @else
-                                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                                                                    Inactiu
-                                                                </span>
-                                                            @endif
-                                                        </div>
                                                     </div>
                                                     
-                                                    @if($project_comission->description)
-                                                        <div class="flex items-start">
-                                                            <svg class="w-4 h-4 text-gray-400 mt-1 mr-2 shrink-0">
-                                                                <use xlink:href="#document_icon"></use>
+                                                    <div class="ml-4 flex items-start">
+                                                        <a href="{{route('project_comission.edit', $project_comission)}}" 
+                                                        class="flex items-center justify-center w-10 h-10 text-gray-400 hover:text-orange-500 hover:bg-orange-50 rounded-lg transition-all duration-300"
+                                                        title="Editar comissió">
+                                                            <svg class="w-7 h-7">
+                                                                <use xlink:href="#edit_icon"></use>
                                                             </svg>
-                                                            <p class="text-gray-600 text-sm line-clamp-2">
-                                                                {{ $project_comission->description }}
-                                                            </p>
-                                                        </div>
-                                                    @endif
-                                                </div>
-                                                
-                                                <div class="ml-4 flex items-start">
-                                                    <a href="{{route('project_comission.edit', $project_comission)}}" 
-                                                       class="flex items-center justify-center w-10 h-10 text-gray-400 hover:text-orange-500 hover:bg-orange-50 rounded-lg transition-all duration-300"
-                                                       title="Editar comissió">
-                                                        <svg class="w-5 h-5">
-                                                            <use xlink:href="#edit_icon"></use>
-                                                        </svg>
-                                                    </a>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </a>
                                     @endforeach
                                 </div>
                             @endif
@@ -277,75 +241,77 @@
                             @else
                                 <div class="space-y-4">
                                     @foreach ($projects as $project_comission)
-                                        <div class="group bg-gray-50 hover:bg-blue-50 border border-gray-200 rounded-xl p-5 transition-all duration-300 hover:border-blue-300 hover:shadow-md">
-                                            <div class="flex items-start justify-between">
-                                                <div class="flex-1">
-                                                    <div class="flex items-center mb-3">
-                                                        <svg class="w-6 h-6 text-blue-500 mr-3 shrink-0">
-                                                            <use xlink:href="#evaluations_icon"></use>
-                                                        </svg>
-                                                        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-blue-700">
-                                                            {{ $project_comission->name }}
-                                                        </h3>
-                                                    </div>
-                                                    
-                                                    <div class="flex flex-wrap gap-4 mb-3">
-                                                        @if($project_comission->start_date)
+                                        <a href="{{ route('project_comission.show', $project_comission) }}">
+                                            <div class="group bg-gray-50 hover:bg-blue-50 border border-gray-200 rounded-xl p-5 transition-all duration-300 hover:border-blue-300 hover:shadow-md">
+                                                <div class="flex items-start justify-between">
+                                                    <div class="flex-1">
+                                                        <div class="flex items-center mb-3">
+                                                            <svg class="w-6 h-6 text-blue-500 mr-3 shrink-0">
+                                                                <use xlink:href="#evaluations_icon"></use>
+                                                            </svg>
+                                                            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-blue-700">
+                                                                {{ $project_comission->name }}
+                                                            </h3>
+                                                        </div>
+                                                        
+                                                        <div class="flex flex-wrap gap-4 mb-3">
+                                                            @if($project_comission->start_date)
+                                                                <div class="flex items-center">
+                                                                    <svg class="w-4 h-4 text-gray-400 mr-2 shrink-0">
+                                                                        <use xlink:href="#calendar_icon"></use>
+                                                                    </svg>
+                                                                    <span class="text-sm text-gray-600">
+                                                                        {{ date('d/m/Y', strtotime($project_comission->start_date)) }}
+                                                                    </span>
+                                                                </div>
+                                                            @endif
+                                                            
                                                             <div class="flex items-center">
-                                                                <svg class="w-4 h-4 text-gray-400 mr-2 shrink-0">
-                                                                    <use xlink:href="#calendar_icon"></use>
+                                                                @if($project_comission->status === 'active')
+                                                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                                        Actiu
+                                                                    </span>
+                                                                @else
+                                                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                                                        Inactiu
+                                                                    </span>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        @if($project_comission->description)
+                                                            <div class="flex items-start mb-2">
+                                                                <svg class="w-4 h-4 text-gray-400 mt-1 mr-2 shrink-0">
+                                                                    <use xlink:href="#document_icon"></use>
                                                                 </svg>
-                                                                <span class="text-sm text-gray-600">
-                                                                    {{ date('d/m/Y', strtotime($project_comission->start_date)) }}
-                                                                </span>
+                                                                <p class="text-gray-600 text-sm line-clamp-2">
+                                                                    {{ $project_comission->description }}
+                                                                </p>
                                                             </div>
                                                         @endif
                                                         
-                                                        <div class="flex items-center">
-                                                            @if($project_comission->status === 'active')
-                                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                                                    Actiu
-                                                                </span>
-                                                            @else
-                                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                                                                    Inactiu
-                                                                </span>
-                                                            @endif
-                                                        </div>
+                                                        @if($project_comission->observation)
+                                                            <div class="flex items-start">
+                                                                <svg class="w-4 h-4 text-gray-400 mt-1 mr-2 shrink-0">
+                                                                    <use xlink:href="#info_icon"></use>
+                                                                </svg>
+                                                                <p class="text-gray-500 text-sm line-clamp-2">
+                                                                    {{ $project_comission->observation }}
+                                                                </p>
+                                                            </div>
+                                                        @endif
                                                     </div>
-                                                    
-                                                    @if($project_comission->description)
-                                                        <div class="flex items-start mb-2">
-                                                            <svg class="w-4 h-4 text-gray-400 mt-1 mr-2 shrink-0">
-                                                                <use xlink:href="#document_icon"></use>
+                                                    <div class="ml-4 flex items-start">
+                                                        <a href="{{route('project_comission.edit', $project_comission)}}" class="flex items-center justify-center w-10 h-10 text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded-lg transition-all duration-300"
+                                                        title="Editar projecte">
+                                                            <svg class="w-7 h-7">
+                                                                <use xlink:href="#edit_icon"></use>
                                                             </svg>
-                                                            <p class="text-gray-600 text-sm line-clamp-2">
-                                                                {{ $project_comission->description }}
-                                                            </p>
-                                                        </div>
-                                                    @endif
-                                                    
-                                                    @if($project_comission->observation)
-                                                        <div class="flex items-start">
-                                                            <svg class="w-4 h-4 text-gray-400 mt-1 mr-2 shrink-0">
-                                                                <use xlink:href="#info_icon"></use>
-                                                            </svg>
-                                                            <p class="text-gray-500 text-sm line-clamp-2">
-                                                                {{ $project_comission->observation }}
-                                                            </p>
-                                                        </div>
-                                                    @endif
-                                                </div>
-                                                <div class="ml-4 flex items-start">
-                                                    <a href="{{route('project_comission.edit', $project_comission)}}" class="flex items-center justify-center w-10 h-10 text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded-lg transition-all duration-300"
-                                                       title="Editar projecte">
-                                                        <svg class="w-5 h-5">
-                                                            <use xlink:href="#edit_icon"></use>
-                                                        </svg>
-                                                    </a>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </a>
                                     @endforeach
                                 </div>
                             @endif

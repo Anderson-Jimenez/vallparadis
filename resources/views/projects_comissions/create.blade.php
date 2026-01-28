@@ -68,7 +68,7 @@
                         </select>
                     </div>
 
-                    <div class="w-1/2">
+                    <div class="w-full">
                         <label class="text-sm text-gray-600">Data d'inici *</label>
                         <input type="date" name="start_date" required value="{{ old('start_date') }}" class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1">
                     </div>

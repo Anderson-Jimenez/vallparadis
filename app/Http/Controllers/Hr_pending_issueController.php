@@ -78,10 +78,9 @@ class Hr_pending_issueController extends Controller
                 $extension = $file->getClientOriginalExtension();
                 $fileName = $safeName . '.' . $extension;
 
-                // Guardar en disk 'hr_pending_issue' (configurado en filesystems.php)
-                $storage_path = $file->storeAs('', $fileName, 'hr_pending_issue');
+                $storage_path = Storage::disk('hr_pending_issue')->putFileAs('', $file, $fileName);
+                
 
-                // Guardar referencia en la tabla de documentos
                 Hr_pending_issue_document::create([
                     'hr_pending_issue_id' => $issue->id,
                     'path' => $storage_path,
