@@ -20,6 +20,7 @@ use App\Http\Controllers\Maintenance_docController;
 use App\Http\Controllers\Maintenance_followupController;
 use App\Http\Controllers\Maintenance_followup_docController;
 use App\Http\Controllers\Recent_activityController;
+use App\Http\Controllers\AccidentsController;
 
 
 
@@ -151,5 +152,7 @@ Route::middleware(['auth'])->group(function () {
     
     // Recursos RRHH - Temes Pendents
     Route::resource('hr_pending_issue', Hr_pending_issueController::class);
+
+    Route::resource('accidents', AccidentsController::class);
 
 });

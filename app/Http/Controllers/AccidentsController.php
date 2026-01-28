@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Professional;
+use App\Models\Accident;
 
 class AccidentsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Professional $professional)
     {
-        //
+        $accidents = Accident::with()->get();
+        return view('professionals.accidents.index',['accidents'=>$accidents]);
     }
 
     /**
