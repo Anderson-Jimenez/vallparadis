@@ -21,6 +21,7 @@ use App\Http\Controllers\Maintenance_followupController;
 use App\Http\Controllers\Maintenance_followup_docController;
 use App\Http\Controllers\Recent_activityController;
 use App\Http\Controllers\AccidentsController;
+use App\Http\Controllers\Accident_followupController;
 
 
 
@@ -172,4 +173,14 @@ Route::middleware(['auth'])->group(function () {
         '/accidents/template/download',
         [AccidentsController::class, 'downloadTemplate']
     )->name('accidents.template.download');
+
+    Route::get(
+        '/professionals/{professional}/accidents/{accident}/followups',
+        [Accident_followupController::class, 'index']
+    )->name('professionals.accidents.followups.index');
+
+    Route::post(
+        '/professionals/{professional}/accidents/{accident}/followups',
+        [Accident_followupController::class, 'store']
+    )->name('professionals.accidents.followups.store');
 });

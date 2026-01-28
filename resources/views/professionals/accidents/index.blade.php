@@ -75,7 +75,7 @@
                                 <button type="reset" class="px-6 py-3 bg-[#E5E7EB] text-gray-800 font-medium rounded-lg hover:bg-gray-300 transition">
                                     Cancel·lar
                                 </button>
-                                <button type="submit" class="px-6 py-3 bg-gradient-to-r from-orange-500 to-[#FEAB51] text-white font-medium rounded-lg hover:opacity-90 transition">
+                                <button type="submit" class="px-6 py-3 bg-linear-to-r from-orange-500 to-[#FEAB51] text-white font-medium rounded-lg hover:opacity-90 transition">
                                     Guardar Accident
                                 </button>
                             </div>
@@ -95,7 +95,7 @@
                                     </div>
                                 </div>
                                 <a href="{{ route('accidents.template.download') }}" 
-                                   class="px-5 py-2 bg-gradient-to-r from-orange-500 to-[#FEAB51] text-white font-medium rounded-lg hover:opacity-90 transition">
+                                   class="px-5 py-2 bg-linear-to-r from-orange-500 to-[#FEAB51] text-white font-medium rounded-lg hover:opacity-90 transition">
                                     Descarregar Plantilla
                                 </a>
                             </div>
@@ -143,6 +143,16 @@
                                                         : ($accident->days > 30 ? 'text-red-500' : 'text-orange-500') }}">
                                                     {{ $accident->days }} dies
                                                 </span>
+                                                
+                                                <!-- BOTÓN PARA SEGUIMIENTOS -->
+                                                <a href="{{ route('professionals.accidents.followups.index', [$professional, $accident]) }}" 
+                                                   class="ml-3 px-4 py-2 bg-linear-to-r from-blue-500 to-blue-600 text-white text-sm font-medium rounded-lg hover:opacity-90 transition flex items-center gap-2">
+                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                                                    </svg>
+                                                    Seguiments
+                                                </a>
+                                                
                                                 <svg class="w-5 h-5 text-gray-400 transform transition-transform duration-300" id="arrow-{{ $accident->id }}" 
                                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -150,12 +160,12 @@
                                             </div>
                                         </div>
 
-                                        <p class="mt-3 text-sm text-gray-700 break-words whitespace-normal">
+                                        <p class="mt-3 text-sm text-gray-700 whitespace-normal">
                                             <span class="font-semibold">Professional afectat:</span>
                                             {{ $accident->affected_professional?->name ?? 'Desconocido' }}
                                         </p>
 
-                                        <p class="mt-2 text-sm text-gray-600 break-words whitespace-normal">
+                                        <p class="mt-2 text-sm text-gray-600 whitespace-normal">
                                             <span class="font-semibold">Descripció:</span>
                                             {{ $accident->description ?? 'No descripció' }}
                                         </p>
@@ -184,7 +194,7 @@
                                                 </div>
                                                 
                                                 <div class="flex justify-end mt-4">
-                                                    <button type="submit" class="px-5 py-2 bg-gradient-to-r from-orange-500 to-[#FEAB51] text-white font-medium rounded-lg hover:opacity-90 transition">
+                                                    <button type="submit" class="px-5 py-2 bg-linear-to-r from-orange-500 to-[#FEAB51] text-white font-medium rounded-lg hover:opacity-90 transition">
                                                         Pujar Fitxa
                                                     </button>
                                                 </div>

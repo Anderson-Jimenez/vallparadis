@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('accidents_followup', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('accidents_id');
+            $table->unsignedBigInteger('accident_id');
             $table->unsignedBigInteger('professional_id');
-            $table->foreign('accidents_id')->references('id')->on('maintenance')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('accident_id')->references('id')->on('accidents')->onUpdate('cascade')->onDelete('cascade');
             $table->date('date');
             $table->foreign('professional_id')->references('id')->on('professionals')->onUpdate('cascade')->onDelete('cascade');
             $table->string('issue',255);

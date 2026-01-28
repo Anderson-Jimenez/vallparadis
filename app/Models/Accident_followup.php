@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Relations\{BelongsTo, BelongsToMany, HasMany, H
 
 class Accident_followup extends Model
 {
-    protected $table = "accident_followup";
+    protected $table = "accidents_followup";
 
     protected $fillable = [
-        'accidents_id',
+        'accident_id',
         'professional_id',
         'date',
         'issue',
