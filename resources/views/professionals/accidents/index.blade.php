@@ -30,7 +30,7 @@
                                         
                     <div class="w-11/12 bg-white flex flex-col mt-10 rounded-lg">
                         <div class="bg-orange-500 text-white px-6 py-3 rounded-t-lg">
-                            <h1 class="text-3xl pb-1 w-full font-bold">Accidents de treball de </h1>
+                            <h1 class="text-3xl pb-1 w-full font-bold">Accidents de treball de {{ $professional->name }}</h1>
                             <p>Registre</p>
                         </div>
                         

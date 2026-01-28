@@ -13,8 +13,14 @@ class AccidentsController extends Controller
      */
     public function index(Professional $professional)
     {
-        $accidents = Accident::with()->get();
-        return view('professionals.accidents.index',['accidents'=>$accidents]);
+        $accidents = Accident::with('affected_professional')
+                            ->where('affected_professional_id', $professional->id)
+                            ->get();
+
+        return view('professionals.accidents.index', [
+            'accidents' => $accidents,
+            'professional' => $professional
+        ]);
     }
 
     /**
