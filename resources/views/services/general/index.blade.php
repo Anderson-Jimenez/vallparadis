@@ -28,18 +28,11 @@
             <div class="flex flex-col w-full items-center">
 
                 {{-- Header --}}
-                <div class="flex items-center justify-between mb-8 bg-white py-4 px-10 w-full">
+                <div class="flex items-center mb-8 bg-white py-4 px-10 w-full">
                     <div>
                         <h1 class="text-3xl font-bold text-gray-800">Gestió Serveis Generals</h1>
                         <p class="text-gray-600 mt-2">Administració i modificació de serveis generals</p>
                     </div>
-                    <a href="{{ route('general_service.create') }}"
-                       class="flex items-center px-6 py-3 bg-linear-to-r from-orange-500 to-orange-600 text-white font-medium rounded-lg hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-md hover:shadow-lg">
-                        <svg class="w-5 h-5 mr-2">
-                            <use xlink:href="#add_icon"></use>
-                        </svg>
-                        Afegir Servei
-                    </a>
                 </div>
 
                 <div class="flex gap-6 mb-8 w-11/12 justify-center">
@@ -92,7 +85,6 @@
                     </div>
                 </div>
 
-                {{-- Listado de servicios --}}
                 <div class="flex flex-col lg:flex-row gap-8 w-11/12">
                     <div class="flex-1 bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
                         <div class="bg-linear-to-r from-orange-500 to-orange-600 px-6 py-5">
@@ -200,7 +192,6 @@
                 </div>
             </div>
         </main>
-
     @endauth
 
     @guest
