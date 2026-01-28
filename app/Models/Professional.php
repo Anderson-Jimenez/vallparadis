@@ -74,7 +74,7 @@ class Professional extends Authenticatable
     }
     public function registered_prof_accident(): HasMany
     {
-        return $this->hasMany(Accident::class, 'registered_professional_id');
+        return $this->hasMany(Accident::class, 'registred_professional_id');
     }
     public function accident_followups(): HasMany
     {

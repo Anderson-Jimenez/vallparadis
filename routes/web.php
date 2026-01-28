@@ -156,5 +156,19 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('accidents', AccidentsController::class);
     Route::get('/professionals/{professional}/accidents', [AccidentsController::class, 'index'])->name('professionals.accidents.index');
+    Route::post('/professionals/{professional}/accidents',[AccidentsController::class, 'store'])->name('professionals.accidents.store');
 
+    Route::post(
+        '/accidents/{accident}/documents',
+        [AccidentsController::class, 'storeDocument']
+    )->name('accidents.documents.store');
+
+    Route::get(
+        '/accidents/documents/{document}/download',
+        [AccidentsController::class, 'downloadDocument']
+    )->name('accidents.documents.download');
+    Route::get(
+        '/accidents/template/download',
+        [AccidentsController::class, 'downloadTemplate']
+    )->name('accidents.template.download');
 });

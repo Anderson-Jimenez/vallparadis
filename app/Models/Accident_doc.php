@@ -10,7 +10,7 @@ class Accident_doc extends Model
     protected $table = "accidents_doc";
 
     protected $fillable = [
-        'accidents_id',
+        'accident_id',
         'name',
         'path'
     ];
