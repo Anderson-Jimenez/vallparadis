@@ -45,7 +45,7 @@
                             </div>
                             <div class="p-3 bg-blue-50 rounded-lg">
                                 <svg class="w-8 h-8 text-blue-500">
-                                    <use xlink:href="#service_icon"></use>
+                                    <use xlink:href="#services_icon"></use>
                                 </svg>
                             </div>
                         </div>
@@ -85,14 +85,14 @@
                 </div>
 
                 <div class="flex flex-col lg:flex-row gap-8 w-11/12">
-                    <div class="flex-1 bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-                        <div class="bg-linear-to-r from-orange-500 to-orange-600 px-6 py-5">
+                    <div class="flex-1 bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+                        <div class="bg-linear-to-r from-orange-500 to-[#FEAB51] px-6 py-5">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
                                     <svg class="w-7 h-7 text-white mr-3">
                                         <use xlink:href="#services_icon"></use>
                                     </svg>
-                                    <h2 class="text-xl font-bold text-white">Serveis</h2>
+                                    <h2 class="text-xl font-bold text-white">Serveis Generals</h2>
                                 </div>
                                 <span class="bg-white/20 text-white px-3 py-1 rounded-full text-sm font-medium">
                                     {{ $services->count() }} Elements
@@ -115,100 +115,81 @@
                             @else
                                 <div class="space-y-4">
                                     @foreach ($services as $service)
-                                        <div class="group bg-gray-50 hover:bg-orange-50 border border-gray-200 rounded-xl p-5 transition-all duration-300 hover:border-orange-300 hover:shadow-md flex justify-between items-start">
-                                            <div class="flex-1">
-                                                <div class="flex items-center mb-3">
-                                                    <svg class="w-6 h-6 text-orange-500 mr-3 shrink-0">
-                                                        <use xlink:href="#evaluations_icon"></use>
-                                                    </svg>
-                                                    <h3 class="text-lg font-semibold text-gray-800 group-hover:text-orange-700">
-                                                        {{ $service->type }}
-                                                    </h3>
-                                                </div>
+                                        <a href="{{ route('general_service.index', $service) }}">
+                                            <div class="group bg-gray-50 hover:bg-orange-50 border border-gray-200 rounded-xl p-5 transition-all duration-300 hover:border-orange-300 hover:shadow-md flex justify-between items-start">
+                                                <div class="flex-1">
+                                                    <div class="flex items-center mb-3">
+                                                        <svg class="w-6 h-6 text-orange-500 mr-3 shrink-0">
+                                                            <use xlink:href="#evaluations_icon"></use>
+                                                        </svg>
+                                                        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-orange-700">
+                                                            {{ $service->type }}
+                                                        </h3>
+                                                    </div>
 
-                                                <div class="flex flex-wrap gap-4 mb-3">
-                                                    @if($service->manager)
+                                                    <div class="flex flex-wrap gap-4 mb-3">
+                                                        @if($service->manager)
+                                                            <div class="flex items-center">
+                                                                <svg class="w-4 h-4 text-gray-400 mr-2 shrink-0">
+                                                                    <use xlink:href="#professionals_icon"></use>
+                                                                </svg>
+                                                                <span class="text-sm text-gray-600">
+                                                                    {{ $service->manager }}
+                                                                </span>
+                                                            </div>
+                                                        @endif
                                                         <div class="flex items-center">
-                                                            <svg class="w-4 h-4 text-gray-400 mr-2 shrink-0">
-                                                                <use xlink:href="#professionals_icon"></use>
+                                                            @if($service->status === 'active')
+                                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                                                                    Actiu
+                                                                </span>
+                                                            @else
+                                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-red-100 text-red-800">
+                                                                    Inactiu
+                                                                </span>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+
+                                                    @if($service->staff)
+                                                        <div class="flex items-start mb-2">
+                                                            <svg class="w-4 h-4 text-gray-400 mt-1 mr-2 shrink-0">
+                                                                <use xlink:href="#professional_icon"></use>
                                                             </svg>
-                                                            <span class="text-sm text-gray-600">
-                                                                {{ $service->manager }}
-                                                            </span>
+                                                            <p class="text-gray-600 text-sm line-clamp-2">
+                                                                {{ $service->staff }}
+                                                            </p>
                                                         </div>
                                                     @endif
-                                                    <div class="flex items-center">
-                                                        @if($service->status === 'active')
-                                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                                                Actiu
-                                                            </span>
-                                                        @else
-                                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                                                                Inactiu
-                                                            </span>
-                                                        @endif
-                                                    </div>
+
+                                                    @if($service->schedule)
+                                                        <div class="flex items-start">
+                                                            <svg class="w-4 h-4 text-gray-400 mt-1 mr-2 shrink-0">
+                                                                <use xlink:href="#project_icon"></use>
+                                                            </svg>
+                                                            <p class="text-gray-600 text-sm line-clamp-2">
+                                                                {{ $service->schedule }}
+                                                            </p>
+                                                        </div>
+                                                    @endif
                                                 </div>
 
-                                                @if($service->staff)
-                                                    <div class="flex items-start mb-2">
-                                                        <svg class="w-4 h-4 text-gray-400 mt-1 mr-2 shrink-0">
-                                                            <use xlink:href="#professional_icon"></use>
+                                                <div class="flex gap-4">
+                                                    <a href="{{ route('general_service.index', $service) }}" class="followup-service flex txt-orange items-center">
+                                                        <svg class="w-10 h-10 txt-orange mr-2" title="Editar servei">
+                                                            <use xlink:href="#edit_icon"></use>
                                                         </svg>
-                                                        <p class="text-gray-600 text-sm line-clamp-2">
-                                                            {{ $service->staff }}
-                                                        </p>
-                                                    </div>
-                                                @endif
+                                                    </a>
+                                                    <a href="{{ route('general_service_followup.index', $service) }}" class="flex text-white sidebar-gradient  items-center p-3 text-base font-medium rounded-lg hover:opacity-90 transition-opacity duration-300" title="Fer/Veure seguiments">
+                                                        <svg class="w-8 h-8 text-white mr-2">
+                                                            <use xlink:href="#evaluations_icon"></use>
+                                                        </svg>
+                                                        Fer/Veure seguiments
+                                                    </a>
 
-                                                @if($service->schedule)
-                                                    <div class="flex items-start">
-                                                        <svg class="w-4 h-4 text-gray-400 mt-1 mr-2 shrink-0">
-                                                            <use xlink:href="#project_icon"></use>
-                                                        </svg>
-                                                        <p class="text-gray-600 text-sm line-clamp-2">
-                                                            {{ $service->schedule }}
-                                                        </p>
-                                                    </div>
-                                                @endif
+                                                </div>
                                             </div>
-
-                                            <div class="ml-4 flex items-start">
-
-                                                <el-dropdown class="inline-block rounded-tl-xl rounded-bl-xl">
-                                                    <button class="text-white flex items-center rounded-tl-xl rounded-xl w-full justify-center gap-x-1.5  bg-[#ff7300] px-3 py-2 text-sm font-semibold shadow-xs inset-ring-1  hover:bg-[#FEAB51]">
-                                                        Opcions de servei
-                                                        <svg class="w-7 h-7 text-white">
-                                                            <use xlink:href="#dropdown_arrow"></use>
-                                                        </svg>
-                                                    </button>
-
-                                                    <el-menu anchor="bottom end" popover class="w-56 origin-top-right rounded-md bg-white shadow-lg outline-1 outline-black/5 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
-                                                        <div class="py-1">
-                                                            <a href="{{ route('general_service.index', $service) }}" class="followup-service flex txt-orange items-center px-4 py-4 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
-                                                                <svg class="w-5 h-5 txt-orange mr-2">
-                                                                    <use xlink:href="#evaluations_icon"></use>
-                                                                </svg>
-                                                                Veure detalls del servei
-                                                            </a>
-                                                            <a href="{{ route('general_service.index', $service) }}" class="followup-service flex txt-orange items-center px-4 py-4 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
-                                                                <svg class="w-5 h-5 txt-orange mr-2">
-                                                                    <use xlink:href="#evaluations_icon"></use>
-                                                                </svg>
-                                                                Editar servei
-                                                            </a>
-                                                            <a href="{{ route('general_service_followup.index', $service) }}" class="followup-service flex txt-orange items-center px-4 py-4 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
-                                                                <svg class="w-5 h-5 txt-orange mr-2">
-                                                                    <use xlink:href="#evaluations_icon"></use>
-                                                                </svg>
-                                                                Fer/Veure seguiments
-                                                            </a>
-
-                                                        </div>
-                                                    </el-menu>
-                                                </el-dropdown>
-                                            </div>
-                                        </div>
+                                        </a>
                                     @endforeach
                                 </div>
                             @endif

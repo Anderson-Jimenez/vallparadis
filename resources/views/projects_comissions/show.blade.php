@@ -101,14 +101,14 @@
                             @php
                                 $extension = strtolower(pathinfo($doc->path, PATHINFO_EXTENSION));
 
-                                $iconId = match ($extension) {
+                                $icon_id = match ($extension) {
                                     'pdf' => 'icon-pdf',
                                     'doc', 'docx' => 'icon-word',
                                     'xls', 'xlsx', 'csv' => 'icon-excel',
                                     default => 'icon-file',
                                 };
 
-                                $iconColor = match ($extension) {
+                                $icon_color = match ($extension) {
                                     'pdf' => 'text-red-500',
                                     'doc', 'docx' => 'text-blue-500',
                                     'xls', 'xlsx', 'csv' => 'text-green-600',
@@ -120,8 +120,8 @@
 
                             <div class="bg-white flex items-center justify-between p-3 rounded-lg border border-gray-200 hover:bg-gray-50">
                                 <div class="flex items-center gap-3 min-w-0">
-                                    <svg class="w-6 h-6 {{ $iconColor }}">
-                                        <use xlink:href="#{{ $iconId }}"></use>
+                                    <svg class="w-6 h-6 {{ $icon_color }}">
+                                        <use xlink:href="#{{ $icon_id }}"></use>
                                     </svg>
 
                                     <div class="min-w-0">
