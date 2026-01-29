@@ -29,7 +29,7 @@
 
             <div class="flex flex-col flex-1">
 
-                <div class="flex items-center mb-8 bg-white p-7">
+                <div class="flex justify-between items-center mb-8 bg-white p-7">
                     <div class="flex items-center">
                         <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center mr-4">
                             <svg class="w-6 h-6 text-white">
@@ -41,6 +41,13 @@
                             <p class="text-gray-600">Encargat: {{ $general_service->manager }}</p>
                         </div>
                     </div>
+                    <a href="{{ route('general_service.index', $general_service->affected_professional) }}" 
+                       class="px-4 py-2 bg-gray-100 text-gray-800 font-medium rounded-lg hover:bg-gray-200 transition flex items-center gap-2">
+                        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <use xlink:href="#back_icon"></use>
+                        </svg>
+                        Tornar als accidents
+                    </a>
                 </div>
 
                 <div class="flex flex-1 gap-6 w-11/12 mb-10 mx-auto">

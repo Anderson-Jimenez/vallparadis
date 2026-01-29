@@ -43,8 +43,8 @@
                     </div>
                     <a href="{{ route('professionals.accidents.index', $accident->affected_professional) }}" 
                        class="px-4 py-2 bg-gray-100 text-gray-800 font-medium rounded-lg hover:bg-gray-200 transition flex items-center gap-2">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <use xlink:href="#back_icon"></use>
                         </svg>
                         Tornar als accidents
                     </a>
@@ -96,7 +96,7 @@
                                     </div>
                                     <div class="flex flex-col">
                                         <span class="text-sm text-gray-500">Estat</span>
-                                        <span class="font-medium text-gray-800 {{ $accident->status === 'inactive' ? 'text-gray-600' : 'text-orange-600' }}">
+                                        <span class="font-medium text-gray-800 {{ $accident->status === 'inactive' ? 'text-red-600' : 'text-green-600' }}">
                                             {{ $accident->status === 'inactive' ? 'Inactiu' : 'Actiu' }}
                                         </span>
                                     </div>
@@ -137,11 +137,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
-                                        <div class="flex items-center bg-blue-500 px-3 py-2 rounded-lg">
+
+                                        <div class="flex items-center sidebar-gradient px-3 py-2 rounded-lg">
                                             <svg class="w-5 h-5 text-white mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                                <use xlink:href="#see_evaluations"></use>
                                             </svg>
                                             <span class="text-sm text-white mr-3">Veure detalls</span>
                                         </div>
