@@ -106,7 +106,7 @@ class AccidentsController extends Controller
     public function storeDocument(Request $request, Accident $accident)
     {
         $request->validate([
-            'document' => 'required|file|max:10240|mimes:pdf,doc,docx,jpg,jpeg,png',
+            'document' => 'required|file|max:10240',
         ]);
 
         $file = $request->file('document');

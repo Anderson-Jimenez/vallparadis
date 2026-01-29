@@ -185,8 +185,8 @@
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
                                                     </svg>
                                                     <p class="font-medium text-gray-700 mb-1">Pujar Fitxa Completada</p>
-                                                    <p class="text-gray-500 text-sm mb-3">Arrossega el fitxer o fes clic per seleccionar</p>
-                                                    <input type="file" name="document" id="file-{{ $accident->id }}" class="hidden" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+                                                    <p class="text-gray-500 text-sm mb-3">Fes clic per seleccionar</p>
+                                                    <input type="file" name="document" id="file-{{ $accident->id }}" class="hidden">
                                                     <label for="file-{{ $accident->id }}" class="inline-block px-5 py-2 bg-gray-200 text-gray-800 rounded-lg font-medium hover:bg-gray-300 cursor-pointer transition">
                                                         Seleccionar Arxiu
                                                     </label>

@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Professional;
+use App\Models\Professional_doc;
 use App\Models\Monitoring;
 use App\Models\Recent_activity;
+use App\Models\Center;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
@@ -55,19 +57,32 @@ class ProfessionalController extends Controller
             'phone_number' => 'required',
             'email_address' => 'required',
             'address' => 'required',
+            'occupation' => 'required',
             'number_locker' => 'required',
             'clue_locker' => 'required',
+            'path.*' => 'required|file|max:10240'
         ]);
         $validated['center_id'] = session('center_id');
         $validated['password'] = Hash::make($validated['password']);
-        $validated['occupation'] = ' '; 
         $validated['link_status'] = 'Actiu'; 
         $validated['status'] = 'active'; 
-        Professional::create($validated);
+        $professional = Professional::create($validated);
+        $files = $request->file('path');
+        if ($files) {
+            foreach ($files as $file) {
+                $name = time() . '-' . $file->getClientOriginalName();
 
-        $validated['center_id'] = session('center_id');
-        $validated['link_status'] = 'Actiu'; 
-        $validated['status'] = 'active'; 
+                $path = Storage::disk('professional')->putFileAs('', $file, $name);
+
+                $professional->professional_docs()->create([
+                    'type' => 'start',
+                    'name' => $file->getClientOriginalName(),
+                    'path' => $path,
+                ]);
+            }
+        }
+        
+
         Recent_activity::create([
             'center_id' => session('center_id'),
             'professional_id' => Auth::user()->id,
@@ -80,9 +95,9 @@ class ProfessionalController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Professional $professional)
     {
-        //
+        return view('professionals.show',['professional'=>$professional]);
     }
 
     /**
@@ -103,10 +118,11 @@ class ProfessionalController extends Controller
             'name' => 'required',
             'surnames' => 'required',
             'username' => 'required',
-            'password' => 'required',
+            'password' => 'nullable',
             'phone_number' => 'required',
             'email_address' => 'required',
             'address' => 'required',
+            'occupation' => 'required',
             'number_locker' =>'required',
             'clue_locker' =>'required',
         ]);
@@ -169,5 +185,61 @@ class ProfessionalController extends Controller
     {
         return Excel::download(new UniformsExport, 'uniforms.xlsx');
     }
+    public function storeDocuments(Request $request, Professional $professional)
+    {
+        $request->validate([
+            'documents.*' => 'required|file|max:10240',
+        ]);
+
+        $files = $request->file('documents');
+        
+        if ($files) {
+            foreach ($files as $file) {
+                $name = time() . '-' . $file->getClientOriginalName();
+                $path = Storage::disk('professional')->putFileAs('', $file, $name);
+
+                $professional->professional_docs()->create([
+                    'type' => 'generated',
+                    'name' => $file->getClientOriginalName(),
+                    'path' => $path,
+                ]);
+            }
+
+            Recent_activity::create([
+                'center_id' => session('center_id'),
+                'professional_id' => Auth::user()->id,
+                'type' => 'Documents actualitzats',
+                'description' => Auth::user()->name." ha pujat documents per a ".$professional->name,
+            ]);
+
+            return redirect()->route('professional.show', $professional)
+                ->with('success', 'Documents pujats correctament.');
+        }
+
+        return redirect()->route('professional.show', $professional)
+            ->with('error', 'No s\'han pujat documents.');
+    }
+
+    /**
+     * Download a professional document
+     */
+    public function downloadDocument(Professional $professional, Professional_doc $document)
+    {
+        // Verify the document belongs to the professional
+        if ($document->professional_id != $professional->id) {
+            abort(403, 'No tens permisos per descarregar aquest document.');
+        }
+
+        $filePath = Storage::disk('professional')->path($document->path);
+        
+        if (!Storage::disk('professional')->exists($document->path)) {
+            abort(404, 'El document no existeix.');
+        }
+
+        return Storage::disk('professional')->download($document->path, $document->name);
+    }
+
+    
+    
     
 }

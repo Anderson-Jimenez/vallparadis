@@ -80,4 +80,9 @@ class Professional extends Authenticatable
     {
         return $this->HasMany(Accident_followup::class);
     }
+
+    public function professional_docs(): HasMany
+    {
+        return $this->hasMany(Professional_doc::class);
+    }
 }

@@ -107,7 +107,15 @@ return [
         'accident' => [
             'driver' => 'local',
             'root' => storage_path('app/public/accident'),
-            'url' => env('APP_URL').'/storage/accident',
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
+        'professional' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/professional'),
+            'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
             'throw' => false,
         ],
