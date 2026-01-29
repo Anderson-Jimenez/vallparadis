@@ -9,6 +9,7 @@ use App\Models\Monitoring;
 use App\Models\Recent_activity;
 
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Uniform;
 use App\Exports\LockerExport;
 use App\Exports\Uniforms_historyExport;
@@ -58,6 +59,7 @@ class ProfessionalController extends Controller
             'clue_locker' => 'required',
         ]);
         $validated['center_id'] = session('center_id');
+        $validated['password'] = Hash::make($validated['password']);
         $validated['occupation'] = ' '; 
         $validated['link_status'] = 'Actiu'; 
         $validated['status'] = 'active'; 
@@ -109,6 +111,7 @@ class ProfessionalController extends Controller
             'clue_locker' =>'required',
         ]);
         $validated['center_id'] = session('center_id');
+        $validated['password'] = Hash::make($validated['password']);
         $validated['link_status'] = 'Actiu';
         $validated['status'] = 'active';
         $professional->update($validated);
