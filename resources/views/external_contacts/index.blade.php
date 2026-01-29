@@ -46,8 +46,12 @@
                         <div class="relative">
                             <label class="text-sm font-semibold text-[#2D3E50] mb-2">Cerca contactes</label>
                             <div class="relative">
-                                <input type="search" id="search_input" name="text" value="{{ request('text') }}" placeholder="Nom, empresa, correu..." 
-                                    class="w-full bg-white border-2 border-gray-200 rounded-xl px-4 py-3 pl-12 focus:border-[#ff7300] focus:ring-2 focus:ring-orange-200 transition-all duration-300 shadow-sm">
+                                <input type="search" 
+                                       id="search_input" 
+                                       name="text" 
+                                       value="{{ request('text') }}" 
+                                       placeholder="Nom, empresa, correu..." 
+                                       class="w-full bg-white border-2 border-gray-200 rounded-xl px-4 py-3 pl-12 focus:border-[#ff7300] focus:ring-2 focus:ring-orange-200 transition-all duration-300 shadow-sm">
                                 <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#ff7300]">
                                     <use xlink:href="#search_loupe"></use>
                                 </svg>
@@ -57,7 +61,8 @@
                         <div>
                             <label for="type_filter" class="text-sm font-semibold text-[#2D3E50] mb-2">Tipus de servei</label>
                             <div class="relative">
-                                <select name="type" id="type_filter" 
+                                <select name="type" 
+                                        id="type_filter" 
                                         class="w-full bg-white border-2 border-gray-200 rounded-xl px-4 py-3 pr-10 appearance-none focus:border-[#ff7300] focus:ring-2 focus:ring-orange-200 transition-all duration-300 shadow-sm">
                                     <option value="">Tots els tipus</option>
                                     <option value="assistencials" {{ request('type') == 'assistencials' ? 'selected' : '' }}>Assistencials</option>
@@ -71,11 +76,11 @@
                             </div>
                         </div>
                         
-                        <!-- Filtro origen -->
                         <div>
                             <label for="origin_filter" class="block text-sm font-semibold text-[#2D3E50] mb-2">Origen</label>
                             <div class="relative">
-                                <select name="origin_type" id="origin_filter" 
+                                <select name="origin_type" 
+                                        id="origin_filter" 
                                         class="w-full bg-white border-2 border-gray-200 rounded-xl px-4 py-3 pr-10 appearance-none focus:border-[#ff7300] focus:ring-2 focus:ring-orange-200 transition-all duration-300 shadow-sm">
                                     <option value="">Tots els orígens</option>
                                     <option value="company" {{ request('origin_type') == 'company' ? 'selected' : '' }}>Empresa</option>
@@ -91,7 +96,7 @@
                         
                         <div class="flex items-end space-x-3">
                             <button type="submit" 
-                                    class="text-sm sidebar-gradient text-white px-8 py-3 rounded-lg hover:bg-orange-600 transition-all duration-300 font-semibold shadow-md hover:shadow-lg">
+                                    class="text-sm bg-[#ff7300] text-white px-8 py-3 rounded-lg hover:bg-orange-600 transition-all duration-300 font-semibold shadow-md hover:shadow-lg">
                                 Aplicar Filtres
                             </button>
                             <a href="{{ route('external_contacts.index') }}" 
@@ -104,8 +109,8 @@
                 </div>
 
                 @if(request()->anyFilled(['text', 'type', 'origin_type']))
-                <div class="w-full mt-6">
-                    <div class="bg-linear-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-500 p-4 rounded-xl shadow-sm">
+                <div class="w-11/12 mt-6">
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-xl shadow-sm">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center">
                                 <svg class="w-6 h-6 text-blue-500 mr-3">
@@ -128,19 +133,16 @@
                                     </p>
                                 </div>
                             </div>
-                            <span class="bg-blue-100 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full">
-                                {{ $external_contacts->total() }} resultats
-                            </span>
                         </div>
                     </div>
                 </div>
                 @endif
                 
-                <div class="w-11/12 mt-8 bg-linear-to-br from-white to-gray-50 p-6 rounded-2xl shadow-xl border border-gray-100 mb-10">
+                <div class="w-11/12 mt-8 bg-white p-6 rounded-2xl shadow-xl border border-gray-100 mb-10">
                     @if($external_contacts->count() > 0)
                         <div class="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
                             <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-linear-to-r from-[#2D3E50] to-[#3A506B]">
+                                <thead class="bg-[#2D3E50]">
                                     <tr>
                                         <th scope="col" class="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider">
                                             <div class="flex items-center">
@@ -208,12 +210,12 @@
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody class="bg-white divide-y divide-gray-100">
+                                <tbody id="search_results" class="bg-white divide-y divide-gray-100">
                                     @foreach ($external_contacts as $external_contact)
-                                    <tr class="hover:bg-linear-to-r hover:from-orange-50 hover:to-orange-25 transition-all duration-200">
+                                    <tr class="hover:bg-orange-50 transition-all duration-200">
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
-                                                <div class="shrink-0 h-10 w-10 bg-linear-to-br from-orange-100 to-orange-200 rounded-xl flex items-center justify-center">
+                                                <div class="flex-shrink-0 h-10 w-10 bg-orange-100 rounded-xl flex items-center justify-center">
                                                     <svg class="w-6 h-6 text-[#ff7300]">
                                                         <use xlink:href="#professional_icon"></use>
                                                     </svg>
@@ -226,7 +228,7 @@
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <span class="px-3 py-1.5 inline-flex text-xs leading-5 font-semibold rounded-full 
-                                                {{ $external_contact->type == 'assistencials' ? 'bg-linear-to-r from-blue-100 to-blue-200 text-blue-800' : 'bg-linear-to-r from-green-100 to-green-200 text-green-800' }}">
+                                                {{ $external_contact->type == 'assistencials' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800' }}">
                                                 {{ $external_contact->type == 'assistencials' ? 'ASSISTENCIAL' : 'SERVEI GENERAL' }}
                                             </span>
                                         </td>
@@ -236,7 +238,7 @@
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex flex-col space-y-1">
                                                 <span class="px-2 py-1 text-xs font-semibold rounded-full 
-                                                    {{ $external_contact->origin_type == 'company' ? 'bg-linear-to-r from-purple-100 to-purple-200 text-purple-800' : 'bg-linear-to-r from-yellow-100 to-yellow-200 text-yellow-800' }}">
+                                                    {{ $external_contact->origin_type == 'company' ? 'bg-purple-100 text-purple-800' : 'bg-yellow-100 text-yellow-800' }}">
                                                     {{ $external_contact->origin_type == 'company' ? 'EMPRESA' : 'DEPARTAMENT' }}
                                                 </span>
                                                 <span class="text-sm text-gray-700">{{ $external_contact->organization }}</span>
@@ -277,8 +279,7 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                             <div class="flex space-x-2">
                                                 <a href="{{ route('external_contacts.edit', $external_contact->id) }}" 
-                                                   class="bg-linear-to-r from-blue-50 to-blue-100 text-blue-600 hover:from-blue-100 hover:to-blue-200 
-                                                          p-2 rounded-lg hover:text-blue-800 transition-all duration-300 shadow-sm hover:shadow">
+                                                   class="bg-blue-50 text-blue-600 hover:bg-blue-100 p-2 rounded-lg hover:text-blue-800 transition-all duration-300 shadow-sm hover:shadow">
                                                     <svg class="w-5 h-5">
                                                         <use xlink:href="#edit_icon"></use>
                                                     </svg>
@@ -290,16 +291,14 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" 
-                                                            class="bg-linear-to-r from-red-50 to-red-100 text-red-600 hover:from-red-100 hover:to-red-200 
-                                                                   p-2 rounded-lg hover:text-red-800 transition-all duration-300 shadow-sm hover:shadow">
+                                                            class="bg-red-50 text-red-600 hover:bg-red-100 p-2 rounded-lg hover:text-red-800 transition-all duration-300 shadow-sm hover:shadow">
                                                         <svg class="w-5 h-5">
                                                             <use xlink:href="#delete_icon"></use>
                                                         </svg>
                                                     </button>
                                                 </form>
                                                 <a href="#" 
-                                                   class="bg-linear-to-r from-gray-50 to-gray-100 text-gray-600 hover:from-gray-100 hover:to-gray-200 
-                                                          p-2 rounded-lg hover:text-gray-800 transition-all duration-300 shadow-sm hover:shadow">
+                                                   class="bg-gray-50 text-gray-600 hover:bg-gray-100 p-2 rounded-lg hover:text-gray-800 transition-all duration-300 shadow-sm hover:shadow">
                                                     <svg class="w-5 h-5">
                                                         <use xlink:href="#view_icon"></use>
                                                     </svg>
@@ -314,7 +313,7 @@
                         
                     @else
                         <div class="text-center py-16">
-                            <div class="mx-auto w-24 h-24 bg-linear-to-r from-gray-100 to-gray-200 rounded-full flex items-center justify-center mb-6">
+                            <div class="mx-auto w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-6">
                                 <svg class="w-12 h-12 text-gray-400">
                                     <use xlink:href="#no_results_icon"></use>
                                 </svg>
@@ -322,8 +321,7 @@
                             <h3 class="text-2xl font-bold text-gray-700 mb-3">No s'han trobat contactes</h3>
                             <p class="text-gray-500 mb-8 max-w-md mx-auto">No hi ha contactes que coincideixin amb els filtres aplicats. Prova a canviar els criteris de cerca o a afegir un nou contacte.</p>
                             <a href="{{ route('external_contacts.create') }}" 
-                               class="inline-flex items-center text-white bg-linear-to-r from-[#ff7300] to-[#ff9500] hover:from-[#e56700] hover:to-[#ff8500] 
-                                      transition-all duration-300 rounded-xl px-6 py-3 text-center font-semibold shadow-lg hover:shadow-xl">
+                               class="inline-flex items-center text-white bg-[#ff7300] hover:bg-orange-600 transition-all duration-300 rounded-xl px-6 py-3 text-center font-semibold shadow-lg hover:shadow-xl">
                                 <svg class="w-5 h-5 mr-2">
                                     <use xlink:href="#add_prof_icon"></use>
                                 </svg>
@@ -337,11 +335,11 @@
     @endauth
 
     @guest
-        <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#2D3E50] to-[#1C2B3A]">
+        <div class="min-h-screen flex items-center justify-center bg-[#2D3E50]">
             <div class="text-center bg-white/10 backdrop-blur-lg p-12 rounded-2xl border border-white/20 shadow-2xl">
                 <h1 class="text-4xl font-bold text-white mb-6">No has iniciat sessió</h1>
                 <p class="text-gray-200 mb-8 text-lg">Redirigint al login...</p>
-                <div class="w-24 h-1 bg-gradient-to-r from-[#ff7300] to-[#ff9500] rounded-full mx-auto animate-pulse"></div>
+                <div class="w-24 h-1 bg-[#ff7300] rounded-full mx-auto animate-pulse"></div>
             </div>
         </div>
         <meta http-equiv="refresh" content="2; URL={{ route('login') }}" />
