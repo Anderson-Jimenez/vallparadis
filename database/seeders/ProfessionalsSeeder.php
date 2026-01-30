@@ -17,6 +17,7 @@ class ProfessionalsSeeder extends Seeder
         DB::table('professionals')->insert([
             [
                 'center_id'     => 1,
+                'role_id'        => 1,
                 'name'          => 'Admin',
                 'surnames'      => 'Principal',
                 'username'      => 'admin',
@@ -34,6 +35,7 @@ class ProfessionalsSeeder extends Seeder
             ],
             [
                 'center_id'     => 1,
+                'role_id'        => 2,
                 'name'          => 'Laura',
                 'surnames'      => 'Pérez Gómez',
                 'username'      => 'lperez',
@@ -51,6 +53,7 @@ class ProfessionalsSeeder extends Seeder
             ],
             [
                 'center_id' => 1,
+                'role_id'    => 3,
                 'name' => 'Carlos',
                 'surnames' => 'Ramírez Gómez',
                 'username' => 'carlosrg',
@@ -68,6 +71,7 @@ class ProfessionalsSeeder extends Seeder
             ],
             [
                 'center_id' => 1,
+                'role_id'    => 4,
                 'name' => 'María',
                 'surnames' => 'Fernández López',
                 'username' => 'mfernandez',
@@ -85,6 +89,7 @@ class ProfessionalsSeeder extends Seeder
             ],
             [
                 'center_id' => 1,
+                'role_id'    => 4,
                 'name' => 'Javier',
                 'surnames' => 'Santos Díaz',
                 'username' => 'jsantos',
@@ -102,6 +107,7 @@ class ProfessionalsSeeder extends Seeder
             ],
             [
                 'center_id' => 1,
+                'role_id'    => 4,
                 'name' => 'Laura',
                 'surnames' => 'García Ruiz',
                 'username' => 'lauragr',
@@ -119,6 +125,7 @@ class ProfessionalsSeeder extends Seeder
             ],
             [
                 'center_id' => 1,
+                'role_id'    => 4,
                 'name' => 'Andrés',
                 'surnames' => 'Martínez Ortega',
                 'username' => 'andresmo',
@@ -136,6 +143,7 @@ class ProfessionalsSeeder extends Seeder
             ],
             [
                 'center_id' => 1,
+                'role_id'    => 4,
                 'name' => 'Elena',
                 'surnames' => 'Moreno Castro',
                 'username' => 'elenamc',
@@ -153,6 +161,7 @@ class ProfessionalsSeeder extends Seeder
             ],
             [
                 'center_id' => 1,
+                'role_id'    => 4,
                 'name' => 'Raúl',
                 'surnames' => 'Pérez Jiménez',
                 'username' => 'raulpj',
@@ -170,6 +179,7 @@ class ProfessionalsSeeder extends Seeder
             ],
             [
                 'center_id' => 1,
+                'role_id'    => 4,
                 'name' => 'Lucía',
                 'surnames' => 'Gómez Sánchez',
                 'username' => 'luciags',
@@ -187,6 +197,7 @@ class ProfessionalsSeeder extends Seeder
             ],
             [
                 'center_id' => 1,
+                'role_id'    => 4,
                 'name' => 'David',
                 'surnames' => 'López Torres',
                 'username' => 'davidlt',
@@ -204,6 +215,7 @@ class ProfessionalsSeeder extends Seeder
             ],
             [
                 'center_id' => 1,
+                'role_id'    => 4,
                 'name' => 'Patricia',
                 'surnames' => 'Navarro Vega',
                 'username' => 'patricianv',

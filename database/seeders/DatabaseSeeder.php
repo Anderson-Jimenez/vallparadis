@@ -21,10 +21,11 @@ class DatabaseSeeder extends Seeder
         ]);*/
         $this->call([
             CentersSeeder::class,
+            RolsSeeder::class,
             ProfessionalsSeeder::class,
             Projects_comissionsSeeder::class,
             CoursesSeeder::class,
-            RolesSeeder::class,
+            
             General_servicesSeeder::class,
             ExternalContactSeeder::class,
             Hr_pending_issueSeeder::class,

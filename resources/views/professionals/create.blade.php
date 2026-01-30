@@ -76,6 +76,17 @@
                                value="{{ old('password') }}"
                                class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1">
                     </div>
+                    
+                    <div>
+                        <label class="text-sm text-gray-600">Seleccionar Rol *</label>
+                        <select name="role_id" class=" border-2 border-gray-200 rounded-md px-3 py-2 mt-1">
+                            @foreach($roles as $rol)
+                                <option value="{{ $rol->id }}">{{ $rol->role }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                        
+                    
                     <div>
                         <label class="text-sm text-gray-600">Telèfon *</label>
                         <input type="text"

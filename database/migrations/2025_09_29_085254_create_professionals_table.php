@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('center_id');
             $table->foreign('center_id')->references('id')->on('centers')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('role_id');
+            $table->foreign('role_id')->references('id')->on('rols')->onDelete('cascade')->onUpdate('cascade');
             $table->string('name', 255);
             $table->string('surnames', 255);
             $table->string('username', 255)->unique();

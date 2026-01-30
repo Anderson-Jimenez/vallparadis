@@ -13,9 +13,10 @@
     </button>
   </div>
   <ul class="flex-1 flex flex-col space-y-2 overflow-y-auto pr-2">
+    
     <li class="group w-full rounded-lg hover:bg-white transition">
       <a href="{{ route('dashboard') }}"
-         class="flex items-center gap-3 p-3 w-full">
+        class="flex items-center gap-3 p-3 w-full">
         <svg class="w-6 h-6 text-white group-hover:text-[#ff7300]">
           <use xlink:href="#dashboard_icon"></use>
         </svg>
@@ -24,18 +25,21 @@
         </span>
       </a>
     </li>
-
-    <li class="group w-full rounded-lg hover:bg-white transition">
-      <a href="{{ route('center.index') }}"
-         class="flex items-center gap-3 p-3 w-full">
-        <svg class="w-6 h-6 text-white group-hover:text-[#ff7300]">
-          <use xlink:href="#center_icon"></use>
-        </svg>
-        <span class="sidebar-text text-white text-sm font-semibold group-hover:text-[#ff7300]">
-          Gestió Centre
-        </span>
-      </a>
-    </li>
+    
+    
+    @if (auth()->user()->role_id == 1)
+        <li class="group w-full rounded-lg hover:bg-white transition">
+          <a href="{{ route('center.index') }}"
+            class="flex items-center gap-3 p-3 w-full">
+            <svg class="w-6 h-6 text-white group-hover:text-[#ff7300]">
+              <use xlink:href="#center_icon"></use>
+            </svg>
+            <span class="sidebar-text text-white text-sm font-semibold group-hover:text-[#ff7300]">
+              Gestió Centre
+            </span>
+          </a>
+        </li>
+    @endif
 
     <li class="group w-full rounded-lg hover:bg-white transition">
       <a href="{{ route('professional.index') }}"
@@ -72,18 +76,20 @@
         </span>
       </a>
     </li>
-
-    <li class="group w-full rounded-lg hover:bg-white transition">
-      <a href="{{ route('general_service.index') }}"
-         class="flex items-center gap-3 p-3 w-full">
-        <svg class="w-6 h-6 text-white group-hover:text-[#ff7300]">
-          <use xlink:href="#services_icon"></use>
-        </svg>
-        <span class="sidebar-text text-white text-sm font-semibold group-hover:text-[#ff7300]">
-          Serveis Generals
-        </span>
-      </a>
-    </li>
+    @if (auth()->user()->role_id < 3 )
+        <li class="group w-full rounded-lg hover:bg-white transition">
+          <a href="{{ route('general_service.index') }}"
+            class="flex items-center gap-3 p-3 w-full">
+            <svg class="w-6 h-6 text-white group-hover:text-[#ff7300]">
+              <use xlink:href="#services_icon"></use>
+            </svg>
+            <span class="sidebar-text text-white text-sm font-semibold group-hover:text-[#ff7300]">
+              Serveis Generals
+            </span>
+          </a>
+        </li>
+    @endif
+    
 
     <li class="group w-full rounded-lg hover:bg-white transition">
       <a href="{{ route('supplementary_service.index') }}"
@@ -108,42 +114,48 @@
         </span>
       </a>
     </li>
-
-    <li class="group w-full rounded-lg hover:bg-white transition">
-      <a href="{{ route('documents_center.index') }}"
-         class="flex items-center gap-3 p-3 w-full">
-        <svg class="w-6 h-6 text-white group-hover:text-[#ff7300]">
-          <use xlink:href="#docs_icon"></use>
-        </svg>
-        <span class="sidebar-text text-white text-sm font-semibold group-hover:text-[#ff7300]">
-          Documents
-        </span>
-      </a>
-    </li>
-
-    <li class="group w-full rounded-lg hover:bg-white transition">
-      <a href="{{ route('maintenance.index') }}"
-         class="flex items-center gap-3 p-3 w-full">
-        <svg class="w-6 h-6 text-white group-hover:text-[#ff7300]">
-          <use xlink:href="#maintenance_icon"></use>
-        </svg>
-        <span class="sidebar-text text-white text-sm font-semibold group-hover:text-[#ff7300]">
-          Manteniment
-        </span>
-      </a>
-    </li>
-
-    <li class="group w-full rounded-lg hover:bg-white transition">
-      <a href="{{ route('hr_pending_issue.index') }}"
-         class="flex items-center gap-3 p-3 w-full">
-        <svg class="w-6 h-6 text-white group-hover:text-[#ff7300]">
-          <use xlink:href="#rrhh_icon"></use>
-        </svg>
-        <span class="sidebar-text text-white text-sm font-semibold group-hover:text-[#ff7300]">
-          Temes Pendents
-        </span>
-      </a>
-    </li>
+    @if (auth()->user()->role_id == 1)
+          <li class="group w-full rounded-lg hover:bg-white transition">
+            <a href="{{ route('documents_center.index') }}"
+              class="flex items-center gap-3 p-3 w-full">
+              <svg class="w-6 h-6 text-white group-hover:text-[#ff7300]">
+                <use xlink:href="#docs_icon"></use>
+              </svg>
+              <span class="sidebar-text text-white text-sm font-semibold group-hover:text-[#ff7300]">
+                Documents
+              </span>
+            </a>
+          </li>
+    @endif
+    
+    @if (auth()->user()->role_id < 3 )
+          <li class="group w-full rounded-lg hover:bg-white transition">
+            <a href="{{ route('maintenance.index') }}"
+              class="flex items-center gap-3 p-3 w-full">
+              <svg class="w-6 h-6 text-white group-hover:text-[#ff7300]">
+                <use xlink:href="#maintenance_icon"></use>
+              </svg>
+              <span class="sidebar-text text-white text-sm font-semibold group-hover:text-[#ff7300]">
+                Manteniment
+              </span>
+            </a>
+          </li>
+    @endif
+    
+    @if (auth()->user()->role_id == 1)
+          <li class="group w-full rounded-lg hover:bg-white transition">
+            <a href="{{ route('hr_pending_issue.index') }}"
+              class="flex items-center gap-3 p-3 w-full">
+              <svg class="w-6 h-6 text-white group-hover:text-[#ff7300]">
+                <use xlink:href="#rrhh_icon"></use>
+              </svg>
+              <span class="sidebar-text text-white text-sm font-semibold group-hover:text-[#ff7300]">
+                Temes Pendents
+              </span>
+            </a>
+          </li>
+    @endif
+    
 
   </ul>
 </aside>

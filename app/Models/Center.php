@@ -41,4 +41,8 @@ class Center extends Model
         return $this->hasMany(Accident::class);
     }
 
+    public function rols(): HasMany {
+        return $this->hasMany(Rol::class);
+    }
+
 }

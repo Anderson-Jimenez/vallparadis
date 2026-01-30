@@ -25,10 +25,17 @@ class LoginController extends Controller
         ]);
 
         // Buscar al profesional en la base de datos
-        $professional = Professional::where('username', $credentials['username'])->first();
+        $professional = Professional::where('username', $credentials['username'])
+            ->with('role') // Carregar la relació role
+            ->first();
 
         // verificacio de si existeix un profesional amb el nom indicat i la contrasenya del mateix existeix
         if ($professional && Hash::check($credentials['password'], $professional->password)) {
+            if (!$professional->role || $professional->role->power === 0) {
+                return back()->withErrors([
+                    'login' => 'No tens accés a l’aplicació'
+                ]);
+            }
             session(['center_id' => $professional->center_id]);
             Auth::login($professional); // Comanda per
             return redirect()->route('dashboard');

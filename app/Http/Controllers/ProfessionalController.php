@@ -9,6 +9,7 @@ use App\Models\Professional_doc;
 use App\Models\Monitoring;
 use App\Models\Recent_activity;
 use App\Models\Center;
+use App\Models\Rol;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
@@ -41,7 +42,16 @@ class ProfessionalController extends Controller
      */
     public function create()
     {
-        return view('professionals.create');
+        $user = Auth::user();
+
+        // Roles que puede asignar el usuario (power <= usuario y > 0)
+        $roles = Rol::where('center_id', $user->center_id)
+                    ->where('power', '>=', $user->role->power) // ahora toma roles con menos poder
+                    ->where('power', '>', 0) // opcional, para excluir "Sense Rol"
+                        ->orWhere('power', 0) // incluir "Sense Rol"
+                    ->get();
+
+        return view('professionals.create', compact('roles'));
     }
 
     /**
@@ -50,6 +60,7 @@ class ProfessionalController extends Controller
     public function store(Request $request)
     {
         $validated = request()->validate([
+            'role_id' => 'required|exists:rols,id',
             'name' => 'required',
             'surnames' => 'required',
             'username' => 'required',

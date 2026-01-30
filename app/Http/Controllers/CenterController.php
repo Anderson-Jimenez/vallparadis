@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Center;
 
@@ -12,8 +12,15 @@ class CenterController extends Controller
      */
     public function index()
     {
-        $centers = Center::get();
-        return view('centers.index',['centers'=>$centers]);
+        $user = Auth::user();
+        if($user->role_id != 1){
+            return redirect()->route('dashboard')->with('success', 'No tens acces a questa pagina.');   
+        }
+        else{
+            $centers = Center::get();
+            return view('centers.index',['centers'=>$centers]);
+        }
+        
     }
 
     /**
@@ -21,7 +28,13 @@ class CenterController extends Controller
      */
     public function create()
     {
-        return view('centers.create');
+        $user = Auth::user();
+        if($user->role_id != 1){
+            return redirect()->route('dashboard')->with('success', 'No tens acces a questa pagina.');   
+        }
+        else{
+            return view('centers.create');
+        }
     }
 
     /**
@@ -29,15 +42,21 @@ class CenterController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = request()->validate([
-            'center_name' => 'required',
-            'location' => 'required',
-            'phone_number' => 'required',
-            'email_address' => 'required',
-        ]);
-        $validated['status'] = 'active'; 
-        Center::create($validated);
-        return redirect()->route('center.index');
+        $user = Auth::user();
+        if($user->role_id != 1){
+            return redirect()->route('dashboard')->with('success', 'No tens acces a questa pagina.');   
+        }
+        else{
+            $validated = request()->validate([
+                'center_name' => 'required',
+                'location' => 'required',
+                'phone_number' => 'required',
+                'email_address' => 'required',
+            ]);
+            $validated['status'] = 'active'; 
+            Center::create($validated);
+            return redirect()->route('center.index');
+        }
     }
 
     /**
@@ -53,7 +72,13 @@ class CenterController extends Controller
      */
     public function edit(Center $center)
     {
-        return view('centers.edit',['center'=>$center]);
+        $user = Auth::user();
+        if($user->role_id != 1){
+            return redirect()->route('dashboard')->with('success', 'No tens acces a questa pagina.');   
+        }
+        else{
+            return view('centers.edit',['center'=>$center]);
+        }
     }
 
     /**
@@ -61,15 +86,21 @@ class CenterController extends Controller
      */
     public function update(Request $request, Center $center)
     {
-        $validated = request()->validate([
-            'center_name' => 'required',
-            'location' => 'required',
-            'phone_number' => 'required',
-            'email_address' => 'required',
-        ]);
-        $validated['status'] = 'active';
-        $center->update($validated);
-        return redirect()->route('center.index');
+        $user = Auth::user();
+        if($user->role_id != 1){
+            return redirect()->route('dashboard')->with('success', 'No tens acces a questa pagina.');   
+        }
+        else{
+            $validated = request()->validate([
+                'center_name' => 'required',
+                'location' => 'required',
+                'phone_number' => 'required',
+                'email_address' => 'required',
+            ]);
+            $validated['status'] = 'active';
+            $center->update($validated);
+            return redirect()->route('center.index');
+        }
     }
 
     /**
@@ -77,14 +108,26 @@ class CenterController extends Controller
      */
     public function destroy(Center $center)
     {
-        $center->delete(); // elimina el registro
-        return redirect()->route('center.index');
+        $user = Auth::user();
+        if($user->role_id != 1){
+            return redirect()->route('dashboard')->with('success', 'No tens acces a questa pagina.');   
+        }
+        else{
+            $center->delete(); // elimina el registro
+            return redirect()->route('center.index');
+        }
     }
 
     public function activate(Center $center)
     {   
-        $center->status = $center->status == 'active' ? 'inactive' : 'active';
-        $center->save();
-        return redirect()->route('center.index');
+        $user = Auth::user();
+        if($user->role_id != 1){
+            return redirect()->route('dashboard')->with('success', 'No tens acces a questa pagina.');   
+        }
+        else{
+            $center->status = $center->status == 'active' ? 'inactive' : 'active';
+            $center->save();
+            return redirect()->route('center.index');
+        }
     }
 }

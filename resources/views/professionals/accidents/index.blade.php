@@ -144,14 +144,32 @@
                                                     {{ $accident->days }} dies
                                                 </span>
                                                 
-                                                <!-- BOTÓN PARA SEGUIMIENTOS -->
-                                                <a href="{{ route('professionals.accidents.followups.index', [$professional, $accident]) }}" 
-                                                   class="ml-3 px-4 py-2 bg-linear-to-r from-blue-500 to-blue-600 text-white text-sm font-medium rounded-lg hover:opacity-90 transition flex items-center gap-2">
-                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
-                                                    </svg>
-                                                    Seguiments
-                                                </a>
+                                                @php
+                                                    $show_followup_button = true;
+                                                    $is_power_3 = auth()->user()->role_id == 3;
+                                                    
+                                                    if ($is_power_3 && $accident->end_date) {
+                                                        $duration_days = (strtotime($accident->end_date) - strtotime($accident->start_date)) / 86400;
+                                                        $show_followup_button = $duration_days <= 30;
+                                                    }
+                                                @endphp
+                                                
+                                                @if($show_followup_button)
+                                                    <a href="{{ route('professionals.accidents.followups.index', [$professional, $accident]) }}" 
+                                                    class="ml-3 px-4 py-2 bg-linear-to-r from-blue-500 to-blue-600 text-white text-sm font-medium rounded-lg hover:opacity-90 transition flex items-center gap-2">
+                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                                                        </svg>
+                                                        Seguiments
+                                                    </a>
+                                                @elseif($is_power_3 && $accident->end_date)
+                                                    <span class="ml-3 px-4 py-2 bg-gray-200 text-gray-600 text-sm font-medium rounded-lg flex items-center gap-2 cursor-not-allowed">
+                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                                        </svg>
+                                                        Seguiments
+                                                    </span>
+                                                @endif
                                                 
                                                 <svg class="w-5 h-5 text-gray-400 transform transition-transform duration-300" id="arrow-{{ $accident->id }}" 
                                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
