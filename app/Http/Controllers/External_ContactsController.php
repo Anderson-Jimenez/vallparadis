@@ -78,23 +78,49 @@ class External_ContactsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $external_contact = External_Contacts::findOrFail($id);
+        return view('external_contacts.show', compact('external_contact'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $external_contact = External_Contacts::findOrFail($id);
+        return view('external_contacts.edit', compact('external_contact'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name'           => 'required',
+            'type'           => 'required',
+            'organization'   => 'required',
+
+            'purpose_type'   => 'required',
+            'origin_type'    => 'required',
+            'purpose'        => 'required',
+
+            'manager'        => 'required',
+            'phone_numer'    => 'required',
+            'email_address'  => 'required',
+            'comments'       => 'required',
+        ]);
+
+        try {
+            $contact = External_Contacts::findOrFail($id);
+            $contact->update($validated);
+            
+            return redirect()->route('external_contacts.index')
+                ->with('success', 'Contacte actualitzat correctament.');
+                
+        } catch (\Exception $e) {
+            return back()->with('error', 'Error al actualitzar el contacte: ' . $e->getMessage());
+        }
     }
 
     /**
@@ -102,7 +128,18 @@ class External_ContactsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $contact = External_Contacts::findOrFail($id);
+            $contact->delete();
+            
+            return redirect()->route('external_contacts.index')
+                ->with('success', 'Contacto externo eliminado correctamente.');
+                
+        } 
+        catch (\Exception $e) {
+            return redirect()->route('external_contacts.index')
+                ->with('error', 'No se pudo eliminar el contacto: ' . $e->getMessage());
+        }
     }
     public function search(Request $request)
     {

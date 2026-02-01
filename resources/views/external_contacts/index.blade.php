@@ -27,7 +27,7 @@
                         <a href="{{ route('external_contacts.create') }}"
                         class="flex items-center text-sm text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300]
                                     transition-all duration-300 rounded-xl px-5 py-3 text-center font-medium">
-                            + Nuevo Tema
+                            + Nou Contacte
                         </a>
                     </div>
                 
@@ -215,7 +215,7 @@
                                     <tr class="hover:bg-orange-50 transition-all duration-200">
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
-                                                <div class="flex-shrink-0 h-10 w-10 bg-orange-100 rounded-xl flex items-center justify-center">
+                                                <div class="shrink-0 h-10 w-10 bg-orange-100 rounded-xl flex items-center justify-center">
                                                     <svg class="w-6 h-6 text-[#ff7300]">
                                                         <use xlink:href="#professional_icon"></use>
                                                     </svg>
@@ -297,10 +297,10 @@
                                                         </svg>
                                                     </button>
                                                 </form>
-                                                <a href="#" 
+                                                <a href="{{ route('external_contacts.show', $external_contact->id) }}" 
                                                    class="bg-gray-50 text-gray-600 hover:bg-gray-100 p-2 rounded-lg hover:text-gray-800 transition-all duration-300 shadow-sm hover:shadow">
                                                     <svg class="w-5 h-5">
-                                                        <use xlink:href="#view_icon"></use>
+                                                        <use xlink:href="#see_evaluations"></use>
                                                     </svg>
                                                 </a>
                                             </div>
