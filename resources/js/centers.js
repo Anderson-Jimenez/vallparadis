@@ -113,4 +113,4 @@ document.querySelectorAll('.center-item').forEach(item => {
         // Mostrar el contenido
         detail_content.classList.remove('hidden');
     });
-}); //http://localhost:8000/centers/1/activate?
+});
