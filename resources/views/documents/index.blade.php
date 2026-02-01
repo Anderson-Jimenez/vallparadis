@@ -29,14 +29,15 @@
         <main class="flex w-full flex-1">
             @include('components.sidebar')
             
-            <section class="w-full flex flex-col items-center gap-8 p-4">
-                <div class="w-11/12 border-b-4 border-[#213c57] flex items-center py-4">
-                    <h1 class="text-[#2D3E50] text-4xl pt-7 pb-1">Gestió Documents del Centre</h1>
+            <section class="w-full flex flex-col items-center gap-8">
+                <div class="flex justify-center flex-col mb-8 bg-white py-4 px-10 w-full">
+                    <h1 class="text-3xl font-bold text-gray-800">Gestió Documents Interns</h1>
+                    <p class="text-gray-600 mt-2">Administració i modificació de documents interns del centre</p>
                 </div>
 
                 <section class="w-11/12 flex flex-col lg:flex-row gap-6">
                     <!-- Sección izquierda - Formulario (altura más compacta) -->
-                    <aside class="w-full lg:w-1/2 bg-white shadow-lg rounded-lg p-6 flex flex-col h-fit">
+                    <aside class="w-full lg:w-1/2 bg-white shadow-sm rounded-lg p-6 flex flex-col h-fit">
                         <form action="{{ route('documents_center.store') }}" method="post" enctype="multipart/form-data" class="flex flex-col">
                             @csrf
                             <input type="hidden" name="professional_id" value="{{ auth()->user()->professional_id ?? old('professional_id') }}">
@@ -140,7 +141,7 @@
                         </form>
                     </aside>
 
-                    <aside class="w-full lg:w-1/2 bg-white shadow-xl rounded-lg p-6 flex flex-col">
+                    <aside class="w-full lg:w-1/2 bg-white shadow-sm rounded-lg p-6 flex flex-col">
                         <div class="flex flex-col md:flex-row md:items-center justify-between w-full mb-4">
                             <div class="flex items-center mb-3 md:mb-0">
                                 <svg class="bg-[#ff7300] rounded-full w-10 h-10 p-2 mr-3 text-white shrink-0">

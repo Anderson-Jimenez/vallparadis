@@ -41,23 +41,33 @@ class General_serviceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(General_service $service)
+    public function show(General_service $general_service)
     {
         $user = Auth::user();
+        
         if($user->role_id == 3){
             return redirect()->route('dashboard')->with('success', 'No tens acces a questa pagina.');   
         }
         else{
-            return view('services.general.index',['service'=>$service]);
+            // Cargar solo la relación centers, no los followups
+            $general_service->load('centers');
+            
+            return view('services.general.show', compact('general_service'));
         }
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(General_service $general_service)
     {
-        //
+        $user = Auth::user();
+        if($user->role_id == 3){
+            return redirect()->route('dashboard')->with('success', 'No tens acces a questa pagina.');   
+        }
+        else{
+            return view('services.general.edit', compact('general_service'));
+        }
     }
 
     /**

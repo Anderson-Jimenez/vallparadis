@@ -115,7 +115,7 @@
                             @else
                                 <div class="space-y-4">
                                     @foreach ($services as $service)
-                                        <a href="{{ route('general_service.index', $service) }}">
+                                        <a href="{{ route('general_service.show', $service) }}">
                                             <div class="group bg-gray-50 hover:bg-orange-50 border border-gray-200 rounded-xl p-5 transition-all duration-300 hover:border-orange-300 hover:shadow-md flex justify-between items-start">
                                                 <div class="flex-1">
                                                     <div class="flex items-center mb-3">
@@ -175,7 +175,7 @@
                                                 </div>
 
                                                 <div class="flex gap-4">
-                                                    <a href="{{ route('general_service.index', $service) }}" class="followup-service flex txt-orange items-center">
+                                                    <a href="{{ route('general_service.edit', $service) }}" class="followup-service flex txt-orange items-center">
                                                         <svg class="w-10 h-10 txt-orange mr-2" title="Editar servei">
                                                             <use xlink:href="#edit_icon"></use>
                                                         </svg>
