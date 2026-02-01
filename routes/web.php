@@ -57,6 +57,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/professionals', [ProfessionalController::class, 'index'])->name('professionals.index');
     Route::get('/professionals/search', [ProfessionalController::class, 'search'])->name('professionals.search');
 
+    Route::post('professional/{professional}/documents', [ProfessionalController::class, 'storeDocuments'])
+        ->name('professional.documents.documents_store');
+    Route::get('professional/{professional}/documents/{document}/download', [ProfessionalController::class, 'downloadDocument'])
+        ->name('professional.documents.download');
     //Monitoring
     //Route::resource('monitoring', MonitoringController::class);
     Route::get('/monitoring/professional/{professional}', [MonitoringController::class, 'index'])

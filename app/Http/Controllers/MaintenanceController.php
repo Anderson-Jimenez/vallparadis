@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Maintenance;
 use App\Models\Maintenance_doc;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -15,8 +16,14 @@ class MaintenanceController extends Controller
      */
     public function index()
     {
-        $maintenances = Maintenance::get();
-        return view('maintenance.index',['maintenances'=>$maintenances]);
+        $user = Auth::user();
+        if($user->role_id == 3){
+            return redirect()->route('dashboard')->with('success', 'No tens acces a questa pagina.');   
+        }
+        else{
+            $maintenances = Maintenance::get();
+            return view('maintenance.index',['maintenances'=>$maintenances]);
+        }
     }
 
     /**
@@ -32,38 +39,44 @@ class MaintenanceController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = request()->validate([
-            'name' => 'required',
-            'start_date' => 'required|date',
-
-            'manager' => 'required',
-            'phone' => 'nullable',
-            'email' => 'nullable',
-            'description' => 'required',
-            'docs.*' => 'file|mimes:pdf,doc,docx,txt|max:5120'
-        ]);
-        $validated['center_id'] = session('center_id');
-        $validated['status'] = 'active';
-        $maintenance = Maintenance::create($validated);
-
-        $files = $request->file('docs');
-        if ($files) {
-            foreach ($files as $file) {
-                // Generar un nombre único para cada archivo
-                $name_file = time() . '-' . $file->getClientOriginalName();
-
-                // Guardar archivo en el disco 'supplementary_services' (configurado en config/filesystems.php)
-                $storage_path = Storage::disk('maintenance')->putFileAs('', $file, $name_file);
-
-                // Guardar registro en la tabla relacionada
-                $maintenance->maintenance_docs()->create([
-                    'name' => $file->getClientOriginalName(), // Nombre original del archivo
-                    'path' => $storage_path,                 // Ruta de almacenamiento
-                ]);
-            }
+        $user = Auth::user();
+        if($user->role_id == 3){
+            return redirect()->route('dashboard')->with('success', 'No tens acces a questa pagina.');   
         }
+        else{
+            $validated = request()->validate([
+                'name' => 'required',
+                'start_date' => 'required|date',
 
-        return redirect()->route('maintenance.index');
+                'manager' => 'required',
+                'phone' => 'nullable',
+                'email' => 'nullable',
+                'description' => 'required',
+                'docs.*' => 'file|mimes:pdf,doc,docx,txt|max:5120'
+            ]);
+            $validated['center_id'] = session('center_id');
+            $validated['status'] = 'active';
+            $maintenance = Maintenance::create($validated);
+
+            $files = $request->file('docs');
+            if ($files) {
+                foreach ($files as $file) {
+                    // Generar un nombre único para cada archivo
+                    $name_file = time() . '-' . $file->getClientOriginalName();
+
+                    // Guardar archivo en el disco 'supplementary_services' (configurado en config/filesystems.php)
+                    $storage_path = Storage::disk('maintenance')->putFileAs('', $file, $name_file);
+
+                    // Guardar registro en la tabla relacionada
+                    $maintenance->maintenance_docs()->create([
+                        'name' => $file->getClientOriginalName(), // Nombre original del archivo
+                        'path' => $storage_path,                 // Ruta de almacenamiento
+                    ]);
+                }
+            }
+
+            return redirect()->route('maintenance.index');
+        }
             
     }
 
@@ -72,7 +85,13 @@ class MaintenanceController extends Controller
      */
     public function show(Maintenance $maintenance)
     {
-        return view('maintenance.show',['maintenance'=>$maintenance]);
+        $user = Auth::user();
+        if($user->role_id == 3){
+            return redirect()->route('dashboard')->with('success', 'No tens acces a questa pagina.');   
+        }
+        else{
+            return view('maintenance.show',['maintenance'=>$maintenance]);
+        }
     }
 
     /**
@@ -80,7 +99,13 @@ class MaintenanceController extends Controller
      */
     public function edit(Maintenance $maintenance)
     {
-        return view('maintenance.edit',['maintenance'=>$maintenance]);
+        $user = Auth::user();
+        if($user->role_id == 3){
+            return redirect()->route('dashboard')->with('success', 'No tens acces a questa pagina.');   
+        }
+        else{
+            return view('maintenance.edit',['maintenance'=>$maintenance]);
+        }
     }
 
     /**
@@ -88,23 +113,29 @@ class MaintenanceController extends Controller
      */
     public function update(Request $request, Maintenance $maintenance)
     {
-        // Validación de los datos recibidos
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'start_date' => 'required|date',
-            'manager' => 'required|string|max:255',
-            'phone' => 'nullable|string|max:50',
-            'email' => 'nullable|email|max:255',
-            'description' => 'nullable|string',
-        ]);
+        $user = Auth::user();
+        if($user->role_id == 3){
+            return redirect()->route('dashboard')->with('success', 'No tens acces a questa pagina.');   
+        }
+        else{
+            // Validación de los datos recibidos
+            $validated = $request->validate([
+                'name' => 'required|string|max:255',
+                'start_date' => 'required|date',
+                'manager' => 'required|string|max:255',
+                'phone' => 'nullable|string|max:50',
+                'email' => 'nullable|email|max:255',
+                'description' => 'nullable|string',
+            ]);
 
-        // Actualizar los datos del mantenimiento
-        $maintenance->update($validated);
+            // Actualizar los datos del mantenimiento
+            $maintenance->update($validated);
 
-        // Redirigir a la vista del mantenimiento actualizado con mensaje de éxito
-        return redirect()
-            ->route('maintenance.show', $maintenance)
-            ->with('success', 'Manteniment actualitzat correctament.');
+            // Redirigir a la vista del mantenimiento actualizado con mensaje de éxito
+            return redirect()
+                ->route('maintenance.show', $maintenance)
+                ->with('success', 'Manteniment actualitzat correctament.');
+        }
     }
 
     /**

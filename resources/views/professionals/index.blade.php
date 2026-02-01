@@ -107,6 +107,9 @@
                                         </button>
                                     </form>
                                 @endif
+                                <a href="{{ route('professional.show', $professional) }}" title="Veure les dades professional" class="border border-[#ff7300] rounded-lg gap-x-1.5 px-4 py-0.5 w-45 transition ease-in duration-200 hover:bg-[#ffa65d91]">
+                                    <p>Mostrar info</p>
+                                </a>
                                 <!--link dropdown: https://tailwindcss.com/plus/ui-blocks/application-ui/elements/dropdowns-->
                                 <div class="w-4/5 flex">
                                     <el-dropdown class="inline-block rounded-tl-xl rounded-bl-xl">
@@ -142,6 +145,7 @@
                                             </div>
                                         </el-menu>
                                     </el-dropdown>
+                                    
                                     <a href="{{ route('professional.edit', $professional) }}" title="Editar dades professional" class="border border-[#ff7300] rounded-tr-xl rounded-br-xl gap-x-1.5 px-3 py-2 transition ease-in duration-200 hover:bg-[#ffa65d91]">
                                         <svg class="w-6 h-6 txt-orange ">
                                             <use xlink:href="#edit_icon"></use>

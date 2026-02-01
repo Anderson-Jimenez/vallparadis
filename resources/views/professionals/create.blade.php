@@ -1,61 +1,168 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Afegir professional</title>
-    @vite("resources/css/app.css")
+    <title>Afegir projecte / comissió</title>
+    @vite('resources/css/app.css')
 </head>
-<body class="min-h-screen flex flex-col bg-[#2D3E50]">
-    @auth    
-        @if ($errors->any())
+
+<body class="bg-body min-h-screen">
+
+@include('components.navbar')
+
+@auth
+    @if ($errors->any())
+        <ul class="mb-4 px-10">
             @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+                <li class="text-red-500">{{ $error }}</li>
             @endforeach
-        @endif
-        @include('components.navbar')   
-        @yield('contingut')
-            <main class="flex flex-col items-center w-full py-10">
-                <h1 class="text-white text-3xl w-10/12 text-center p-10 border-b-6 border-[#ff7300]">Formulari afegir nou professional</h1>
-                <form action="{{ route('professional.store') }}" method="POST" class="m-10 flex flex-col w-5/12 p-10  bg-black-transparent rounded-3xl">
-                    @csrf
+        </ul>
+    @endif
 
-                    <label for="name" class="text-white text-xl">Nom:</label>
-                    <input type="text" name="name" id="name" value="{{ old('name') }}" required class="bg-white-transparent p-3 mb-2 text-white rounded-3xl"> 
+    <main class="flex justify-center py-10">
+        <div class="w-3/4">
 
-                    <label for="surnames" class="text-white text-xl">Cognoms:</label>
-                    <input type="text" name="surnames" id="surnames" value="{{ old('surnames') }}" required class="bg-white-transparent p-3 mb-2 text-white rounded-3xl">
+            <div class="flex items-center gap-2 mb-1">
+                <h1 class="text-2xl font-semibold">
+                    Afegir nou professional
+                </h1>
+            </div>
+            <p class="text-gray-500 mb-6">
+                Ompliu la informació per crear un nou professional
+            </p>
 
-                    <label for="username" class="text-white text-xl">Nom d’usuari:</label>
-                    <input type="text" name="username" id="username" value="{{ old('username') }}" required class="bg-white-transparent p-3 mb-2 text-white rounded-3xl">
+            <form action="{{ route('professional.store') }}"
+                  method="POST"
+                  enctype="multipart/form-data"
+                  class="bg-white rounded-lg shadow overflow-hidden">
+                @csrf
 
-                    <label for="password" class="text-white text-xl">Contrasenya:</label>
-                    <input type="password" name="password" id="password" required class="bg-white-transparent p-3 mb-2 text-white rounded-3xl">
+                <div class="bg-orange-500 text-white px-6 py-3">
+                    <p class="font-semibold">Informació bàsica</p>
+                    <p class="text-sm opacity-80">Els camps marcats amb * són obligatoris</p>
+                </div>
 
-                    <label for="phone_number" class="text-white text-xl">Telèfon:</label>
-                    <input type="text" name="phone_number" id="phone_number" value="{{ old('phone_number') }}" required class="bg-white-transparent p-3 mb-2 text-white rounded-3xl">
+                <div class="p-8 flex flex-col gap-8">
 
-                    <label for="email_address" class="text-white text-xl">Correu electrònic:</label>
-                    <input type="text" name="email_address" id="email_address" value="{{ old('email_address') }}" required class="bg-white-transparent p-3 mb-2 text-white rounded-3xl">
-
-                    <label for="address" class="text-white text-xl">Adreça:</label>
-                    <input type="text" name="address" id="address" value="{{ old('address') }}" required class="bg-white-transparent p-3 mb-2 text-white rounded-3xl">
-
-                    <label for="number_locker" class="text-white text-xl">Número de taquilla:</label>
-                    <input type="text" name="number_locker" id="number_locker" value="{{ old('number_locker') }}" required class="bg-white-transparent p-3 mb-2 text-white rounded-3xl">
-
-                    <label for="clue_locker" class="text-white text-xl">Clau de la taquilla:</label>
-                    <input type="text" name="clue_locker" id="clue_locker" value="{{ old('clue_locker') }}" required class="bg-white-transparent p-3 mb-2 text-white rounded-3xl">
+                    <div>
+                        <label class="text-sm text-gray-600">Nom *</label>
+                        <input type="text"
+                               name="name"
+                               required
+                               value="{{ old('name') }}"
+                               class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1">
+                    </div>
+                    <div>
+                        <label class="text-sm text-gray-600">Cognoms *</label>
+                        <input type="text"
+                               name="surnames"
+                               required
+                               value="{{ old('surnames') }}"
+                               class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1">
+                    </div>
+                    <div>
+                        <label class="text-sm text-gray-600">Nom d'usuari *</label>
+                        <input type="text"
+                               name="username"
+                               required
+                               value="{{ old('username') }}"
+                               class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1">
+                    </div>
+                    <div>
+                        <label class="text-sm text-gray-600">Contrasenya *</label>
+                        <input type="text"
+                               name="password"
+                               required
+                               value="{{ old('password') }}"
+                               class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1">
+                    </div>
                     
-                    <button type="submit" class="m-5 text-lg text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300] transition-all duration-300 rounded-full p-5">Crear Professional</button>
-                </form>
-            </main>
-    @endauth
+                    <div>
+                        <label class="text-sm text-gray-600">Seleccionar Rol *</label>
+                        <select name="role_id" class=" border-2 border-gray-200 rounded-md px-3 py-2 mt-1">
+                            @foreach($roles as $rol)
+                                <option value="{{ $rol->id }}">{{ $rol->role }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                        
+                    
+                    <div>
+                        <label class="text-sm text-gray-600">Telèfon *</label>
+                        <input type="text"
+                               name="phone_number"
+                               required
+                               value="{{ old('phone_number') }}"
+                               class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1">
+                    </div>
+                    <div>
+                        <label class="text-sm text-gray-600">Adreça electrònica *</label>
+                        <input type="email"
+                               name="email_address"
+                               required
+                               value="{{ old('email_address') }}"
+                               class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1">
+                    </div>
+                    <div>
+                        <label class="text-sm text-gray-600">Adreça *</label>
+                        <input type="text"
+                               name="address"
+                               required
+                               value="{{ old('address') }}"
+                               class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1">
+                    </div>
+                    <div>
+                        <label class="text-sm text-gray-600">Càrrec *</label>
+                        <input type="text"
+                               name="occupation"
+                               required
+                               value="{{ old('occupation') }}"
+                               class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1">
+                    </div>
+                    <div>
+                        <label class="text-sm text-gray-600">Número de guixeta *</label>
+                        <input type="text"
+                               name="number_locker"
+                               required
+                               value="{{ old('number_locker') }}"
+                               class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1">
+                    </div>
+                    <div>
+                        <label class="text-sm text-gray-600">Clau de guixeta *</label>
+                        <input type="text"
+                               name="clue_locker"
+                               required
+                               value="{{ old('clue_locker') }}"
+                               class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1">
+                    </div>
 
-    @guest
-        <h1>No has iniciado sesión.</h1>
-        <meta http-equiv="refresh" content="2; URL={{ route('login') }}" />
-    @endguest
+                    <div>
+                        <label class="text-sm text-gray-600">Documents adjunts</label>
+                        <input type="file" name="path[]" multiple class="w-full border-2 border-gray-200 rounded-md px-3 py-2 mt-1">
+                    </div>
+
+                    <div class="flex justify-between items-center border-t pt-6">
+                        <a href="{{ route('professionals.index') }}"
+                           class="border border-orange-500 text-orange-500 px-6 py-4 rounded-xl hover:underline">
+                            Cancel·lar
+                        </a>
+
+                        <button type="submit"
+                                class="bg-orange-500 text-white px-6 py-4 rounded-md border hover:bg-white hover:text-orange-500 hover:border-orange-500 transition">
+                            Crear professional
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </main>
+@endauth
+
+@guest
+    <h1>No has iniciat sessió.</h1>
+    <meta http-equiv="refresh" content="2; URL={{ route('login') }}">
+@endguest
+
 </body>
 </html>

@@ -136,12 +136,15 @@
                         </svg>
                         Programar Curs
                     </a>
-                    <a href="{{ route('documents_center.index') }}" class="pl-3 flex items-center border border-gray-300 text-gray-600 p-4 rounded-xl hover:bg-gray-100 justify-center text-xl">
-                        <svg class="w-6 h-6 md:w-7 md:h-7 mr-2">
-                            <use xlink:href="#add_docs_icon"></use>
-                        </svg>
-                        Pujar Document
-                    </a>
+                    @if (auth()->user()->role_id == 1 )
+                        <a href="{{ route('documents_center.index') }}" class="pl-3 flex items-center border border-gray-300 text-gray-600 p-4 rounded-xl hover:bg-gray-100 justify-center text-xl">
+                            <svg class="w-6 h-6 md:w-7 md:h-7 mr-2">
+                                <use xlink:href="#add_docs_icon"></use>
+                            </svg>
+                            Pujar Document
+                        </a>
+                    @endif
+                    
 
                 </div>
             </div>
