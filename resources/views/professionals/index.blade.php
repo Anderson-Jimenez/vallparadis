@@ -141,6 +141,13 @@
                                                     </svg>
                                                     Accidentabilitat
                                                 </a>
+
+                                                <a href="{{ route('professional.send_uniform', $professional) }}" class="flex txt-orange items-center px-4 py-4 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
+                                                    <svg class="w-5 h-5 txt-orange mr-2">
+                                                        <use xlink:href="#evaluations_icon"></use>
+                                                    </svg>
+                                                    Veure/Afegir Uniforme
+                                                </a>
         
                                             </div>
                                         </el-menu>

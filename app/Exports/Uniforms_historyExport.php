@@ -15,7 +15,8 @@ class Uniforms_historyExport implements FromQuery, WithHeadings, WithMapping
     {
         return Uniform::query()
             ->with('professional')
-            ->select('professional_id', 'shirt_size', 'trausers_size', 'shoes_size', 'renovation_date');
+            ->select('professional_id', 'shirt_size', 'trausers_size', 'shoes_size', 'renovation_date')
+            ->orderBy('created_at', 'desc');
     }
 
 

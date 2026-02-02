@@ -158,9 +158,37 @@ class ProfessionalController extends Controller
     }
     public function send_uniform(Professional $professional)
     {
-        $uniform = Uniform::where('professional_id', $professional->id)->latest()->first();
+        $currentUniform = Uniform::where('professional_id', $professional->id)
+            ->latest()
+            ->first();
 
-        return view('professionals.uniform', ['professional'=>$professional, 'uniform'=>$uniform]);
+        $lastShirtSize = Uniform::where('professional_id', $professional->id)
+            ->whereNotNull('shirt_size')
+            ->orderBy('created_at', 'desc')
+            ->value('shirt_size');
+
+        $lastTrousersSize = Uniform::where('professional_id', $professional->id)
+            ->whereNotNull('trausers_size') // Note: tu campo se llama 'trausers_size' en la base de datos
+            ->orderBy('created_at', 'desc')
+            ->value('trausers_size');
+
+        $lastShoesSize = Uniform::where('professional_id', $professional->id)
+            ->whereNotNull('shoes_size')
+            ->orderBy('created_at', 'desc')
+            ->value('shoes_size');
+        // Obtener historial de uniformes
+        $uniformHistory = Uniform::where('professional_id', $professional->id)
+            ->orderBy('renovation_date', 'desc')
+            ->get();
+
+        return view('professionals.uniform', [
+            'professional' => $professional,
+            'currentUniform' => $currentUniform,
+            'lastShirtSize' => $lastShirtSize,
+            'lastTrousersSize' => $lastTrousersSize,
+            'lastShoesSize' => $lastShoesSize,
+            'uniformHistory' => $uniformHistory
+        ]);
     }
     public function uniform(Request $request, Professional $professional)
     {
@@ -176,13 +204,31 @@ class ProfessionalController extends Controller
         $file = $request->file('docs_route');
         if ($file) {
             
-            $name_file = time().'-'. $file->getClientOriginalName();
-            $validated['docs_route'] = Storage::disk('uniforms')->putFileAs('', $file, $name_file);
+            $filename = 'uniform_' . time() . '_' . $professional->id . '.' . $file->getClientOriginalExtension();
+            $path = Storage::disk('uniforms')->putFileAs('', $file, $filename);
+            $validated['docs_route'] = $path;
+            $validated['original_filename'] = $file->getClientOriginalName();
             
         }
         
         Uniform::create($validated);
-        return redirect()->route('professional.index');
+        return redirect()->route('professional.send_uniform', $professional);
+    }
+    public function downloadUniformDocument(Professional $professional, Uniform $uniform)
+    {
+        // Verificar permisos
+        if ($uniform->professional_id != $professional->id) {
+            abort(403, 'No tens permisos per descarregar aquest document.');
+        }
+
+        if (!Storage::disk('uniforms')->exists($uniform->docs_route)) {
+            abort(404, 'El document no existeix.');
+        }
+
+        $downloadName = $uniform->original_filename ?? 
+                       "uniform_{$professional->name}_{$uniform->renovation_date}.pdf";
+
+        return Storage::disk('uniforms')->download($uniform->docs_route, $downloadName);
     }
     public function exportar_excel_locker()
     {

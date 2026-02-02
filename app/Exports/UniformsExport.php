@@ -3,40 +3,45 @@
 namespace App\Exports;
 
 use App\Models\Professional;
-use App\Models\Uniform;
-
-use Maatwebsite\Excel\Concerns\FromQuery;
+use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
-use Maatwebsite\Excel\Concerns\WithMapping;
 
-class UniformsExport implements FromQuery, WithHeadings, WithMapping
+class UniformsExport implements FromCollection, WithHeadings
 {
-    public function query()
+    public function collection()
     {
-        return Uniform::query()
-            ->with('professional')
-            ->select('professional_id', 'shirt_size', 'trausers_size', 'shoes_size')->orderBy('professional_id');
+        $professionals = Professional::all();
+        $result = [];
+        
+        foreach ($professionals as $professional) {
+            $shirt = $professional->uniforms()
+                ->whereNotNull('shirt_size')
+                ->orderBy('created_at', 'desc')
+                ->value('shirt_size');
+                
+            $trousers = $professional->uniforms()
+                ->whereNotNull('trausers_size')
+                ->orderBy('created_at', 'desc')
+                ->value('trausers_size');
+                
+            $shoes = $professional->uniforms()
+                ->whereNotNull('shoes_size')
+                ->orderBy('created_at', 'desc')
+                ->value('shoes_size');
+            
+            $result[] = [
+                'nombre' => $professional->name . ' ' . $professional->surnames,
+                'camisa' => $shirt ?: '-',
+                'pantalon' => $trousers ?: '-',
+                'zapatos' => $shoes ?: '-',
+            ];
+        }
+        
+        return collect($result);
     }
-
 
     public function headings(): array
     {
-        return [
-            'Nombre del Profesional',
-            'Talla Camisa',
-            'Talla Pantalón',
-            'Talla Sabates',
-        ];
-    }
-
-    public function map($uniform): array
-    {
-        return [
-            $uniform->professional ? $uniform->professional->name . ' ' . $uniform->professional->surnames : 'Sin asignar',
-
-            $uniform->shirt_size,
-            $uniform->trausers_size,
-            $uniform->shoes_size,
-        ];
+        return ['Nombre', 'Camisa', 'Pantalón', 'Zapatos'];
     }
 }
