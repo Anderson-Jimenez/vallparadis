@@ -1,57 +1,49 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function () {
 
-    const overlay = document.getElementById('overlay');
+    const modal = document.getElementById('view-followup');
+    const closeBtn = document.getElementById('close_view_followup');
+    const closeBtnFooter = document.getElementById('close_view_followup_btn');
 
-    const addBtn = document.getElementById('add_followup_btn');
-    const addModal = document.getElementById('add_followup_modal');
-    const closeAdd = document.getElementById('close_add_followup');
+    function closeModal() {
+        modal.classList.add('hidden');
+    }
 
-    const viewModal = document.getElementById('view_followup_modal');
-    const closeView = document.getElementById('close_view_followup');
+    closeBtn.addEventListener('click', closeModal);
+    closeBtnFooter.addEventListener('click', closeModal);
 
-    addBtn.onclick = () => {
-        addModal.classList.remove('hidden');
-        overlay.classList.remove('hidden');
-    };
+    // Abrir modal y rellenar datos
+    document.querySelectorAll('.followup-item').forEach(item => {
+        item.addEventListener('click', () => {
+            document.getElementById('view_followup_date').innerText = item.dataset.date;
+            document.getElementById('view_followup_issue').innerText = item.dataset.issue;
+            document.getElementById('view_followup_professional').innerText = item.dataset.professional;
+            document.getElementById('view_followup_description').innerText = item.dataset.description;
 
-    closeAdd.onclick = () => {
-        addModal.classList.add('hidden');
-        overlay.classList.add('hidden');
-    };
-
-    document.querySelectorAll('.followup-card').forEach(card => {
-        card.onclick = () => {
-            document.getElementById('v_date').textContent =
-                card.querySelector('.fu-date').value;
-
-            document.getElementById('v_issue').textContent =
-                card.querySelector('.fu-issue').value;
-
-            document.getElementById('v_desc').textContent =
-                card.querySelector('.fu-desc').value;
-
-            const docs = JSON.parse(
-                card.querySelector('.fu-docs').value
-            );
-
-            const docsContainer = document.getElementById('v_docs');
+            // Limpiar documentos
+            const docsContainer = document.getElementById('view_followup_docs');
             docsContainer.innerHTML = '';
 
-            docs.forEach(doc => {
-                docsContainer.innerHTML += `
-                    <a href="/maintenance-followup-doc/${doc.id}/download"
-                       class="block text-orange-500 hover:underline">
-                        📄 ${doc.name}
-                    </a>`;
-            });
+            const docs = JSON.parse(item.dataset.docs || '[]');
+            if(docs.length === 0){
+                docsContainer.innerHTML = '<span class="text-sm text-gray-400">No hi ha documents</span>';
+            } else {
+                docs.forEach(doc => {
+                    const a = document.createElement('a');
+                    a.href = doc.url;
+                    a.target = "_blank";
+                    a.className = "flex items-center gap-1 hover:text-orange-600";
+                    a.innerHTML = `
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v4h16v-4M12 12v8m0 0l-4-4m3 3l4-4M12 4v8"></path>
+                        </svg>
+                        ${doc.name}
+                    `;
+                    docsContainer.appendChild(a);
+                });
+            }
 
-            viewModal.classList.remove('hidden');
-            overlay.classList.remove('hidden');
-        };
+            modal.classList.remove('hidden');
+        });
     });
 
-    closeView.onclick = () => {
-        viewModal.classList.add('hidden');
-        overlay.classList.add('hidden');
-    };
 });

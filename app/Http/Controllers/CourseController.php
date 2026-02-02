@@ -7,6 +7,8 @@ use App\Models\Course;
 use App\Models\Professional;
 use App\Models\Professional_course;
 use App\Exports\CoursesExport;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Recent_activity;
 use Maatwebsite\Excel\Facades\Excel;
 
 class CourseController extends Controller
@@ -43,6 +45,12 @@ class CourseController extends Controller
         $validated['center_id'] = session('center_id');
         $validated['status'] = 'active'; 
         Course::create($validated);
+        Recent_activity::create([
+            'center_id' => session('center_id'),
+            'professional_id' => Auth::user()->id,
+            'type' => 'Curs afegit',
+            'description' => Auth::user()->name." ha afegit un nou curs ".$validated['training_name'].".",
+        ]);
         return redirect()->route('course.index');
     }
 

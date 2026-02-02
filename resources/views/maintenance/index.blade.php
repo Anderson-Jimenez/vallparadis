@@ -38,18 +38,7 @@
                         </a>
                     </div>
                                         
-                    <div class="w-10/12 mt-6 mb-3">
-                        <div class="relative">
-                            <input type="search" 
-                                id="search_input"
-                                name="text"
-                                placeholder="Cercar manteniments..." 
-                                class="bg-white border border-[#ff7300] rounded-lg px-3 py-2 w-full md:w-[30vw]">
-                            <svg class="absolute right-3 top-1/2 transform -translate-y-1/2 w-6 h-6 text-[#ff7300]">
-                                <use xlink:href="#search_loupe"></use>
-                            </svg>
-                        </div>
-                    </div>
+                    
 
                     <!-- Contenedor scrollable de tarjetas -->
                     <div class="w-10/12 max-h-[80vh] flex flex-col bg-[#fef2e6] rounded-xl overflow-y-auto p-4 space-y-4">

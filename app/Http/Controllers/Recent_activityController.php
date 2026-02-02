@@ -7,6 +7,7 @@ use App\Models\Professional;
 use App\Models\Project_comission;
 use App\Models\Course;
 use App\Models\Recent_activity;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Document_center;
 use Carbon\Carbon;
 
@@ -23,10 +24,7 @@ class Recent_activityController extends Controller
             'courses_count'       => Course::where('status', 'active')->count(),
             'document_count'     => Document_center::count(),
 
-            'recent_activity' => Recent_activity::where('created_at', '>=', Carbon::now()->subDay())
-                                                ->latest()
-                                                ->limit(5)
-                                                ->get(),
+            'recent_activity' => Recent_activity::latest()->limit(10)->get(),
         ]);
     }
 

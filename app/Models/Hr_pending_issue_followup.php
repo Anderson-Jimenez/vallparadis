@@ -36,6 +36,6 @@ class Hr_pending_issue_followup extends Model
 
     public function documents(): HasMany
     {
-        return $this->hasMany(Hr_pending_issue_followup_document::class, 'hr_issue_followup_id');
+        return $this->hasMany(Hr_pending_issue_followup_document::class, 'hr_followup_id');
     }
 }

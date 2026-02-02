@@ -10,12 +10,12 @@ class Hr_pending_issue_followup_document extends Model
     protected $table = 'hr_pending_issue_followup_documents';
     
     protected $fillable = [
-        'hr_issue_followup_id',
+        'hr_followup_id',
         'path',
     ];
 
     public function followup(): BelongsTo
     {
-        return $this->belongsTo(Hr_pending_issue_followup::class, 'hr_issue_followup_id');
+        return $this->belongsTo(Hr_pending_issue_followup::class, 'hr_followup_id');
     }
 }

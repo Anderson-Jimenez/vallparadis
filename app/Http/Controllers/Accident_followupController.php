@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Accident;
 use App\Models\Accident_followup;
 use App\Models\Professional;
+use App\Models\Recent_activity;
 use Illuminate\Support\Facades\Auth;
 
 class Accident_followupController extends Controller

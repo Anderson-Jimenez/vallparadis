@@ -212,6 +212,12 @@ class ProfessionalController extends Controller
         }
         
         Uniform::create($validated);
+        Recent_activity::create([
+            'center_id' => session('center_id'),
+            'professional_id' => Auth::user()->id,
+            'type' => 'Uniforme afegit/renovat',
+            'description' => Auth::user()->name." ha afegit/renovar uniforme a ".$professional->name.".",
+        ]);
         return redirect()->route('professional.send_uniform', $professional);
     }
     public function downloadUniformDocument(Professional $professional, Uniform $uniform)
