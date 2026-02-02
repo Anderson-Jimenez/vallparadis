@@ -257,13 +257,6 @@
                                 </div>
                             @endforeach
                         </div>
-
-                        <!-- Estilo para rotación de flecha -->
-                        <style>
-                        .rotate-180 {
-                            transform: rotate(180deg);
-                        }
-                        </style>
                     </div>
                 </section>
         </main>
