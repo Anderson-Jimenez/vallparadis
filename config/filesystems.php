@@ -95,10 +95,18 @@ return [
             'url' => env('APP_URL').'/storage',
             'throw' => false,
         ],
+
+        'hr_issues' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/hr_issues'),
+            'visibility' => 'public',
+            'url' => env('APP_URL').'/storage',
+            'throw' => false,
+        ],
         
         'maintenance_followups' => [
             'driver' => 'local',
-            'root' => storage_path('app/maintenance_followups'),
+            'root' => storage_path('app/public/maintenance_followups'),
             'visibility' => 'public',
             'url' => env('APP_URL') . '/storage',
             'throw' => false,

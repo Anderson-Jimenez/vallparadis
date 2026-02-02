@@ -23,6 +23,7 @@ use App\Http\Controllers\Recent_activityController;
 use App\Http\Controllers\AccidentsController;
 use App\Http\Controllers\Accident_followupController;
 use App\Http\Controllers\Professional_CourseController;
+use App\Http\Controllers\Hr_pending_issue_followupController;
 
 
 
@@ -163,6 +164,18 @@ Route::middleware(['auth'])->group(function () {
     // Recursos RRHH - Temes Pendents
     Route::resource('hr_pending_issue', Hr_pending_issueController::class);
     Route::get('/hr_pending_issue/documents/{document}/download', [Hr_pending_issueController::class, 'download'])->name('hr_pending_issue.documents.download');
+    // Seguimientos de temas pendientes RRHH
+    Route::get('hr_pending_issue/{hr_pending_issue}/followups', 
+        [Hr_pending_issue_followupController::class, 'index'])
+        ->name('hr_pending_issues.followups.index');
+
+    Route::post('hr_pending_issue/{hr_pending_issue}/followups', 
+        [Hr_pending_issue_followupController::class, 'store'])
+        ->name('hr_pending_issues.followups.store');
+
+    Route::get('hr_pending_issue/{hr_pending_issue}/followups/{document}/download', 
+        [Hr_pending_issue_followupController::class, 'downloadDocument'])
+        ->name('hr_pending_issues.followups.download');
 
     Route::resource('accidents', AccidentsController::class);
     Route::get('/professionals/{professional}/accidents', [AccidentsController::class, 'index'])->name('professionals.accidents.index');
