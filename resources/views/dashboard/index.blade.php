@@ -94,26 +94,34 @@
         <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
 
             <div class="xl:col-span-2 bg-white rounded-3xl shadow-lg p-6">
-                <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-xl font-semibold">Activitat recent</h2>
-                    <a href="#" class="text-[#ff7300] text-sm hover:underline">
-                        Veure tot
-                    </a>
-                </div>
-
+                <h3 class="text-lg font-semibold text-gray-800 mb-6">Activitat Recent</h3>
+                
                 @if ($recent_activity->isNotEmpty())
-                    @foreach ($recent_activity as $item)
-                        <div class="space-y-4 bg-amber-50 w-[40%]">
-                            <p class="text-[#ff7300]">{{$item->type}}</p>
-                            <p class=" text-gray-400 text-sm">{{$item->description}}</p>
-                        </div>
-                    @endforeach
+                    <div class="space-y-4 overflow-auto h-[60vh]">
+                        @foreach ($recent_activity as $item)
+                            <div class="space-y-2 p-4 hover:bg-gray-50 rounded-lg transition duration-150">
+                                <div class="flex items-center space-x-2">
+                                    <span class="inline-block w-2 h-2 bg-[#ff7300] rounded-full"></span>
+                                    <p class="text-[#ff7300] font-medium">{{ $item->type }}</p>
+                                </div>
+                                <p class="text-gray-600 text-sm pl-4">{{ $item->description }}</p>
+                                @if($item->created_at)
+                                    <p class="text-gray-400 text-xs pl-4">{{ $item->created_at->diffForHumans() }}</p>
+                                @endif
+                            </div>
+                            @if(!$loop->last)
+                                <hr class="border-gray-100">
+                            @endif
+                        @endforeach
+                    </div>
                 @else
-                    <div class="space-y-4 text-gray-400 text-sm">
-                        <p>No hi ha activitat recent encara.</p>
+                    <div class="flex flex-col items-center justify-center py-8 text-center">
+                        <svg class="w-12 h-12 text-gray-300 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <p class="text-gray-400 text-sm">No hi ha activitat recent encara.</p>
                     </div>
                 @endif
-                
             </div>
             <div class="bg-white rounded-3xl shadow-lg p-6">
                 <h2 class="text-xl font-semibold mb-4">Accions ràpides</h2>

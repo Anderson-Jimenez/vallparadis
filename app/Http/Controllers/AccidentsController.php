@@ -7,6 +7,7 @@ use App\Models\Professional;
 use App\Models\Accident;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Accident_doc;
+use App\Models\Recent_activity;
 use Illuminate\Support\Facades\Storage;
 
 class AccidentsController extends Controller
@@ -64,6 +65,13 @@ class AccidentsController extends Controller
 
             'affected_professional_id' => $professional->id,
             'registred_professional_id' => Auth::user()->id,
+        ]);
+
+        Recent_activity::create([
+            'center_id' => session('center_id'),
+            'professional_id' => Auth::user()->id,
+            'type' => 'Professional de baixa',
+            'description' => Auth::user()->name." ha posat de baixa a ".$professional->name.".",
         ]);
 
         return redirect()

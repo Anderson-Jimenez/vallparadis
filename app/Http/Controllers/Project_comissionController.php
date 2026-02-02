@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Models\Project_comission;
+use App\Models\Recent_activity;
 use App\Models\Project_comission_document;
 use App\Models\Professional;
+use Illuminate\Support\Facades\Auth;
 
 class Project_comissionController extends Controller
 {
@@ -60,7 +62,12 @@ class Project_comissionController extends Controller
                 ]);
             }
         }
-
+        Recent_activity::create([
+            'center_id' => session('center_id'),
+            'professional_id' => Auth::user()->id,
+            'type' => 'Projecte/Comissió afegit',
+            'description' => Auth::user()->name." ha afegit un nou projecte/comissió ".$validated['name'].".",
+        ]);
         return redirect()->route('project_comission.index');
     }
 

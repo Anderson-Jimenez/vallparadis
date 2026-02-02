@@ -6,6 +6,7 @@ use App\Models\Maintenance;
 use App\Models\Maintenance_followup;
 use App\Models\Maintenance_followup_doc;
 use Illuminate\Http\Request;
+use App\Models\Recent_activity;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,17 +15,16 @@ class Maintenance_followupController extends Controller
     public function index(Maintenance $maintenance)
     {
         $user = Auth::user();
-        if($user->role_id == 3){
+        if ($user->role_id == 3) {
             return redirect()->route('dashboard')->with('success', 'No tens acces a questa pagina.');   
         }
-        else{
-            $maintenance->load('maintenance_followups.maintenance_followup_doc');
+        $maintenance->load('maintenance_followups.maintenance_followup_doc', 'maintenance_followups.professional');
+        $followups = $maintenance->maintenance_followups()
+            ->with('maintenance_followup_doc', 'professional')
+            ->orderBy('date', 'desc')
+            ->get();
 
-            return view(
-                'maintenance.followup.index',
-                compact('maintenance')
-            );
-        }
+        return view('maintenance.followup.index', compact('maintenance', 'followups'));
     }
 
     public function store(Request $request, Maintenance $maintenance)
