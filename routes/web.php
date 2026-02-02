@@ -22,6 +22,7 @@ use App\Http\Controllers\Maintenance_followup_docController;
 use App\Http\Controllers\Recent_activityController;
 use App\Http\Controllers\AccidentsController;
 use App\Http\Controllers\Accident_followupController;
+use App\Http\Controllers\Professional_CourseController;
 
 
 
@@ -189,4 +190,11 @@ Route::middleware(['auth'])->group(function () {
         '/professionals/{professional}/accidents/{accident}/followups',
         [Accident_followupController::class, 'store']
     )->name('professionals.accidents.followups.store');
+
+    //professionals assignats a cursos
+    Route::controller(Professional_CourseController::class)->group(function () {
+        Route::get('/professional-courses/{professional_course}/edit', 'edit')->name('professional-courses.edit');
+        Route::put('/professional-courses/{professional_course}', 'update')->name('professional-courses.update');
+        Route::delete('/professional-courses/{professional_course}', 'destroy')->name('professional-courses.destroy');
+    });
 });

@@ -149,5 +149,11 @@
   <symbol id="clock_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
     <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
   </symbol>
+  <symbol id="clipboard_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+  </symbol>
+  <symbol id="code_icon" viewBox="0 0 24 24">
+    <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+  </symbol>
 </svg>
 

@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <form action="/course/${course_id}/activate" method="GET" class="inline">
                                     <input type="hidden" name="_token" value="${csrf_token}">
                                     <button type="submit" 
-                                            class="flex items-center ${status_bg} ${status_class} rounded-lg px-5 py-3 ${status_hover} transition-all duration-300 shadow-md">
+                                            class="flex items-center ${status_bg} ${status_class} rounded-lg px-3 py-2 ${status_hover} transition-all duration-300 shadow-md">
                                         <svg class="w-5 h-5 inline-block mr-2">
                                             <use xlink:href="#${status_icon}"></use>
                                         </svg>

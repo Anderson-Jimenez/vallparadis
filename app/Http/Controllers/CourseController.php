@@ -49,7 +49,7 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
         //
     }
@@ -96,9 +96,17 @@ class CourseController extends Controller
         return redirect()->route('course.index');
     }
 
-    public function assign_professional(Course $course){
+    public function assign_professional(Course $course)
+    {
         $professionals = Professional::get();
-        return view('courses.assign_professional',['course'=>$course, 'professionals'=>$professionals]);
+        
+        $assigned_professionals = Professional_course::where('course_id', $course->id)->get();
+        
+        return view('courses.assign_professional', [
+            'course' => $course, 
+            'professionals' => $professionals, 
+            'assigned_professionals' => $assigned_professionals
+        ]);
     }
 
     public function assign_professional_to_course(Request $request){
@@ -117,4 +125,5 @@ class CourseController extends Controller
     {
         return Excel::download(new CoursesExport, 'courses_assigned.xlsx');
     }
+
 }
