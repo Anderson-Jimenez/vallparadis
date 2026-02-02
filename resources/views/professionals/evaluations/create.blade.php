@@ -8,12 +8,12 @@
     @vite(['resources/css/app.css'])
 
 </head>
-<body class="min-h-screen flex flex-col bg-[#E9EDF2]">
+<body class="min-h-screen flex flex-col bg-body">
     @include('partials.icons')
     @auth
         @include('components.navbar')
         <section id="principal-content" class="w-full flex justify-center items-center">
-            <div id="add_evaluation" class="h-4/5 w-3/5 bg-white rounded-3xl shadow-black-500 shadow-2xl p-10 m-10">
+            <div id="add_evaluation" class="h-4/5 w-3/5 bg-white rounded-3xl shadow-black-500 shadow-xl p-10 m-10">
                 <form action="{{ route('evaluations.store', $professional) }}" method="POST" class="space-y-6">
                     @csrf
                     <input type="hidden" name="evaluator_id" value="{{ Auth::user()->id }}">
@@ -80,9 +80,16 @@
                     <p class="mt-4 text-right text-gray-600">
                         <strong>Puntuació total:</strong> <span id="score_display">0</span> / 10
                     </p>
-                    <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-full transition-all">
-                        Guardar Avaluació
-                    </button>
+                    <div class="flex justify-between">
+                        <a href="{{ route('professionals.index') }}"
+                           class="border border-orange-500 text-orange-500 px-6 py-4 rounded-xl hover:underline">
+                            Cancel·lar
+                        </a>
+                        <button type="submit" class=" bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-full transition-all">
+                            Guardar Avaluació
+                        </button>
+                    </div>
+
                 </form>   
             </div>
         </section>

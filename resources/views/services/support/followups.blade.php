@@ -4,151 +4,272 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Gestió Professionals</title>
-    @vite(['resources/css/app.css', 'resources/js/supp_service_followup.js'])
+    <title>Seguiments - {{ $supplementary_service->type }}</title>
+    @vite(['resources/css/app.css', 'resources/js/supplementary_services.js'])
 </head>
 
-<body class="min-h-screen flex flex-col bg-[#E9EDF2]">
+<body class="min-h-screen bg-body flex flex-col">
     @include('partials.icons')
+
     @auth
+        @if ($errors->any())
+            <div class="fixed top-20 right-4 z-50">
+                @foreach ($errors->all() as $error)
+                    <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-2 rounded-lg shadow-lg">
+                        <p>{{ $error }}</p>
+                    </div>
+                @endforeach
+            </div>
+        @endif
+
         @include('components.navbar')
 
         <main class="flex w-full">
-            @yield('contingut')
             @include('components.sidebar')
 
-            <section id="principal-content" class="w-4/5 flex items-center">
-                <aside class="bg-white relative left-20 flex flex-col items-center justify-center w-1/4 text-center border-2 border-[#FF7400] h-[70%] rounded-2xl">
-                    <svg class="w-40 h-40 txt-orange">
-                        <use xlink:href="#professional_icon"></use>
-                    </svg>
-                    
-                    <h2 class="txt-orange text-3xl py-3">{{ $supplementary_service->type }}</h3>
-                    <h2 class="text-[#2D3E50] text-xl my-2">{{ $supplementary_service->start_date }}</h3>
-                    <h2 class="text-[#2D3E50] text-xl my-2">{{ $supplementary_service->manager }}</h3>
-                    <h2 class="text-[#2D3E50] text-xl my-2">{{ $supplementary_service->email_address }}</h3>
-                    <h2 class="text-[#2D3E50] text-xl my-2">{{ $supplementary_service->phone_number }}</h3>
+            <div class="flex flex-col flex-1">
 
-                </aside>
-                <div id="monitoring_section" class="bg-white w-3/5 relative m-10 left-20 rounded-2xl border-2 border-[#FF7400] items-center h-4/5">
-                    <div class="w-full flex justify-end ">
-                        <button id="add_monitoring_btn"
-                            class="text-lg text-white bg-[#ff7300] hover:bg-[#ff73008a]
-                            transition-all duration-300 rounded-2xl px-7 py-4 mt-5 mr-5">
-                            + Nou seguiment
-                        </button>
+                <div class="flex justify-between items-center mb-8 bg-white p-7">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-white">
+                                <use xlink:href="#services_icon"></use>
+                            </svg>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-bold text-gray-800">Seguiments de Servei Complementari de {{ $supplementary_service->type }}</h1>
+                            <p class="text-gray-600">Manager: {{ $supplementary_service->manager }}</p>
+                        </div>
                     </div>
-                    <div class="w-full flex items-center flex-col mt-8" id="prof-info-container">      
-                    @foreach ($followups as $index => $followup)
-                        <div class="monitoring-info w-11/12 bg-white flex justify-between rounded-3xl p-5 my-3 border border-[#FF7400]
-                                    shadow-md hover:scale-102 transition-all duration-400 cursor-pointer">
-                            
-                            <!-- Info visible -->
-                            <div class="monitoring flex items-center">
-                                <svg class="w-10 h-10 txt-orange mr-3">
+                    <a href="{{ route('supplementary_service.index') }}" 
+                       class="px-4 py-2 bg-gray-100 text-gray-800 font-medium rounded-lg hover:bg-gray-200 transition flex items-center gap-2">
+                        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <use xlink:href="#back_icon"></use>
+                        </svg>
+                        Tornar als serveis
+                    </a>
+                </div>
+
+                <div class="flex flex-1 gap-6 w-11/12 mb-10 mx-auto">
+                    <div class="flex flex-col w-1/4">
+                        <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-orange-500">
+                            <div class="flex flex-col items-center mb-6">
+                                <div class="w-24 h-24 bg-linear-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center mb-4">
+                                    <svg class="w-12 h-12 text-white">
+                                        <use xlink:href="#services_icon"></use>
+                                    </svg>
+                                </div>
+                                <h2 class="text-xl font-bold text-gray-800 text-center">{{ $supplementary_service->type }}</h2>
+                                <p class="text-gray-500 text-sm mt-1">Servei Complementari</p>
+                            </div>
+
+                            <div class="flex flex-col gap-4">
+                                @if($supplementary_service->start_date)
+                                <div class="flex items-start">
+                                    <div class="flex items-center justify-center w-10 h-10 bg-orange-50 rounded-lg mr-3">
+                                        <svg class="w-5 h-5 txt-orange">
+                                            <use xlink:href="#date_icon"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <span class="text-sm text-gray-500">Data d'inici</span>
+                                        <span class="text-sm text-gray-800">{{ date('d/m/Y', strtotime($supplementary_service->start_date)) }}</span>
+                                    </div>
+                                </div>
+                                @endif
+
+                                @if($supplementary_service->manager)
+                                <div class="flex items-start">
+                                    <div class="flex items-center justify-center w-10 h-10 bg-orange-50 rounded-lg mr-3">
+                                        <svg class="w-5 h-5 txt-orange">
+                                            <use xlink:href="#professionals_icon"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <span class="text-sm text-gray-500">Responsable</span>
+                                        <span class="font-medium text-gray-800">{{ $supplementary_service->manager }}</span>
+                                    </div>
+                                </div>
+                                @endif
+
+                                @if($supplementary_service->email_address)
+                                <div class="flex items-start">
+                                    <div class="flex items-center justify-center w-10 h-10 bg-orange-50 rounded-lg mr-3">
+                                        <svg class="w-5 h-5 txt-orange">
+                                            <use xlink:href="#mail_icon"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <span class="text-sm text-gray-500">Email</span>
+                                        <span class="font-medium text-gray-800">{{ $supplementary_service->email_address }}</span>
+                                    </div>
+                                </div>
+                                @endif
+
+                                @if($supplementary_service->phone_number)
+                                    <div class="flex items-start">
+                                        <div class="flex items-center justify-center w-10 h-10 bg-orange-50 rounded-lg mr-3">
+                                            <svg class="w-5 h-5 txt-orange">
+                                                <use xlink:href="#phone_icon"></use>
+                                            </svg>
+                                        </div>
+                                        <div class="flex flex-col">
+                                            <span class="text-sm text-gray-500">Telèfon</span>
+                                            <span class="font-medium text-gray-800">{{ $supplementary_service->phone_number }}</span>
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col flex-1">
+                        <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+                            <div class="flex items-center justify-between mb-6">
+                                <h3 class="text-lg font-bold text-gray-800">Seguiments Registrats</h3>
+                                <div class="flex items-center">
+                                    <div class="bg-orange-100 rounded-full flex items-center justify-center mr-2 px-3 py-1">
+                                        <span class="text-sm font-bold text-orange-600">{{ count($followups) }} seguiments</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col gap-3 max-h-[400px] overflow-y-auto pr-2">
+                                @forelse ($followups as $index => $followup)
+                                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-orange-50 border border-gray-200 hover:border-orange-300 transition-all cursor-pointer monitoring-item"
+                                         data-date="{{ $followup->date }}"
+                                         data-issue="{{ $followup->issue }}"
+                                         data-comment="{{ $followup->comment }}">
+                                        
+                                        <div class="flex items-center">
+                                            <div class="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center mr-4">
+                                                <span class="text-white font-bold">{{ $index + 1 }}</span>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <span class="font-medium text-gray-800">{{ $followup->issue }}</span>
+                                                <span class="text-sm text-gray-600">{{ date('d/m/Y', strtotime($followup->date)) }}</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="flex items-center bg-[#ff7300] px-3 py-2 rounded-lg">
+                                            <svg class="w-5 h-5 text-white mr-2">
+                                                <use xlink:href="#see_evaluations"></use>
+                                            </svg>
+                                            <span class="text-sm text-white mr-3">Veure detalls</span>
+                                        </div>
+                                    </div>
+                                @empty
+                                    <div class="flex flex-col items-center justify-center py-8">
+                                        <svg class="w-16 h-16 text-gray-300 mb-4">
+                                            <use xlink:href="#documentation_icon"></use>
+                                        </svg>
+                                        <p class="text-gray-500">No hi ha seguiments registrats</p>
+                                    </div>
+                                @endforelse
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl shadow-md p-6">
+                            <div class="flex items-center mb-6">
+                                <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center mr-3">
+                                    <span class="text-white font-bold">+</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-gray-800">Nou Seguiment</h3>
+                            </div>
+
+                            <form action="{{ route('supplementary_service_followup.store', $supplementary_service) }}" method="POST" class="flex flex-col gap-6">
+                                @csrf
+                                <div class="flex gap-4">
+                                    <div class="flex flex-col flex-1">
+                                        <label class="text-sm font-medium text-gray-700 mb-1">Data</label>
+                                        <input type="date" name="date" value="{{ now()->format('Y-m-d') }}" 
+                                               class="bg-gray-50 border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
+                                    </div>
+                                    <div class="flex flex-col flex-1">
+                                        <label class="text-sm font-medium text-gray-700 mb-1">Raó / Assumpte</label>
+                                        <input type="text" name="issue" 
+                                               placeholder="Motiu del seguiment"
+                                               class="bg-gray-50 border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
+                                    </div>
+                                </div>
+
+                                <div class="flex flex-col">
+                                    <label class="text-sm font-medium text-gray-700 mb-1">Descripció</label>
+                                    <textarea name="comment" rows="4" 
+                                              placeholder="Descriu el seguiment realitzat..."
+                                              class="bg-gray-50 border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-orange-500"></textarea>
+                                </div>
+
+                                <div class="flex justify-end">
+                                    <button type="submit" class="flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-lg transition-all">
+                                        <svg class="w-5 h-5 mr-2">
+                                            <use xlink:href="#save_icon"></use>
+                                        </svg>
+                                        Guardar Seguiment
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="view-monitoring" class="hidden fixed inset-0 z-50 items-center justify-center p-4">
+                <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl">
+                    <div class="flex items-center justify-between p-6 border-b border-gray-200">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center mr-4">
+                                <svg class="w-5 h-5 text-orange-600">
                                     <use xlink:href="#documentation_icon"></use>
                                 </svg>
-                                <p class="txt-orange text-lg">{{ $followup->issue }}#{{ $index + 1 }}</p>
                             </div>
-
-                            <div class="flex items-center mr-10">
-                                <p class="txt-orange text-lg">{{ $followup->date }}</p>
-                            </div>
-
-                            <!-- Inputs ocultos para JS -->
-                            <input type="hidden" class="followup-date" value="{{ $followup->date }}">
-                            <input type="hidden" class="followup-issue" value="{{ $followup->issue }}">
-                            <input type="hidden" class="followup-comment" value="{{ $followup->comment }}">
+                            <h3 class="text-xl font-bold text-gray-800">Detalls del Seguiment</h3>
                         </div>
-                    @endforeach
-                </div>
-                    
-                    
-
-                </div>
-                <div id="add_monitoring" class="hidden h-11/12 w-3/5 bg-white rounded-3xl shadow-black-500 shadow-2xl absolute left-[30%] p-10">
-                    <form action="{{ route('supplementary_service_followup.store', $supplementary_service) }}" method="POST" class="space-y-6">
-                        @csrf
-                        <div class="flex justify-between items-center mb-6 w-full">
-                            <h2 class="text-2xl font-bold txt-orange">Nou seguiment</h2>
-                            <button id="close_add_monitoring" class="txt-orange text-xl font-bold hover:text-orange-700">✕</button>
-                        </div>            
-                        
-
-                        <div class="flex">
-                            <div>
-                                <label class="text-orange-500 font-semibold uppercase text-sm">Data de l'informe</label>
-                                <input type="date" name="date"
-                                    class="mr-3 w-full bg-gray-200 rounded-full px-4 py-2 mt-1 text-gray-800 border-none focus:ring-2 focus:ring-orange-400"
-                                    value="{{ now()->format('Y-m-d') }}" required>
-                            </div>
-
-                            
-
-                            <div>
-                                <label class="text-orange-500 font-semibold uppercase text-sm">Raó del seguiment</label>
-                                <input type="text" name="issue"
-                                    class="mx-3 w-full bg-gray-200 rounded-full px-4 py-2 mt-1 text-gray-800 border-none focus:ring-2 focus:ring-orange-400"
-                                    placeholder="Motiu / situació observada" required>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="text-orange-500 font-semibold uppercase text-sm">Descripció del seguiment</label>
-                            <textarea name="comment" rows="6"
-                                    class="w-full bg-gray-200 rounded-2xl px-4 py-3 mt-2 text-gray-800 border-none focus:ring-2 focus:ring-orange-400"
-                                    placeholder="Detalla aquí l'observació o seguiment realitzat..." required></textarea>
-                        </div>
-
-                        <button type="submit"
-                                class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-full transition-all">
-                                Guardar Seguiment
+                        <button id="close_view_monitoring" class="text-gray-500 hover:text-gray-700">
+                            <svg class="w-6 h-6">
+                                <use xlink:href="#x_icon"></use>
+                            </svg>
                         </button>
-                        
-                    </form>     
-                </div>
-                {{-- DETALLES DEL INFORME (OCULTO) --}}
-                
-                <div id="view-monitoring" class="hidden flex-col items-center h-11/12 w-3/5 bg-white rounded-3xl shadow-black-500 shadow-2xl absolute left-[30%] p-10 overflow-y-auto">
-                    <div class="flex justify-between items-center mb-6 w-full">
-                        <h2 class="text-2xl font-bold txt-orange">Detalls de l'informe</h2>
-                        <button id="close_view_monitoring" class="txt-orange text-xl font-bold hover:text-orange-700">✕</button>
                     </div>
 
-                    <div class="space-y-6 w-full">
-                        
-
-                        <div class="flex w-full">
-                            
-                            <div class="m-4">
-                                <p class="txt-orange font-semibold uppercase text-sm">Data de l'informe</p>
-                                <div id="view_monitoring_date" class="bg-gray-200 rounded-full px-4 py-1 font-semibold text-gray-800 mt-1">—</div>
+                    <div class="p-6">
+                        <div class="flex flex-col gap-6">
+                            <div class="flex gap-6">
+                                <div class="flex flex-col flex-1">
+                                    <span class="text-sm text-gray-500 mb-1">Data</span>
+                                    <span id="view_monitoring_date" class="font-medium text-gray-800 bg-gray-50 rounded-lg px-4 py-2">—</span>
+                                </div>
+                                <div class="flex flex-col flex-1">
+                                    <span class="text-sm text-gray-500 mb-1">Assumpte</span>
+                                    <span id="view_monitoring_issue" class="font-medium text-gray-800 bg-gray-50 rounded-lg px-4 py-2">—</span>
+                                </div>
                             </div>
-                            <div class="m-4">
-                                <p class="txt-orange font-semibold uppercase text-sm">Raó de l'informe:</p>
-                                <div id="view_monitoring_issue" class="inline-block bg-gray-200 rounded-full px-4 py-1 text-gray-800 font-medium mt-1">—</div>
-                            </div>
-                        </div>
 
-                        
-
-                        <div>
-                            <p class="txt-orange font-semibold uppercase text-sm">Descripció de l'informe:</p>
-                            <div id="view_monitoring_comments" class="bg-gray-200 rounded-2xl p-4 mt-2 text-gray-800 leading-relaxed">
-                                —
+                            <div class="flex flex-col">
+                                <span class="text-sm text-gray-500 mb-1">Descripció</span>
+                                <div id="view_monitoring_comments" class="bg-gray-50 rounded-lg p-4 text-gray-800 min-h-[120px]">
+                                    —
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                
-            </section>
+                    <div class="flex justify-end p-6 border-t border-gray-200">
+                        <button id="close_view_btn" class="px-6 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-lg transition-all">
+                            Tancar
+                        </button>
+                    </div>
+                </div>
+            </div>
         </main>
     @endauth
 
     @guest
-        <h1>No has iniciat sessió.</h1>
-        <meta http-equiv="refresh" content="2; URL={{ route('login') }}" />
+        <div class="flex flex-col items-center justify-center min-h-screen">
+            <h1 class="text-2xl font-bold text-gray-800 mb-4">No has iniciat sessió</h1>
+            <p class="text-gray-600">Redirigint a l'inici de sessió...</p>
+            <meta http-equiv="refresh" content="2; URL={{ route('login') }}" />
+        </div>
     @endguest
 </body>
 </html>

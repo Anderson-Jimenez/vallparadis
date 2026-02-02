@@ -40,7 +40,7 @@ class Supplementary_serviceController extends Controller
             'docs.*' => 'file|mimes:pdf,doc,docx,txt|max:5120', // validación de archivos
             'comments' => 'required|string',
         ]);
-
+        $validated['status'] = 'active';
         // Agregar el center_id desde la sesión
         $validated['center_id'] = session('center_id');
 
@@ -101,7 +101,7 @@ class Supplementary_serviceController extends Controller
         ]);
 
         // Opcional: añadir o modificar campos adicionales si lo necesitas
-        // $validated['status'] = 'active';
+        //$validated['status'] = 'active';
 
         // Actualizar el servicio con los datos validados
         $supplementary_service->update($validated);

@@ -9,7 +9,7 @@
     @vite(['resources/css/app.css', 'resources/js/courses_assignment.js'])
 </head>
 
-<body class="min-h-screen bg-gray-50 flex flex-col">
+<body class="min-h-screen bg-body flex flex-col">
     @include('partials.icons')
     @auth
         @include('components.navbar')

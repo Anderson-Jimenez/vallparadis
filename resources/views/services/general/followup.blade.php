@@ -33,7 +33,7 @@
                     <div class="flex items-center">
                         <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center mr-4">
                             <svg class="w-6 h-6 text-white">
-                                <use xlink:href="#professional_icon"></use>
+                                <use xlink:href="#services_icon"></use>
                             </svg>
                         </div>
                         <div>
@@ -56,7 +56,7 @@
                             <div class="flex flex-col items-center mb-6">
                                 <div class="w-24 h-24 bg-linear-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center mb-4">
                                     <svg class="w-12 h-12 text-white">
-                                        <use xlink:href="#professionals_icon"></use>
+                                        <use xlink:href="#services_icon"></use>
                                     </svg>
                                 </div>
                                 <h2 class="text-xl font-bold text-gray-800 text-center">{{ $general_service->manager }}</h2>
