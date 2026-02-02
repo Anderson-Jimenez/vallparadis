@@ -6,7 +6,7 @@
     <title>Assignament d'Uniforme</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="min-h-screen bg-gray-50">
+<body class="min-h-screen bg-body">
     @include('partials.icons')
     
     @auth
@@ -15,30 +15,32 @@
         <div class="flex">
             @include('components.sidebar')
             
-            <main class="flex-1 p-6">
+            <main class="flex-1">
                 <!-- Header -->
-                <div class="flex justify-between items-center mb-6">
+                <div class="flex justify-between items-center mb-6 bg-white p-6">
                     <div>
                         <h1 class="text-3xl font-bold text-gray-800">Assignament d'Uniforme</h1>
                         <p class="text-gray-600">Assignar talles d'uniforme al professional seleccionat</p>
                     </div>
-                    <a href="{{ route('professional.index') }}" 
-                       class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition duration-200">
-                        ← Tornar al llistat
-                    </a>
+                    <div class="flex gap-1 items-center">
+                        <a href="{{ route('professionals.exportar-historial-uniforms') }}"
+                            class="text-sm text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300]
+                                    transition-all duration-300 rounded-xl px-5 py-2 text-center m-2">
+                            Exportar historial uniforms
+                        </a>
+                        <a href="{{ route('professionals.exportar-uniforms') }}"
+                            class="text-sm text-white bg-[#ff7300] hover:bg-white hover:text-[#ff7300]
+                                    transition-all duration-300 rounded-xl px-5 py-2 text-center m-2">
+                            Exportar uniforms
+                        </a>
+                        <a href="{{ route('professional.index') }}" 
+                        class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition duration-200">
+                            ← Tornar al llistat
+                        </a>
+                    </div>
                 </div>
 
-                <!-- Mensajes de éxito -->
-                @if(session('success'))
-                    <div class="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
-                        <div class="flex items-center">
-                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                            </svg>
-                            {{ session('success') }}
-                        </div>
-                    </div>
-                @endif
+                
 
                 <!-- Mensajes de error -->
                 @if($errors->any())
@@ -58,7 +60,7 @@
                 @endif
 
                 <!-- Información del Professional -->
-                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6 mx-6">
                     <div class="flex flex-col md:flex-row md:items-start md:justify-between">
                         <div class="flex items-start mb-4 md:mb-0">
                             <div class="w-16 h-16 rounded-full bg-gradient-to-r from-orange-100 to-orange-50 flex items-center justify-center mr-4 border-2 border-orange-200">
@@ -89,7 +91,7 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mx-6">
                     <!-- Formulario de Assignación -->
                     <div class="lg:col-span-2">
                         <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
