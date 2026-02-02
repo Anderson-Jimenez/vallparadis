@@ -63,7 +63,7 @@
                 <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6 mx-6">
                     <div class="flex flex-col md:flex-row md:items-start md:justify-between">
                         <div class="flex items-start mb-4 md:mb-0">
-                            <div class="w-16 h-16 rounded-full bg-gradient-to-r from-orange-100 to-orange-50 flex items-center justify-center mr-4 border-2 border-orange-200">
+                            <div class="w-16 h-16 rounded-full bg-linear-to-r from-orange-100 to-orange-50 flex items-center justify-center mr-4 border-2 border-orange-200">
                                 <span class="text-xl font-bold text-orange-600">
                                     {{ substr($professional->name, 0, 1) }}{{ substr($professional->surnames, 0, 1) }}
                                 </span>
@@ -197,7 +197,7 @@
                                 </div>
 
                                 <!-- Resum de l'Assignació -->
-                                <div class="bg-gradient-to-r from-orange-50 to-yellow-50 rounded-lg p-6 mb-8 border border-orange-100">
+                                <div class="bg-linear-to-r from-orange-50 to-yellow-50 rounded-lg p-6 mb-8 border border-orange-100">
                                     <h3 class="font-bold text-gray-700 mb-4 text-lg">Uniforme actual</h3>
                                     <div class="grid grid-cols-3 gap-4">
                                         <!-- Samarreta -->
@@ -252,7 +252,7 @@
                                         Netejar Formulari
                                     </button>
                                     <button type="submit"
-                                            class="px-8 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-medium rounded-lg hover:from-orange-600 hover:to-orange-700 transition duration-200 shadow-md flex items-center">
+                                            class="px-8 py-3 bg-linear-to-r from-orange-500 to-orange-600 text-white font-medium rounded-lg hover:from-orange-600 hover:to-orange-700 transition duration-200 shadow-md flex items-center">
                                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
                                                   d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -406,7 +406,7 @@
                 <h1 class="text-2xl font-bold text-gray-800 mb-4">Sessió no iniciada</h1>
                 <p class="text-gray-600 mb-6">Has de iniciar sessió per accedir a aquesta pàgina</p>
                 <a href="{{ route('login') }}" 
-                   class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-medium rounded-lg hover:from-orange-600 hover:to-orange-700 transition duration-200 shadow-md">
+                   class="inline-flex items-center px-6 py-3 bg-linear-to-r from-orange-500 to-orange-600 text-white font-medium rounded-lg hover:from-orange-600 hover:to-orange-700 transition duration-200 shadow-md">
                     Anar a l'inici de sessió
                     <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
