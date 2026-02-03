@@ -1,45 +1,40 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const items = document.querySelectorAll('.followup-item');
-    
-    items.forEach(function(item) {
-        item.addEventListener('click', function() {
-            const date = this.getAttribute('data-date');
-            const professional = this.getAttribute('data-professional');
-            const description = this.getAttribute('data-description');
-            const docs = JSON.parse(this.getAttribute('data-docs') || '[]');
+document.addEventListener('DOMContentLoaded', function () {
 
-            document.getElementById('view_followup_date').textContent = date;
-            document.getElementById('view_followup_professional').textContent = professional;
-            document.getElementById('view_followup_description').textContent = description;
+    const modal = document.getElementById('view-followup');
+    const closeBtn = document.getElementById('close_view_followup');
+    const closeBtnFooter = document.getElementById('close_view_followup_btn');
+
+    function closeModal() {
+        modal.classList.add('hidden');
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+    closeBtnFooter.addEventListener('click', closeModal);
+
+    document.querySelectorAll('.followup-item').forEach(item => {
+        item.addEventListener('click', () => {
+
+            document.getElementById('view_followup_date').innerText = item.dataset.date;
+            document.getElementById('view_followup_professional').innerText = item.dataset.professional;
+            document.getElementById('view_followup_description').innerText = item.dataset.description;
 
             const docsContainer = document.getElementById('view_followup_docs');
             docsContainer.innerHTML = '';
-            docs.forEach(doc => {
-                const link = document.createElement('a');
-                link.href = doc.url;
-                link.textContent = doc.name;
-                link.target = '_blank';
-                link.className = 'text-blue-600 hover:underline';
-                docsContainer.appendChild(link);
-            });
 
-            document.getElementById('view-followup').classList.remove('hidden');
-            document.getElementById('view-followup').classList.add('flex');
+            const docsHtml = item.querySelector('.followup-docs')?.innerHTML;
+            docsContainer.innerHTML = docsHtml ? docsHtml : '<span class="text-sm text-gray-400">No hi ha documents</span>';
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
         });
     });
-    
-    function closeModal() {
-        document.getElementById('view-followup').classList.remove('flex');
-        document.getElementById('view-followup').classList.add('hidden');
-    }
 
-    document.getElementById('close_view_followup').addEventListener('click', closeModal);
-    document.getElementById('close_view_followup_btn').addEventListener('click', closeModal);
-    document.getElementById('view-followup').addEventListener('click', function(e) {
-        if (e.target === this) closeModal();
+    modal.addEventListener('click', function (e) {
+        if (e.target === modal) closeModal();
     });
 
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') closeModal();
     });
+
 });

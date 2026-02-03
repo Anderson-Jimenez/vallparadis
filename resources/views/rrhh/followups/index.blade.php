@@ -131,12 +131,12 @@
 
                             <div class="flex flex-col gap-3 max-h-96 overflow-y-auto pr-2">
                                 @forelse($followups as $index => $followup)
-                                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-orange-50 border border-gray-200 hover:border-orange-300 transition cursor-pointer followup-item"
-                                         data-date="{{ date('d/m/Y', strtotime($followup->followup_date)) }}"
-                                         data-professional="{{ $followup->professional->name ?? 'Desconegut' }}"
-                                         data-description="{{ $followup->description }}"
-                                         
-                                         >
+                                    <div
+                                        class="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-orange-50 border border-gray-200 hover:border-orange-300 transition cursor-pointer followup-item"
+                                        data-date="{{ $followup->followup_date->format('d/m/Y') }}"
+                                        data-professional="{{ $followup->professional->name ?? 'Desconegut' }}"
+                                        data-description="{{ $followup->description }}"
+                                    >
                                         <div class="flex items-center">
                                             <div class="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center mr-4">
                                                 <span class="text-white font-bold">{{ $index + 1 }}</span>
@@ -144,22 +144,39 @@
                                             <div class="flex flex-col">
                                                 <span class="font-medium text-gray-800">Seguiment #{{ $index + 1 }}</span>
                                                 <div class="flex items-center gap-2 text-sm text-gray-600">
-                                                    <span>{{ date('d/m/Y', strtotime($followup->followup_date)) }}</span>
+                                                    <span>{{ $followup->followup_date->format('d/m/Y') }}</span>
                                                     <span>•</span>
                                                     <span>{{ $followup->professional->name ?? 'Desconegut' }}</span>
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class="flex items-center sidebar-gradient px-3 py-2 rounded-lg">
+                                            <span class="text-sm text-white">Veure detalls</span>
+                                        </div>
+
+                                        <!-- DOCUMENTOS OCULTOS -->
+                                        <div class="hidden followup-docs">
+                                            @forelse($followup->documents as $doc)
+                                                <a href="{{ route('hr_pending_issues.followups.download', [$professional, $hr_pending_issue, $doc->id]) }}"
+                                                target="_blank"
+                                                class="flex items-center gap-1 hover:text-orange-600">
+                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                            d="M4 16v4h16v-4M12 12v8m0 0l-4-4m3 3l4-4M12 4v8"></path>
+                                                    </svg>
+                                                    {{ $doc->name ?? pathinfo($doc->path, PATHINFO_BASENAME) }}
+                                                </a>
+                                            @empty
+                                                <span class="text-sm text-gray-400">No hi ha documents</span>
+                                            @endforelse
+                                        </div>
                                     </div>
-                                @empty
+                                    @empty
                                     <div class="flex flex-col items-center justify-center py-8">
-                                        <svg class="w-16 h-16 text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                                        </svg>
                                         <p class="text-gray-500">No hi ha seguiments registrats</p>
                                     </div>
-                                @endforelse
+                                    @endforelse
                             </div>
                         </div>
 
