@@ -70,15 +70,14 @@
 
                             <div class="flex flex-col gap-3 max-h-[400px] overflow-y-auto pr-2">
                                 @forelse ($followups as $index => $followup)
-                                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-orange-50 border border-gray-200 hover:border-orange-300 transition-all cursor-pointer followup-item"
-                                         data-date="{{ $followup->date }}"
-                                         data-issue="{{ $followup->issue }}"
-                                         data-description="{{ $followup->description }}"
-                                         data-professional="{{ $followup->professional->name ?? 'Desconegut' }}"
-                                         data-docs='@json($followup->maintenance_followup_doc->map(function($doc){ 
-                                             return ["name" => $doc->name, "url" => route("maintenance.followup.doc.download", $doc)];
-                                         }))'>
-                                        
+                                    <div
+                                        class="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-orange-50 border border-gray-200 hover:border-orange-300 transition cursor-pointer followup-item"
+                                        data-date="{{ $followup->date }}"
+                                        data-issue="{{ $followup->issue }}"
+                                        data-professional="{{ $followup->professional->name ?? 'Desconegut' }}"
+                                        data-description="{{ $followup->description }}"
+                                    >
+
                                         <div class="flex items-center">
                                             <div class="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center mr-4">
                                                 <span class="text-white font-bold">{{ $index + 1 }}</span>
@@ -94,17 +93,29 @@
                                         </div>
 
                                         <div class="flex items-center sidebar-gradient px-3 py-2 rounded-lg">
-                                            <svg class="w-5 h-5 text-white mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <use xlink:href="#see_evaluations"></use>
-                                            </svg>
-                                            <span class="text-sm text-white mr-3">Veure detalls</span>
+                                            <span class="text-sm text-white">Veure detalls</span>
                                         </div>
+
+                                        <!-- DOCUMENTOS OCULTOS (para el JS) -->
+                                        <div class="hidden followup-docs">
+                                            @forelse ($followup->maintenance_followup_doc as $doc)
+                                                <a href="{{ route('maintenance.followup.doc.download', $doc) }}"
+                                                target="_blank"
+                                                class="flex items-center gap-1 hover:text-orange-600">
+                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                            d="M4 16v4h16v-4M12 12v8m0 0l-4-4m3 3l4-4M12 4v8"></path>
+                                                    </svg>
+                                                    {{ $doc->name }}
+                                                </a>
+                                            @empty
+                                                <span class="text-sm text-gray-400">No hi ha documents</span>
+                                            @endforelse
+                                        </div>
+
                                     </div>
                                 @empty
                                     <div class="flex flex-col items-center justify-center py-8">
-                                        <svg class="w-16 h-16 text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                                        </svg>
                                         <p class="text-gray-500">No hi ha seguiments registrats</p>
                                     </div>
                                 @endforelse
