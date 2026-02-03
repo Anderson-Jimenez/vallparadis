@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('email',255)->nullable();
             $table->text('description');
             $table->string('status',255);
+            $table->text('signature');
             $table->timestamps();
         });
     }

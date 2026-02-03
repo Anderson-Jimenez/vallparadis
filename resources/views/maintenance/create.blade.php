@@ -76,7 +76,44 @@
                         <h2 class="font-semibold text-gray-700">Afegir documentació</h2>
                         <input type="file" name="docs[]" multiple class="w-full border-2 border-gray-200 rounded-md px-3 py-2">
                     </section>
-
+                    <div class="flex flex-col">
+                        <label class="text-sm font-medium text-gray-700 mb-2">Firma digital <span class="text-red-500">*</span></label>
+                        <div class="flex flex-col border-2 border-gray-200 rounded-xl p-4 bg-white shadow-sm hover:border-orange-300 transition-colors">
+                            <div class="relative">
+                                <canvas id="signature" width="800" height="200" 
+                                        class="w-full h-48 border border-gray-300 rounded-lg bg-white cursor-crosshair touch-none shadow-inner"></canvas>
+                                
+                                <div id="signature-guide" class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                    <div class="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
+                                        <p class="text-gray-500 text-sm font-medium">Firma aquí amb el ratolí o el teu dit</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between mt-4 gap-3">
+                                <div class="flex items-center space-x-3">
+                                    <div id="signature-status" class="flex items-center px-3 py-2 bg-gray-50 rounded-lg border border-gray-200 min-w-[140px]">
+                                        <div class="w-2 h-2 bg-red-500 rounded-full mr-2 animate-pulse"></div>
+                                        <span class="text-sm font-medium text-gray-700">Firma pendent</span>
+                                    </div>
+                                    
+                                    <button type="button" id="clear" 
+                                            class="flex items-center text-sm font-medium text-gray-700 hover:text-orange-600 hover:bg-orange-50 px-3 py-2 rounded-lg transition-all duration-200">
+                                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                            <use xlink:href="#delete_icon"></use>
+                                        </svg>
+                                        Netejar firma
+                                    </button>
+                                </div>
+                                
+                                <div class="text-xs text-gray-500 bg-gray-50 px-3 py-1.5 rounded-lg">
+                                    <span class="font-medium">Important:</span> La firma serà guardada com a imatge
+                                </div>
+                            </div>
+                            
+                            <input type="hidden" id="signature_input" name="signature">
+                        </div>
+                    </div>
                     <div class="flex justify-between items-center border-t pt-6">
                         <a href="{{ route('maintenance.index') }}" class="border border-[#ff7300] txt-orange hover:underline px-6 py-4 rounded-xl">
                             Cancel·lar

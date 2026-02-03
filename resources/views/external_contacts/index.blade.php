@@ -14,10 +14,10 @@
     @auth
         @include('components.navbar')
 
-        <main class="flex w-full">
+        <main class="grow flex w-full">
             @include('components.sidebar') 
 
-            <section id="principal-content" class="flex flex-col items-center w-full flex-1 overflow-y-auto min-h-0">
+            <section id="principal-content" class="flex flex-col items-center w-full overflow-y-auto min-h-0">
                     <div class="w-full bg-white flex items-center justify-between py-4 px-[5%] shadow-sm">
                         <div>
                             <h1 class="text-[#2D3E50] text-4xl pb-1">Gestió de Contactes Externs</h1>

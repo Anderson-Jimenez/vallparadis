@@ -190,7 +190,10 @@
                             </aside>
                         </section>
                     </section>
-
+                    <div class="flex flex-col items-center w-full bg-white ">
+                        <p>Signatura</p>
+                        <img src="{{ $maintenance->signature }}" alt="firma" class="w-2/6">
+                    </div>
                     <div class="flex justify-between items-center border-t pt-6">
                         <a href="{{ route('maintenance.edit', $maintenance) }}" class="border border-[#ff7300] txt-orange hover:underline px-6 py-4 rounded-xl">
                             Modificar dades

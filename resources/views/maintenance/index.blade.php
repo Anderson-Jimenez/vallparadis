@@ -20,7 +20,7 @@
         <main class="grow flex w-full">
             @include('components.sidebar')
             @yield('contingut')
-                <section class="flex flex-col items-center w-4/5">
+                <section class="flex flex-col items-center w-full">
                     <div class="w-full bg-white flex items-center justify-between py-4 px-[5%]">
                         <div class="">
                             <h1 class="text-[#2D3E50] text-4xl pb-1 w-4/5">Gestió Manteniment</h1>

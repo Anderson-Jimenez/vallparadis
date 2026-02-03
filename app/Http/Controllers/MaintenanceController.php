@@ -52,7 +52,8 @@ class MaintenanceController extends Controller
                 'phone' => 'nullable',
                 'email' => 'nullable',
                 'description' => 'required',
-                'docs.*' => 'file|mimes:pdf,doc,docx,txt|max:5120'
+                'docs.*' => 'file|mimes:pdf,doc,docx,txt|max:5120',
+                'signature' => 'required'
             ]);
             $validated['center_id'] = session('center_id');
             $validated['status'] = 'active';

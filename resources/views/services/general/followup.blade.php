@@ -178,18 +178,6 @@
                                               class="bg-gray-50 border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-orange-500"></textarea>
                                 </div>
 
-                                <div class="flex flex-col">
-                                    <label class="text-sm font-medium text-gray-700 mb-2">Firma digital</label>
-                                    <div class="flex flex-col border border-gray-300 rounded-lg p-4">
-                                        <canvas id="signature" width="400" height="150" class="border border-gray-300 rounded bg-white"></canvas>
-                                        <div class="flex items-center mt-3">
-                                            <button type="button" id="clear" class="text-sm text-gray-600 hover:text-gray-800">
-                                                Netejar signatura
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <div class="flex justify-end">
                                     <button type="submit" class="flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-lg transition-all">
                                         <svg class="w-5 h-5 mr-2">
