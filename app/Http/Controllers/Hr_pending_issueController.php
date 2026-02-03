@@ -200,4 +200,47 @@ class Hr_pending_issueController extends Controller
             return Storage::disk('hr_pending_issue')->download($document->path);
         }
     }
+    public function search(Request $request)
+    {
+        $query = Hr_pending_issue::with([
+            'registered_by_professional',
+            'affected_professional',
+            'derived_to_professional',
+            'documents'
+        ]);
+
+        // Cerca per text (context, descripció o noms de professionals)
+        if ($request->has('text') && !empty($request->text)) {
+            $searchText = '%' . $request->text . '%';
+            
+            $query->where(function($q) use ($searchText) {
+                $q->where('context', 'like', $searchText)
+                ->orWhere('description', 'like', $searchText)
+                ->orWhereHas('registered_by_professional', function($q) use ($searchText) {
+                    $q->where('name', 'like', $searchText);
+                })
+                ->orWhereHas('affected_professional', function($q) use ($searchText) {
+                    $q->where('name', 'like', $searchText);
+                })
+                ->orWhereHas('derived_to_professional', function($q) use ($searchText) {
+                    $q->where('name', 'like', $searchText);
+                });
+            });
+        }
+
+        // Filtre per estat
+        if ($request->has('status') && !empty($request->status) && $request->status !== 'tots') {
+            $query->where('status', $request->status);
+        }
+
+        $data = $query->orderBy('opened_at', 'desc')->get();
+
+        $response = [
+            "success" => true,
+            "message" => "Consulta correcta",
+            "data" => $data
+        ];
+
+        return response()->json($response);
+    }
 }

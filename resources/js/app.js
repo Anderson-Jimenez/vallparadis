@@ -10,3 +10,4 @@ import './supp_service.js';
 import './supp_service_followup.js';
 import './signature.js';
 import './centers.js';
+import './hr_search.js';

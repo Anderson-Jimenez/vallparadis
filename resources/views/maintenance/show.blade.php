@@ -115,7 +115,7 @@
                                 </form>
                             </aside>
 
-                            <aside class="w-full lg:w-1/2 bg-white shadow-xl rounded-lg p-6 flex flex-col">
+                            <aside class="w-full lg:w-1/2 bg-white shadow-lg rounded-lg p-6 flex flex-col">
                                 <div class="flex flex-col md:flex-row md:items-center justify-between w-full mb-4">
                                     <div class="flex items-center mb-3 md:mb-0">
                                         <svg class="bg-[#ff7300] rounded-full w-10 h-10 p-2 mr-3 text-white shrink-0">
@@ -190,9 +190,20 @@
                             </aside>
                         </section>
                     </section>
-                    <div class="flex flex-col items-center w-full bg-white ">
-                        <p>Signatura</p>
-                        <img src="{{ $maintenance->signature }}" alt="firma" class="w-2/6">
+                    <div class="flex flex-col items-center p-4 bg-white rounded-lg border border-gray-200 shadow-sm">
+                        <div class="mb-3">
+                            <h3 class="text-lg font-medium text-gray-700 text-center">Signatura digital</h3>
+                        </div>
+                        
+                        @if($maintenance->signature)
+                            <img src="{{ $maintenance->signature }}" 
+                                alt="Signatura digital" 
+                                class="w-full max-w-lg border border-gray-300 rounded bg-white p-3">
+                        @else
+                            <div class="w-full max-w-lg py-6 border border-gray-300 rounded bg-gray-50 text-center">
+                                <p class="text-gray-400">Sense signatura</p>
+                            </div>
+                        @endif
                     </div>
                     <div class="flex justify-between items-center border-t pt-6">
                         <a href="{{ route('maintenance.edit', $maintenance) }}" class="border border-[#ff7300] txt-orange hover:underline px-6 py-4 rounded-xl">

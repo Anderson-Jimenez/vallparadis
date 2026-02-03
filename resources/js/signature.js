@@ -7,12 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusElement = document.getElementById('signature-status');
     const guideElement = document.getElementById('signature-guide');
     
-    // Variables de estado
     let isDrawing = false;
     let lastX = 0;
     let lastY = 0;
     
-    // Obtener coordenadas corregidas (teniendo en cuenta scaling)
     function getCanvasCoordinates(event) {
         const rect = canvas.getBoundingClientRect();
         const scaleX = canvas.width / rect.width;
@@ -31,21 +29,17 @@ document.addEventListener('DOMContentLoaded', () => {
             };
         }
     }
-    
-    // Configuración inicial del canvas
+    //Configuració per defecte lineas
     function initCanvas() {
-        // Configurar estilo del trazo más suave
         ctx.lineWidth = 2.5;
         ctx.lineCap = 'round';
         ctx.lineJoin = 'round';
-        ctx.strokeStyle = '#1f2937'; // Color gris oscuro más profesional
+        ctx.strokeStyle = '#1f2937';
         ctx.fillStyle = '#ffffff';
         
-        // Limpiar y preparar canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         
-        // Dibujar línea punteada sutil en el centro
         ctx.setLineDash([5, 3]);
         ctx.lineWidth = 1;
         ctx.strokeStyle = '#e5e7eb';
@@ -54,21 +48,17 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.lineTo(canvas.width, canvas.height / 2);
         ctx.stroke();
         
-        // Restaurar configuración
         ctx.setLineDash([]);
         ctx.lineWidth = 2.5;
         ctx.strokeStyle = '#1f2937';
         
-        // Actualizar estado
         updateStatus(false);
         
-        // Mostrar guía
         if (guideElement) {
             guideElement.style.opacity = '1';
         }
     }
     
-    // Actualizar estado visual
     function updateStatus(hasSignature) {
         if (!statusElement) return;
         
@@ -76,7 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const text = statusElement.querySelector('span') || statusElement.lastChild;
         
         if (hasSignature) {
-            // Estado: Firma válida
             if (dot) {
                 dot.className = 'w-2 h-2 bg-green-500 rounded-full mr-2';
                 dot.classList.remove('animate-pulse');
@@ -92,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 guideElement.style.transition = 'opacity 0.3s ease';
             }
         } else {
-            // Estado: Esperando firma
             if (dot) {
                 dot.className = 'w-2 h-2 bg-red-500 rounded-full mr-2 animate-pulse';
             }
@@ -109,10 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // Guardar firma en input oculto
     function saveSignature() {
         if (signatureInput) {
-            // Guardar como PNG de alta calidad
             signatureInput.value = canvas.toDataURL('image/png');
             updateStatus(true);
         }
@@ -125,7 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         
-        // Redibujar línea punteada
         ctx.setLineDash([5, 3]);
         ctx.lineWidth = 1;
         ctx.strokeStyle = '#e5e7eb';
@@ -134,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.lineTo(canvas.width, canvas.height / 2);
         ctx.stroke();
         
-        // Restaurar configuración
         ctx.setLineDash([]);
         ctx.lineWidth = 2.5;
         ctx.strokeStyle = '#1f2937';
@@ -146,7 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateStatus(false);
     }
     
-    // Iniciar dibujo
     function startDrawing(e) {
         e.preventDefault();
         isDrawing = true;
@@ -158,13 +141,11 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.beginPath();
         ctx.moveTo(x, y);
         
-        // Ocultar guía inmediatamente
         if (guideElement) {
             guideElement.style.opacity = '0';
         }
     }
     
-    // Dibujar
     function draw(e) {
         e.preventDefault();
         if (!isDrawing) return;
@@ -177,7 +158,6 @@ document.addEventListener('DOMContentLoaded', () => {
         lastY = y;
     }
     
-    // Detener dibujo
     function stopDrawing(e) {
         e.preventDefault();
         if (isDrawing) {
@@ -186,7 +166,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // Eventos para ratón
     function setupMouseEvents() {
         canvas.addEventListener('mousedown', startDrawing);
         canvas.addEventListener('mousemove', draw);
@@ -194,21 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
         canvas.addEventListener('mouseout', stopDrawing);
     }
     
-    // Eventos para pantalla táctil
-    function setupTouchEvents() {
-        canvas.addEventListener('touchstart', startDrawing);
-        canvas.addEventListener('touchmove', draw);
-        canvas.addEventListener('touchend', stopDrawing);
-        
-        // Prevenir scroll en el canvas
-        canvas.addEventListener('touchmove', (e) => {
-            if (isDrawing) {
-                e.preventDefault();
-            }
-        }, { passive: false });
-    }
     
-    // Botón para limpiar
     if (clearBtn) {
         clearBtn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -216,14 +181,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Validación del formulario
     const form = document.querySelector('form');
     if (form) {
         form.addEventListener('submit', (e) => {
             if (!signatureInput || !signatureInput.value) {
                 e.preventDefault();
                 
-                // Mostrar error visual
                 statusElement.className = 'flex items-center px-3 py-2 bg-red-50 rounded-lg border border-red-200 min-w-[140px]';
                 const dot = statusElement.querySelector('.w-2');
                 const text = statusElement.querySelector('span');
@@ -250,21 +213,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Inicializar
     initCanvas();
     setupMouseEvents();
     setupTouchEvents();
     
-    // Redibujar en resize (para mantener calidad)
     window.addEventListener('resize', () => {
-        // Guardar contenido actual
         const tempCanvas = document.createElement('canvas');
         const tempCtx = tempCanvas.getContext('2d');
         tempCanvas.width = canvas.width;
         tempCanvas.height = canvas.height;
         tempCtx.drawImage(canvas, 0, 0);
         
-        // Redibujar
         initCanvas();
         ctx.drawImage(tempCanvas, 0, 0);
         

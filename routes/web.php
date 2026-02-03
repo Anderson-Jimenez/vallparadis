@@ -177,6 +177,9 @@ Route::middleware(['auth'])->group(function () {
         [Hr_pending_issue_followupController::class, 'downloadDocument'])
         ->name('hr_pending_issues.followups.download');
 
+    Route::post('/search-hr-issues', [Hr_pending_issueController::class, 'search'])->name('hr_pending_issues.search');
+
+
     Route::resource('accidents', AccidentsController::class);
     Route::get('/professionals/{professional}/accidents', [AccidentsController::class, 'index'])->name('professionals.accidents.index');
     Route::post('/professionals/{professional}/accidents',[AccidentsController::class, 'store'])->name('professionals.accidents.store');
