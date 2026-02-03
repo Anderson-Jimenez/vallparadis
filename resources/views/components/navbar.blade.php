@@ -19,12 +19,6 @@
         </button>
         <el-menu anchor="bottom end" popover class="w-56 origin-top-right rounded-md bg-white shadow-lg outline-1 outline-black/5 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
             <div class="py-1">
-                <a href="{{route('dashboard')}}" class="flex txt-orange items-center px-4 py-4 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
-                    <svg class="w-6 h-6 txt-orange m-1">
-                        <use xlink:href="#settings_icon"></use>
-                    </svg>
-                    Account settings</a>
-                </a>
                 <a href="{{ route('logout') }}" class="flex txt-orange items-center px-4 py-4 text-sm text-gray-700 focus:bg-gray-100 focus:text-gray-900 focus:outline-hidden">
                     <svg class="w-6 h-6 txt-orange mr-2">
                         <use xlink:href="#log_out_icon"></use>
