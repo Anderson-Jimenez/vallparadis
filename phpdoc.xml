@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<phpdocumentor configVersion="3">
+
+    <title>Documentació tècnica Laravel</title>
+
+    <!-- Carpetas a documentar -->
+    <files>
+        <directory>app</directory>
+        <directory>routes</directory>
+    </files>
+
+    <!-- Carpetas a ignorar -->
+    <settings>
+        <ignore>
+            <directory>vendor</directory>
+            <directory>storage</directory>
+            <directory>bootstrap/cache</directory>
+        </ignore>
+    </settings>
+
+    <!-- Salida HTML -->
+    <transformations>
+        <template name="clean"/>
+    </transformations>
+
+    <transformer>
+        <target>docs</target>
+    </transformer>
+
+</phpdocumentor>

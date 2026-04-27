@@ -10,11 +10,16 @@ use App\Models\Recent_activity;
 use App\Models\Project_comission_document;
 use App\Models\Professional;
 use Illuminate\Support\Facades\Auth;
-
+/**
+ * Controlador para gestionar los proyectos y comisiones.
+ * Estan todas las gestiones como mostrar, crear, editar, 
+ * actualizar y eliminar(desactivar).
+ */
 class Project_comissionController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra todos los proyectos y comisiones.
+     * @return \Illuminate\View\View Vista con todos los proyectos y comisiones.
      */
     public function index()
     {
@@ -23,7 +28,8 @@ class Project_comissionController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Muestra el formulario para crear un nuevo proyecto o comisión.
+     * @return \Illuminate\View\View Vista del formulario.
      */
     public function create()
     {
@@ -32,7 +38,10 @@ class Project_comissionController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Guarda los datos de un nuevo proyecto o comisión creado en la base de datos.
+     * También se pueden guardar archivos.
+     * @param Request $request Datos enviados del formulario.
+     * @return \Illuminate\Http\RedirectResponse Redirige al listado de proyectos y comisiones.
      */
     public function store(Request $request)
     {
@@ -72,7 +81,10 @@ class Project_comissionController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Muestra la información de un proyecto o comisión en detalle.
+     * También se pueden guardar archivos.
+     * @param Project_comission $project_comission Datos del proyecto o comisión que va a mostrar.
+     * @return \Illuminate\View\View Vista con detalles del proyecto o comisión.
      */
     public function show(Project_comission $project_comission)
     {
@@ -86,7 +98,9 @@ class Project_comissionController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Muestra el formulario para editar un proyecto o comisión.
+     * @param Project_comission $project_comission Proyecto o comisión para editar.
+     * @return \Illuminate\View\View Vista del formulario de edición de proyecto o comisión.
      */
     public function edit(Project_comission $project_comission)
     {
@@ -97,7 +111,11 @@ class Project_comissionController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza un proyecto o comisión existente.
+     * También puede subir nuevos archivos.
+     * @param Request $request Datos del formulario actualizado.
+     * @param Project_comission $project_comission Proyecto o comisión para actualizar.
+     * @return \Illuminate\Http\RedirectResponse Redirige al listado de proyectos y comisiones.
      */
     public function update(Request $request, Project_comission $project_comission)
     {
@@ -132,20 +150,31 @@ class Project_comissionController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Elimina un proyecto o comisión.
+     * @param Project_comission $project_comission Proyecto o comisión para eliminar.
+     * @return \Illuminate\Http\RedirectResponse Redirige al listado de proyectos y comisiones.
      */
     public function destroy(Project_comission $project_comission)
     {
         $project_comission->delete(); // elimina el registro
         return redirect()->route('project_comission.index');
     }
-
+    /**
+     * Activa o desactiva un proyecto o comisión.
+     * @param Project_comission $project_comission Proyecto o comisión para cambiar el estado.
+     * @return \Illuminate\Http\RedirectResponse Redirige al listado de proyectos y comisiones.
+     */
     public function activate(Project_comission $project_comission)
     {   
         $project_comission->status = $project_comission->status == 'active' ? 'inactive' : 'active';
         $project_comission->save();
         return redirect()->route('project_comission.index');
     }
+    /**
+     * Descarga un documento relacionado a un proyecto o comisión.
+     * @param Project_comission_document $document Documento para descargar.
+     * @return \Symfony\Component\HttpFoundation\StreamedResponse Archivo descargado.
+     */
     public function downloadDocument(Project_comission_document $document)
     {
         $disk = Storage::disk('projects_comissions');
