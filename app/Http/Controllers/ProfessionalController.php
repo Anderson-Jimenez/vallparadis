@@ -24,7 +24,19 @@ use Maatwebsite\Excel\Facades\Excel;
 class ProfessionalController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Controlador encarregat de gestionar els professionals.
+     *
+     * Aquesta classe permet crear, consultar, modificar i administrar
+     * la informació relacionada amb els professionals,
+     * així com la seva documentació i uniformes.
+     * @package App\Http\Controllers
+     */
+
+    /**
+     * Mostra el llistat de professionals segons el seu estat.
+     *
+     * @param Request $request Conté els filtres enviats per l’usuari
+     * @return \Illuminate\View\View
      */
     public function index(Request $request)
     {
@@ -38,7 +50,9 @@ class ProfessionalController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Redirecciona a pagina per afegir nou Professional
+     *
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -55,7 +69,11 @@ class ProfessionalController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Desa un nou professional a la base de dades
+     *
+     * @param Request $request Dades del formulari d'alta de professionals
+     * @return \Illuminate\Http\RedirectResponse
+     *
      */
     public function store(Request $request)
     {
@@ -104,7 +122,10 @@ class ProfessionalController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Mostra la informació detallada d’un professional.
+     *
+     * @param Professional $professional Professional seleccionat
+     * @return \Illuminate\View\View
      */
     public function show(Professional $professional)
     {
@@ -112,7 +133,10 @@ class ProfessionalController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Redirecciona al formulari d'edicio d'un Professional
+     * 
+     * @param Professional $professional
+     * @return \Illuminate\View\View
      */
     public function edit(Professional $professional)
     {
@@ -120,7 +144,11 @@ class ProfessionalController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualitza les dades d'un professional mitjançant un formulari
+     * 
+     * @param Request $request Dades del formulari d'edició d'un Professional
+     * @param Professional $professional Professional actualitzat
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Professional $professional)
     {
@@ -144,18 +172,42 @@ class ProfessionalController extends Controller
         $professional->update($validated);
         return redirect()->route('professional.index');
     }
+    /**
+     * Elimina les dades d'un professional especificat
+     * 
+     * @param Professional $professional Professional a eliminar
+     * @return \Illuminate\Http\RedirectResponse
+     */
 
     public function destroy(Professional $professional)
     {
         $professional->delete(); // elimina el registro
         return redirect()->route('professional.index');
     }
+
+    /**
+     * Canvia l'estat d'un professional entre 'active' i 'inactive'.
+     *
+     * Aquest metode s'utilitza per desactivar un professional sense eliminar-lo del sistema.
+     *
+     * @param Professional $professional El professional a modificar
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function activate(Professional $professional)
     {   
         $professional->status = $professional->status == 'active' ? 'inactive' : 'active';
         $professional->save();
         return back();
     }
+    /**
+     * Envia informació dels Uniformes d'un professional
+     *
+     * Aquest metode envia l'informacio de les ultimes peçes d'uniforme que han sigut demanades per un professional, tant com l'historial dels seus uniformes
+     *
+     * @param Professional $professional El professional a modificar
+     * @return \Illuminate\View\View
+     */
+
     public function send_uniform(Professional $professional)
     {
         $currentUniform = Uniform::where('professional_id', $professional->id)
@@ -190,6 +242,15 @@ class ProfessionalController extends Controller
             'uniformHistory' => $uniformHistory
         ]);
     }
+
+    /**
+     * Elimina les dades d'un professional especificat
+     * 
+     * @param Request $request Dades del formulari d'alta d'un uniforme a un professional
+     * @param Professional $professional Professional al cual s'assigna un uniforme
+     * @return \Illuminate\Http\RedirectResponse
+     */
+
     public function uniform(Request $request, Professional $professional)
     {
         $validated = request()->validate([
@@ -220,6 +281,18 @@ class ProfessionalController extends Controller
         ]);
         return redirect()->route('professional.send_uniform', $professional);
     }
+
+    /**
+     * Descarrega el document associat a l’uniforme d’un professional.
+     *
+     * @param Professional $professional Professional seleccionat
+     * @param Uniform $uniform Uniforme assignat al professional
+     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
+     */
+
+
     public function downloadUniformDocument(Professional $professional, Uniform $uniform)
     {
         // Verificar permisos
@@ -236,18 +309,46 @@ class ProfessionalController extends Controller
 
         return Storage::disk('uniforms')->download($uniform->docs_route, $downloadName);
     }
+
+    /**
+     * Descarrega el document amb la informació del locker assignat al professional
+     *
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+    */
+
     public function exportar_excel_locker()
     {
         return Excel::download(new LockerExport, 'locker.xlsx');
     }
+
+    /**
+     * Descarrega el document amb l'historial d'uniformes d'un professional
+     *
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+
     public function exportar_excel_uniforms_history()
     {
         return Excel::download(new Uniforms_historyExport, 'uniforms_history.xlsx');
     }
+
+    /**
+     * Descarrega el document amb la informació dels uniformes d'un professional
+     *
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+
     public function exportar_excel_uniforms()
     {
         return Excel::download(new UniformsExport, 'uniforms.xlsx');
     }
+    /**
+     * Emmagatzema els documents d'un professional
+     * @param Request $request Arxius enviats mitjançant formulari
+     * @param Professional $professional Professional del qual s'envien els documents
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function storeDocuments(Request $request, Professional $professional)
     {
         $request->validate([
@@ -284,7 +385,13 @@ class ProfessionalController extends Controller
     }
 
     /**
-     * Download a professional document
+     * Descarrega un document associat a un professional.
+     *
+     * @param Professional $professional Professional propietari del document
+     * @param Professional_doc $document Document seleccionat
+     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      */
     public function downloadDocument(Professional $professional, Professional_doc $document)
     {

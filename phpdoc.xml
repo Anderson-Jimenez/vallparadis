@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdocumentor configVersion="3">
+    <title>Sistema de Gestió de Professionals</title>
+    
+    <paths>
+        <output>./docs</output>
+        <cache>.phpdoc/cache</cache>
+    </paths>
+
+    <version number="1.0.0">
+        <api>
+            <default-package-name>vallparadis/app</default-package-name>
+            
+            <visibility>public</visibility>
+            <visibility>protected</visibility>
+            
+            <source dsn=".">
+                <path>app/Http/Controllers/ProfessionalController.php</path>
+            </source>
+            
+            <ignore>
+                <path>vendor</path>
+                <path>storage</path>
+                <path>database/migrations</path>
+            </ignore>
+        </api>
+    </version>
+</phpdocumentor>
