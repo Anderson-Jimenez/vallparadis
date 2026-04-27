@@ -58,7 +58,7 @@
                                             <use xlink:href="#add_docs_icon"></use>
                                         </svg>
                                         <p class="mb-1 text-sm text-[#ff7300] font-semibold text-center">
-                                            Click per pujar arxius<br>o arrossega i deixa anar
+                                            Donar click per pujar arxius
                                         </p>
                                         <p class="text-xs text-[#ff7300]">PDF, CSV, DOCX o DOC</p>
                                     </div>

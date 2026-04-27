@@ -207,7 +207,7 @@
                                     <textarea name="description" rows="4" placeholder="Descriu el seguiment realitzat..." class="input-base focus:ring-orange-500"></textarea>
                                 </div>
                                 <div class="flex justify-end">
-                                    <button type="submit" class="btn-orange flex items-center">
+                                    <button type="submit" class="btn-orange flex items-center bg-[#ff7300] text-white p-4 rounded-lg cursor-pointer">
                                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                   d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>

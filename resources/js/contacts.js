@@ -8,8 +8,6 @@ window.addEventListener('load', function() {
 
     search_input.addEventListener("keyup", function(e) {
         clearTimeout(debounce_timer);
-        
-        // Nomes fer la cerca si s'ha premut una tecla que modifica el text
         if (e.key.length === 1 || e.key === 'Backspace' || e.key === 'Delete') {
             debounce_timer = setTimeout(() => {
                 search();
@@ -17,7 +15,6 @@ window.addEventListener('load', function() {
         }
     });
 
-    // Combinar el cercador amb els filtres
     if (type_filter) {
         type_filter.addEventListener("change", search);
     }

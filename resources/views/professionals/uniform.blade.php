@@ -204,7 +204,7 @@
                                         <div class="text-center bg-white rounded-lg p-4 shadow-sm">
                                             <div class="w-8 h-8 mx-auto mb-2 text-orange-500">
                                                 <svg fill="currentColor" viewBox="0 0 24 24">
-                                                    <path d="M21 6h-4V3a1 1 0 00-1-1H8a1 1 0 00-1 1v3H3a1 1 0 00-1 1v11a3 3 0 003 3h14a3 3 0 003-3V7a1 1 0 00-1-1zM9 4h6v2H9V4z"/>
+                                                    <use xlink:href="#uniform_icon"></use>
                                                 </svg>
                                             </div>
                                             <p class="text-sm text-gray-500 mb-1">Samarreta</p>
@@ -217,7 +217,7 @@
                                         <div class="text-center bg-white rounded-lg p-4 shadow-sm">
                                             <div class="w-8 h-8 mx-auto mb-2 text-blue-500">
                                                 <svg fill="currentColor" viewBox="0 0 24 24">
-                                                    <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/>
+                                                    <use xlink:href="#uniform_icon"></use>
                                                 </svg>
                                             </div>
                                             <p class="text-sm text-gray-500 mb-1">Pantalons</p>
@@ -230,7 +230,7 @@
                                         <div class="text-center bg-white rounded-lg p-4 shadow-sm">
                                             <div class="w-8 h-8 mx-auto mb-2 text-green-500">
                                                 <svg fill="currentColor" viewBox="0 0 24 24">
-                                                    <path d="M20 12a2 2 0 00-2-2h-2V7a4 4 0 00-4-4H8a4 4 0 00-4 4v3H2a2 2 0 00-2 2v2a2 2 0 002 2h2v3a4 4 0 004 4h4a4 4 0 004-4v-3h2a2 2 0 002-2v-2z"/>
+                                                    <use xlink:href="#uniform_icon"></use>                                                
                                                 </svg>
                                             </div>
                                             <p class="text-sm text-gray-500 mb-1">Sabates</p>
