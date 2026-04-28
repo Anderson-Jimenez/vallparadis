@@ -11,7 +11,7 @@ use App\Models\Project_comission_document;
 use App\Models\Professional;
 use Illuminate\Support\Facades\Auth;
 /**
- * Controlador para gestionar los proyectos y comisiones.
+ * Controlador para gestionar los proyectos y comisiones. (HATIM Kenfaui)
  * Estan todas las gestiones como mostrar, crear, editar, 
  * actualizar y eliminar(desactivar).
  */

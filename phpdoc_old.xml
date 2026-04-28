@@ -4,28 +4,24 @@
 
     <title>Documentació tècnica Laravel</title>
 
-    <!-- Carpetas a documentar -->
     <files>
         <directory>app</directory>
         <directory>routes</directory>
+
+        <ignore>
+            vendor/*
+            storage/*
+            bootstrap/cache/*
+        </ignore>
     </files>
 
-    <!-- Carpetas a ignorar -->
     <settings>
-        <ignore>
-            <directory>vendor</directory>
-            <directory>storage</directory>
-            <directory>bootstrap/cache</directory>
-        </ignore>
+        <setting name="visibility" value="public,protected"/>
+        <setting name="defaultpackagename" value="Application"/>
     </settings>
 
-    <!-- Salida HTML -->
     <transformations>
         <template name="clean"/>
     </transformations>
-
-    <transformer>
-        <target>docs</target>
-    </transformer>
 
 </phpdocumentor>

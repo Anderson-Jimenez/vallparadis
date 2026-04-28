@@ -878,7 +878,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Http\\Controllers\\Project_comissionController",
             "name": "Project_comissionController",
-            "summary": "Controlador\u0020para\u0020gestionar\u0020los\u0020proyectos\u0020y\u0020comisiones.",
+            "summary": "Controlador\u0020para\u0020gestionar\u0020los\u0020proyectos\u0020y\u0020comisiones.\u0020\u0028HATIM\u0020Kenfaui\u0029\nEstan\u0020todas\u0020las\u0020gestiones\u0020como\u0020mostrar,\u0020crear,\u0020editar,\nactualizar\u0020y\u0020eliminar\u0028desactivar\u0029.",
             "url": "classes/App-Http-Controllers-Project-comissionController.html"
         },                {
             "fqsen": "\\App\\Http\\Controllers\\Project_comissionController\u003A\u003Aindex\u0028\u0029",
