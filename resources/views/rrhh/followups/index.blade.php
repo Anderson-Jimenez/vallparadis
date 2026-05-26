@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seguiments - Tema {{ $hr_pending_issue->context }}</title>
-    @vite(['resources/css/app.css', 'resources/js/rrhh_followup.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="min-h-screen bg-body flex flex-col">
     @include('partials.icons')

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Afegir nou contacte</title>
-    @vite(['resources/css/app.css', 'resources/js/documents_center.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="bg-orange-50 min-h-screen">

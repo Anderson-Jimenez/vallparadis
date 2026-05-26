@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Gestió Centre</title>
-    @vite(['resources/css/app.css', 'resources/js/centers.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
 <body class="min-h-screen flex flex-col bg-body">

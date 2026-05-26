@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Gestió Contactes Externs</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    @vite(['resources/css/app.css', 'resources/js/contacts.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="min-h-screen flex flex-col bg-body">
