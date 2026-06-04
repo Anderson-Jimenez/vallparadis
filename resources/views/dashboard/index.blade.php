@@ -22,7 +22,7 @@
             <div class="bg-white rounded-2xl shadow-md border-l-4 border-orange-500 flex items-center justify-between p-6">
                 <div>
                     <p class="text-gray-500 text-sm md:text-base">
-                        Professionals Actius
+                        Professionals Actius Hola Hatim
                     </p>
                     <p class="text-3xl md:text-4xl font-bold text-gray-800 mt-4">
                         {{ $professionals_count }}
